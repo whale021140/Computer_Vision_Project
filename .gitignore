@@ -22,3 +22,4 @@ Thumbs.db
 
 # Large archives, except milestone submission zip if needed
 *.zip
+cache/
