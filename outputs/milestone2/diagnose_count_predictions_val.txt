@@ -1,0 +1,30 @@
+Count Prediction Diagnosis
+==========================
+
+Feature file: cache/features/clip_val.pt
+Checkpoint: checkpoints/clip_baseline_1pct/best.pt
+
+Overall true count-class distribution:
+  true class 0: 8905
+  true class 2: 5296
+  true class 3: 28
+
+Overall predicted count-class distribution:
+  pred class 0: 178
+  pred class 1: 8168
+  pred class 2: 5883
+
+By target type: entries are true_class -> pred_class
+
+[multi-target]
+  true 2 -> pred 0: 3
+  true 2 -> pred 1: 611
+  true 2 -> pred 2: 4682
+  true 3 -> pred 0: 1
+  true 3 -> pred 1: 9
+  true 3 -> pred 2: 18
+
+[no-target]
+  true 0 -> pred 0: 174
+  true 0 -> pred 1: 7548
+  true 0 -> pred 2: 1183
