@@ -1,0 +1,45 @@
+====================================================================================================
+DATASET SUMMARY
+====================================================================================================
+Dataset size: 2093
+Target-type counts: Counter({'single-target': 1206, 'multi-target': 696, 'no-target': 191})
+
+====================================================================================================
+SINGLE SAMPLE TEST
+====================================================================================================
+image_id: 113
+expression: the guy in the background that's cut off and lady cutting the cake
+boxes shape: torch.Size([2, 4])
+normalized_boxes: tensor([[0.8206, 0.1570, 1.0000, 0.6699],
+        [0.3561, 0.0697, 0.8263, 0.6742]])
+num_targets: 2
+target_type: multi-target
+original_size: tensor([416, 640])
+
+====================================================================================================
+BATCH TEST
+====================================================================================================
+Batch size: 8
+Image IDs: tensor([581136, 441599, 310649, 367449,  22650, 287541, 206427, 163125])
+Expressions: ['striped chair by the piano', 'right giraffe and giraffe on left', 'man in gray suit walking on sidewalk', 'right big giraffe and BOTTOM GIRAFFE', 'woman in red shirt', 'left sink and right sing not in mirror', 'brown shirt facing clerk front', 'refrigerator with open door']
+Box shapes: [torch.Size([1, 4]), torch.Size([2, 4]), torch.Size([1, 4]), torch.Size([2, 4]), torch.Size([1, 4]), torch.Size([2, 4]), torch.Size([0, 4]), torch.Size([1, 4])]
+Target counts: tensor([1, 2, 1, 2, 1, 2, 0, 1])
+Target types: ['single-target', 'multi-target', 'single-target', 'multi-target', 'single-target', 'multi-target', 'no-target', 'single-target']
+Original sizes: tensor([[640, 495],
+        [640, 480],
+        [640, 428],
+        [480, 640],
+        [640, 480],
+        [640, 429],
+        [640, 480],
+        [640, 516]])
+
+====================================================================================================
+FULL LOADER VALIDATION
+====================================================================================================
+Successfully loaded batches: 262
+Successfully loaded samples: 2093
+Loading failures: 0
+Elapsed time: 6.513428567999654
+Average time per batch: 0.02486041438167807
+Observed target counts: Counter({'single-target': 1206, 'multi-target': 696, 'no-target': 191})

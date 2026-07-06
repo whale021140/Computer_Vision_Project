@@ -1,0 +1,5 @@
+Full training set: Counter({'total': 209344, 'single-target': 120624, 'multi-target': 69580, 'no-target': 19140})
+1% subset: Counter({'total': 2093, 'single-target': 1206, 'multi-target': 696, 'no-target': 191}) saved to /home/whale/488/Final_Project/splits/train_1pct_seed0.json
+5% subset: Counter({'total': 10467, 'single-target': 6031, 'multi-target': 3479, 'no-target': 957}) saved to /home/whale/488/Final_Project/splits/train_5pct_seed0.json
+10% subset: Counter({'total': 20934, 'single-target': 12062, 'multi-target': 6958, 'no-target': 1914}) saved to /home/whale/488/Final_Project/splits/train_10pct_seed0.json
+Nested subset validation passed.

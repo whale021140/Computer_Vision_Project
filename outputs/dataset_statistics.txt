@@ -1,0 +1,105 @@
+====================================================================================================
+BASIC FILE STATISTICS
+====================================================================================================
+Number of references: 94050
+Number of COCO images: 19994
+Number of COCO annotations: 196771
+Number of COCO categories: 80
+
+====================================================================================================
+EXPRESSION-LEVEL STATISTICS
+====================================================================================================
+Number of expression-level samples: 258836
+Available splits: ['testA', 'testB', 'train', 'val']
+
+====================================================================================================
+PER-SPLIT STATISTICS
+====================================================================================================
+
+Split: testA
+  Unique images: 750
+  References: 6265
+  Expressions: 19200
+  No-target: 4448
+  Single-target: 5917
+  Multi-target: 8835
+
+Split: testB
+  Unique images: 750
+  References: 4618
+  Expressions: 16063
+  No-target: 4673
+  Single-target: 5646
+  Multi-target: 5744
+
+Split: train
+  Unique images: 16994
+  References: 78930
+  Expressions: 209344
+  No-target: 19140
+  Single-target: 120624
+  Multi-target: 69580
+
+Split: val
+  Unique images: 1501
+  References: 4237
+  Expressions: 14229
+  No-target: 8905
+  Single-target: 0
+  Multi-target: 5324
+
+====================================================================================================
+OVERALL TARGET-TYPE DISTRIBUTION
+====================================================================================================
+no-target: 37166 expressions (14.36%)
+single-target: 132187 expressions (51.07%)
+multi-target: 89483 expressions (34.57%)
+
+====================================================================================================
+EXACT TARGET-COUNT DISTRIBUTION
+====================================================================================================
+0 targets: 37166
+1 targets: 132187
+2 targets: 83041
+3 targets: 3740
+4 targets: 1248
+5 targets: 496
+6 targets: 264
+7 targets: 125
+8 targets: 145
+9 targets: 106
+10 targets: 79
+11 targets: 58
+12 targets: 45
+13 targets: 53
+14 targets: 75
+15 targets: 3
+16 targets: 4
+18 targets: 1
+
+====================================================================================================
+EXPRESSION LENGTH
+====================================================================================================
+Minimum length: 1
+Maximum length: 53
+Mean length: 4.98436075352733
+
+====================================================================================================
+ID VALIDATION
+====================================================================================================
+References with missing image IDs: 0
+Missing annotation IDs: 0
+
+====================================================================================================
+TOP 10 TARGET CATEGORIES
+====================================================================================================
+person: 161146
+elephant: 7095
+zebra: 7017
+giraffe: 6825
+chair: 6323
+bowl: 5978
+pizza: 5318
+horse: 5090
+sandwich: 4985
+cow: 4961

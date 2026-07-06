@@ -1,0 +1,20 @@
+{
+  "num_expressions": 258836,
+  "target_type_counts": {
+    "No-target": 37166,
+    "Single-target": 132187,
+    "Multi-target": 89483
+  },
+  "cardinality_counts": {
+    "0": 37166,
+    "1": 132187,
+    "2": 83041,
+    "3": 3740,
+    "4": 1248,
+    "5": 496,
+    "6+": 958
+  },
+  "expression_length_min": 1,
+  "expression_length_max": 53,
+  "expression_length_mean": 4.98436075352733
+}
