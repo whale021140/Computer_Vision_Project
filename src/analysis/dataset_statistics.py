@@ -3,7 +3,7 @@ from collections import Counter, defaultdict
 import json
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 ANNOTATION_DIR = PROJECT_ROOT / "data" / "grefcoco" / "annotations"
 
 GREF_PATH = ANNOTATION_DIR / "grefs(unc).json"

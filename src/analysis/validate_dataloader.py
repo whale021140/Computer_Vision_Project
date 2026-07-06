@@ -7,13 +7,13 @@ import time
 
 from torch.utils.data import DataLoader
 
-from grefcoco_dataset import (
+from src.data.grefcoco_dataset import (
     GRefCOCODataset,
     grefcoco_collate_fn,
 )
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 ANNOTATION_DIR = PROJECT_ROOT / "data" / "grefcoco" / "annotations"
 IMAGE_DIR = PROJECT_ROOT / "data" / "coco" / "train2014"
