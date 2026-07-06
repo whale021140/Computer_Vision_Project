@@ -1,0 +1,16 @@
+CLIP model: ViT-B/32
+Device: cuda
+Feature dimension: 512
+Input candidate file: cache/candidates/train_1pct_coco_candidates.jsonl
+Output feature file: cache/features/clip_train_1pct_debug.pt
+Records read: 16
+Samples processed: 16
+Failed image loads: 0
+Failed samples: 0
+No-target samples: 3
+Single-target samples: 7
+Multi-target samples: 6
+Total candidate regions encoded: 111
+Total positive candidate labels: 20
+Average candidates per processed sample: 6.9375
+Total runtime seconds: 1.02
