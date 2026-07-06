@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 ANNOTATION_DIR = PROJECT_ROOT / "data" / "grefcoco" / "annotations"
 OUTPUT_DIR = PROJECT_ROOT / "outputs" / "figures"
 

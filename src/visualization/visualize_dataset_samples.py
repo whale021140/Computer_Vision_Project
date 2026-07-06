@@ -10,7 +10,7 @@ import matplotlib.patches as patches
 from PIL import Image
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 ANNOTATION_DIR = PROJECT_ROOT / "data" / "grefcoco" / "annotations"
 IMAGE_DIR = PROJECT_ROOT / "data" / "coco" / "train2014"
