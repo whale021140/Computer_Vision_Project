@@ -1,0 +1,27 @@
+CLIP Baseline Qualitative Visualization Summary
+================================================
+Feature file: cache/features/clip_testB.pt
+Checkpoint: checkpoints/clip_baseline_1pct_weighted_w15/best.pt
+Image root: data/coco/train2014
+Output dir: outputs/milestone2/qualitative/testB
+Device: cuda
+CLIP model: ViT-B/32
+Feature dimension: 512
+Scanned samples: 21
+Skipped missing images: 0
+
+Selected examples:
+  correct_no_target: 1 / 1
+  false_grounding_no_target: 1 / 1
+  correct_single_target: 1 / 1
+  failed_single_target: 1 / 1
+  correct_multi_target: 1 / 1
+  failed_multi_target: 1 / 1
+
+Files:
+  - [failed_multi_target] outputs/milestone2/qualitative/testB/failed_multi_target_01_0000000_COCO_train2014_000000000154.png | sample=0000000 | exact=0 | F1=0.800
+  - [failed_single_target] outputs/milestone2/qualitative/testB/failed_single_target_01_0000006_COCO_train2014_000000000154.png | sample=0000006 | exact=0 | F1=0.000
+  - [correct_single_target] outputs/milestone2/qualitative/testB/correct_single_target_01_0000011_COCO_train2014_000000000154.png | sample=0000011 | exact=1 | F1=1.000
+  - [correct_multi_target] outputs/milestone2/qualitative/testB/correct_multi_target_01_0000015_COCO_train2014_000000000154.png | sample=0000015 | exact=1 | F1=1.000
+  - [correct_no_target] outputs/milestone2/qualitative/testB/correct_no_target_01_0000019_COCO_train2014_000000000154.png | sample=0000019 | exact=1 | F1=1.000
+  - [false_grounding_no_target] outputs/milestone2/qualitative/testB/false_grounding_no_target_01_0000020_COCO_train2014_000000000154.png | sample=0000020 | exact=0 | F1=0.000

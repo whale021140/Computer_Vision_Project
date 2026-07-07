@@ -1,0 +1,158 @@
+{
+  "feature_file": "cache/features/clip_testA.pt",
+  "checkpoint": "checkpoints/clip_baseline_1pct_weighted_w15/best.pt",
+  "image_root": "data/coco/train2014",
+  "output_dir": "outputs/milestone2/qualitative/testA",
+  "device": "cuda",
+  "clip_model": "ViT-B/32",
+  "feature_dim": 512,
+  "examples_per_category": 1,
+  "scanned_samples": 22,
+  "selected_counts": {
+    "correct_no_target": 1,
+    "false_grounding_no_target": 1,
+    "correct_single_target": 1,
+    "failed_single_target": 1,
+    "correct_multi_target": 1,
+    "failed_multi_target": 1
+  },
+  "candidate_counts_seen": {
+    "correct_no_target": 1,
+    "false_grounding_no_target": 1,
+    "correct_single_target": 3,
+    "failed_single_target": 3,
+    "correct_multi_target": 6,
+    "failed_multi_target": 8
+  },
+  "skipped_missing_images": 0,
+  "examples": [
+    {
+      "category": "failed_multi_target",
+      "category_title": "Failed multi-target",
+      "output_file": "outputs/milestone2/qualitative/testA/failed_multi_target_01_0000000_COCO_train2014_000000000839.png",
+      "sample_id": "0000000",
+      "image_id": 839,
+      "file_name": "COCO_train2014_000000000839.jpg",
+      "target_type": "multi-target",
+      "expression": "blue shirt and a frisbee",
+      "true_count_class": 2,
+      "pred_count_class": 2,
+      "gt_candidate_indices": [
+        1,
+        2
+      ],
+      "pred_candidate_indices": [
+        0,
+        2
+      ],
+      "precision": 0.5,
+      "recall": 0.5,
+      "f1": 0.5,
+      "exact": 0.0
+    },
+    {
+      "category": "correct_multi_target",
+      "category_title": "Correct multi-target",
+      "output_file": "outputs/milestone2/qualitative/testA/correct_multi_target_01_0000002_COCO_train2014_000000000839.png",
+      "sample_id": "0000002",
+      "image_id": 839,
+      "file_name": "COCO_train2014_000000000839.jpg",
+      "target_type": "multi-target",
+      "expression": "blue shirt and white shirt",
+      "true_count_class": 2,
+      "pred_count_class": 2,
+      "gt_candidate_indices": [
+        0,
+        2
+      ],
+      "pred_candidate_indices": [
+        0,
+        2
+      ],
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "exact": 1.0
+    },
+    {
+      "category": "failed_single_target",
+      "category_title": "Failed single-target",
+      "output_file": "outputs/milestone2/qualitative/testA/failed_single_target_01_0000014_COCO_train2014_000000000839.png",
+      "sample_id": "0000014",
+      "image_id": 839,
+      "file_name": "COCO_train2014_000000000839.jpg",
+      "target_type": "single-target",
+      "expression": "person on left",
+      "true_count_class": 1,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        2
+      ],
+      "pred_candidate_indices": [],
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "category": "correct_single_target",
+      "category_title": "Correct single-target",
+      "output_file": "outputs/milestone2/qualitative/testA/correct_single_target_01_0000017_COCO_train2014_000000000839.png",
+      "sample_id": "0000017",
+      "image_id": 839,
+      "file_name": "COCO_train2014_000000000839.jpg",
+      "target_type": "single-target",
+      "expression": "guy flopping around on the right",
+      "true_count_class": 1,
+      "pred_count_class": 1,
+      "gt_candidate_indices": [
+        0
+      ],
+      "pred_candidate_indices": [
+        0
+      ],
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "exact": 1.0
+    },
+    {
+      "category": "correct_no_target",
+      "category_title": "Correct no-target",
+      "output_file": "outputs/milestone2/qualitative/testA/correct_no_target_01_0000020_COCO_train2014_000000000839.png",
+      "sample_id": "0000020",
+      "image_id": 839,
+      "file_name": "COCO_train2014_000000000839.jpg",
+      "target_type": "no-target",
+      "expression": "back skater",
+      "true_count_class": 0,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [],
+      "pred_candidate_indices": [],
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "exact": 1.0
+    },
+    {
+      "category": "false_grounding_no_target",
+      "category_title": "False grounding on no-target",
+      "output_file": "outputs/milestone2/qualitative/testA/false_grounding_no_target_01_0000021_COCO_train2014_000000000839.png",
+      "sample_id": "0000021",
+      "image_id": 839,
+      "file_name": "COCO_train2014_000000000839.jpg",
+      "target_type": "no-target",
+      "expression": "woman",
+      "true_count_class": 0,
+      "pred_count_class": 1,
+      "gt_candidate_indices": [],
+      "pred_candidate_indices": [
+        0
+      ],
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    }
+  ]
+}

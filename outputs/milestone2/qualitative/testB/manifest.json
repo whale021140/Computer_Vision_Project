@@ -1,0 +1,159 @@
+{
+  "feature_file": "cache/features/clip_testB.pt",
+  "checkpoint": "checkpoints/clip_baseline_1pct_weighted_w15/best.pt",
+  "image_root": "data/coco/train2014",
+  "output_dir": "outputs/milestone2/qualitative/testB",
+  "device": "cuda",
+  "clip_model": "ViT-B/32",
+  "feature_dim": 512,
+  "examples_per_category": 1,
+  "scanned_samples": 21,
+  "selected_counts": {
+    "correct_no_target": 1,
+    "false_grounding_no_target": 1,
+    "correct_single_target": 1,
+    "failed_single_target": 1,
+    "correct_multi_target": 1,
+    "failed_multi_target": 1
+  },
+  "candidate_counts_seen": {
+    "correct_no_target": 1,
+    "false_grounding_no_target": 1,
+    "correct_single_target": 2,
+    "failed_single_target": 6,
+    "correct_multi_target": 2,
+    "failed_multi_target": 9
+  },
+  "skipped_missing_images": 0,
+  "examples": [
+    {
+      "category": "failed_multi_target",
+      "category_title": "Failed multi-target",
+      "output_file": "outputs/milestone2/qualitative/testB/failed_multi_target_01_0000000_COCO_train2014_000000000154.png",
+      "sample_id": "0000000",
+      "image_id": 154,
+      "file_name": "COCO_train2014_000000000154.jpg",
+      "target_type": "multi-target",
+      "expression": "three zebras standing on the savannah.",
+      "true_count_class": 3,
+      "pred_count_class": 2,
+      "gt_candidate_indices": [
+        0,
+        1,
+        2
+      ],
+      "pred_candidate_indices": [
+        0,
+        1
+      ],
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "f1": 0.8,
+      "exact": 0.0
+    },
+    {
+      "category": "failed_single_target",
+      "category_title": "Failed single-target",
+      "output_file": "outputs/milestone2/qualitative/testB/failed_single_target_01_0000006_COCO_train2014_000000000154.png",
+      "sample_id": "0000006",
+      "image_id": 154,
+      "file_name": "COCO_train2014_000000000154.jpg",
+      "target_type": "single-target",
+      "expression": "zebra in the middle",
+      "true_count_class": 1,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        1
+      ],
+      "pred_candidate_indices": [],
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "category": "correct_single_target",
+      "category_title": "Correct single-target",
+      "output_file": "outputs/milestone2/qualitative/testB/correct_single_target_01_0000011_COCO_train2014_000000000154.png",
+      "sample_id": "0000011",
+      "image_id": 154,
+      "file_name": "COCO_train2014_000000000154.jpg",
+      "target_type": "single-target",
+      "expression": "zebra at the bottom",
+      "true_count_class": 1,
+      "pred_count_class": 1,
+      "gt_candidate_indices": [
+        0
+      ],
+      "pred_candidate_indices": [
+        0
+      ],
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "exact": 1.0
+    },
+    {
+      "category": "correct_multi_target",
+      "category_title": "Correct multi-target",
+      "output_file": "outputs/milestone2/qualitative/testB/correct_multi_target_01_0000015_COCO_train2014_000000000154.png",
+      "sample_id": "0000015",
+      "image_id": 154,
+      "file_name": "COCO_train2014_000000000154.jpg",
+      "target_type": "multi-target",
+      "expression": "giraffe in the middle and zebra at the bottom",
+      "true_count_class": 2,
+      "pred_count_class": 2,
+      "gt_candidate_indices": [
+        0,
+        1
+      ],
+      "pred_candidate_indices": [
+        0,
+        1
+      ],
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "exact": 1.0
+    },
+    {
+      "category": "correct_no_target",
+      "category_title": "Correct no-target",
+      "output_file": "outputs/milestone2/qualitative/testB/correct_no_target_01_0000019_COCO_train2014_000000000154.png",
+      "sample_id": "0000019",
+      "image_id": 154,
+      "file_name": "COCO_train2014_000000000154.jpg",
+      "target_type": "no-target",
+      "expression": "the giraffe in the middle facing right",
+      "true_count_class": 0,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [],
+      "pred_candidate_indices": [],
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "exact": 1.0
+    },
+    {
+      "category": "false_grounding_no_target",
+      "category_title": "False grounding on no-target",
+      "output_file": "outputs/milestone2/qualitative/testB/false_grounding_no_target_01_0000020_COCO_train2014_000000000154.png",
+      "sample_id": "0000020",
+      "image_id": 154,
+      "file_name": "COCO_train2014_000000000154.jpg",
+      "target_type": "no-target",
+      "expression": "person",
+      "true_count_class": 0,
+      "pred_count_class": 1,
+      "gt_candidate_indices": [],
+      "pred_candidate_indices": [
+        0
+      ],
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    }
+  ]
+}
