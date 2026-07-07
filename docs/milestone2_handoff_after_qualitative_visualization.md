@@ -1,10 +1,10 @@
-# Milestone 2 Handoff After Weighted Baseline and Test Evaluation
+# Milestone 2 Handoff After Weighted Baseline, Test Evaluation, and Qualitative Visualization
 
 Project: `Computer_Vision_Project`  
 Task: Few-Shot Generalized Referring Expression Comprehension on gRefCOCO  
-Current stage: Milestone 2 baseline implementation, weighted cardinality correction, and validation/test evaluation
+Current stage: Milestone 2 baseline implementation, weighted cardinality correction, validation/test evaluation, and qualitative visualization
 
-This document extends the previous handoff after validation evaluation and count diagnosis. It records the latest completed work: class-weighted cardinality training, model selection, testA/testB evaluation, and the files that should or should not be committed to GitHub.
+This document extends the previous handoff after validation evaluation and count diagnosis. It records the latest completed work: class-weighted cardinality training, model selection, testA/testB evaluation, qualitative visualization, and the files that should or should not be committed to GitHub.
 
 ---
 
@@ -435,7 +435,169 @@ The initial unweighted baseline achieved reasonable multi-target F1 but failed t
 
 ---
 
-## 9. Files to Commit to GitHub
+
+## 9. Step 11 — Qualitative Visualization
+
+After the weighted w15 test evaluation, a qualitative visualization step was added to make the baseline behavior interpretable for the Milestone 2 progress report.
+
+### 9.1 Visualization Script
+
+A new visualization script was added:
+
+```text
+src/visualization/visualize_clip_predictions.py
+```
+
+The script loads:
+
+```text
+feature file: cache/features/clip_testA.pt or cache/features/clip_testB.pt
+checkpoint: checkpoints/clip_baseline_1pct_weighted_w15/best.pt
+image root: local COCO train2014 image directory
+```
+
+It reuses the same inference logic as the evaluator:
+
+```text
+count class 0 -> return empty set
+count class 1 -> select top-1 candidate by membership logit
+count class 2 -> select top-2 candidates
+count class 3 -> select top-3 candidates
+```
+
+It then draws the ground-truth and predicted boxes on the original image:
+
+```text
+red solid boxes: ground-truth target boxes
+blue dashed boxes: predicted boxes
+```
+
+For no-target samples, both the ground-truth and prediction can be empty. In those cases, the image may contain no red or blue boxes, even though the legend is still displayed.
+
+### 9.2 Command Used
+
+The command pattern for testA was:
+
+```bash
+python -m src.visualization.visualize_clip_predictions \
+  --feature-file cache/features/clip_testA.pt \
+  --checkpoint checkpoints/clip_baseline_1pct_weighted_w15/best.pt \
+  --image-root data \
+  --output-dir outputs/milestone2/qualitative/testA \
+  --batch-size 64 \
+  --examples-per-category 1
+```
+
+If the image directory is passed too deeply, for example `data/images/train2014`, the script may fail with a `FileNotFoundError` when it cannot locate a file such as:
+
+```text
+COCO_train2014_000000000839.jpg
+```
+
+Using `--image-root data` is safer because the script searches several likely subpaths under the root.
+
+The same command can be run for testB by replacing the feature file and output directory:
+
+```bash
+python -m src.visualization.visualize_clip_predictions \
+  --feature-file cache/features/clip_testB.pt \
+  --checkpoint checkpoints/clip_baseline_1pct_weighted_w15/best.pt \
+  --image-root data \
+  --output-dir outputs/milestone2/qualitative/testB \
+  --batch-size 64 \
+  --examples-per-category 1
+```
+
+### 9.3 Qualitative Categories
+
+The script selects representative examples from the following categories:
+
+```text
+correct_no_target
+false_grounding_no_target
+correct_single_target
+failed_single_target
+correct_multi_target
+failed_multi_target
+```
+
+The qualitative files are saved under:
+
+```text
+outputs/milestone2/qualitative/testA/
+outputs/milestone2/qualitative/testB/    # if testB visualization is also generated
+```
+
+Each output directory should contain `.png` figures plus:
+
+```text
+manifest.json
+manifest.txt
+```
+
+The manifest records the selected examples, including the category, sample identifier, file name, expression, true count, predicted count, F1, and exact-set correctness.
+
+### 9.4 How to Interpret Correct and Failed Examples
+
+A qualitative example labeled as failed is a failure of the current weighted w15 CLIP baseline under the current candidate-set evaluation protocol, not a failure of the visualization script.
+
+The visualization script does not decide semantic correctness by itself. It simply displays:
+
+```text
+ground truth set: candidate boxes with candidate_labels == 1
+prediction set: boxes selected by count logits + membership logits
+```
+
+Therefore:
+
+```text
+correct qualitative example -> prediction set matches the ground-truth set
+failed qualitative example -> prediction set does not match the ground-truth set
+```
+
+For no-target samples:
+
+```text
+GT = empty and prediction = empty -> correct no-target rejection
+GT = empty and prediction is non-empty -> false grounding
+```
+
+For single-target samples, failure means that the model either selected the wrong candidate, predicted empty, or predicted too many boxes.
+
+For multi-target samples, failure usually means that the model missed one or more targets, selected extra boxes, or predicted the wrong count.
+
+### 9.5 Example Interpretation for the Report
+
+One useful correct no-target example is:
+
+```text
+expression: "the giraffe in the middle facing right"
+true count: 0 / empty
+pred count: 0 / empty
+F1: 1.000
+exact: 1
+```
+
+The image contains zebras, including a zebra that is spatially plausible because it is near the middle and facing right. However, the queried category is `giraffe`, and no giraffe is present. The correct output is therefore the empty set. The weighted w15 baseline correctly rejects the query instead of grounding the visually plausible zebra.
+
+This is a strong qualitative example for the report because it demonstrates the motivation of generalized referring expression comprehension: a model should not be forced to select an object when a semantically valid referent does not exist.
+
+### 9.6 Report Use
+
+The qualitative visualizations should be used in the Milestone 2 report to support the error analysis. Recommended report examples:
+
+```text
+1. one correct no-target rejection example
+2. one false-grounding no-target failure
+3. one single-target failure or correct single-target example
+4. one multi-target partial-success or failure example
+```
+
+The report should state that the failed examples are baseline failures under the current diagnostic COCO-instance candidate pool, meaning they mainly reflect candidate scoring and cardinality prediction errors rather than proposal-recall errors.
+
+---
+
+## 10. Files to Commit to GitHub
 
 Use a whitelist approach. Do not run `git add .`.
 
@@ -459,6 +621,8 @@ src/training/train_clip_baseline.py
 src/evaluation/__init__.py
 src/evaluation/evaluate_clip_baseline.py
 src/evaluation/diagnose_count_predictions.py
+src/visualization/__init__.py
+src/visualization/visualize_clip_predictions.py
 ```
 
 Optional, if present and intentionally used:
@@ -537,7 +701,18 @@ outputs/milestone2/diagnose_count_predictions_val.txt
 outputs/milestone2/diagnose_count_predictions_weighted_val.txt
 outputs/milestone2/diagnose_count_predictions_weighted_w10_val.txt
 outputs/milestone2/diagnose_count_predictions_weighted_w15_val.txt
+
+outputs/milestone2/qualitative/testA/manifest.txt
+outputs/milestone2/qualitative/testA/manifest.json
+outputs/milestone2/qualitative/testA/*.png
+
+outputs/milestone2/qualitative/testB/manifest.txt
+outputs/milestone2/qualitative/testB/manifest.json
+outputs/milestone2/qualitative/testB/*.png
 ```
+
+Only commit the qualitative PNG files if the total size is reasonable. For the Milestone 2 report, a small set of representative examples is enough.
+
 
 If any JSON file is very large, do not commit it. Keep only the `.txt` summary or generate a compact JSON summary.
 
@@ -557,7 +732,7 @@ docs/milestone2_report_draft.md
 
 ---
 
-## 10. Files Not to Commit
+## 11. Files Not to Commit
 
 Do not commit large generated artifacts:
 
@@ -601,7 +776,7 @@ Then commit the cleanup.
 
 ---
 
-## 11. Suggested Git Commands
+## 12. Suggested Git Commands
 
 First check current state:
 
@@ -638,6 +813,9 @@ git add src/evaluation/__init__.py src/evaluation/evaluate_clip_baseline.py src/
 
 # Optional, only if present and intentionally used
 git add src/evaluation/metrics.py
+
+# Qualitative visualization code
+git add src/visualization/__init__.py src/visualization/visualize_clip_predictions.py
 ```
 
 Add split files:
@@ -702,6 +880,12 @@ git add outputs/milestone2/diagnose_count_predictions_weighted_val.txt
 git add outputs/milestone2/diagnose_count_predictions_weighted_w10_val.txt
 
 git add outputs/milestone2/diagnose_count_predictions_weighted_w15_val.txt
+
+# Qualitative visualization outputs, if generated and reasonably small
+git add outputs/milestone2/qualitative/testA
+
+# Optional, if generated
+git add outputs/milestone2/qualitative/testB
 ```
 
 Add JSON summaries only if they are small enough:
@@ -739,20 +923,21 @@ Make sure `cache/`, `checkpoints/`, and `data/` are not staged.
 Commit and push:
 
 ```bash
-git commit -m "Add weighted CLIP baseline evaluation for Milestone 2"
+git commit -m "Add qualitative visualizations for Milestone 2 baseline"
 git push origin main
 ```
 
 ---
 
-## 12. Next Steps After This Handoff
+## 13. Next Steps After This Handoff
 
 Recommended next work:
 
-1. Generate qualitative visualizations for a few correct and incorrect examples.
-2. Write the formal 2--3 page Milestone 2 progress report.
-3. In the report, clearly state that the current candidate pool is diagnostic COCO-instance boxes, not detector proposals.
-4. In future experiments, replace COCO-instance candidates with detector proposals and report proposal recall at IoU 0.5.
-5. Train and evaluate 5% and 10% few-shot settings.
-6. Add CLIP+DINOv2 or SigLIP 2 representation variants if time permits.
+1. Write the formal 2--3 page Milestone 2 progress report.
+2. In the report, include the compact testA/testB quantitative table and 3--4 qualitative examples.
+3. Clearly state that the current candidate pool is diagnostic COCO-instance boxes, not detector proposals.
+4. Use the qualitative failures to motivate future improvements: better no-target calibration, stronger region-text representations, and more realistic proposal generation.
+5. In future experiments, replace COCO-instance candidates with detector proposals and report proposal recall at IoU 0.5.
+6. Train and evaluate 5% and 10% few-shot settings.
+7. Add CLIP+DINOv2 or SigLIP 2 representation variants if time permits.
 
