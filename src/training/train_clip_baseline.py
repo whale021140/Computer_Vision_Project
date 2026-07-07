@@ -36,6 +36,14 @@ def parse_args():
     parser.add_argument("--num-workers", type=int, default=0)
     parser.add_argument("--seed", type=int, default=0)
 
+    parser.add_argument(
+    "--count-class-weights",
+    type=float,
+    nargs=4,
+    default=None,
+    help="Optional weights for count classes 0, 1, 2, 3.",
+    )
+
     return parser.parse_args()
 
 
@@ -190,7 +198,15 @@ def main():
     )
 
     bce_loss = nn.BCEWithLogitsLoss()
-    ce_loss = nn.CrossEntropyLoss()
+    if args.count_class_weights is None:
+        ce_loss = nn.CrossEntropyLoss()
+    else:
+        count_weights = torch.tensor(
+            args.count_class_weights,
+            dtype=torch.float32,
+            device=device,
+        )
+    ce_loss = nn.CrossEntropyLoss(weight=count_weights)
 
     best_loss = float("inf")
 
@@ -269,6 +285,7 @@ def main():
         f.write(f"Best training loss: {best_loss:.6f}\n")
         f.write(f"Best checkpoint: {os.path.join(args.output_dir, 'best.pt')}\n")
         f.write(f"Last checkpoint: {os.path.join(args.output_dir, 'last.pt')}\n")
+        f.write(f"Count class weights: {args.count_class_weights}\n")
 
     print("Training complete.")
     print("Log file:", args.log_file)

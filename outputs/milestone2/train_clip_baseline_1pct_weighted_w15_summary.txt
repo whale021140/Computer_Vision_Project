@@ -1,0 +1,17 @@
+CLIP baseline training summary
+==============================
+Feature file: cache/features/clip_train_1pct.pt
+Dataset size: 2093
+CLIP model: ViT-B/32
+Feature dimension: 512
+Epochs: 20
+Batch size: 16
+Hidden dimension: 256
+Dropout: 0.1
+Learning rate: 0.0001
+Weight decay: 0.0001
+Lambda cardinality: 1.0
+Best training loss: 0.788810
+Best checkpoint: checkpoints/clip_baseline_1pct_weighted_w15/best.pt
+Last checkpoint: checkpoints/clip_baseline_1pct_weighted_w15/last.pt
+Count class weights: [15.0, 1.0, 1.5, 2.0]

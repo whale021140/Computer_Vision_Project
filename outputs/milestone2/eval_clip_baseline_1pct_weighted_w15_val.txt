@@ -1,0 +1,72 @@
+CLIP Baseline Evaluation Summary
+================================
+Feature file: cache/features/clip_val.pt
+Checkpoint: checkpoints/clip_baseline_1pct_weighted_w15/best.pt
+CLIP model: ViT-B/32
+Feature dimension: 512
+Device: cuda
+Batch size: 64
+Inference rule: Predicted count class selects top-k membership logits. Count class 0 selects no boxes; 1 selects top-1; 2 selects top-2; 3 selects top-3.
+
+[overall]
+num_samples: 14229
+count_accuracy: 0.547333
+mean_precision: 0.459695
+mean_recall: 0.448968
+mean_f1: 0.452507
+exact_set_accuracy: 0.365591
+micro_precision: 0.388422
+micro_recall: 0.609590
+micro_f1: 0.474500
+total_tp: 6522
+total_fp: 10269
+total_fn: 4177
+no_target_total: 8905
+no_target_accuracy: 0.351825
+false_grounding_rate: 0.648175
+single_target_total: 0
+single_target_exact_accuracy: 0.000000
+multi_target_total: 5324
+multi_target_exact_accuracy: 0.388618
+
+[multi-target]
+num_samples: 5324
+count_accuracy: 0.874343
+mean_precision: 0.640120
+mean_recall: 0.611451
+mean_f1: 0.620909
+exact_set_accuracy: 0.388618
+micro_precision: 0.666054
+micro_recall: 0.609590
+micro_f1: 0.636572
+total_tp: 6522
+total_fp: 3270
+total_fn: 4177
+no_target_total: 0
+no_target_accuracy: 0.000000
+false_grounding_rate: 0.000000
+single_target_total: 0
+single_target_exact_accuracy: 0.000000
+multi_target_total: 5324
+multi_target_exact_accuracy: 0.388618
+
+[no-target]
+num_samples: 8905
+count_accuracy: 0.351825
+mean_precision: 0.351825
+mean_recall: 0.351825
+mean_f1: 0.351825
+exact_set_accuracy: 0.351825
+micro_precision: 0.000000
+micro_recall: 0.000000
+micro_f1: 0.000000
+total_tp: 0
+total_fp: 6999
+total_fn: 0
+no_target_total: 8905
+no_target_accuracy: 0.351825
+false_grounding_rate: 0.648175
+single_target_total: 0
+single_target_exact_accuracy: 0.000000
+multi_target_total: 0
+multi_target_exact_accuracy: 0.000000

@@ -1,0 +1,423 @@
+{
+  "feature_file": "cache/features/clip_val.pt",
+  "checkpoint": "checkpoints/clip_baseline_1pct_weighted_w10/best.pt",
+  "clip_model": "ViT-B/32",
+  "feature_dim": 512,
+  "device": "cuda",
+  "batch_size": 64,
+  "inference_rule": "Predicted count class selects top-k membership logits. Count class 0 selects no boxes; 1 selects top-1; 2 selects top-2; 3 selects top-3.",
+  "overall": {
+    "num_samples": 14229,
+    "count_accuracy": 0.5091011314920233,
+    "mean_precision": 0.42392297420760416,
+    "mean_recall": 0.4123642527500845,
+    "mean_f1": 0.4161797335421634,
+    "exact_set_accuracy": 0.3284840818047649,
+    "micro_precision": 0.3776499970958936,
+    "micro_recall": 0.6077203476960463,
+    "micro_f1": 0.4658260495773033,
+    "total_tp": 6502,
+    "total_fp": 10715,
+    "total_fn": 4197,
+    "no_target_total": 8905,
+    "no_target_accuracy": 0.29444132509825943,
+    "false_grounding_rate": 0.7055586749017406,
+    "single_target_total": 0,
+    "single_target_exact_accuracy": 0.0,
+    "multi_target_total": 5324,
+    "multi_target_exact_accuracy": 0.3854244928625094
+  },
+  "by_target_type": {
+    "multi-target": {
+      "num_samples": 5324,
+      "count_accuracy": 0.8681442524417731,
+      "mean_precision": 0.640495867768595,
+      "mean_recall": 0.6096038603270009,
+      "mean_f1": 0.6198011699044739,
+      "exact_set_accuracy": 0.3854244928625094,
+      "micro_precision": 0.6650981996726678,
+      "micro_recall": 0.6077203476960463,
+      "micro_f1": 0.6351159951159951,
+      "total_tp": 6502,
+      "total_fp": 3274,
+      "total_fn": 4197,
+      "no_target_total": 0,
+      "no_target_accuracy": 0.0,
+      "false_grounding_rate": 0.0,
+      "single_target_total": 0,
+      "single_target_exact_accuracy": 0.0,
+      "multi_target_total": 5324,
+      "multi_target_exact_accuracy": 0.3854244928625094
+    },
+    "no-target": {
+      "num_samples": 8905,
+      "count_accuracy": 0.29444132509825943,
+      "mean_precision": 0.29444132509825943,
+      "mean_recall": 0.29444132509825943,
+      "mean_f1": 0.29444132509825943,
+      "exact_set_accuracy": 0.29444132509825943,
+      "micro_precision": 0.0,
+      "micro_recall": 0.0,
+      "micro_f1": 0.0,
+      "total_tp": 0,
+      "total_fp": 7441,
+      "total_fn": 0,
+      "no_target_total": 8905,
+      "no_target_accuracy": 0.29444132509825943,
+      "false_grounding_rate": 0.7055586749017406,
+      "single_target_total": 0,
+      "single_target_exact_accuracy": 0.0,
+      "multi_target_total": 0,
+      "multi_target_exact_accuracy": 0.0
+    }
+  },
+  "examples": [
+    {
+      "sample_id": "0000000",
+      "image_id": 716,
+      "file_name": "COCO_train2014_000000000716.jpg",
+      "target_type": "multi-target",
+      "expression": "a mouse beside a laptop and a little boy sitting far from us is looking at a laptop",
+      "true_count_class": 2,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        2,
+        13
+      ],
+      "pred_candidate_indices": [],
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000001",
+      "image_id": 716,
+      "file_name": "COCO_train2014_000000000716.jpg",
+      "target_type": "no-target",
+      "expression": "the little boy sitting near us is wearing pure white top",
+      "true_count_class": 0,
+      "pred_count_class": 1,
+      "gt_candidate_indices": [],
+      "pred_candidate_indices": [
+        4
+      ],
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000002",
+      "image_id": 716,
+      "file_name": "COCO_train2014_000000000716.jpg",
+      "target_type": "no-target",
+      "expression": "upper clock",
+      "true_count_class": 0,
+      "pred_count_class": 1,
+      "gt_candidate_indices": [],
+      "pred_candidate_indices": [
+        4
+      ],
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000003",
+      "image_id": 716,
+      "file_name": "COCO_train2014_000000000716.jpg",
+      "target_type": "no-target",
+      "expression": "blue guy",
+      "true_count_class": 0,
+      "pred_count_class": 1,
+      "gt_candidate_indices": [],
+      "pred_candidate_indices": [
+        4
+      ],
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000004",
+      "image_id": 716,
+      "file_name": "COCO_train2014_000000000716.jpg",
+      "target_type": "no-target",
+      "expression": "bottom stove",
+      "true_count_class": 0,
+      "pred_count_class": 1,
+      "gt_candidate_indices": [],
+      "pred_candidate_indices": [
+        4
+      ],
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000005",
+      "image_id": 716,
+      "file_name": "COCO_train2014_000000000716.jpg",
+      "target_type": "no-target",
+      "expression": "black table on left by donut",
+      "true_count_class": 0,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [],
+      "pred_candidate_indices": [],
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "exact": 1.0
+    },
+    {
+      "sample_id": "0000006",
+      "image_id": 716,
+      "file_name": "COCO_train2014_000000000716.jpg",
+      "target_type": "no-target",
+      "expression": "potted plant under the giraffe",
+      "true_count_class": 0,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [],
+      "pred_candidate_indices": [],
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "exact": 1.0
+    },
+    {
+      "sample_id": "0000007",
+      "image_id": 716,
+      "file_name": "COCO_train2014_000000000716.jpg",
+      "target_type": "no-target",
+      "expression": "green top of car",
+      "true_count_class": 0,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [],
+      "pred_candidate_indices": [],
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "exact": 1.0
+    },
+    {
+      "sample_id": "0000008",
+      "image_id": 716,
+      "file_name": "COCO_train2014_000000000716.jpg",
+      "target_type": "multi-target",
+      "expression": "right bottom person and right guy above child",
+      "true_count_class": 2,
+      "pred_count_class": 2,
+      "gt_candidate_indices": [
+        3,
+        4
+      ],
+      "pred_candidate_indices": [
+        4,
+        7
+      ],
+      "precision": 0.5,
+      "recall": 0.5,
+      "f1": 0.5,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000009",
+      "image_id": 909,
+      "file_name": "COCO_train2014_000000000909.jpg",
+      "target_type": "no-target",
+      "expression": "the b;ack keyboard in front of the computer on the table",
+      "true_count_class": 0,
+      "pred_count_class": 1,
+      "gt_candidate_indices": [],
+      "pred_candidate_indices": [
+        0
+      ],
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000010",
+      "image_id": 909,
+      "file_name": "COCO_train2014_000000000909.jpg",
+      "target_type": "multi-target",
+      "expression": "Computer very right of pic and teenagers computers",
+      "true_count_class": 2,
+      "pred_count_class": 2,
+      "gt_candidate_indices": [
+        0,
+        4
+      ],
+      "pred_candidate_indices": [
+        0,
+        4
+      ],
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "exact": 1.0
+    },
+    {
+      "sample_id": "0000011",
+      "image_id": 1298,
+      "file_name": "COCO_train2014_000000001298.jpg",
+      "target_type": "multi-target",
+      "expression": "a guy laying by the tree and a bag beside him",
+      "true_count_class": 2,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        0,
+        2
+      ],
+      "pred_candidate_indices": [],
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000012",
+      "image_id": 1298,
+      "file_name": "COCO_train2014_000000001298.jpg",
+      "target_type": "no-target",
+      "expression": "the white waterbottle beside the old guy",
+      "true_count_class": 0,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [],
+      "pred_candidate_indices": [],
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "exact": 1.0
+    },
+    {
+      "sample_id": "0000013",
+      "image_id": 1298,
+      "file_name": "COCO_train2014_000000001298.jpg",
+      "target_type": "no-target",
+      "expression": "the little dish with brown",
+      "true_count_class": 0,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [],
+      "pred_candidate_indices": [],
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "exact": 1.0
+    },
+    {
+      "sample_id": "0000014",
+      "image_id": 1298,
+      "file_name": "COCO_train2014_000000001298.jpg",
+      "target_type": "no-target",
+      "expression": "girl on the right",
+      "true_count_class": 0,
+      "pred_count_class": 1,
+      "gt_candidate_indices": [],
+      "pred_candidate_indices": [
+        0
+      ],
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000015",
+      "image_id": 1298,
+      "file_name": "COCO_train2014_000000001298.jpg",
+      "target_type": "no-target",
+      "expression": "dining table upon the apple",
+      "true_count_class": 0,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [],
+      "pred_candidate_indices": [],
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "exact": 1.0
+    },
+    {
+      "sample_id": "0000016",
+      "image_id": 1298,
+      "file_name": "COCO_train2014_000000001298.jpg",
+      "target_type": "no-target",
+      "expression": "bottom brown thingy",
+      "true_count_class": 0,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [],
+      "pred_candidate_indices": [],
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "exact": 1.0
+    },
+    {
+      "sample_id": "0000017",
+      "image_id": 1298,
+      "file_name": "COCO_train2014_000000001298.jpg",
+      "target_type": "multi-target",
+      "expression": "the guy in the background with shirt and jeans and main guy",
+      "true_count_class": 2,
+      "pred_count_class": 1,
+      "gt_candidate_indices": [
+        0,
+        1
+      ],
+      "pred_candidate_indices": [
+        0
+      ],
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1": 0.6666666666666666,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000018",
+      "image_id": 1298,
+      "file_name": "COCO_train2014_000000001298.jpg",
+      "target_type": "multi-target",
+      "expression": "back blue jen and fatty in center frame",
+      "true_count_class": 2,
+      "pred_count_class": 2,
+      "gt_candidate_indices": [
+        0,
+        1
+      ],
+      "pred_candidate_indices": [
+        0,
+        2
+      ],
+      "precision": 0.5,
+      "recall": 0.5,
+      "f1": 0.5,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000019",
+      "image_id": 1298,
+      "file_name": "COCO_train2014_000000001298.jpg",
+      "target_type": "multi-target",
+      "expression": "back blue jen and man",
+      "true_count_class": 2,
+      "pred_count_class": 2,
+      "gt_candidate_indices": [
+        0,
+        1
+      ],
+      "pred_candidate_indices": [
+        0,
+        1
+      ],
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "exact": 1.0
+    }
+  ]
+}

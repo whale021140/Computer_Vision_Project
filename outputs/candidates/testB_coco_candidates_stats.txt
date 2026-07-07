@@ -1,0 +1,28 @@
+Candidate Sample Statistics
+===========================
+
+Number of samples: 16063
+No-target samples: 4673
+Single-target samples: 5646
+Multi-target samples: 5744
+
+Count-class distribution:
+  class 0: 4673
+  class 1: 5646
+  class 2: 3957
+  class 3: 1787
+
+Candidate count statistics:
+  average candidates per sample: 7.9066
+  min candidates per sample: 2
+  max candidates per sample: 47
+  samples with zero candidates: 0
+
+Candidate-label sanity checks:
+  no-target positive labels: 0
+  single-target samples with exactly one positive: 5646 / 5646
+  multi-target samples with positive count equal to target count: 5744 / 5744
+  all samples with positive count equal to target count: 16063 / 16063
+  total target boxes: 21326
+  total matched positive candidates: 21326
+  COCO-candidate ann-id recall: 1.000000

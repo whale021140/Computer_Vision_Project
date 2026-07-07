@@ -1,0 +1,93 @@
+CLIP Baseline Evaluation Summary
+================================
+Feature file: cache/features/clip_testA.pt
+Checkpoint: checkpoints/clip_baseline_1pct_weighted_w15/best.pt
+CLIP model: ViT-B/32
+Feature dimension: 512
+Device: cuda
+Batch size: 64
+Inference rule: Predicted count class selects top-k membership logits. Count class 0 selects no boxes; 1 selects top-1; 2 selects top-2; 3 selects top-3.
+
+[overall]
+num_samples: 19200
+count_accuracy: 0.591927
+mean_precision: 0.469010
+mean_recall: 0.422311
+mean_f1: 0.431201
+exact_set_accuracy: 0.281354
+micro_precision: 0.492460
+micro_recall: 0.421561
+micro_f1: 0.454261
+total_tp: 12474
+total_fp: 12856
+total_fn: 17116
+no_target_total: 4448
+no_target_accuracy: 0.313399
+false_grounding_rate: 0.686601
+single_target_total: 5917
+single_target_exact_accuracy: 0.282238
+multi_target_total: 8835
+multi_target_exact_accuracy: 0.264629
+
+[multi-target]
+num_samples: 8835
+count_accuracy: 0.592530
+mean_precision: 0.648048
+mean_recall: 0.522169
+mean_f1: 0.557751
+exact_set_accuracy: 0.264629
+micro_precision: 0.666602
+micro_recall: 0.438179
+micro_f1: 0.528776
+total_tp: 10373
+total_fp: 5188
+total_fn: 13300
+no_target_total: 0
+no_target_accuracy: 0.000000
+false_grounding_rate: 0.000000
+single_target_total: 0
+single_target_exact_accuracy: 0.000000
+multi_target_total: 8835
+multi_target_exact_accuracy: 0.264629
+
+[no-target]
+num_samples: 4448
+count_accuracy: 0.313399
+mean_precision: 0.313399
+mean_recall: 0.313399
+mean_f1: 0.313399
+exact_set_accuracy: 0.313399
+micro_precision: 0.000000
+micro_recall: 0.000000
+micro_f1: 0.000000
+total_tp: 0
+total_fp: 3649
+total_fn: 0
+no_target_total: 4448
+no_target_accuracy: 0.313399
+false_grounding_rate: 0.686601
+single_target_total: 0
+single_target_exact_accuracy: 0.000000
+multi_target_total: 0
+multi_target_exact_accuracy: 0.000000
+
+[single-target]
+num_samples: 5917
+count_accuracy: 0.800406
+mean_precision: 0.318658
+mean_recall: 0.355079
+mean_f1: 0.330798
+exact_set_accuracy: 0.282238
+micro_precision: 0.343301
+micro_recall: 0.355079
+micro_f1: 0.349090
+total_tp: 2101
+total_fp: 4019
+total_fn: 3816
+no_target_total: 0
+no_target_accuracy: 0.000000
+false_grounding_rate: 0.000000
+single_target_total: 5917
+single_target_exact_accuracy: 0.282238
+multi_target_total: 0
+multi_target_exact_accuracy: 0.000000
