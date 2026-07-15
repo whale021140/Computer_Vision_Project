@@ -1,0 +1,13 @@
+# Stage 0 baseline dependencies recorded from the ece485 environment.
+# Install a PyTorch build appropriate for the target CUDA/CPU platform before
+# installing the remaining requirements when the default PyPI wheel is not
+# suitable. The audited environment uses torch 2.12.0+cu130 and
+# torchvision 0.27.0+cu130.
+torch==2.12.0
+torchvision==0.27.0
+numpy==2.2.5
+Pillow==12.2.0
+tqdm==4.68.3
+ftfy==6.3.1
+regex==2026.5.9
+clip @ git+https://github.com/openai/CLIP.git@d05afc436d78f1c48dc0dbf8e5980a9d471f35f6

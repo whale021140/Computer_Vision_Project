@@ -4,6 +4,7 @@ import argparse
 import csv
 import os
 import random
+from pathlib import Path
 from typing import Dict, List
 
 import numpy as np
@@ -37,11 +38,12 @@ def parse_args():
     parser.add_argument("--seed", type=int, default=0)
 
     parser.add_argument(
-    "--count-class-weights",
-    type=float,
-    nargs=4,
-    default=None,
-    help="Optional weights for count classes 0, 1, 2, 3.",
+        "--count-class-weights",
+        type=float,
+        nargs=4,
+        default=None,
+        metavar=("W0", "W1", "W2", "W3"),
+        help="Optional non-negative weights for count classes 0, 1, 2, 3+.",
     )
 
     return parser.parse_args()
@@ -58,6 +60,36 @@ def get_device() -> torch.device:
     if torch.cuda.is_available():
         return torch.device("cuda")
     return torch.device("cpu")
+
+
+def build_count_loss(
+    count_class_weights: List[float] | None,
+    device: torch.device,
+) -> nn.CrossEntropyLoss:
+    """Build the cardinality loss, with optional validated class weights."""
+    if count_class_weights is None:
+        return nn.CrossEntropyLoss()
+
+    if len(count_class_weights) != 4:
+        raise ValueError(
+            "count_class_weights must contain exactly four values for "
+            "classes 0, 1, 2, and 3+."
+        )
+
+    count_weights = torch.as_tensor(
+        count_class_weights,
+        dtype=torch.float32,
+        device=device,
+    )
+
+    if not torch.isfinite(count_weights).all():
+        raise ValueError("count_class_weights must all be finite.")
+    if torch.any(count_weights < 0):
+        raise ValueError("count_class_weights must be non-negative.")
+    if not torch.any(count_weights > 0):
+        raise ValueError("at least one count class weight must be positive.")
+
+    return nn.CrossEntropyLoss(weight=count_weights)
 
 
 def compute_losses(
@@ -165,9 +197,9 @@ def main():
     args = parse_args()
     set_seed(args.seed)
 
-    os.makedirs(args.output_dir, exist_ok=True)
-    os.makedirs(os.path.dirname(args.log_file), exist_ok=True)
-    os.makedirs(os.path.dirname(args.summary_file), exist_ok=True)
+    Path(args.output_dir).mkdir(parents=True, exist_ok=True)
+    Path(args.log_file).parent.mkdir(parents=True, exist_ok=True)
+    Path(args.summary_file).parent.mkdir(parents=True, exist_ok=True)
 
     device = get_device()
     print("Device:", device)
@@ -183,6 +215,7 @@ def main():
         shuffle=True,
         num_workers=args.num_workers,
         collate_fn=clip_feature_collate_fn,
+        generator=torch.Generator().manual_seed(args.seed),
     )
 
     model = ClipCandidateBaseline(
@@ -198,15 +231,7 @@ def main():
     )
 
     bce_loss = nn.BCEWithLogitsLoss()
-    if args.count_class_weights is None:
-        ce_loss = nn.CrossEntropyLoss()
-    else:
-        count_weights = torch.tensor(
-            args.count_class_weights,
-            dtype=torch.float32,
-            device=device,
-        )
-    ce_loss = nn.CrossEntropyLoss(weight=count_weights)
+    ce_loss = build_count_loss(args.count_class_weights, device)
 
     best_loss = float("inf")
 
