@@ -50,7 +50,7 @@ uses ground-truth instance boxes and does not yet use the released GREC metric.
 |---|---|---|
 | 0. Repository hardening | Complete | Reliable baseline entry points, tests, environment record, and documentation |
 | 1. Evaluation foundation | Complete | Box-level matching plus official GREC and diagnostic metrics |
-| 2. Frozen detector proposals | Not started | Shared realistic candidate pools and proposal-recall diagnostics |
+| 2. Frozen detector proposals | In progress | Shared realistic candidate pools and proposal-recall diagnostics |
 | 3. Detector-based CLIP baseline | Not started | Re-established 1% baseline without oracle candidates |
 | 4. Frozen representation variants | Not started | CLIP+DINOv2 and SigLIP 2 under a shared interface |
 | 5. Few-shot experiment grid | Not started | 1%/5%/10%, multiple seeds, aggregate comparison |
@@ -119,15 +119,15 @@ is intentionally deferred until Stage 1 provides a trusted evaluator.
 
 ### Work
 
-- Use the cached torchvision Faster R-CNN ResNet50-FPN v2 weights as the fixed
+- [x] Use the cached torchvision Faster R-CNN ResNet50-FPN v2 weights as the fixed
   proposal source.
-- Generate proposals once per unique image and cache them independently from
+- [x] Generate proposals once per unique image and cache them independently from
   expressions.
-- Apply a fixed score threshold, maximum candidate count, and class-agnostic
+- [x] Apply a fixed score threshold, maximum candidate count, and class-agnostic
   NMS policy shared by every representation.
-- Label candidates through IoU association with ground-truth boxes for
+- [x] Label candidates through IoU association with ground-truth boxes for
   training; never use ground-truth boxes to create candidates at inference.
-- Measure proposal recall at IoU 0.5 overall, by split, by target count/type,
+- [ ] Measure proposal recall at IoU 0.5 overall, by split, by target count/type,
   and as set-level full-target coverage.
 
 ### Acceptance criteria
@@ -242,3 +242,7 @@ the relevant acceptance checks pass.
   full validation split with the Stage 1 GIoU evaluator: `F1_score=0.367067`,
   `T_acc=0.961871`, and `N_acc=0.351825`. This result validates the evaluator
   and remains explicitly labeled as an oracle-candidate diagnostic.
+- 2026-07-15: Began Stage 2. Implemented a resumable image-level frozen Faster
+  R-CNN cache, detector-candidate/GT IoU association, proposal-recall summaries,
+  synthetic tests, and a real-image CUDA smoke test. Full split-cache generation
+  is in progress.

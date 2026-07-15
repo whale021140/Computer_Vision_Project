@@ -22,8 +22,9 @@ frozen CLIP ViT-B/32
 Milestone 2 includes 1% CLIP training, class-weighted cardinality experiments,
 validation/test evaluation, count diagnosis, and qualitative visualizations.
 Stage 1 adds representation-independent box matching, official-compatible GREC
-metrics, and variable 3+ selection. The next stage replaces the oracle candidate
-pool with frozen detector proposals before CLIP+DINOv2 and SigLIP 2 comparisons.
+metrics, and variable 3+ selection. Stage 2 is now replacing the oracle pool
+with a shared, frozen Faster R-CNN detector-candidate cache before CLIP+DINOv2
+and SigLIP 2 comparisons.
 
 ## Environment
 
@@ -62,6 +63,7 @@ src/
 ├── evaluation/      Metrics and baseline evaluation
 ├── features/        Frozen feature extraction
 ├── models/          Lightweight prediction heads
+├── proposals/       Frozen detector loading and image-level candidate caches
 ├── training/        Training and forward smoke tests
 ├── utils/           Box utilities
 └── visualization/   Dataset and prediction figures
@@ -69,6 +71,7 @@ src/
 docs/                Proposal, architecture notes, handoff, and project plan
 splits/              Few-shot and evaluation split manifests
 outputs/             Lightweight metrics, logs, and figures
+scripts/             Reproducible stage pipelines
 tests/               Dataset/model/training unit tests
 ```
 
@@ -113,5 +116,7 @@ official GREC results.
 - [`docs/milestone2_model_architecture.md`](docs/milestone2_model_architecture.md): current baseline architecture.
 - [`docs/stage1_evaluation.md`](docs/stage1_evaluation.md): box-level GREC
   evaluation contract and commands.
+- [`docs/stage2_detector_proposals.md`](docs/stage2_detector_proposals.md):
+  frozen detector candidate contract, cache commands, and recall reports.
 - [`docs/488proposal.pdf`](docs/488proposal.pdf): original project proposal
   when present in the local checkout.
