@@ -1,0 +1,38 @@
+{
+  "stage": 2,
+  "source_commit": "ddcd29ea5b9201701426f41f284ee51e3d6ef5aa",
+  "pipeline": "scripts/run_stage2_pipeline.sh",
+  "environment": "ece485",
+  "detector_id": "torchvision/fasterrcnn_resnet50_fpn_v2:coco_v1",
+  "proposal_cache": {
+    "path": "cache/proposals/fasterrcnn_r50_fpn_v2_all_seed0_fp16.jsonl",
+    "sha256": "15fc32b89ae5b31f16361ceb2e2e4c0a90ef2dcbd8b96892d033fdf742c35f26",
+    "unique_images": 14790,
+    "average_proposals_per_image": 38.33603786342123
+  },
+  "proposal_config": {
+    "score_threshold": 0.05,
+    "nms_threshold": 0.7,
+    "max_proposals": 100,
+    "detector_output_limit": 300,
+    "min_box_size": 1.0,
+    "inference_precision": "float16"
+  },
+  "association_iou_threshold": 0.5,
+  "reports": [
+    "outputs/stage2/proposal_recall_train_1pct_seed0.json",
+    "outputs/stage2/proposal_recall_train_5pct_seed0.json",
+    "outputs/stage2/proposal_recall_train_10pct_seed0.json",
+    "outputs/stage2/proposal_recall_val.json",
+    "outputs/stage2/proposal_recall_testA.json",
+    "outputs/stage2/proposal_recall_testB.json"
+  ],
+  "verification": {
+    "unit_tests_passed": 28,
+    "real_dataloader_smoke_splits": [
+      "train_1pct_seed0",
+      "val",
+      "testA"
+    ]
+  }
+}

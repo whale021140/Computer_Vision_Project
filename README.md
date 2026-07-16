@@ -22,9 +22,10 @@ frozen CLIP ViT-B/32
 Milestone 2 includes 1% CLIP training, class-weighted cardinality experiments,
 validation/test evaluation, count diagnosis, and qualitative visualizations.
 Stage 1 adds representation-independent box matching, official-compatible GREC
-metrics, and variable 3+ selection. Stage 2 is now replacing the oracle pool
-with a shared, frozen Faster R-CNN detector-candidate cache before CLIP+DINOv2
-and SigLIP 2 comparisons.
+metrics, and variable 3+ selection. Stage 2 has replaced the oracle pool with
+a shared frozen Faster R-CNN cache covering 14,790 unique images, with recall
+reports for all six current splits. The next stage re-establishes the 1% CLIP
+baseline on these detector candidates before CLIP+DINOv2 and SigLIP 2.
 
 ## Environment
 

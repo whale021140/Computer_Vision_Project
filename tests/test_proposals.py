@@ -220,6 +220,10 @@ class ProposalAssociationTests(unittest.TestCase):
                 load_image=False,
             )
             self.assertEqual(dataset[0]["candidate_labels"].tolist(), [1, 1, 0])
+            self.assertEqual(
+                dataset[0]["target_best_proposal_ious"].tolist(),
+                [1.0, 1.0],
+            )
 
     def test_recall_summary_reports_unique_and_full_coverage(self) -> None:
         ref_by_id, ann_by_id, proposal_by_image = self._fixtures()

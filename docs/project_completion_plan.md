@@ -6,7 +6,7 @@ Proposal: `docs/488proposal.pdf`
 
 Working environment: Conda environment `ece485`
 
-Last updated: 2026-07-15
+Last updated: 2026-07-16
 
 ## 1. Goal and Experimental Contract
 
@@ -50,7 +50,7 @@ uses ground-truth instance boxes and does not yet use the released GREC metric.
 |---|---|---|
 | 0. Repository hardening | Complete | Reliable baseline entry points, tests, environment record, and documentation |
 | 1. Evaluation foundation | Complete | Box-level matching plus official GREC and diagnostic metrics |
-| 2. Frozen detector proposals | In progress | Shared realistic candidate pools and proposal-recall diagnostics |
+| 2. Frozen detector proposals | Complete | Shared realistic candidate pools and proposal-recall diagnostics |
 | 3. Detector-based CLIP baseline | Not started | Re-established 1% baseline without oracle candidates |
 | 4. Frozen representation variants | Not started | CLIP+DINOv2 and SigLIP 2 under a shared interface |
 | 5. Few-shot experiment grid | Not started | 1%/5%/10%, multiple seeds, aggregate comparison |
@@ -127,7 +127,7 @@ is intentionally deferred until Stage 1 provides a trusted evaluator.
   NMS policy shared by every representation.
 - [x] Label candidates through IoU association with ground-truth boxes for
   training; never use ground-truth boxes to create candidates at inference.
-- [ ] Measure proposal recall at IoU 0.5 overall, by split, by target count/type,
+- [x] Measure proposal recall at IoU 0.5 overall, by split, by target count/type,
   and as set-level full-target coverage.
 
 ### Acceptance criteria
@@ -246,3 +246,9 @@ the relevant acceptance checks pass.
   R-CNN cache, detector-candidate/GT IoU association, proposal-recall summaries,
   synthetic tests, and a real-image CUDA smoke test. Full split-cache generation
   is in progress.
+- 2026-07-16: Completed Stage 2. Cached 14,790 unique images with an average of
+  38.34 frozen detector candidates per image, built all six expression-level
+  candidate files, and saved split-specific IoU-0.5 recall reports. Validation
+  unique-target recall is `0.992814`; testA/testB expression-weighted target
+  recall is `0.979554`/`0.983776`. All 28 unit tests and real train/val/test
+  detector-candidate DataLoader smoke tests pass in `ece485`.

@@ -1,0 +1,95 @@
+{
+  "iou_threshold": 0.5,
+  "unique_images": 1501,
+  "unique_targets": 4453,
+  "unique_matched_targets": 4421,
+  "unique_target_recall": 0.9928138333707612,
+  "overall": {
+    "samples": 14229,
+    "targeted_samples": 5324,
+    "targets": 10699,
+    "matched_targets": 10644,
+    "target_recall": 0.994859332647911,
+    "fully_covered_samples": 5273,
+    "full_target_coverage": 0.9904207362885049,
+    "samples_with_positive_candidate": 5320,
+    "positive_candidate_sample_rate": 0.37388432075339095,
+    "average_candidates": 38.95066413662239,
+    "average_positive_candidates": 1.6155738280975473
+  },
+  "by_target_type": {
+    "multi-target": {
+      "samples": 5324,
+      "targeted_samples": 5324,
+      "targets": 10699,
+      "matched_targets": 10644,
+      "target_recall": 0.994859332647911,
+      "fully_covered_samples": 5273,
+      "full_target_coverage": 0.9904207362885049,
+      "samples_with_positive_candidate": 5320,
+      "positive_candidate_sample_rate": 0.9992486851990984,
+      "average_candidates": 38.43106686701728,
+      "average_positive_candidates": 4.317806160781368
+    },
+    "no-target": {
+      "samples": 8905,
+      "targeted_samples": 0,
+      "targets": 0,
+      "matched_targets": 0,
+      "target_recall": 0.0,
+      "fully_covered_samples": 0,
+      "full_target_coverage": 0.0,
+      "samples_with_positive_candidate": 0,
+      "positive_candidate_sample_rate": 0.0,
+      "average_candidates": 39.261313868613136,
+      "average_positive_candidates": 0
+    }
+  },
+  "by_count_group": {
+    "0": {
+      "samples": 8905,
+      "targeted_samples": 0,
+      "targets": 0,
+      "matched_targets": 0,
+      "target_recall": 0.0,
+      "fully_covered_samples": 0,
+      "full_target_coverage": 0.0,
+      "samples_with_positive_candidate": 0,
+      "positive_candidate_sample_rate": 0.0,
+      "average_candidates": 39.261313868613136,
+      "average_positive_candidates": 0
+    },
+    "2": {
+      "samples": 5296,
+      "targeted_samples": 5296,
+      "targets": 10592,
+      "matched_targets": 10539,
+      "target_recall": 0.9949962235649547,
+      "fully_covered_samples": 5247,
+      "full_target_coverage": 0.9907477341389728,
+      "samples_with_positive_candidate": 5292,
+      "positive_candidate_sample_rate": 0.9992447129909365,
+      "average_candidates": 38.46166918429003,
+      "average_positive_candidates": 4.304947129909365
+    },
+    "3+": {
+      "samples": 28,
+      "targeted_samples": 28,
+      "targets": 107,
+      "matched_targets": 105,
+      "target_recall": 0.9813084112149533,
+      "fully_covered_samples": 26,
+      "full_target_coverage": 0.9285714285714286,
+      "samples_with_positive_candidate": 28,
+      "positive_candidate_sample_rate": 1.0,
+      "average_candidates": 32.642857142857146,
+      "average_positive_candidates": 6.75
+    }
+  },
+  "split_file": "splits/val.json",
+  "split_sha256": "e1b166d2989c23830fee09bee70eb45fc05877851519edd81f99eb0288d6fc4a",
+  "proposal_file": "cache/proposals/fasterrcnn_r50_fpn_v2_all_seed0_fp16.jsonl",
+  "proposal_sha256": "15fc32b89ae5b31f16361ceb2e2e4c0a90ef2dcbd8b96892d033fdf742c35f26",
+  "output_file": "cache/candidates_detector/fasterrcnn_val.jsonl",
+  "command": "/home/whale/488/Final_Project/src/data/build_proposal_candidate_samples.py --split-file splits/val.json --proposal-file cache/proposals/fasterrcnn_r50_fpn_v2_all_seed0_fp16.jsonl --output-file cache/candidates_detector/fasterrcnn_val.jsonl --stats-json outputs/stage2/proposal_recall_val.json --stats-txt outputs/stage2/proposal_recall_val.txt"
+}

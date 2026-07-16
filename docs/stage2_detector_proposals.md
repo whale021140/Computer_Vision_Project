@@ -98,6 +98,32 @@ the lightweight statistics and this reproducible command record are committed.
 
 ## Results
 
-The all-split cache and proposal-recall reports are currently being generated.
-This section will be filled from the saved Stage 2 artifacts before the stage
-is marked complete.
+The completed shared cache contains 14,790 unique images and averages 38.3360
+candidates per image (minimum 2, maximum 100). All images produced candidates
+above the fixed score threshold, so neither fallback path was used. Its SHA-256
+is `15fc32b89ae5b31f16361ceb2e2e4c0a90ef2dcbd8b96892d033fdf742c35f26`.
+
+| Split | Images | Expressions | Avg. candidates | Unique-target recall | Expression target recall | Full-target coverage |
+|---|---:|---:|---:|---:|---:|---:|
+| train 1% seed 0 | 1,972 | 2,093 | 38.2747 | 0.995365 | 0.995499 | 0.994217 |
+| train 5% seed 0 | 7,713 | 10,467 | 38.5295 | 0.995893 | 0.996278 | 0.995163 |
+| train 10% seed 0 | 11,790 | 20,934 | 38.5137 | 0.995968 | 0.996434 | 0.995321 |
+| val | 1,501 | 14,229 | 38.9507 | 0.992814 | 0.994859 | 0.990421 |
+| testA | 750 | 19,200 | 43.4891 | 0.917891 | 0.979554 | 0.977901 |
+| testB | 750 | 16,063 | 34.5351 | 0.942659 | 0.983776 | 0.979017 |
+
+The test splits contain substantially more `3+` expressions. Their full-target
+coverage for this group is 0.906736 on testA and 0.907107 on testB, compared
+with at least 0.989 for one- and two-target groups. This is a real proposal
+bottleneck that later oracle-versus-detector experiments must preserve in the
+analysis rather than attributing every miss to the representation or head.
+
+All JSON reports include target-type and target-count breakdowns, the exact
+split hash, shared proposal-cache hash, and generating command. The large
+proposal/candidate caches remain local and gitignored. The tracked reports are
+under `outputs/stage2/`; `outputs/stage2/manifest.json` ties them to the exact
+source commit and detector configuration.
+
+Verification completed in `ece485`: 28 unit tests passed, and real-image
+DataLoader smoke tests passed for detector candidates from train 1%, validation,
+and testA.
