@@ -10,20 +10,21 @@ The implementation is being developed according to
 
 ## Current Status
 
-The completed diagnostic baseline uses:
+The completed Stage 3 detector baseline uses:
 
 ```text
 frozen CLIP ViT-B/32
-+ COCO ground-truth instance boxes as diagnostic candidates
++ frozen Faster R-CNN detector candidates
 + candidate membership MLP
 + pooled 0/1/2/3+ cardinality head
 ```
 
-Milestone 2 includes 1% CLIP training, class-weighted cardinality experiments,
-validation/test evaluation, count diagnosis, and qualitative visualizations.
-Stage 1 adds representation-independent box matching, official-compatible GREC
-metrics, and variable 3+ selection. The next stage replaces the oracle candidate
-pool with frozen detector proposals before CLIP+DINOv2 and SigLIP 2 comparisons.
+Stage 1 established representation-independent official-compatible GREC
+evaluation. Stage 2 built a shared frozen Faster R-CNN cache covering 14,790
+unique images. Stage 3 now provides image-shared CLIP feature caches,
+validation-selected training and calibration, and a full 1% detector baseline.
+The next stage adds the required CLIP+DINOv2 and SigLIP 2 representations under
+the same proposal and evaluation contract.
 
 ## Environment
 
@@ -62,6 +63,7 @@ src/
 ├── evaluation/      Metrics and baseline evaluation
 ├── features/        Frozen feature extraction
 ├── models/          Lightweight prediction heads
+├── proposals/       Frozen detector loading and image-level candidate caches
 ├── training/        Training and forward smoke tests
 ├── utils/           Box utilities
 └── visualization/   Dataset and prediction figures
@@ -69,6 +71,7 @@ src/
 docs/                Proposal, architecture notes, handoff, and project plan
 splits/              Few-shot and evaluation split manifests
 outputs/             Lightweight metrics, logs, and figures
+scripts/             Reproducible stage pipelines
 tests/               Dataset/model/training unit tests
 ```
 
@@ -92,7 +95,20 @@ conda run -n ece485 python -m src.training.test_baseline_forward \
   --max-samples 16
 ```
 
-## Main Baseline Result
+## Stage 3 Validation Result
+
+| Candidate source | Official F1 | T_acc | N_acc | Mean F1 |
+|---|---:|---:|---:|---:|
+| COCO instances (oracle control) | 0.703071 | 0.698911 | 0.933745 | 0.760705 |
+| Frozen detector (project baseline) | 0.640804 | 0.628099 | 0.949017 | 0.703343 |
+
+Both controls use the same 1% split, seed, head, optimization configuration,
+validation checkpoint selection, and GIoU evaluator. The detector row is the
+deployable project baseline. See
+[`docs/stage3_detector_clip_baseline.md`](docs/stage3_detector_clip_baseline.md)
+for cache statistics, calibration findings, and the proposal-gap analysis.
+
+## Milestone 2 Historical Result
 
 The selected Milestone 2 model uses count-class weights
 `[15.0, 1.0, 1.5, 2.0]`.
@@ -113,5 +129,9 @@ official GREC results.
 - [`docs/milestone2_model_architecture.md`](docs/milestone2_model_architecture.md): current baseline architecture.
 - [`docs/stage1_evaluation.md`](docs/stage1_evaluation.md): box-level GREC
   evaluation contract and commands.
+- [`docs/stage2_detector_proposals.md`](docs/stage2_detector_proposals.md):
+  frozen detector candidate contract, cache commands, and recall reports.
+- [`docs/stage3_detector_clip_baseline.md`](docs/stage3_detector_clip_baseline.md):
+  shared CLIP cache, validation selection, calibration, and detector baseline.
 - [`docs/488proposal.pdf`](docs/488proposal.pdf): original project proposal
   when present in the local checkout.

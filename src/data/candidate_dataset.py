@@ -101,6 +101,10 @@ class CandidateBoxDataset(Dataset):
         candidate_boxes_norm = _box_tensor(sample.get("candidate_boxes_norm", []))
         target_boxes_xyxy = _box_tensor(sample.get("target_boxes_xyxy", []))
         target_boxes_norm = _box_tensor(sample.get("target_boxes_norm", []))
+        target_best_proposal_ious = torch.tensor(
+            sample.get("target_best_proposal_ious", []),
+            dtype=torch.float32,
+        )
 
         candidate_labels = torch.tensor(
             sample.get("candidate_labels", []),
@@ -124,6 +128,15 @@ class CandidateBoxDataset(Dataset):
                 f"Candidate normalized box length mismatch at idx={idx}: "
                 f"{candidate_boxes_norm.shape[0]} normalized boxes vs "
                 f"{candidate_boxes_xyxy.shape[0]} xyxy boxes"
+            )
+
+        if (
+            target_best_proposal_ious.numel() > 0
+            and target_best_proposal_ious.numel() != num_targets
+        ):
+            raise ValueError(
+                f"Target best-IoU length mismatch at idx={idx}: "
+                f"{target_best_proposal_ious.numel()} IoUs vs {num_targets} targets"
             )
 
         metadata = {
@@ -150,6 +163,7 @@ class CandidateBoxDataset(Dataset):
             "count_class": count_class,
             "target_boxes_xyxy": target_boxes_xyxy,
             "target_boxes_norm": target_boxes_norm,
+            "target_best_proposal_ious": target_best_proposal_ious,
             "metadata": metadata,
         }
 
@@ -171,5 +185,8 @@ def candidate_collate_fn(batch: List[Dict[str, Any]]) -> Dict[str, Any]:
         "count_class": torch.stack([item["count_class"] for item in batch], dim=0),
         "target_boxes_xyxy": [item["target_boxes_xyxy"] for item in batch],
         "target_boxes_norm": [item["target_boxes_norm"] for item in batch],
+        "target_best_proposal_ious": [
+            item["target_best_proposal_ious"] for item in batch
+        ],
         "metadata": [item["metadata"] for item in batch],
     }

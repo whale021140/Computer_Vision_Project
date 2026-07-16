@@ -12,7 +12,11 @@ from src.data.candidate_dataset import CandidateBoxDataset, candidate_collate_fn
 from src.data.feature_dataset import ClipFeatureDataset, clip_feature_collate_fn
 from src.evaluation.metrics import compute_set_metrics
 from src.models.baseline_heads import ClipCandidateBaseline
-from src.training.train_clip_baseline import build_count_loss, compute_losses
+from src.training.train_clip_baseline import (
+    build_count_loss,
+    compute_losses,
+    evaluate_one_epoch,
+)
 from src.utils.boxes import count_to_class, normalize_xyxy, xywh_to_xyxy
 
 
@@ -77,6 +81,48 @@ class CandidateDatasetTests(unittest.TestCase):
             batch = candidate_collate_fn([sample, sample])
             self.assertEqual(tuple(batch["count_class"].shape), (2,))
             self.assertEqual(len(batch["candidate_boxes_xyxy"]), 2)
+
+
+class SharedClipFeatureDatasetTests(unittest.TestCase):
+    def test_shared_image_features_are_resolved_per_expression(self) -> None:
+        image = {
+            "candidate_features": torch.tensor(
+                [[1.0, 0.0], [0.0, 1.0]],
+                dtype=torch.float16,
+            ),
+            "candidate_boxes_norm": torch.tensor(
+                [[0.0, 0.0, 0.5, 0.5], [0.5, 0.5, 1.0, 1.0]],
+            ),
+        }
+        record = {
+            "sample_id": "sample-1",
+            "image_id": 7,
+            "metadata": {"image_id": 7},
+            "expression": "first object",
+            "text_feature": torch.tensor([1.0, 0.0], dtype=torch.float16),
+            "candidate_labels": torch.tensor([1.0, 0.0]),
+            "count_class": torch.tensor(1),
+            "target_boxes_xyxy": torch.tensor([[0.0, 0.0, 5.0, 5.0]]),
+            "target_boxes_norm": torch.tensor([[0.0, 0.0, 0.5, 0.5]]),
+        }
+        cache = {
+            "cache_format": "clip_shared_v2",
+            "clip_model": "synthetic",
+            "feature_dim": 2,
+            "images": {"7": image},
+            "records": [record],
+        }
+        with tempfile.TemporaryDirectory() as tmpdir:
+            feature_path = Path(tmpdir) / "features.pt"
+            torch.save(cache, feature_path)
+            dataset = ClipFeatureDataset(str(feature_path))
+            sample = dataset[0]
+
+        self.assertEqual(dataset.cache_format, "clip_shared_v2")
+        self.assertEqual(sample["candidate_features"].dtype, torch.float32)
+        self.assertEqual(sample["candidate_text_similarity"].tolist(), [1.0, 0.0])
+        batch = clip_feature_collate_fn([sample, sample])
+        self.assertEqual(len(batch["candidate_features"]), 2)
 
 
 class BaselineTrainingTests(unittest.TestCase):
@@ -144,6 +190,22 @@ class BaselineTrainingTests(unittest.TestCase):
             self.assertTrue(torch.isfinite(total))
             self.assertTrue(torch.isfinite(membership))
             self.assertTrue(torch.isfinite(cardinality))
+
+            val_metrics = evaluate_one_epoch(
+                model=model,
+                loader=[batch],
+                bce_loss=nn.BCEWithLogitsLoss(),
+                ce_loss=build_count_loss(None, torch.device("cpu")),
+                device=torch.device("cpu"),
+                lambda_cardinality=1.0,
+            )
+            self.assertEqual(set(val_metrics), {
+                "total_loss",
+                "membership_loss",
+                "count_loss",
+                "count_accuracy",
+            })
+            self.assertTrue(torch.isfinite(torch.tensor(val_metrics["total_loss"])))
 
     def test_model_rejects_empty_candidate_sets(self) -> None:
         model = ClipCandidateBaseline(feature_dim=4, hidden_dim=8)

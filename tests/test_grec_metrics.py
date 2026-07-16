@@ -6,6 +6,11 @@ from pathlib import Path
 
 import torch
 
+from src.evaluation.calibrate_clip_baseline import (
+    choose_best_threshold,
+    evaluate_threshold,
+)
+
 from src.evaluation.grec_metrics import (
     PredictionRecord,
     evaluate_records,
@@ -147,6 +152,58 @@ class CardinalitySelectionTests(unittest.TestCase):
         self.assertEqual(select_cardinality_gated_indices(logits, 0), set())
         self.assertEqual(select_cardinality_gated_indices(logits, 1), {1})
         self.assertEqual(select_cardinality_gated_indices(logits, 2), {1, 2})
+
+
+class CalibrationTests(unittest.TestCase):
+    def test_threshold_sweep_prefers_complete_three_plus_set(self) -> None:
+        boxes = torch.tensor(
+            [[i * 20.0, 0.0, i * 20.0 + 10.0, 10.0] for i in range(4)]
+        )
+        collected = [
+            {
+                "sample_id": "four-targets",
+                "target_type": "multi-target",
+                "membership_logits": torch.logit(
+                    torch.tensor([0.9, 0.8, 0.7, 0.6])
+                ),
+                "predicted_count_class": 3,
+                "candidate_boxes": boxes,
+                "target_boxes": boxes.clone(),
+            },
+            {
+                "sample_id": "no-target",
+                "target_type": "no-target",
+                "membership_logits": torch.tensor([2.0]),
+                "predicted_count_class": 0,
+                "candidate_boxes": boxes[:1],
+                "target_boxes": torch.empty((0, 4)),
+            },
+        ]
+        low = {
+            "membership_threshold": 0.5,
+            **evaluate_threshold(collected, 0.5),
+        }
+        high = {
+            "membership_threshold": 0.8,
+            **evaluate_threshold(collected, 0.8),
+        }
+        self.assertEqual(low["official"]["F1_score"], 1.0)
+        self.assertEqual(high["official"]["F1_score"], 0.5)
+        self.assertEqual(choose_best_threshold([high, low]), low)
+
+    def test_calibration_tie_prefers_neutral_threshold(self) -> None:
+        metrics = {
+            "official": {"F1_score": 0.5, "N_acc": 0.5},
+            "diagnostics": {"mean_f1": 0.5},
+        }
+        rows = [
+            {"membership_threshold": threshold, **metrics}
+            for threshold in (0.1, 0.5, 0.9)
+        ]
+        self.assertEqual(
+            choose_best_threshold(rows)["membership_threshold"],
+            0.5,
+        )
 
 
 class GRECMetricTests(unittest.TestCase):

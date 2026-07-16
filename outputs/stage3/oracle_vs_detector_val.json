@@ -1,0 +1,64 @@
+{
+  "num_samples": 14229,
+  "oracle_feature_file": "cache/features/clip_val.pt",
+  "detector_feature_file": "cache/features/clip_detector_val_shared.pt",
+  "metrics": {
+    "F1_score": {
+      "oracle": 0.70307119263476,
+      "detector": 0.6408039918476351,
+      "detector_minus_oracle": -0.06226720078712489
+    },
+    "T_acc": {
+      "oracle": 0.6989105935386927,
+      "detector": 0.628099173553719,
+      "detector_minus_oracle": -0.07081141998497364
+    },
+    "N_acc": {
+      "oracle": 0.9337450870297586,
+      "detector": 0.9490174059517125,
+      "detector_minus_oracle": 0.015272318921953909
+    },
+    "mean_f1": {
+      "oracle": 0.7607046641834748,
+      "detector": 0.7033429381310468,
+      "detector_minus_oracle": -0.057361726052428064
+    },
+    "exact_set_accuracy": {
+      "oracle": 0.70307119263476,
+      "detector": 0.6408039918476351,
+      "detector_minus_oracle": -0.06226720078712489
+    },
+    "cardinality_accuracy": {
+      "oracle": 0.8451050671164523,
+      "detector": 0.8283083842856139,
+      "detector_minus_oracle": -0.01679668283083835
+    },
+    "false_grounding_rate": {
+      "oracle": 0.06625491297024144,
+      "detector": 0.05098259404828748,
+      "detector_minus_oracle": -0.015272318921953965
+    },
+    "multi_target_mean_f1": {
+      "oracle": 0.471274730778863,
+      "detector": 0.2924242424242424,
+      "detector_minus_oracle": -0.17885048835462058
+    },
+    "multi_target_exact_accuracy": {
+      "oracle": 0.31724267468069123,
+      "detector": 0.1252817430503381,
+      "detector_minus_oracle": -0.19196093163035313
+    }
+  },
+  "proposal_recall": {
+    "iou_threshold": 0.5,
+    "unique_target_recall": 0.9928138333707612,
+    "expression_weighted_target_recall": 0.994859332647911,
+    "full_target_coverage": 0.9904207362885049
+  },
+  "interpretation": {
+    "official_f1_gap": -0.06226720078712489,
+    "unique_target_miss_rate": 0.007186166629238766,
+    "proposal_recall_is_not_direct_error_decomposition": true,
+    "summary": "Detector proposals retain nearly all validation targets, while the detector-candidate model loses substantially more official F1 than the proposal miss rate alone. The remaining gap therefore includes the harder detector distractor pool, duplicate/overlapping proposals, candidate ranking, and cardinality errors; it cannot be assigned only to missing proposals."
+  }
+}

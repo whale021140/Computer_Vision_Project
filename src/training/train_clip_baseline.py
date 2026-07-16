@@ -20,6 +20,12 @@ def parse_args():
     parser = argparse.ArgumentParser()
 
     parser.add_argument("--feature-file", type=str, required=True)
+    parser.add_argument(
+        "--val-feature-file",
+        type=str,
+        default="",
+        help="Optional validation cache used for checkpoint selection.",
+    )
     parser.add_argument("--output-dir", type=str, default="checkpoints/clip_baseline_1pct")
     parser.add_argument("--log-file", type=str, default="outputs/milestone2/train_clip_baseline_1pct_log.csv")
     parser.add_argument("--summary-file", type=str, default="outputs/milestone2/train_clip_baseline_1pct_summary.txt")
@@ -173,6 +179,51 @@ def train_one_epoch(
     }
 
 
+@torch.no_grad()
+def evaluate_one_epoch(
+    model: nn.Module,
+    loader: DataLoader,
+    bce_loss: nn.Module,
+    ce_loss: nn.Module,
+    device: torch.device,
+    lambda_cardinality: float,
+):
+    model.eval()
+    total_loss_sum = 0.0
+    membership_loss_sum = 0.0
+    count_loss_sum = 0.0
+    correct_count = 0
+    total_samples = 0
+
+    for batch in loader:
+        outputs = model(batch)
+        total_loss, membership_loss, count_loss = compute_losses(
+            outputs=outputs,
+            batch=batch,
+            bce_loss=bce_loss,
+            ce_loss=ce_loss,
+            device=device,
+            lambda_cardinality=lambda_cardinality,
+        )
+        batch_size = len(batch["expressions"])
+        total_loss_sum += float(total_loss.item()) * batch_size
+        membership_loss_sum += float(membership_loss.item()) * batch_size
+        count_loss_sum += float(count_loss.item()) * batch_size
+        pred_count = outputs["count_logits"].argmax(dim=1).detach().cpu()
+        true_count = batch["count_class"].detach().cpu()
+        correct_count += int((pred_count == true_count).sum().item())
+        total_samples += batch_size
+
+    if total_samples == 0:
+        raise ValueError("Validation loader contains no samples.")
+    return {
+        "total_loss": total_loss_sum / total_samples,
+        "membership_loss": membership_loss_sum / total_samples,
+        "count_loss": count_loss_sum / total_samples,
+        "count_accuracy": correct_count / total_samples,
+    }
+
+
 def save_checkpoint(
     path: str,
     model: nn.Module,
@@ -217,6 +268,22 @@ def main():
         collate_fn=clip_feature_collate_fn,
         generator=torch.Generator().manual_seed(args.seed),
     )
+    val_dataset = None
+    val_loader = None
+    if args.val_feature_file:
+        val_dataset = ClipFeatureDataset(feature_file=args.val_feature_file)
+        if val_dataset.feature_dim != dataset.feature_dim:
+            raise ValueError(
+                "Train and validation feature dimensions differ: "
+                f"{dataset.feature_dim} vs {val_dataset.feature_dim}."
+            )
+        val_loader = DataLoader(
+            val_dataset,
+            batch_size=args.batch_size,
+            shuffle=False,
+            num_workers=args.num_workers,
+            collate_fn=clip_feature_collate_fn,
+        )
 
     model = ClipCandidateBaseline(
         feature_dim=dataset.feature_dim,
@@ -233,7 +300,7 @@ def main():
     bce_loss = nn.BCEWithLogitsLoss()
     ce_loss = build_count_loss(args.count_class_weights, device)
 
-    best_loss = float("inf")
+    best_selection_loss = float("inf")
 
     with open(args.log_file, "w", newline="") as f:
         writer = csv.DictWriter(
@@ -244,6 +311,10 @@ def main():
                 "membership_loss",
                 "count_loss",
                 "count_accuracy",
+                "val_total_loss",
+                "val_membership_loss",
+                "val_count_loss",
+                "val_count_accuracy",
             ],
         )
         writer.writeheader()
@@ -259,7 +330,33 @@ def main():
                 lambda_cardinality=args.lambda_cardinality,
             )
 
-            row = {"epoch": epoch, **metrics}
+            val_metrics = None
+            if val_loader is not None:
+                val_metrics = evaluate_one_epoch(
+                    model=model,
+                    loader=val_loader,
+                    bce_loss=bce_loss,
+                    ce_loss=ce_loss,
+                    device=device,
+                    lambda_cardinality=args.lambda_cardinality,
+                )
+
+            row = {
+                "epoch": epoch,
+                **metrics,
+                "val_total_loss": (
+                    val_metrics["total_loss"] if val_metrics is not None else ""
+                ),
+                "val_membership_loss": (
+                    val_metrics["membership_loss"] if val_metrics is not None else ""
+                ),
+                "val_count_loss": (
+                    val_metrics["count_loss"] if val_metrics is not None else ""
+                ),
+                "val_count_accuracy": (
+                    val_metrics["count_accuracy"] if val_metrics is not None else ""
+                ),
+            }
             writer.writerow(row)
             f.flush()
 
@@ -270,25 +367,46 @@ def main():
                 f"count_loss={metrics['count_loss']:.4f} | "
                 f"count_acc={metrics['count_accuracy']:.4f}"
             )
+            if val_metrics is not None:
+                print(
+                    f"           | val_total_loss={val_metrics['total_loss']:.4f} | "
+                    f"val_membership_loss={val_metrics['membership_loss']:.4f} | "
+                    f"val_count_loss={val_metrics['count_loss']:.4f} | "
+                    f"val_count_acc={val_metrics['count_accuracy']:.4f}"
+                )
+
+            checkpoint_metrics = {
+                **{f"train_{key}": value for key, value in metrics.items()},
+                **(
+                    {f"val_{key}": value for key, value in val_metrics.items()}
+                    if val_metrics is not None
+                    else {}
+                ),
+            }
 
             save_checkpoint(
                 path=os.path.join(args.output_dir, "last.pt"),
                 model=model,
                 optimizer=optimizer,
                 epoch=epoch,
-                metrics=metrics,
+                metrics=checkpoint_metrics,
                 args=args,
                 feature_dim=dataset.feature_dim,
             )
 
-            if metrics["total_loss"] < best_loss:
-                best_loss = metrics["total_loss"]
+            selection_loss = (
+                val_metrics["total_loss"]
+                if val_metrics is not None
+                else metrics["total_loss"]
+            )
+            if selection_loss < best_selection_loss:
+                best_selection_loss = selection_loss
                 save_checkpoint(
                     path=os.path.join(args.output_dir, "best.pt"),
                     model=model,
                     optimizer=optimizer,
                     epoch=epoch,
-                    metrics=metrics,
+                    metrics=checkpoint_metrics,
                     args=args,
                     feature_dim=dataset.feature_dim,
                 )
@@ -297,6 +415,7 @@ def main():
         f.write("CLIP baseline training summary\n")
         f.write("==============================\n")
         f.write(f"Feature file: {args.feature_file}\n")
+        f.write(f"Validation feature file: {args.val_feature_file or 'none'}\n")
         f.write(f"Dataset size: {len(dataset)}\n")
         f.write(f"CLIP model: {dataset.clip_model}\n")
         f.write(f"Feature dimension: {dataset.feature_dim}\n")
@@ -307,7 +426,11 @@ def main():
         f.write(f"Learning rate: {args.lr}\n")
         f.write(f"Weight decay: {args.weight_decay}\n")
         f.write(f"Lambda cardinality: {args.lambda_cardinality}\n")
-        f.write(f"Best training loss: {best_loss:.6f}\n")
+        f.write(
+            "Checkpoint selection: "
+            f"{'validation total loss' if val_loader is not None else 'training total loss'}\n"
+        )
+        f.write(f"Best selection loss: {best_selection_loss:.6f}\n")
         f.write(f"Best checkpoint: {os.path.join(args.output_dir, 'best.pt')}\n")
         f.write(f"Last checkpoint: {os.path.join(args.output_dir, 'last.pt')}\n")
         f.write(f"Count class weights: {args.count_class_weights}\n")

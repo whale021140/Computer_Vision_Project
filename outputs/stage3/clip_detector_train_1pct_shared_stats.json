@@ -1,0 +1,22 @@
+{
+  "cache_format": "clip_shared_v2",
+  "clip_model": "ViT-B/32",
+  "device": "cuda",
+  "feature_dim": 512,
+  "storage_dtype": "float16",
+  "candidate_file": "cache/candidates_detector/fasterrcnn_train_1pct_seed0.jsonl",
+  "candidate_file_sha256": "355bb864b8b49e10a16f9279bc32219ed17bc2484dc46b5e983dd035b8be2ca9",
+  "output_file": "cache/features/clip_detector_train_1pct_shared.pt",
+  "num_samples": 2093,
+  "num_unique_images": 1972,
+  "candidate_references": 80109,
+  "unique_candidate_regions": 75368,
+  "region_reuse_factor": 1.0629046810317375,
+  "target_type_counts": {
+    "multi-target": 696,
+    "no-target": 191,
+    "single-target": 1206
+  },
+  "encoded_candidate_regions": 75368,
+  "elapsed_seconds": 174.72597575187683
+}

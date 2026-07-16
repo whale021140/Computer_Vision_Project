@@ -1,0 +1,89 @@
+CLIP Baseline GREC Evaluation
+=============================
+Feature file: cache/features/clip_val.pt
+Checkpoint: checkpoints/clip_oracle_baseline_1pct_val_selected/best.pt
+CLIP model: ViT-B/32
+Device: cpu
+Selection policy: cardinality-threshold
+Membership threshold: 0.5
+Overlap metric: giou
+Match threshold: 0.5
+Prediction score threshold: None
+
+[released GREC metrics]
+F1_score: 0.703071
+T_acc: 0.698911
+N_acc: 0.933745
+
+[diagnostics]
+num_samples: 14229
+mean_precision: 0.760841
+mean_recall: 0.760618
+mean_f1: 0.760705
+exact_set_accuracy: 0.703071
+cardinality_accuracy: 0.845105
+count_class_accuracy: 0.845105
+count_class_evaluated: 14229
+micro_precision: 0.582463
+micro_recall: 0.469390
+micro_f1: 0.519849
+total_tp: 5022
+total_fp: 3600
+total_fn: 5677
+no_target_total: 8905
+no_target_accuracy: 0.933745
+false_grounding_rate: 0.066255
+single_target_total: 0
+single_target_localization_accuracy: 0.000000
+single_target_exact_accuracy: 0.000000
+multi_target_total: 5324
+multi_target_mean_f1: 0.471275
+multi_target_exact_accuracy: 0.317243
+
+[no-target]
+num_samples: 8905
+mean_precision: 0.933745
+mean_recall: 0.933745
+mean_f1: 0.933745
+exact_set_accuracy: 0.933745
+cardinality_accuracy: 0.933745
+count_class_accuracy: 0.933745
+count_class_evaluated: 8905
+micro_precision: 0.000000
+micro_recall: 0.000000
+micro_f1: 0.000000
+total_tp: 0
+total_fp: 1180
+total_fn: 0
+
+[single-target]
+num_samples: 0
+mean_precision: 0.000000
+mean_recall: 0.000000
+mean_f1: 0.000000
+exact_set_accuracy: 0.000000
+cardinality_accuracy: 0.000000
+count_class_accuracy: 0.000000
+count_class_evaluated: 0
+micro_precision: 0.000000
+micro_recall: 0.000000
+micro_f1: 0.000000
+total_tp: 0
+total_fp: 0
+total_fn: 0
+
+[multi-target]
+num_samples: 5324
+mean_precision: 0.471638
+mean_recall: 0.471043
+mean_f1: 0.471275
+exact_set_accuracy: 0.317243
+cardinality_accuracy: 0.696844
+count_class_accuracy: 0.696844
+count_class_evaluated: 5324
+micro_precision: 0.674819
+micro_recall: 0.469390
+micro_f1: 0.553663
+total_tp: 5022
+total_fp: 2420
+total_fn: 5677
