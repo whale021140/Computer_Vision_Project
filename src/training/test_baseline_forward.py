@@ -35,7 +35,8 @@ def main():
     )
 
     model = ClipCandidateBaseline(
-        feature_dim=dataset.feature_dim,
+        candidate_feature_dim=dataset.candidate_feature_dim,
+        text_feature_dim=dataset.text_feature_dim,
         hidden_dim=args.hidden_dim,
     )
 
@@ -59,8 +60,9 @@ def main():
 
     print("Feature file:", args.feature_file)
     print("Dataset size:", len(dataset))
-    print("CLIP model:", dataset.clip_model)
-    print("Feature dim:", dataset.feature_dim)
+    print("Representation:", dataset.representation)
+    print("Candidate feature dim:", dataset.candidate_feature_dim)
+    print("Text feature dim:", dataset.text_feature_dim)
     print("Batch size:", len(batch["expressions"]))
 
     print("Number of membership logit tensors:", len(membership_logits))

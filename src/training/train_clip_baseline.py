@@ -231,7 +231,8 @@ def save_checkpoint(
     epoch: int,
     metrics: Dict[str, float],
     args,
-    feature_dim: int,
+    candidate_feature_dim: int,
+    text_feature_dim: int,
 ):
     ckpt = {
         "epoch": epoch,
@@ -239,7 +240,14 @@ def save_checkpoint(
         "optimizer_state_dict": optimizer.state_dict(),
         "metrics": metrics,
         "args": vars(args),
-        "feature_dim": feature_dim,
+        "feature_dim": candidate_feature_dim,
+        "candidate_feature_dim": candidate_feature_dim,
+        "text_feature_dim": text_feature_dim,
+        "trainable_parameter_count": sum(
+            parameter.numel()
+            for parameter in model.parameters()
+            if parameter.requires_grad
+        ),
     }
     torch.save(ckpt, path)
 
@@ -272,10 +280,16 @@ def main():
     val_loader = None
     if args.val_feature_file:
         val_dataset = ClipFeatureDataset(feature_file=args.val_feature_file)
-        if val_dataset.feature_dim != dataset.feature_dim:
+        if (
+            val_dataset.candidate_feature_dim != dataset.candidate_feature_dim
+            or val_dataset.text_feature_dim != dataset.text_feature_dim
+        ):
             raise ValueError(
                 "Train and validation feature dimensions differ: "
-                f"{dataset.feature_dim} vs {val_dataset.feature_dim}."
+                f"candidate={dataset.candidate_feature_dim}/"
+                f"{val_dataset.candidate_feature_dim}, "
+                f"text={dataset.text_feature_dim}/"
+                f"{val_dataset.text_feature_dim}."
             )
         val_loader = DataLoader(
             val_dataset,
@@ -286,10 +300,16 @@ def main():
         )
 
     model = ClipCandidateBaseline(
-        feature_dim=dataset.feature_dim,
+        candidate_feature_dim=dataset.candidate_feature_dim,
+        text_feature_dim=dataset.text_feature_dim,
         hidden_dim=args.hidden_dim,
         dropout=args.dropout,
     ).to(device)
+    trainable_parameter_count = sum(
+        parameter.numel()
+        for parameter in model.parameters()
+        if parameter.requires_grad
+    )
 
     optimizer = torch.optim.AdamW(
         model.parameters(),
@@ -391,7 +411,8 @@ def main():
                 epoch=epoch,
                 metrics=checkpoint_metrics,
                 args=args,
-                feature_dim=dataset.feature_dim,
+                candidate_feature_dim=dataset.candidate_feature_dim,
+                text_feature_dim=dataset.text_feature_dim,
             )
 
             selection_loss = (
@@ -408,7 +429,8 @@ def main():
                     epoch=epoch,
                     metrics=checkpoint_metrics,
                     args=args,
-                    feature_dim=dataset.feature_dim,
+                    candidate_feature_dim=dataset.candidate_feature_dim,
+                    text_feature_dim=dataset.text_feature_dim,
                 )
 
     with open(args.summary_file, "w") as f:
@@ -417,8 +439,10 @@ def main():
         f.write(f"Feature file: {args.feature_file}\n")
         f.write(f"Validation feature file: {args.val_feature_file or 'none'}\n")
         f.write(f"Dataset size: {len(dataset)}\n")
-        f.write(f"CLIP model: {dataset.clip_model}\n")
-        f.write(f"Feature dimension: {dataset.feature_dim}\n")
+        f.write(f"Representation: {dataset.representation}\n")
+        f.write(f"Candidate feature dimension: {dataset.candidate_feature_dim}\n")
+        f.write(f"Text feature dimension: {dataset.text_feature_dim}\n")
+        f.write(f"Trainable head parameters: {trainable_parameter_count}\n")
         f.write(f"Epochs: {args.epochs}\n")
         f.write(f"Batch size: {args.batch_size}\n")
         f.write(f"Hidden dimension: {args.hidden_dim}\n")

@@ -51,6 +51,14 @@ def parse_args() -> argparse.Namespace:
         default=0.5,
         help="Probability threshold used when the predicted count class is 3+.",
     )
+    parser.add_argument(
+        "--calibration-json",
+        default="",
+        help=(
+            "Optional validation-calibration JSON. Its best membership threshold "
+            "overrides --membership-threshold."
+        ),
+    )
     parser.add_argument("--match-threshold", type=float, default=0.5)
     parser.add_argument("--overlap-metric", choices=["iou", "giou"], default="iou")
     parser.add_argument("--prediction-score-threshold", type=float, default=None)
@@ -108,7 +116,8 @@ def set_metrics(pred: Set[int], gt: Set[int]) -> Dict[str, Any]:
 
 def load_model(
     checkpoint_path: str,
-    feature_dim: int,
+    candidate_feature_dim: int,
+    text_feature_dim: int,
     hidden_dim: int,
     dropout: float,
     device: torch.device,
@@ -121,10 +130,16 @@ def load_model(
     if isinstance(ckpt_args, dict):
         hidden_dim = int(ckpt_args.get("hidden_dim", hidden_dim))
         dropout = float(ckpt_args.get("dropout", dropout))
-    feature_dim = int(ckpt.get("feature_dim", feature_dim))
+    candidate_feature_dim = int(
+        ckpt.get("candidate_feature_dim", ckpt.get("feature_dim", candidate_feature_dim))
+    )
+    text_feature_dim = int(
+        ckpt.get("text_feature_dim", ckpt.get("feature_dim", text_feature_dim))
+    )
 
     model = ClipCandidateBaseline(
-        feature_dim=feature_dim,
+        candidate_feature_dim=candidate_feature_dim,
+        text_feature_dim=text_feature_dim,
         hidden_dim=hidden_dim,
         dropout=dropout,
     )
@@ -177,7 +192,8 @@ def evaluate(args: argparse.Namespace) -> Dict[str, Any]:
     )
     model = load_model(
         checkpoint_path=args.checkpoint,
-        feature_dim=dataset.feature_dim,
+        candidate_feature_dim=dataset.candidate_feature_dim,
+        text_feature_dim=dataset.text_feature_dim,
         hidden_dim=args.hidden_dim,
         dropout=args.dropout,
         device=device,
@@ -275,7 +291,10 @@ def evaluate(args: argparse.Namespace) -> Dict[str, Any]:
         "feature_file": args.feature_file,
         "checkpoint": args.checkpoint,
         "clip_model": dataset.clip_model,
-        "feature_dim": dataset.feature_dim,
+        "feature_dim": dataset.candidate_feature_dim,
+        "candidate_feature_dim": dataset.candidate_feature_dim,
+        "text_feature_dim": dataset.text_feature_dim,
+        "representation": dataset.representation,
         "device": str(device),
         "batch_size": args.batch_size,
         "selection_policy": args.selection_policy,
@@ -304,11 +323,11 @@ def write_text_summary(result: Dict[str, Any], output_txt: str) -> None:
     diagnostics = result["diagnostics"]
     config = result["config"]
     lines = [
-        "CLIP Baseline GREC Evaluation",
-        "=============================",
+        "Frozen Representation Baseline GREC Evaluation",
+        "==============================================",
         f"Feature file: {result['feature_file']}",
         f"Checkpoint: {result['checkpoint']}",
-        f"CLIP model: {result['clip_model']}",
+        f"Representation: {result.get('representation', result['clip_model'])}",
         f"Device: {result['device']}",
         f"Selection policy: {result['selection_policy']}",
         f"Membership threshold: {result['membership_threshold']}",
@@ -339,7 +358,16 @@ def write_text_summary(result: Dict[str, Any], output_txt: str) -> None:
 
 def main() -> None:
     args = parse_args()
+    if args.calibration_json:
+        calibration = json.loads(
+            Path(args.calibration_json).read_text(encoding="utf-8")
+        )
+        args.membership_threshold = float(
+            calibration["best"]["membership_threshold"]
+        )
     result = evaluate(args)
+    if args.calibration_json:
+        result["calibration_json"] = args.calibration_json
     output_json = Path(args.output_json)
     output_json.parent.mkdir(parents=True, exist_ok=True)
     output_json.write_text(

@@ -52,7 +52,7 @@ uses ground-truth instance boxes and does not yet use the released GREC metric.
 | 1. Evaluation foundation | Complete | Box-level matching plus official GREC and diagnostic metrics |
 | 2. Frozen detector proposals | Complete | Shared realistic candidate pools and proposal-recall diagnostics |
 | 3. Detector-based CLIP baseline | Complete | Re-established 1% baseline without oracle candidates |
-| 4. Frozen representation variants | Not started | CLIP+DINOv2 and SigLIP 2 under a shared interface |
+| 4. Frozen representation variants | In progress | Interface complete; AutoDL extraction/training pending |
 | 5. Few-shot experiment grid | Not started | 1%/5%/10%, multiple seeds, aggregate comparison |
 | 6. Ablations and reliability | Not started | Cardinality, spatial-feature, and counterfactual analyses |
 | 7. Final report and reproducibility | Not started | Final figures, tables, documentation, and reproducible commands |
@@ -151,13 +151,14 @@ saved commands and reports both official and diagnostic metrics.
 
 ## 8. Stage 4: Frozen Representation Variants
 
-- Introduce a common frozen-encoder/cache interface.
-- Add CLIP+DINOv2 candidate features.
-- Add SigLIP 2 region-text features.
-- Normalize features consistently and document any projection/fusion layers.
-- Keep the proposal pools, splits, training schedule, and inference calibration
+- [x] Introduce a common frozen-encoder/cache interface.
+- [x] Add CLIP+DINOv2 candidate features.
+- [x] Add SigLIP 2 region-text features.
+- [x] Normalize features consistently and document any projection/fusion layers.
+- [x] Keep the proposal pools, splits, training schedule, and inference calibration
   protocol controlled across representations.
-- Report frozen and trainable parameter counts.
+- [ ] Run real pretrained-weight extraction, training, and validation on AutoDL.
+- [ ] Report frozen and trainable parameter counts with final validation metrics.
 
 RegionCLIP is optional and begins only after CLIP, CLIP+DINOv2, and SigLIP 2 are
 complete.
@@ -260,3 +261,10 @@ the relevant acceptance checks pass.
   oracle control reaches `0.703071`, `0.698911`, and `0.933745`. Validation
   unique-target proposal recall remains `0.992814`, so the residual gap includes
   distractors, ranking, overlapping proposals, and cardinality behavior.
+- 2026-07-16: Began Stage 4. Added the representation-independent
+  `frozen_representation_v1` cache, unequal image/text dimension support,
+  CLIP+DINOv2 and SigLIP 2 adapters, aligned-subspace similarity, parameter
+  reporting, resumable per-image shards, an AutoDL pipeline, and 38 passing
+  tests. Full pretrained extraction and 1% validation comparisons are pending
+  on AutoDL because the local machine currently has no visible CUDA device and
+  the official weight endpoint stalled.

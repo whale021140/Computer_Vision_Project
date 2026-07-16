@@ -32,7 +32,10 @@ def main():
 
     ckpt = torch.load(args.checkpoint, map_location=device)
     model = ClipCandidateBaseline(
-        feature_dim=ckpt["feature_dim"],
+        candidate_feature_dim=ckpt.get(
+            "candidate_feature_dim", ckpt["feature_dim"]
+        ),
+        text_feature_dim=ckpt.get("text_feature_dim", ckpt["feature_dim"]),
         hidden_dim=ckpt["args"]["hidden_dim"],
         dropout=ckpt["args"]["dropout"],
     ).to(device)

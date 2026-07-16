@@ -23,8 +23,10 @@ Stage 1 established representation-independent official-compatible GREC
 evaluation. Stage 2 built a shared frozen Faster R-CNN cache covering 14,790
 unique images. Stage 3 now provides image-shared CLIP feature caches,
 validation-selected training and calibration, and a full 1% detector baseline.
-The next stage adds the required CLIP+DINOv2 and SigLIP 2 representations under
-the same proposal and evaluation contract.
+Stage 4 is now in progress: the shared frozen-representation interface,
+CLIP+DINOv2 and SigLIP 2 adapters, resumable cache extraction, and AutoDL
+pipeline are implemented. Full pretrained feature extraction and controlled 1%
+validation comparisons are pending on AutoDL.
 
 ## Environment
 
@@ -133,5 +135,7 @@ official GREC results.
   frozen detector candidate contract, cache commands, and recall reports.
 - [`docs/stage3_detector_clip_baseline.md`](docs/stage3_detector_clip_baseline.md):
   shared CLIP cache, validation selection, calibration, and detector baseline.
+- [`docs/stage4_frozen_representations.md`](docs/stage4_frozen_representations.md):
+  common encoder contract, CLIP+DINOv2/SigLIP 2 design, and AutoDL handoff.
 - [`docs/488proposal.pdf`](docs/488proposal.pdf): original project proposal
   when present in the local checkout.
