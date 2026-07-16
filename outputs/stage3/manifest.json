@@ -1,0 +1,54 @@
+{
+  "stage": 3,
+  "source_base_commit": "0af4e30f6bcba0b4ea43e578b639af90685e8344",
+  "pipeline": "scripts/run_stage3_pipeline.sh",
+  "environment": "ece485",
+  "split": "train_1pct_seed0",
+  "seed": 0,
+  "representation": "openai-clip/ViT-B/32",
+  "proposal_source": "torchvision/fasterrcnn_resnet50_fpn_v2:coco_v1",
+  "feature_cache_format": "clip_shared_v2",
+  "storage_dtype": "float16",
+  "training": {
+    "epochs": 20,
+    "batch_size": 16,
+    "hidden_dim": 256,
+    "dropout": 0.1,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001,
+    "lambda_cardinality": 1.0,
+    "count_class_weights": [15.0, 1.0, 1.5, 2.0],
+    "checkpoint_selection": "minimum validation total loss"
+  },
+  "evaluation": {
+    "split": "val",
+    "overlap_metric": "giou",
+    "match_threshold": 0.5,
+    "membership_threshold": 0.5,
+    "detector_official": {
+      "F1_score": 0.6408039918476351,
+      "T_acc": 0.628099173553719,
+      "N_acc": 0.9490174059517125
+    },
+    "oracle_official": {
+      "F1_score": 0.70307119263476,
+      "T_acc": 0.6989105935386927,
+      "N_acc": 0.9337450870297586
+    }
+  },
+  "reports": [
+    "outputs/stage3/clip_detector_train_1pct_shared_stats.json",
+    "outputs/stage3/clip_detector_val_shared_stats.json",
+    "outputs/stage3/train_clip_detector_1pct_log.csv",
+    "outputs/stage3/calibrate_clip_detector_1pct_val.json",
+    "outputs/stage3/eval_clip_detector_1pct_val.json",
+    "outputs/stage3/eval_clip_oracle_1pct_val_selected.json",
+    "outputs/stage3/oracle_vs_detector_val.json"
+  ],
+  "artifacts_excluded_from_git": [
+    "cache/features/clip_detector_train_1pct_shared.pt",
+    "cache/features/clip_detector_val_shared.pt",
+    "checkpoints/clip_detector_baseline_1pct",
+    "checkpoints/clip_oracle_baseline_1pct_val_selected"
+  ]
+}

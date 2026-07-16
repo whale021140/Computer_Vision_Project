@@ -1,0 +1,89 @@
+CLIP Baseline GREC Evaluation
+=============================
+Feature file: cache/features/clip_detector_val_shared.pt
+Checkpoint: checkpoints/clip_detector_baseline_1pct/best.pt
+CLIP model: ViT-B/32
+Device: cuda
+Selection policy: cardinality-threshold
+Membership threshold: 0.5
+Overlap metric: giou
+Match threshold: 0.5
+Prediction score threshold: None
+
+[released GREC metrics]
+F1_score: 0.640804
+T_acc: 0.628099
+N_acc: 0.949017
+
+[diagnostics]
+num_samples: 14229
+mean_precision: 0.703458
+mean_recall: 0.703270
+mean_f1: 0.703343
+exact_set_accuracy: 0.640804
+cardinality_accuracy: 0.828308
+count_class_accuracy: 0.828308
+count_class_evaluated: 14229
+micro_precision: 0.410348
+micro_recall: 0.291336
+micro_f1: 0.340749
+total_tp: 3117
+total_fp: 4479
+total_fn: 7582
+no_target_total: 8905
+no_target_accuracy: 0.949017
+false_grounding_rate: 0.050983
+single_target_total: 0
+single_target_localization_accuracy: 0.000000
+single_target_exact_accuracy: 0.000000
+multi_target_total: 5324
+multi_target_mean_f1: 0.292424
+multi_target_exact_accuracy: 0.125282
+
+[no-target]
+num_samples: 8905
+mean_precision: 0.949017
+mean_recall: 0.949017
+mean_f1: 0.949017
+exact_set_accuracy: 0.949017
+cardinality_accuracy: 0.949017
+count_class_accuracy: 0.949017
+count_class_evaluated: 8905
+micro_precision: 0.000000
+micro_recall: 0.000000
+micro_f1: 0.000000
+total_tp: 0
+total_fp: 908
+total_fn: 0
+
+[single-target]
+num_samples: 0
+mean_precision: 0.000000
+mean_recall: 0.000000
+mean_f1: 0.000000
+exact_set_accuracy: 0.000000
+cardinality_accuracy: 0.000000
+count_class_accuracy: 0.000000
+count_class_evaluated: 0
+micro_precision: 0.000000
+micro_recall: 0.000000
+micro_f1: 0.000000
+total_tp: 0
+total_fp: 0
+total_fn: 0
+
+[multi-target]
+num_samples: 5324
+mean_precision: 0.292731
+mean_recall: 0.292230
+mean_f1: 0.292424
+exact_set_accuracy: 0.125282
+cardinality_accuracy: 0.626409
+count_class_accuracy: 0.626409
+count_class_evaluated: 5324
+micro_precision: 0.466059
+micro_recall: 0.291336
+micro_f1: 0.358544
+total_tp: 3117
+total_fp: 3571
+total_fn: 7582

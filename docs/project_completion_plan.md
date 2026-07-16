@@ -51,7 +51,7 @@ uses ground-truth instance boxes and does not yet use the released GREC metric.
 | 0. Repository hardening | Complete | Reliable baseline entry points, tests, environment record, and documentation |
 | 1. Evaluation foundation | Complete | Box-level matching plus official GREC and diagnostic metrics |
 | 2. Frozen detector proposals | Complete | Shared realistic candidate pools and proposal-recall diagnostics |
-| 3. Detector-based CLIP baseline | Not started | Re-established 1% baseline without oracle candidates |
+| 3. Detector-based CLIP baseline | Complete | Re-established 1% baseline without oracle candidates |
 | 4. Frozen representation variants | Not started | CLIP+DINOv2 and SigLIP 2 under a shared interface |
 | 5. Few-shot experiment grid | Not started | 1%/5%/10%, multiple seeds, aggregate comparison |
 | 6. Ablations and reliability | Not started | Cardinality, spatial-feature, and counterfactual analyses |
@@ -138,12 +138,12 @@ is intentionally deferred until Stage 1 provides a trusted evaluator.
 
 ## 7. Stage 3: Detector-Based CLIP Baseline
 
-- Refactor feature caches so image-level candidate features are reused across
+- [x] Refactor feature caches so image-level candidate features are reused across
   expressions from the same image.
-- Extract frozen CLIP features for the detector candidates.
-- Train the 1% baseline with validation-driven checkpoint selection and
+- [x] Extract frozen CLIP features for the detector candidates.
+- [x] Train the 1% baseline with validation-driven checkpoint selection and
   inference calibration.
-- Compare oracle-candidate and detector-candidate results to separate proposal
+- [x] Compare oracle-candidate and detector-candidate results to separate proposal
   failures from representation/ranking failures.
 
 Stage 3 is accepted when the 1% detector-based CLIP result is reproducible from
@@ -252,3 +252,11 @@ the relevant acceptance checks pass.
   unique-target recall is `0.992814`; testA/testB expression-weighted target
   recall is `0.979554`/`0.983776`. All 28 unit tests and real train/val/test
   detector-candidate DataLoader smoke tests pass in `ece485`.
+- 2026-07-16: Completed Stage 3. Added the image-shared `clip_shared_v2` cache,
+  validation-loss checkpoint selection, validation-only 3+ threshold
+  calibration, and a reproducible oracle-versus-detector comparison. On the
+  full validation split, the 1% detector baseline reaches
+  `F1_score=0.640804`, `T_acc=0.628099`, and `N_acc=0.949017`; the matched
+  oracle control reaches `0.703071`, `0.698911`, and `0.933745`. Validation
+  unique-target proposal recall remains `0.992814`, so the residual gap includes
+  distractors, ranking, overlapping proposals, and cardinality behavior.

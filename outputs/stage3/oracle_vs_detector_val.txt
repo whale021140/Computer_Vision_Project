@@ -1,0 +1,22 @@
+Oracle vs detector candidate comparison
+=======================================
+Samples: 14229
+
+metric                              oracle    detector       delta
+F1_score                           0.703071  0.640804   -0.062267
+T_acc                              0.698911  0.628099   -0.070811
+N_acc                              0.933745  0.949017   +0.015272
+mean_f1                            0.760705  0.703343   -0.057362
+exact_set_accuracy                 0.703071  0.640804   -0.062267
+cardinality_accuracy               0.845105  0.828308   -0.016797
+false_grounding_rate               0.066255  0.050983   -0.015272
+multi_target_mean_f1               0.471275  0.292424   -0.178850
+multi_target_exact_accuracy        0.317243  0.125282   -0.191961
+
+[validation proposal recall at IoU 0.5]
+unique_target_recall: 0.992814
+expression_weighted_target_recall: 0.994859
+full_target_coverage: 0.990421
+
+[interpretation]
+Detector proposals retain nearly all validation targets, while the detector-candidate model loses substantially more official F1 than the proposal miss rate alone. The remaining gap therefore includes the harder detector distractor pool, duplicate/overlapping proposals, candidate ranking, and cardinality errors; it cannot be assigned only to missing proposals.
