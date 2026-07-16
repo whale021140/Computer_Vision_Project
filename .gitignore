@@ -14,11 +14,13 @@ __pycache__/
 # Environment and local files
 .env
 .venv/
+.vscode/
 *.log
 
 # OS files
 .DS_Store
 Thumbs.db
+*:Zone.Identifier
 
 # Large archives, except milestone submission zip if needed
 *.zip

@@ -21,7 +21,7 @@ def count_class_to_k(count_class: int, num_candidates: int) -> int:
 
 
 def select_topk_indices(membership_logits: torch.Tensor, count_class: int) -> set[int]:
-    """Select predicted candidate indices using predicted cardinality."""
+    """Legacy exact top-k selection retained for old Milestone 2 artifacts."""
     num_candidates = int(membership_logits.numel())
     k = count_class_to_k(int(count_class), num_candidates)
     if k <= 0 or num_candidates == 0:
@@ -29,6 +29,47 @@ def select_topk_indices(membership_logits: torch.Tensor, count_class: int) -> se
 
     topk = torch.topk(membership_logits.detach().cpu(), k=k).indices.tolist()
     return set(int(i) for i in topk)
+
+
+def select_cardinality_gated_indices(
+    membership_logits: torch.Tensor,
+    count_class: int,
+    membership_threshold: float = 0.5,
+) -> set[int]:
+    """Select a variable-size set while retaining the cardinality head's gate.
+
+    Count classes 0, 1, and 2 select exactly 0, 1, and 2 candidates. Class 3
+    means 3-or-more: every candidate above the probability threshold is kept,
+    with the top three added when fewer than three pass the threshold.
+    """
+    if not 0.0 <= membership_threshold <= 1.0:
+        raise ValueError("membership_threshold must be between 0 and 1.")
+
+    logits = membership_logits.detach().cpu().reshape(-1)
+    num_candidates = int(logits.numel())
+    count_class = int(count_class)
+    if count_class not in (0, 1, 2, 3):
+        raise ValueError("count_class must be one of 0, 1, 2, or 3.")
+    if count_class == 0 or num_candidates == 0:
+        return set()
+    if count_class in (1, 2):
+        k = min(count_class, num_candidates)
+        return set(int(i) for i in torch.topk(logits, k=k).indices.tolist())
+
+    probabilities = torch.sigmoid(logits)
+    selected = set(
+        int(i)
+        for i in torch.nonzero(
+            probabilities >= membership_threshold,
+            as_tuple=False,
+        ).flatten().tolist()
+    )
+    minimum_k = min(3, num_candidates)
+    if len(selected) < minimum_k:
+        selected.update(
+            int(i) for i in torch.topk(logits, k=minimum_k).indices.tolist()
+        )
+    return selected
 
 
 def positive_indices(candidate_labels: torch.Tensor) -> set[int]:

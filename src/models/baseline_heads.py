@@ -72,6 +72,12 @@ class ClipCandidateBaseline(nn.Module):
             candidate_text_similarity = batch["candidate_text_similarity"][i].to(device)
             candidate_boxes_norm = batch["candidate_boxes_norm"][i].to(device)
 
+            if candidate_features.shape[0] == 0:
+                raise ValueError(
+                    f"Sample {i} has no candidate features; every sample must "
+                    "contain at least one candidate box."
+                )
+
             x = self._build_candidate_input(
                 text_feature=text_feature,
                 candidate_features=candidate_features,
