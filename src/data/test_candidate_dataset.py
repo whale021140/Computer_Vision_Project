@@ -13,6 +13,7 @@ def check_sample(sample: Dict, idx: int, counters: Counter) -> None:
     candidate_boxes_norm = sample["candidate_boxes_norm"]
     candidate_labels = sample["candidate_labels"]
     target_boxes = sample["target_boxes_xyxy"]
+    target_best_proposal_ious = sample["target_best_proposal_ious"]
     count_class = int(sample["count_class"].item())
     metadata = sample["metadata"]
 
@@ -39,6 +40,20 @@ def check_sample(sample: Dict, idx: int, counters: Counter) -> None:
 
     positive_count = int(candidate_labels.sum().item())
 
+    if target_best_proposal_ious.numel() > 0:
+        if target_best_proposal_ious.numel() != num_targets:
+            raise ValueError(
+                f"Target best-IoU count mismatch at idx={idx}: "
+                f"{target_best_proposal_ious.numel()} vs {num_targets}"
+            )
+        matched_targets = int((target_best_proposal_ious >= 0.5).sum().item())
+        if (positive_count > 0) != (matched_targets > 0):
+            raise ValueError(
+                f"Candidate labels and target coverage disagree at idx={idx}: "
+                f"positives={positive_count}, matched_targets={matched_targets}"
+            )
+        counters["matched_targets"] += matched_targets
+
     counters["samples"] += 1
     counters[f"type:{target_type}"] += 1
     counters["total_candidates"] += candidate_boxes.shape[0]
@@ -55,19 +70,12 @@ def check_sample(sample: Dict, idx: int, counters: Counter) -> None:
     elif target_type == "single-target":
         if num_targets != 1:
             raise ValueError(f"Single-target sample has num_targets={num_targets} at idx={idx}")
-        if positive_count != 1:
-            raise ValueError(f"Single-target sample has {positive_count} positives at idx={idx}")
         if count_class != 1:
             raise ValueError(f"Single-target sample has count_class={count_class} at idx={idx}")
 
     elif target_type == "multi-target":
         if num_targets < 2:
             raise ValueError(f"Multi-target sample has num_targets={num_targets} at idx={idx}")
-        if positive_count != num_targets:
-            raise ValueError(
-                f"Multi-target sample has {positive_count} positives but "
-                f"num_targets={num_targets} at idx={idx}"
-            )
         expected_count_class = 2 if num_targets == 2 else 3
         if count_class != expected_count_class:
             raise ValueError(
@@ -128,6 +136,7 @@ def main() -> None:
     print(f"Multi-target samples: {counters['type:multi-target']}")
     print(f"Total candidates: {counters['total_candidates']}")
     print(f"Total positive candidate labels: {counters['total_positive_labels']}")
+    print(f"Matched targets with recorded proposal IoUs: {counters['matched_targets']}")
 
     avg_candidates = counters["total_candidates"] / max(counters["samples"], 1)
     print(f"Average candidates per sample: {avg_candidates:.4f}")

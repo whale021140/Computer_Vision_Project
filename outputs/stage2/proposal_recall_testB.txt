@@ -1,0 +1,23 @@
+Detector Proposal Candidate Statistics
+======================================
+IoU threshold: 0.5
+Unique images: 750
+Unique targets: 3889
+Unique matched targets: 3666
+Unique target recall: 0.942659
+Expression samples: 16063
+Expression-weighted target recall: 0.983776
+Full-target sample coverage: 0.979017
+Average candidates: 34.5351
+Average positive candidates: 3.0571
+
+[by_target_type]
+multi-target: samples=5744, targets=15680, target_recall=0.979911, full_coverage=0.963788
+no-target: samples=4673, targets=0, target_recall=0.000000, full_coverage=0.000000
+single-target: samples=5646, targets=5646, target_recall=0.994509, full_coverage=0.994509
+
+[by_count_group]
+0: samples=4673, targets=0, target_recall=0.000000, full_coverage=0.000000
+1: samples=5646, targets=5646, target_recall=0.994509, full_coverage=0.994509
+2: samples=3957, targets=7914, target_recall=0.994693, full_coverage=0.989386
+3+: samples=1787, targets=7766, target_recall=0.964847, full_coverage=0.907107

@@ -1,0 +1,121 @@
+{
+  "iou_threshold": 0.5,
+  "unique_images": 750,
+  "unique_targets": 3889,
+  "unique_matched_targets": 3666,
+  "unique_target_recall": 0.9426587811776806,
+  "overall": {
+    "samples": 16063,
+    "targeted_samples": 11390,
+    "targets": 21326,
+    "matched_targets": 20980,
+    "target_recall": 0.9837756728875551,
+    "fully_covered_samples": 11151,
+    "full_target_coverage": 0.9790166812993855,
+    "samples_with_positive_candidate": 11358,
+    "positive_candidate_sample_rate": 0.7070908298574363,
+    "average_candidates": 34.53508062005852,
+    "average_positive_candidates": 3.0571499719853077
+  },
+  "by_target_type": {
+    "multi-target": {
+      "samples": 5744,
+      "targeted_samples": 5744,
+      "targets": 15680,
+      "matched_targets": 15365,
+      "target_recall": 0.9799107142857143,
+      "fully_covered_samples": 5536,
+      "full_target_coverage": 0.9637883008356546,
+      "samples_with_positive_candidate": 5743,
+      "positive_candidate_sample_rate": 0.9998259052924791,
+      "average_candidates": 34.76270891364903,
+      "average_positive_candidates": 6.155292479108635
+    },
+    "no-target": {
+      "samples": 4673,
+      "targeted_samples": 0,
+      "targets": 0,
+      "matched_targets": 0,
+      "target_recall": 0.0,
+      "fully_covered_samples": 0,
+      "full_target_coverage": 0.0,
+      "samples_with_positive_candidate": 0,
+      "positive_candidate_sample_rate": 0.0,
+      "average_candidates": 33.76524716456238,
+      "average_positive_candidates": 0
+    },
+    "single-target": {
+      "samples": 5646,
+      "targeted_samples": 5646,
+      "targets": 5646,
+      "matched_targets": 5615,
+      "target_recall": 0.9945093871767623,
+      "fully_covered_samples": 5615,
+      "full_target_coverage": 0.9945093871767623,
+      "samples_with_positive_candidate": 5615,
+      "positive_candidate_sample_rate": 0.9945093871767623,
+      "average_candidates": 34.9406659582005,
+      "average_positive_candidates": 2.4355295784626283
+    }
+  },
+  "by_count_group": {
+    "0": {
+      "samples": 4673,
+      "targeted_samples": 0,
+      "targets": 0,
+      "matched_targets": 0,
+      "target_recall": 0.0,
+      "fully_covered_samples": 0,
+      "full_target_coverage": 0.0,
+      "samples_with_positive_candidate": 0,
+      "positive_candidate_sample_rate": 0.0,
+      "average_candidates": 33.76524716456238,
+      "average_positive_candidates": 0
+    },
+    "1": {
+      "samples": 5646,
+      "targeted_samples": 5646,
+      "targets": 5646,
+      "matched_targets": 5615,
+      "target_recall": 0.9945093871767623,
+      "fully_covered_samples": 5615,
+      "full_target_coverage": 0.9945093871767623,
+      "samples_with_positive_candidate": 5615,
+      "positive_candidate_sample_rate": 0.9945093871767623,
+      "average_candidates": 34.9406659582005,
+      "average_positive_candidates": 2.4355295784626283
+    },
+    "2": {
+      "samples": 3957,
+      "targeted_samples": 3957,
+      "targets": 7914,
+      "matched_targets": 7872,
+      "target_recall": 0.9946929492039424,
+      "fully_covered_samples": 3915,
+      "full_target_coverage": 0.9893858984078847,
+      "samples_with_positive_candidate": 3957,
+      "positive_candidate_sample_rate": 1.0,
+      "average_candidates": 33.500631791761435,
+      "average_positive_candidates": 4.928986606014657
+    },
+    "3+": {
+      "samples": 1787,
+      "targeted_samples": 1787,
+      "targets": 7766,
+      "matched_targets": 7493,
+      "target_recall": 0.9648467679629152,
+      "fully_covered_samples": 1621,
+      "full_target_coverage": 0.9071068830442082,
+      "samples_with_positive_candidate": 1786,
+      "positive_candidate_sample_rate": 0.9994404029099049,
+      "average_candidates": 37.55735870173475,
+      "average_positive_candidates": 8.870733072188024
+    }
+  },
+  "split_file": "splits/testB.json",
+  "split_sha256": "e117716840d5fb2e96320a34940490a8e8177bc5dae89bbc67bee3a7c4063b85",
+  "proposal_file": "cache/proposals/fasterrcnn_r50_fpn_v2_all_seed0_fp16.jsonl",
+  "proposal_sha256": "15fc32b89ae5b31f16361ceb2e2e4c0a90ef2dcbd8b96892d033fdf742c35f26",
+  "output_file": "cache/candidates_detector/fasterrcnn_testB.jsonl",
+  "command": "/home/whale/488/Final_Project/src/data/build_proposal_candidate_samples.py --split-file splits/testB.json --proposal-file cache/proposals/fasterrcnn_r50_fpn_v2_all_seed0_fp16.jsonl --output-file cache/candidates_detector/fasterrcnn_testB.jsonl --stats-json outputs/stage2/proposal_recall_testB.json --stats-txt outputs/stage2/proposal_recall_testB.txt"
+}
