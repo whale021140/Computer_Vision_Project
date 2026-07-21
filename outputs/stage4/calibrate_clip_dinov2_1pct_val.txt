@@ -1,0 +1,31 @@
+Frozen Representation Validation Calibration
+============================================
+Feature file: cache/features/clip_dinov2_detector_val_shared.pt
+Checkpoint: checkpoints/clip_dinov2_detector_1pct/best.pt
+Overlap metric: giou
+Best membership threshold: 0.5000
+Best F1_score: 0.630754
+Best T_acc: 0.691397
+Best N_acc: 0.921392
+Best mean F1: 0.698170
+Predicted count distribution: {'0': 9848, '2': 4381}
+Threshold-sensitive samples: 0
+
+[threshold sweep]
+threshold=0.1000 F1_score=0.630754 mean_f1=0.698170 T_acc=0.691397 N_acc=0.921392
+threshold=0.1500 F1_score=0.630754 mean_f1=0.698170 T_acc=0.691397 N_acc=0.921392
+threshold=0.2000 F1_score=0.630754 mean_f1=0.698170 T_acc=0.691397 N_acc=0.921392
+threshold=0.2500 F1_score=0.630754 mean_f1=0.698170 T_acc=0.691397 N_acc=0.921392
+threshold=0.3000 F1_score=0.630754 mean_f1=0.698170 T_acc=0.691397 N_acc=0.921392
+threshold=0.3500 F1_score=0.630754 mean_f1=0.698170 T_acc=0.691397 N_acc=0.921392
+threshold=0.4000 F1_score=0.630754 mean_f1=0.698170 T_acc=0.691397 N_acc=0.921392
+threshold=0.4500 F1_score=0.630754 mean_f1=0.698170 T_acc=0.691397 N_acc=0.921392
+threshold=0.5000 F1_score=0.630754 mean_f1=0.698170 T_acc=0.691397 N_acc=0.921392
+threshold=0.5500 F1_score=0.630754 mean_f1=0.698170 T_acc=0.691397 N_acc=0.921392
+threshold=0.6000 F1_score=0.630754 mean_f1=0.698170 T_acc=0.691397 N_acc=0.921392
+threshold=0.6500 F1_score=0.630754 mean_f1=0.698170 T_acc=0.691397 N_acc=0.921392
+threshold=0.7000 F1_score=0.630754 mean_f1=0.698170 T_acc=0.691397 N_acc=0.921392
+threshold=0.7500 F1_score=0.630754 mean_f1=0.698170 T_acc=0.691397 N_acc=0.921392
+threshold=0.8000 F1_score=0.630754 mean_f1=0.698170 T_acc=0.691397 N_acc=0.921392
+threshold=0.8500 F1_score=0.630754 mean_f1=0.698170 T_acc=0.691397 N_acc=0.921392
+threshold=0.9000 F1_score=0.630754 mean_f1=0.698170 T_acc=0.691397 N_acc=0.921392

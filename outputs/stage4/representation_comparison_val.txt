@@ -1,0 +1,11 @@
+Stage 4 frozen representation comparison
+========================================
+representation        F1_score     T_acc     N_acc    mean_f1   head_params
+clip                 0.640804  0.628099  0.949017  0.703343       396549
+clip_dinov2          0.630754  0.691397  0.921392  0.698170       593157
+siglip2              0.649097  0.894065  0.920157  0.733788       527621
+
+[encoder parameter counts]
+clip: frozen=151277313, trainable=0
+clip_dinov2: frozen=237857793, trainable=0
+siglip2: frozen=375187970, trainable=0

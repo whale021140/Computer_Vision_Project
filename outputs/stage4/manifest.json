@@ -1,0 +1,129 @@
+{
+  "stage": 4,
+  "source_base_commit": "bc0bb67fbf3cbc9f0ba581a689f4a8040555cf27",
+  "implementation_patch_sha256": "98e58bda037682fe5835ec82735a82a43e4682fac33256687966d460d0cb5e89",
+  "pipeline": "scripts/run_stage4_autodl.sh",
+  "command": "HF_HUB_DISABLE_XET=1 REGION_BATCH_SIZE=8 bash scripts/run_stage4_autodl.sh",
+  "environment": "ece485",
+  "hardware": "NVIDIA GeForce RTX 4060 Laptop GPU (8 GB)",
+  "software": {
+    "torch": "2.12.0+cu130",
+    "transformers": "4.51.3",
+    "sentencepiece": "0.2.0"
+  },
+  "split": "train_1pct_seed0",
+  "split_sha256": {
+    "train_1pct_seed0": "d9524512bcb2d63d029e1b5fc3439cfdc7a52eb6e66b3fc8d95f918b83f05e04",
+    "val": "e1b166d2989c23830fee09bee70eb45fc05877851519edd81f99eb0288d6fc4a"
+  },
+  "candidate_file_sha256": {
+    "train_1pct_seed0": "355bb864b8b49e10a16f9279bc32219ed17bc2484dc46b5e983dd035b8be2ca9",
+    "val": "d921918f753b464a59f50d0c857c84faa45aa9ac2b8c7e4d27ebeec251759b80"
+  },
+  "seed": 0,
+  "tests_passed": 42,
+  "proposal": {
+    "source": "torchvision/fasterrcnn_resnet50_fpn_v2:coco_v1",
+    "score_threshold": 0.05,
+    "nms_threshold": 0.7,
+    "max_proposals": 100,
+    "detector_output_limit": 300,
+    "min_box_size": 1.0,
+    "inference_precision": "float16"
+  },
+  "feature_cache_format": "frozen_representation_v1",
+  "feature_extraction": {
+    "region_batch_size": 8,
+    "text_batch_size": 128,
+    "storage_dtype": "float16",
+    "device": "cuda",
+    "amp": true,
+    "clip_dinov2": {
+      "model_ids": {
+        "clip": "ViT-B/32",
+        "dinov2": "facebook/dinov2-base"
+      },
+      "candidate_feature_dim": 1280,
+      "text_feature_dim": 512,
+      "frozen_encoder_parameters": 237857793,
+      "train_elapsed_seconds": 558.9642460346222,
+      "val_elapsed_seconds": 432.2310473918915
+    },
+    "siglip2": {
+      "model_ids": {
+        "siglip2": "google/siglip2-base-patch16-224"
+      },
+      "candidate_feature_dim": 768,
+      "text_feature_dim": 768,
+      "frozen_encoder_parameters": 375187970,
+      "train_elapsed_seconds": 292.85526490211487,
+      "val_elapsed_seconds": 234.80695176124573
+    }
+  },
+  "training": {
+    "epochs": 20,
+    "batch_size": 16,
+    "hidden_dim": 256,
+    "dropout": 0.1,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001,
+    "lambda_cardinality": 1.0,
+    "count_class_weights": [15.0, 1.0, 1.5, 2.0],
+    "checkpoint_selection": "minimum validation total loss"
+  },
+  "evaluation": {
+    "split": "val",
+    "overlap_metric": "giou",
+    "match_threshold": 0.5,
+    "membership_threshold": 0.5,
+    "clip": {
+      "frozen_encoder_parameters": 151277313,
+      "trainable_head_parameters": 396549,
+      "F1_score": 0.6408039918476351,
+      "T_acc": 0.628099173553719,
+      "N_acc": 0.9490174059517125,
+      "mean_f1": 0.7033429381310468
+    },
+    "clip_dinov2": {
+      "best_epoch": 8,
+      "best_validation_loss": 0.7493319437185286,
+      "trainable_head_parameters": 593157,
+      "F1_score": 0.6307540937521963,
+      "T_acc": 0.691397445529677,
+      "N_acc": 0.9213924761370017,
+      "mean_f1": 0.6981704031672404
+    },
+    "siglip2": {
+      "best_epoch": 8,
+      "best_validation_loss": 0.7201887206205523,
+      "trainable_head_parameters": 527621,
+      "F1_score": 0.6490969147515637,
+      "T_acc": 0.8940646130728775,
+      "N_acc": 0.920157215047726,
+      "mean_f1": 0.7337878042495372
+    }
+  },
+  "reports": [
+    "outputs/stage4/clip_dinov2_train_1pct_stats.json",
+    "outputs/stage4/clip_dinov2_val_stats.json",
+    "outputs/stage4/train_clip_dinov2_1pct_log.csv",
+    "outputs/stage4/train_clip_dinov2_1pct_summary.txt",
+    "outputs/stage4/calibrate_clip_dinov2_1pct_val.json",
+    "outputs/stage4/eval_clip_dinov2_1pct_val.json",
+    "outputs/stage4/siglip2_train_1pct_stats.json",
+    "outputs/stage4/siglip2_val_stats.json",
+    "outputs/stage4/train_siglip2_1pct_log.csv",
+    "outputs/stage4/train_siglip2_1pct_summary.txt",
+    "outputs/stage4/calibrate_siglip2_1pct_val.json",
+    "outputs/stage4/eval_siglip2_1pct_val.json",
+    "outputs/stage4/representation_comparison_val.json"
+  ],
+  "artifacts_excluded_from_git": [
+    "cache/features/clip_dinov2_detector_train_1pct_shared.pt",
+    "cache/features/clip_dinov2_detector_val_shared.pt",
+    "cache/features/siglip2_detector_train_1pct_shared.pt",
+    "cache/features/siglip2_detector_val_shared.pt",
+    "checkpoints/clip_dinov2_detector_1pct",
+    "checkpoints/siglip2_detector_1pct"
+  ]
+}

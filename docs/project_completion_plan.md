@@ -6,7 +6,7 @@ Proposal: `docs/488proposal.pdf`
 
 Working environment: Conda environment `ece485`
 
-Last updated: 2026-07-16
+Last updated: 2026-07-21
 
 ## 1. Goal and Experimental Contract
 
@@ -52,7 +52,7 @@ uses ground-truth instance boxes and does not yet use the released GREC metric.
 | 1. Evaluation foundation | Complete | Box-level matching plus official GREC and diagnostic metrics |
 | 2. Frozen detector proposals | Complete | Shared realistic candidate pools and proposal-recall diagnostics |
 | 3. Detector-based CLIP baseline | Complete | Re-established 1% baseline without oracle candidates |
-| 4. Frozen representation variants | In progress | Interface complete; AutoDL extraction/training pending |
+| 4. Frozen representation variants | Complete | Controlled 1% CLIP, CLIP+DINOv2, and SigLIP 2 validation comparison |
 | 5. Few-shot experiment grid | Not started | 1%/5%/10%, multiple seeds, aggregate comparison |
 | 6. Ablations and reliability | Not started | Cardinality, spatial-feature, and counterfactual analyses |
 | 7. Final report and reproducibility | Not started | Final figures, tables, documentation, and reproducible commands |
@@ -157,11 +157,19 @@ saved commands and reports both official and diagnostic metrics.
 - [x] Normalize features consistently and document any projection/fusion layers.
 - [x] Keep the proposal pools, splits, training schedule, and inference calibration
   protocol controlled across representations.
-- [ ] Run real pretrained-weight extraction, training, and validation on AutoDL.
-- [ ] Report frozen and trainable parameter counts with final validation metrics.
+- [x] Run real pretrained-weight extraction, training, and validation.
+- [x] Report frozen and trainable parameter counts with final validation metrics.
 
 RegionCLIP is optional and begins only after CLIP, CLIP+DINOv2, and SigLIP 2 are
 complete.
+
+Stage 4 is accepted. Under the controlled 1% seed-0 validation comparison,
+SigLIP 2 gives the best overall result (`F1_score=0.649097`,
+`T_acc=0.894065`, `N_acc=0.920157`, mean F1 `0.733788`). CLIP+DINOv2 reaches
+`0.630754`, `0.691397`, `0.921392`, and `0.698170`, respectively, compared
+with the Stage 3 CLIP control at `0.640804`, `0.628099`, `0.949017`, and
+`0.703343`. All encoders remain frozen; the trainable heads contain 593,157
+parameters for CLIP+DINOv2 and 527,621 for SigLIP 2.
 
 ## 9. Stage 5: Few-Shot Experiment Grid
 
@@ -265,6 +273,16 @@ the relevant acceptance checks pass.
   `frozen_representation_v1` cache, unequal image/text dimension support,
   CLIP+DINOv2 and SigLIP 2 adapters, aligned-subspace similarity, parameter
   reporting, resumable per-image shards, an AutoDL pipeline, and 38 passing
-  tests. Full pretrained extraction and 1% validation comparisons are pending
-  on AutoDL because the local machine currently has no visible CUDA device and
-  the official weight endpoint stalled.
+  tests. At that point the restricted execution session exposed no CUDA device
+  and the official weight endpoint stalled, so the real extraction was marked
+  as pending for AutoDL.
+- 2026-07-21: Completed Stage 4 locally on an RTX 4060 Laptop GPU after adding
+  the missing SigLIP 2 tokenizer dependency, upgrading Transformers to 4.51.3,
+  and making text length and tiny-region channel order explicit. All 42 tests
+  pass. On the full validation split, CLIP, CLIP+DINOv2, and SigLIP 2 reach
+  `F1_score=0.640804/0.630754/0.649097`, respectively. SigLIP 2 gives the best
+  target accuracy (`T_acc=0.894065`), mean F1 (`0.733788`), and multi-target
+  mean F1 (`0.422064`), while CLIP retains the best no-target accuracy
+  (`N_acc=0.949017`). Frozen encoder counts are 151,277,313 for CLIP,
+  237,857,793 for CLIP+DINOv2, and 375,187,970 for SigLIP 2; all encoder
+  parameters remain frozen.

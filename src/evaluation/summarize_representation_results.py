@@ -38,6 +38,8 @@ def build_row(
     name: str,
     evaluation: Dict[str, Any],
     stats: Dict[str, Any] | None = None,
+    encoder_parameters: Dict[str, int] | None = None,
+    model_ids: Dict[str, str] | None = None,
 ) -> Dict[str, Any]:
     candidate_dim = int(evaluation.get("candidate_feature_dim", evaluation["feature_dim"]))
     text_dim = int(evaluation.get("text_feature_dim", evaluation["feature_dim"]))
@@ -60,6 +62,10 @@ def build_row(
     if stats is not None:
         row["encoder_parameters"] = encoder_parameter_totals(stats)
         row["model_ids"] = stats["representation"]["model_ids"]
+    if encoder_parameters is not None:
+        row["encoder_parameters"] = encoder_parameters
+    if model_ids is not None:
+        row["model_ids"] = model_ids
     return row
 
 
@@ -91,6 +97,8 @@ def format_report(rows: list[Dict[str, Any]]) -> str:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--clip-eval", required=True)
+    parser.add_argument("--clip-model-id", required=True)
+    parser.add_argument("--clip-frozen-parameters", type=int, required=True)
     parser.add_argument("--clip-dinov2-stats", required=True)
     parser.add_argument("--clip-dinov2-eval", required=True)
     parser.add_argument("--siglip2-stats", required=True)
@@ -103,7 +111,15 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
     rows = [
-        build_row("clip", load_json(args.clip_eval)),
+        build_row(
+            "clip",
+            load_json(args.clip_eval),
+            encoder_parameters={
+                "frozen": args.clip_frozen_parameters,
+                "trainable": 0,
+            },
+            model_ids={"clip": args.clip_model_id},
+        ),
         build_row(
             "clip_dinov2",
             load_json(args.clip_dinov2_eval),

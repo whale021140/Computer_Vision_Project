@@ -136,7 +136,11 @@ class ClipDinov2Encoder(FrozenRegionTextEncoder):
 
     def encode_images(self, images: Sequence[Image.Image]) -> torch.Tensor:
         clip_features = self.clip.encode_images(images)
-        inputs = self.dinov2_processor(images=list(images), return_tensors="pt")
+        inputs = self.dinov2_processor(
+            images=list(images),
+            return_tensors="pt",
+            input_data_format="channels_last",
+        )
         pixel_values = inputs["pixel_values"].to(self.device)
         outputs = self.dinov2_model(pixel_values=pixel_values)
         dinov2_features = getattr(outputs, "pooler_output", None)
@@ -202,7 +206,11 @@ class Siglip2Encoder(FrozenRegionTextEncoder):
         }
 
     def encode_images(self, images: Sequence[Image.Image]) -> torch.Tensor:
-        inputs = self.processor(images=list(images), return_tensors="pt")
+        inputs = self.processor.image_processor(
+            images=list(images),
+            return_tensors="pt",
+            input_data_format="channels_last",
+        )
         features = self.model.get_image_features(
             pixel_values=inputs["pixel_values"].to(self.device)
         )
@@ -210,9 +218,13 @@ class Siglip2Encoder(FrozenRegionTextEncoder):
 
     def encode_texts(self, texts: Sequence[str]) -> torch.Tensor:
         inputs = self.processor(
-            text=list(texts),
+            # SigLIP 2 was trained with lower-cased text padded/truncated to
+            # exactly 64 tokens.  Keep these settings explicit because older
+            # Transformers processors do not populate the checkpoint defaults.
+            text=[text.lower() for text in texts],
             padding="max_length",
             truncation=True,
+            max_length=64,
             return_tensors="pt",
         )
         model_inputs = {

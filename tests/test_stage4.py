@@ -7,8 +7,11 @@ from PIL import Image
 
 from src.data.feature_dataset import ClipFeatureDataset
 from src.features.extract_frozen_features import extract_features
+from src.evaluation.summarize_representation_results import build_row
 from src.features.frozen_encoders import (
+    ClipDinov2Encoder,
     FrozenRegionTextEncoder,
+    Siglip2Encoder,
     freeze_module,
     prepare_transformers_image_backend,
 )
@@ -46,6 +49,116 @@ class FakeEncoder(FrozenRegionTextEncoder):
 
 
 class FrozenRepresentationTests(unittest.TestCase):
+    def test_comparison_row_records_legacy_clip_encoder_metadata(self) -> None:
+        evaluation = {
+            "feature_dim": 2,
+            "official": {"F1_score": 0.5, "T_acc": 0.6, "N_acc": 0.7},
+            "diagnostics": {
+                "mean_f1": 0.4,
+                "cardinality_accuracy": 0.3,
+                "false_grounding_rate": 0.2,
+                "multi_target_mean_f1": 0.1,
+            },
+        }
+        row = build_row(
+            "clip",
+            evaluation,
+            encoder_parameters={"frozen": 123, "trainable": 0},
+            model_ids={"clip": "ViT-B/32"},
+        )
+        self.assertEqual(row["encoder_parameters"], {"frozen": 123, "trainable": 0})
+        self.assertEqual(row["model_ids"], {"clip": "ViT-B/32"})
+
+    def test_siglip2_text_preprocessing_matches_training_contract(self) -> None:
+        class RecordingProcessor:
+            def __init__(self):
+                self.kwargs = None
+
+            def __call__(self, **kwargs):
+                self.kwargs = kwargs
+                return {
+                    "input_ids": torch.ones((2, 64), dtype=torch.long),
+                    "attention_mask": torch.ones((2, 64), dtype=torch.long),
+                }
+
+        class FakeModel:
+            @staticmethod
+            def get_text_features(**model_inputs):
+                return torch.ones((model_inputs["input_ids"].shape[0], 3))
+
+        encoder = object.__new__(Siglip2Encoder)
+        encoder.device = torch.device("cpu")
+        encoder.processor = RecordingProcessor()
+        encoder.model = FakeModel()
+        features = encoder.encode_texts(["Red CAR", "BLUE bus"])
+
+        self.assertEqual(encoder.processor.kwargs["text"], ["red car", "blue bus"])
+        self.assertEqual(encoder.processor.kwargs["padding"], "max_length")
+        self.assertTrue(encoder.processor.kwargs["truncation"])
+        self.assertEqual(encoder.processor.kwargs["max_length"], 64)
+        self.assertEqual(features.shape, (2, 3))
+        self.assertTrue(torch.allclose(features.norm(dim=-1), torch.ones(2)))
+
+    def test_transformer_processors_receive_explicit_channel_order(self) -> None:
+        class RecordingProcessor:
+            def __init__(self):
+                self.kwargs = None
+
+            @property
+            def image_processor(self):
+                return self
+
+            def __call__(self, **kwargs):
+                self.kwargs = kwargs
+                return {"pixel_values": torch.zeros((1, 3, 8, 8))}
+
+        class FakeModel:
+            @staticmethod
+            def get_image_features(pixel_values):
+                return torch.ones((pixel_values.shape[0], 3))
+
+        encoder = object.__new__(Siglip2Encoder)
+        encoder.device = torch.device("cpu")
+        encoder.processor = RecordingProcessor()
+        encoder.model = FakeModel()
+        features = encoder.encode_images([Image.new("RGB", (3, 5))])
+
+        self.assertEqual(
+            encoder.processor.kwargs["input_data_format"], "channels_last"
+        )
+        self.assertEqual(features.shape, (1, 3))
+
+    def test_dinov2_processor_receives_explicit_channel_order(self) -> None:
+        class FakeClip:
+            @staticmethod
+            def encode_images(images):
+                return torch.ones((len(images), 2))
+
+        class RecordingProcessor:
+            def __init__(self):
+                self.kwargs = None
+
+            def __call__(self, **kwargs):
+                self.kwargs = kwargs
+                return {"pixel_values": torch.zeros((1, 3, 8, 8))}
+
+        class FakeDinoModel:
+            @staticmethod
+            def __call__(pixel_values):
+                return type("Outputs", (), {"pooler_output": torch.ones((1, 3))})()
+
+        encoder = object.__new__(ClipDinov2Encoder)
+        encoder.device = torch.device("cpu")
+        encoder.clip = FakeClip()
+        encoder.dinov2_processor = RecordingProcessor()
+        encoder.dinov2_model = FakeDinoModel()
+        features = encoder.encode_images([Image.new("RGB", (3, 5))])
+
+        self.assertEqual(
+            encoder.dinov2_processor.kwargs["input_data_format"], "channels_last"
+        )
+        self.assertEqual(features.shape, (1, 5))
+
     def test_dataset_uses_aligned_similarity_subspace(self) -> None:
         cache = {
             "cache_format": "frozen_representation_v1",
