@@ -10,14 +10,21 @@ class ClipCandidateBaseline(nn.Module):
     def __init__(
         self,
         feature_dim: int = 512,
+        candidate_feature_dim: int | None = None,
+        text_feature_dim: int | None = None,
         hidden_dim: int = 256,
         dropout: float = 0.1,
         num_count_classes: int = 4,
     ):
         super().__init__()
 
-        self.feature_dim = feature_dim
-        self.input_dim = feature_dim * 2 + 1 + 4
+        self.candidate_feature_dim = int(candidate_feature_dim or feature_dim)
+        self.text_feature_dim = int(text_feature_dim or feature_dim)
+        # Backward-compatible alias for legacy CLIP-only code.
+        self.feature_dim = self.candidate_feature_dim
+        self.input_dim = (
+            self.candidate_feature_dim + self.text_feature_dim + 1 + 4
+        )
 
         self.candidate_mlp = nn.Sequential(
             nn.Linear(self.input_dim, hidden_dim),
@@ -45,6 +52,17 @@ class ClipCandidateBaseline(nn.Module):
         candidate_boxes_norm: torch.Tensor,
     ) -> torch.Tensor:
         n = candidate_features.shape[0]
+        if candidate_features.shape[1] != self.candidate_feature_dim:
+            raise ValueError(
+                "Candidate feature dimension mismatch: "
+                f"expected {self.candidate_feature_dim}, got "
+                f"{candidate_features.shape[1]}."
+            )
+        if text_feature.shape[0] != self.text_feature_dim:
+            raise ValueError(
+                "Text feature dimension mismatch: "
+                f"expected {self.text_feature_dim}, got {text_feature.shape[0]}."
+            )
         text_repeated = text_feature.unsqueeze(0).expand(n, -1)
         sim = candidate_text_similarity.view(n, 1)
 

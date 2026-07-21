@@ -145,8 +145,8 @@ def validate_thresholds(thresholds: Sequence[float]) -> List[float]:
 def format_summary(result: Dict[str, Any]) -> str:
     best = result["best"]
     lines = [
-        "CLIP Baseline Validation Calibration",
-        "====================================",
+        "Frozen Representation Validation Calibration",
+        "============================================",
         f"Feature file: {result['feature_file']}",
         f"Checkpoint: {result['checkpoint']}",
         f"Overlap metric: {result['config']['overlap_metric']}",
@@ -185,7 +185,8 @@ def main() -> None:
     )
     model = load_model(
         checkpoint_path=args.checkpoint,
-        feature_dim=dataset.feature_dim,
+        candidate_feature_dim=dataset.candidate_feature_dim,
+        text_feature_dim=dataset.text_feature_dim,
         hidden_dim=args.hidden_dim,
         dropout=args.dropout,
         device=device,
@@ -206,7 +207,10 @@ def main() -> None:
         "feature_file": args.feature_file,
         "checkpoint": args.checkpoint,
         "clip_model": dataset.clip_model,
-        "feature_dim": dataset.feature_dim,
+        "feature_dim": dataset.candidate_feature_dim,
+        "candidate_feature_dim": dataset.candidate_feature_dim,
+        "text_feature_dim": dataset.text_feature_dim,
+        "representation": dataset.representation,
         "device": str(device),
         "selection_criterion": [
             "official.F1_score",

@@ -317,7 +317,8 @@ def visualize(args: argparse.Namespace) -> Dict[str, Any]:
     )
     model = load_model(
         checkpoint_path=args.checkpoint,
-        feature_dim=dataset.feature_dim,
+        candidate_feature_dim=dataset.candidate_feature_dim,
+        text_feature_dim=dataset.text_feature_dim,
         hidden_dim=args.hidden_dim,
         dropout=args.dropout,
         device=device,

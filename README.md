@@ -10,10 +10,10 @@ The implementation is being developed according to
 
 ## Current Status
 
-The completed Stage 3 detector baseline uses:
+The completed Stage 4 system uses:
 
 ```text
-frozen CLIP ViT-B/32
+frozen CLIP ViT-B/32, CLIP+DINOv2, or SigLIP 2
 + frozen Faster R-CNN detector candidates
 + candidate membership MLP
 + pooled 0/1/2/3+ cardinality head
@@ -23,8 +23,9 @@ Stage 1 established representation-independent official-compatible GREC
 evaluation. Stage 2 built a shared frozen Faster R-CNN cache covering 14,790
 unique images. Stage 3 now provides image-shared CLIP feature caches,
 validation-selected training and calibration, and a full 1% detector baseline.
-The next stage adds the required CLIP+DINOv2 and SigLIP 2 representations under
-the same proposal and evaluation contract.
+Stage 4 completes the controlled 1% seed-0 comparison with real frozen
+CLIP+DINOv2 and SigLIP 2 features. SigLIP 2 gives the strongest validation
+result (`F1_score=0.649097`, `T_acc=0.894065`, `N_acc=0.920157`).
 
 ## Environment
 
@@ -108,6 +109,19 @@ deployable project baseline. See
 [`docs/stage3_detector_clip_baseline.md`](docs/stage3_detector_clip_baseline.md)
 for cache statistics, calibration findings, and the proposal-gap analysis.
 
+## Stage 4 Validation Result
+
+| Representation | F1_score | T_acc | N_acc | Mean F1 |
+|---|---:|---:|---:|---:|
+| CLIP | 0.640804 | 0.628099 | **0.949017** | 0.703343 |
+| CLIP+DINOv2 | 0.630754 | 0.691397 | 0.921392 | 0.698170 |
+| SigLIP 2 | **0.649097** | **0.894065** | 0.920157 | **0.733788** |
+
+All rows use the same detector proposals, 1% seed-0 split, lightweight head,
+optimization schedule, validation checkpoint selection, and GIoU evaluator.
+These are development-set results; the multi-fraction, multi-seed Stage 5 grid
+is still pending.
+
 ## Milestone 2 Historical Result
 
 The selected Milestone 2 model uses count-class weights
@@ -133,5 +147,7 @@ official GREC results.
   frozen detector candidate contract, cache commands, and recall reports.
 - [`docs/stage3_detector_clip_baseline.md`](docs/stage3_detector_clip_baseline.md):
   shared CLIP cache, validation selection, calibration, and detector baseline.
+- [`docs/stage4_frozen_representations.md`](docs/stage4_frozen_representations.md):
+  common encoder contract, CLIP+DINOv2/SigLIP 2 results, and reproduction.
 - [`docs/488proposal.pdf`](docs/488proposal.pdf): original project proposal
   when present in the local checkout.

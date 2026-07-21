@@ -1,0 +1,78 @@
+{
+  "split": "val",
+  "rows": [
+    {
+      "representation": "clip",
+      "candidate_feature_dim": 512,
+      "text_feature_dim": 512,
+      "trainable_head_parameters": 396549,
+      "official": {
+        "F1_score": 0.6408039918476351,
+        "T_acc": 0.628099173553719,
+        "N_acc": 0.9490174059517125
+      },
+      "diagnostics": {
+        "mean_f1": 0.7033429381310468,
+        "cardinality_accuracy": 0.8283083842856139,
+        "false_grounding_rate": 0.05098259404828748,
+        "multi_target_mean_f1": 0.2924242424242424
+      },
+      "encoder_parameters": {
+        "frozen": 151277313,
+        "trainable": 0
+      },
+      "model_ids": {
+        "clip": "ViT-B/32"
+      }
+    },
+    {
+      "representation": "clip_dinov2",
+      "candidate_feature_dim": 1280,
+      "text_feature_dim": 512,
+      "trainable_head_parameters": 593157,
+      "official": {
+        "F1_score": 0.6307540937521963,
+        "T_acc": 0.691397445529677,
+        "N_acc": 0.9213924761370017
+      },
+      "diagnostics": {
+        "mean_f1": 0.6981704031672404,
+        "cardinality_accuracy": 0.8345632159673906,
+        "false_grounding_rate": 0.07860752386299831,
+        "multi_target_mean_f1": 0.3248059103431005
+      },
+      "encoder_parameters": {
+        "frozen": 237857793,
+        "trainable": 0
+      },
+      "model_ids": {
+        "clip": "ViT-B/32",
+        "dinov2": "facebook/dinov2-base"
+      }
+    },
+    {
+      "representation": "siglip2",
+      "candidate_feature_dim": 768,
+      "text_feature_dim": 768,
+      "trainable_head_parameters": 527621,
+      "official": {
+        "F1_score": 0.6490969147515637,
+        "T_acc": 0.8940646130728775,
+        "N_acc": 0.920157215047726
+      },
+      "diagnostics": {
+        "mean_f1": 0.7337878042495372,
+        "cardinality_accuracy": 0.9093400801180688,
+        "false_grounding_rate": 0.07984278495227401,
+        "multi_target_mean_f1": 0.42206361131980963
+      },
+      "encoder_parameters": {
+        "frozen": 375187970,
+        "trainable": 0
+      },
+      "model_ids": {
+        "siglip2": "google/siglip2-base-patch16-224"
+      }
+    }
+  ]
+}

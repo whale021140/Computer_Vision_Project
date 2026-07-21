@@ -368,8 +368,25 @@ def main() -> None:
     feature_dim = int(next(iter(images.values()))["candidate_features"].shape[1])
     cache = {
         "cache_format": CACHE_FORMAT,
+        "representation": {
+            "name": "clip",
+            "model_ids": {"clip": args.clip_model},
+            "candidate_feature_dim": feature_dim,
+            "text_feature_dim": feature_dim,
+            "component_normalization": {
+                "clip_image": "l2",
+                "clip_text": "l2",
+            },
+            "fusion": "none",
+        },
         "clip_model": args.clip_model,
         "feature_dim": feature_dim,
+        "candidate_feature_dim": feature_dim,
+        "text_feature_dim": feature_dim,
+        "similarity_spec": {
+            "candidate_slice": [0, feature_dim],
+            "text_slice": [0, feature_dim],
+        },
         "storage_dtype": args.storage_dtype,
         "candidate_file": str(candidate_file),
         "candidate_file_sha256": sha256_file(candidate_file),
@@ -386,6 +403,8 @@ def main() -> None:
         "clip_model": args.clip_model,
         "device": str(device),
         "feature_dim": feature_dim,
+        "candidate_feature_dim": feature_dim,
+        "text_feature_dim": feature_dim,
         "storage_dtype": args.storage_dtype,
         "candidate_file": str(candidate_file),
         "candidate_file_sha256": cache["candidate_file_sha256"],
