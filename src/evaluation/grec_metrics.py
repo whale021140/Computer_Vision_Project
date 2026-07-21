@@ -378,6 +378,21 @@ def evaluate_records(
             )
             for target_type in ("no-target", "single-target", "multi-target")
         },
+        "by_count_group": {
+            count_group: _summarize_samples(
+                [
+                    sample
+                    for sample in samples
+                    if (
+                        str(sample.num_targets)
+                        if sample.num_targets <= 2
+                        else "3+"
+                    )
+                    == count_group
+                ]
+            )
+            for count_group in ("0", "1", "2", "3+")
+        },
     }
     if include_sample_metrics:
         result["samples"] = [asdict(sample) for sample in samples]

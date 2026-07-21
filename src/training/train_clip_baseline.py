@@ -21,6 +21,15 @@ def parse_args():
 
     parser.add_argument("--feature-file", type=str, required=True)
     parser.add_argument(
+        "--train-split-file",
+        type=str,
+        default="",
+        help=(
+            "Optional expression split used to select records from a shared "
+            "feature bank. This avoids re-encoding/re-serializing each few-shot run."
+        ),
+    )
+    parser.add_argument(
         "--val-feature-file",
         type=str,
         default="",
@@ -266,6 +275,7 @@ def main():
     dataset = ClipFeatureDataset(
         feature_file=args.feature_file,
         max_samples=args.max_samples,
+        split_file=args.train_split_file,
     )
 
     loader = DataLoader(
@@ -437,6 +447,7 @@ def main():
         f.write("CLIP baseline training summary\n")
         f.write("==============================\n")
         f.write(f"Feature file: {args.feature_file}\n")
+        f.write(f"Training split file: {args.train_split_file or 'cache-native'}\n")
         f.write(f"Validation feature file: {args.val_feature_file or 'none'}\n")
         f.write(f"Dataset size: {len(dataset)}\n")
         f.write(f"Representation: {dataset.representation}\n")

@@ -27,6 +27,10 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 def load_released_generalized_box_iou():
     source = PROJECT_ROOT / "gRefCOCO" / "mdetr" / "util" / "box_ops.py"
+    if not source.exists():
+        raise unittest.SkipTest(
+            "Released gRefCOCO reference checkout is optional; see README Local Data."
+        )
     spec = importlib.util.spec_from_file_location("released_grefcoco_box_ops", source)
     if spec is None or spec.loader is None:
         raise RuntimeError(f"Unable to load released box operations from {source}")
@@ -285,6 +289,24 @@ class GRECMetricTests(unittest.TestCase):
         self.assertEqual((result.true_positives, result.false_negatives), (4, 1))
         self.assertAlmostEqual(result.f1, 8 / 9)
         self.assertEqual(result.exact_set, 0)
+
+    def test_target_count_breakdown_includes_empty_groups(self) -> None:
+        records = self.records() + [
+            PredictionRecord(
+                "four-targets",
+                [],
+                [[i * 20, 0, i * 20 + 10, 10] for i in range(4)],
+                [],
+            )
+        ]
+        result = evaluate_records(records)
+        self.assertEqual(
+            {
+                key: value["num_samples"]
+                for key, value in result["by_count_group"].items()
+            },
+            {"0": 2, "1": 2, "2": 1, "3+": 1},
+        )
 
     def test_record_rejects_inconsistent_target_type(self) -> None:
         with self.assertRaisesRegex(ValueError, "conflicts"):

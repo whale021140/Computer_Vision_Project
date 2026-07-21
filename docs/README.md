@@ -15,6 +15,8 @@
   validation calibration, and oracle-versus-detector analysis.
 - `stage4_frozen_representations.md`: controlled CLIP, CLIP+DINOv2, and
   SigLIP 2 representation comparison, results, and reproduction steps.
+- `stage5_fewshot_grid.md`: audited multi-seed/fraction protocol, split
+  preparation, compute plan, and experiment constraints.
 
 The completion plan is the source of truth for work after Milestone 2. Update
 its stage table, checklists, and progress log whenever a stage is accepted.

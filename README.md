@@ -26,6 +26,9 @@ validation-selected training and calibration, and a full 1% detector baseline.
 Stage 4 completes the controlled 1% seed-0 comparison with real frozen
 CLIP+DINOv2 and SigLIP 2 features. SigLIP 2 gives the strongest validation
 result (`F1_score=0.649097`, `T_acc=0.894065`, `N_acc=0.920157`).
+Stage 5 is in progress: deterministic nested splits for seeds 0/1/2 and the
+shared-feature-bank training path are prepared; the long proposal/feature compute
+and the 27-cell grid remain.
 
 ## Environment
 
@@ -54,6 +57,18 @@ data/
 
 Datasets, feature caches, downloaded repositories, and checkpoints are excluded
 from Git because of their size.
+
+Two evaluator-parity tests optionally compare against the released gRefCOCO
+implementation. To enable them, place the pinned external checkout at
+`gRefCOCO/`:
+
+```bash
+git clone https://github.com/henghuiding/gRefCOCO.git
+git -C gRefCOCO checkout 41a8f008006bb1fb0f1df2547f9477bb97e36593
+```
+
+When that optional checkout is absent, those two parity tests are reported as
+skipped; all self-contained evaluator tests still run.
 
 ## Repository Structure
 
@@ -149,5 +164,7 @@ official GREC results.
   shared CLIP cache, validation selection, calibration, and detector baseline.
 - [`docs/stage4_frozen_representations.md`](docs/stage4_frozen_representations.md):
   common encoder contract, CLIP+DINOv2/SigLIP 2 results, and reproduction.
+- [`docs/stage5_fewshot_grid.md`](docs/stage5_fewshot_grid.md): audited Stage 5
+  protocol, multi-seed split manifest, compute plan, and run contract.
 - [`docs/488proposal.pdf`](docs/488proposal.pdf): original project proposal
   when present in the local checkout.

@@ -1,0 +1,397 @@
+{
+  "status": "passed",
+  "train": [
+    {
+      "seed": 0,
+      "percentage": 1,
+      "path": "splits/train_1pct_seed0.json",
+      "sha256": "d9524512bcb2d63d029e1b5fc3439cfdc7a52eb6e66b3fc8d95f918b83f05e04",
+      "samples": 2093,
+      "unique_refs": 2069,
+      "unique_images": 1972
+    },
+    {
+      "seed": 0,
+      "percentage": 5,
+      "path": "splits/train_5pct_seed0.json",
+      "sha256": "2b50adf103b72ef288b5eed8d225661d08bbe69268292f68cd247e9c1bfaa794",
+      "samples": 10467,
+      "unique_refs": 9893,
+      "unique_images": 7713
+    },
+    {
+      "seed": 0,
+      "percentage": 10,
+      "path": "splits/train_10pct_seed0.json",
+      "sha256": "8eb7ff5c19327216198bb14cd3814df94927c207b4dd39275b4e3c277735fb57",
+      "samples": 20934,
+      "unique_refs": 18748,
+      "unique_images": 11790
+    },
+    {
+      "seed": 1,
+      "percentage": 1,
+      "path": "splits/train_1pct_seed1.json",
+      "sha256": "3c3f4dcd5dcc08b5ee7e49463dddd91ab6c70b7073925399aad19f5f47a9116a",
+      "samples": 2093,
+      "unique_refs": 2076,
+      "unique_images": 1962
+    },
+    {
+      "seed": 1,
+      "percentage": 5,
+      "path": "splits/train_5pct_seed1.json",
+      "sha256": "dc225b4c0edc54f5ec21fd6b14af02038943cd6d65ffbfd720b6db3ebb686c00",
+      "samples": 10467,
+      "unique_refs": 9947,
+      "unique_images": 7686
+    },
+    {
+      "seed": 1,
+      "percentage": 10,
+      "path": "splits/train_10pct_seed1.json",
+      "sha256": "226948167101c1bcfc93184506e4bd1c4cfe6ae6cdf06827154bd996d0219909",
+      "samples": 20934,
+      "unique_refs": 18839,
+      "unique_images": 11789
+    },
+    {
+      "seed": 2,
+      "percentage": 1,
+      "path": "splits/train_1pct_seed2.json",
+      "sha256": "803b29415a87b4e051a7a9de0263c885fa2918bf874834bfc96ac84c0f77b6ef",
+      "samples": 2093,
+      "unique_refs": 2073,
+      "unique_images": 1962
+    },
+    {
+      "seed": 2,
+      "percentage": 5,
+      "path": "splits/train_5pct_seed2.json",
+      "sha256": "7b58d1059253d7d56035a6be70ee84ac5f8b6dba957b166bf6529a58dce9e513",
+      "samples": 10467,
+      "unique_refs": 9895,
+      "unique_images": 7677
+    },
+    {
+      "seed": 2,
+      "percentage": 10,
+      "path": "splits/train_10pct_seed2.json",
+      "sha256": "17746bba12b860c75eb02ccecaf5be3b05e5018ed9467186fe0f557904617de4",
+      "samples": 20934,
+      "unique_refs": 18796,
+      "unique_images": 11841
+    }
+  ],
+  "evaluation": {
+    "testA": {
+      "path": "splits/testA.json",
+      "sha256": "03f2227f8707154580bdf01efaf8977e25b6ed2f5d12db9a5890fa38dbf93dc9",
+      "samples": 19200,
+      "unique_refs": 6265,
+      "unique_images": 750
+    },
+    "testB": {
+      "path": "splits/testB.json",
+      "sha256": "e117716840d5fb2e96320a34940490a8e8177bc5dae89bbc67bee3a7c4063b85",
+      "samples": 16063,
+      "unique_refs": 4618,
+      "unique_images": 750
+    },
+    "val": {
+      "path": "splits/val.json",
+      "sha256": "e1b166d2989c23830fee09bee70eb45fc05877851519edd81f99eb0288d6fc4a",
+      "samples": 14229,
+      "unique_refs": 4237,
+      "unique_images": 1501
+    }
+  },
+  "nesting": [
+    {
+      "seed": 0,
+      "percentage": 1,
+      "contains_previous": true
+    },
+    {
+      "seed": 0,
+      "percentage": 5,
+      "contains_previous": true
+    },
+    {
+      "seed": 0,
+      "percentage": 10,
+      "contains_previous": true
+    },
+    {
+      "seed": 1,
+      "percentage": 1,
+      "contains_previous": true
+    },
+    {
+      "seed": 1,
+      "percentage": 5,
+      "contains_previous": true
+    },
+    {
+      "seed": 1,
+      "percentage": 10,
+      "contains_previous": true
+    },
+    {
+      "seed": 2,
+      "percentage": 1,
+      "contains_previous": true
+    },
+    {
+      "seed": 2,
+      "percentage": 5,
+      "contains_previous": true
+    },
+    {
+      "seed": 2,
+      "percentage": 10,
+      "contains_previous": true
+    }
+  ],
+  "train_evaluation_overlap": [
+    {
+      "seed": 0,
+      "percentage": 1,
+      "evaluation_split": "val",
+      "expression_overlap": 0,
+      "ref_overlap": 0,
+      "image_overlap": 0
+    },
+    {
+      "seed": 0,
+      "percentage": 1,
+      "evaluation_split": "testA",
+      "expression_overlap": 0,
+      "ref_overlap": 0,
+      "image_overlap": 0
+    },
+    {
+      "seed": 0,
+      "percentage": 1,
+      "evaluation_split": "testB",
+      "expression_overlap": 0,
+      "ref_overlap": 0,
+      "image_overlap": 0
+    },
+    {
+      "seed": 0,
+      "percentage": 5,
+      "evaluation_split": "val",
+      "expression_overlap": 0,
+      "ref_overlap": 0,
+      "image_overlap": 0
+    },
+    {
+      "seed": 0,
+      "percentage": 5,
+      "evaluation_split": "testA",
+      "expression_overlap": 0,
+      "ref_overlap": 0,
+      "image_overlap": 0
+    },
+    {
+      "seed": 0,
+      "percentage": 5,
+      "evaluation_split": "testB",
+      "expression_overlap": 0,
+      "ref_overlap": 0,
+      "image_overlap": 0
+    },
+    {
+      "seed": 0,
+      "percentage": 10,
+      "evaluation_split": "val",
+      "expression_overlap": 0,
+      "ref_overlap": 0,
+      "image_overlap": 0
+    },
+    {
+      "seed": 0,
+      "percentage": 10,
+      "evaluation_split": "testA",
+      "expression_overlap": 0,
+      "ref_overlap": 0,
+      "image_overlap": 0
+    },
+    {
+      "seed": 0,
+      "percentage": 10,
+      "evaluation_split": "testB",
+      "expression_overlap": 0,
+      "ref_overlap": 0,
+      "image_overlap": 0
+    },
+    {
+      "seed": 1,
+      "percentage": 1,
+      "evaluation_split": "val",
+      "expression_overlap": 0,
+      "ref_overlap": 0,
+      "image_overlap": 0
+    },
+    {
+      "seed": 1,
+      "percentage": 1,
+      "evaluation_split": "testA",
+      "expression_overlap": 0,
+      "ref_overlap": 0,
+      "image_overlap": 0
+    },
+    {
+      "seed": 1,
+      "percentage": 1,
+      "evaluation_split": "testB",
+      "expression_overlap": 0,
+      "ref_overlap": 0,
+      "image_overlap": 0
+    },
+    {
+      "seed": 1,
+      "percentage": 5,
+      "evaluation_split": "val",
+      "expression_overlap": 0,
+      "ref_overlap": 0,
+      "image_overlap": 0
+    },
+    {
+      "seed": 1,
+      "percentage": 5,
+      "evaluation_split": "testA",
+      "expression_overlap": 0,
+      "ref_overlap": 0,
+      "image_overlap": 0
+    },
+    {
+      "seed": 1,
+      "percentage": 5,
+      "evaluation_split": "testB",
+      "expression_overlap": 0,
+      "ref_overlap": 0,
+      "image_overlap": 0
+    },
+    {
+      "seed": 1,
+      "percentage": 10,
+      "evaluation_split": "val",
+      "expression_overlap": 0,
+      "ref_overlap": 0,
+      "image_overlap": 0
+    },
+    {
+      "seed": 1,
+      "percentage": 10,
+      "evaluation_split": "testA",
+      "expression_overlap": 0,
+      "ref_overlap": 0,
+      "image_overlap": 0
+    },
+    {
+      "seed": 1,
+      "percentage": 10,
+      "evaluation_split": "testB",
+      "expression_overlap": 0,
+      "ref_overlap": 0,
+      "image_overlap": 0
+    },
+    {
+      "seed": 2,
+      "percentage": 1,
+      "evaluation_split": "val",
+      "expression_overlap": 0,
+      "ref_overlap": 0,
+      "image_overlap": 0
+    },
+    {
+      "seed": 2,
+      "percentage": 1,
+      "evaluation_split": "testA",
+      "expression_overlap": 0,
+      "ref_overlap": 0,
+      "image_overlap": 0
+    },
+    {
+      "seed": 2,
+      "percentage": 1,
+      "evaluation_split": "testB",
+      "expression_overlap": 0,
+      "ref_overlap": 0,
+      "image_overlap": 0
+    },
+    {
+      "seed": 2,
+      "percentage": 5,
+      "evaluation_split": "val",
+      "expression_overlap": 0,
+      "ref_overlap": 0,
+      "image_overlap": 0
+    },
+    {
+      "seed": 2,
+      "percentage": 5,
+      "evaluation_split": "testA",
+      "expression_overlap": 0,
+      "ref_overlap": 0,
+      "image_overlap": 0
+    },
+    {
+      "seed": 2,
+      "percentage": 5,
+      "evaluation_split": "testB",
+      "expression_overlap": 0,
+      "ref_overlap": 0,
+      "image_overlap": 0
+    },
+    {
+      "seed": 2,
+      "percentage": 10,
+      "evaluation_split": "val",
+      "expression_overlap": 0,
+      "ref_overlap": 0,
+      "image_overlap": 0
+    },
+    {
+      "seed": 2,
+      "percentage": 10,
+      "evaluation_split": "testA",
+      "expression_overlap": 0,
+      "ref_overlap": 0,
+      "image_overlap": 0
+    },
+    {
+      "seed": 2,
+      "percentage": 10,
+      "evaluation_split": "testB",
+      "expression_overlap": 0,
+      "ref_overlap": 0,
+      "image_overlap": 0
+    }
+  ],
+  "evaluation_overlap": [
+    {
+      "left": "testA",
+      "right": "testB",
+      "expression_overlap": 0,
+      "ref_overlap": 0,
+      "image_overlap": 0
+    },
+    {
+      "left": "testA",
+      "right": "val",
+      "expression_overlap": 0,
+      "ref_overlap": 0,
+      "image_overlap": 1
+    },
+    {
+      "left": "testB",
+      "right": "val",
+      "expression_overlap": 0,
+      "ref_overlap": 0,
+      "image_overlap": 0
+    }
+  ]
+}

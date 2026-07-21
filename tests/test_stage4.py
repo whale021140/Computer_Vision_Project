@@ -292,6 +292,52 @@ class FrozenRepresentationTests(unittest.TestCase):
         self.assertEqual(count, 1)
         self.assertEqual(resumed, 1)
 
+    def test_generic_extraction_rejects_shard_from_other_encoder(self) -> None:
+        class OtherFakeEncoder(FakeEncoder):
+            def metadata(self):
+                return {**super().metadata(), "name": "other_fake"}
+
+        image_specs = {
+            "7": {
+                "image_id": 7,
+                "file_name": "image.png",
+                "width": 10,
+                "height": 10,
+                "candidate_source": "fake",
+                "proposal_config": None,
+                "candidate_boxes_xyxy": [[0, 0, 10, 10]],
+                "candidate_boxes_norm": torch.tensor([[0.0, 0.0, 1.0, 1.0]]),
+                "candidate_scores": torch.ones(1),
+                "candidate_detector_labels": torch.ones(1, dtype=torch.long),
+            }
+        }
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            Image.new("RGB", (10, 10), color="white").save(root / "image.png")
+            shard_dir = root / "parts"
+            extract_features(
+                image_specs,
+                [{"expression": "object"}],
+                root,
+                FakeEncoder(),
+                region_batch_size=1,
+                text_batch_size=1,
+                storage_dtype=torch.float16,
+                shard_dir=shard_dir,
+            )
+            with self.assertRaises(ValueError):
+                extract_features(
+                    image_specs,
+                    [{"expression": "object"}],
+                    root,
+                    OtherFakeEncoder(),
+                    region_batch_size=1,
+                    text_batch_size=1,
+                    storage_dtype=torch.float16,
+                    shard_dir=shard_dir,
+                    resume=True,
+                )
+
     def test_freeze_module_reports_no_trainable_parameters(self) -> None:
         module = torch.nn.Linear(3, 2)
         freeze_module(module)

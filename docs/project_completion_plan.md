@@ -6,7 +6,7 @@ Proposal: `docs/488proposal.pdf`
 
 Working environment: Conda environment `ece485`
 
-Last updated: 2026-07-21
+Last updated: 2026-07-22
 
 ## 1. Goal and Experimental Contract
 
@@ -53,7 +53,7 @@ uses ground-truth instance boxes and does not yet use the released GREC metric.
 | 2. Frozen detector proposals | Complete | Shared realistic candidate pools and proposal-recall diagnostics |
 | 3. Detector-based CLIP baseline | Complete | Re-established 1% baseline without oracle candidates |
 | 4. Frozen representation variants | Complete | Controlled 1% CLIP, CLIP+DINOv2, and SigLIP 2 validation comparison |
-| 5. Few-shot experiment grid | Not started | 1%/5%/10%, multiple seeds, aggregate comparison |
+| 5. Few-shot experiment grid | In progress | 1%/5%/10%, multiple seeds, aggregate comparison |
 | 6. Ablations and reliability | Not started | Cardinality, spatial-feature, and counterfactual analyses |
 | 7. Final report and reproducibility | Not started | Final figures, tables, documentation, and reproducible commands |
 
@@ -186,6 +186,49 @@ Frozen image-region features should be cached once per representation. Split
 membership should then select records for each training run, avoiding repeated
 encoder inference. Results will be summarized as mean and standard deviation.
 
+### Locked Stage 5 protocol
+
+- Data seeds are `0`, `1`, and `2`. Within every seed, expression-level splits
+  are stratified by no/single/multi target and satisfy `1% ⊆ 5% ⊆ 10%`.
+- All representations use the exact same split files and their recorded SHA-256
+  hashes. No `--max-samples` option is allowed in a reported run.
+- The training schedule, class weights `[15.0, 1.0, 1.5, 2.0]`, head topology,
+  checkpoint criterion, and validation calibration sweep are frozen from Stage 4.
+- The released validation split is used for checkpoint selection and threshold
+  calibration. It contains no single-target expressions, so it cannot support a
+  single-target conclusion; this dataset limitation will be stated explicitly.
+- Full testA and testB evaluation begins only after the development grid is
+  complete. Test results cannot change hyperparameters or model selection.
+- Main summaries report per-run results and mean ± standard deviation, including
+  no/single/multi and `0/1/2/3+` breakdowns. Paired representation differences
+  use the same fraction/seed cells.
+- The Stage 4 head topology is retained for the main grid. Because representation
+  dimensions produce different trainable parameter counts, a parameter-matched
+  projection check is assigned to Stage 6 and the main-grid limitation will be
+  disclosed rather than describing it as a strictly equal-capacity comparison.
+- Seed controls both the sampled subset and train initialization. Reported spread
+  therefore captures their combined variability, not a clean decomposition of
+  data and optimization variance.
+
+### Stage 5 preparation
+
+- [x] Audit Stage 0–4 for accidental sampling, split leakage, and test-time tuning.
+- [x] Parameterize the split generator and reproduce the original seed-0 files
+  byte-for-byte.
+- [x] Generate seed-1/2 nested splits, an across-seed 10% union, hashes, and
+  `0/1/2/3+` diagnostics.
+- [x] Allow training datasets to select a split from one shared representation
+  feature bank.
+- [x] Make resumable feature shards reject a different encoder/model signature.
+- [ ] Extend the frozen proposal cache to the 4,355 training images newly required
+  by seeds 1/2, then build the union candidate file.
+- [ ] Extract each representation's union feature bank once.
+- [ ] Run and aggregate the 27 development cells.
+- [ ] Lock the final comparison and evaluate full testA/testB once.
+
+The proposal-cache extension is estimated to take several hours locally from the
+Stage 2 throughput, so it must not be started as an unannounced short command.
+
 ## 10. Stage 6: Ablations and Reliability
 
 Required ablations:
@@ -194,6 +237,9 @@ Required ablations:
 - learned head without normalized box coordinates;
 - learned membership head without the cardinality head;
 - count gating versus membership-threshold selection.
+- parameter-matched input projection for the three representations;
+- one-to-one proposal/target assignment or duplicate-positive suppression as a
+  diagnostic for the current IoU-label/count mismatch.
 
 Reliability extension:
 
@@ -286,3 +332,16 @@ the relevant acceptance checks pass.
   (`N_acc=0.949017`). Frozen encoder counts are 151,277,313 for CLIP,
   237,857,793 for CLIP+DINOv2, and 375,187,970 for SigLIP 2; all encoder
   parameters remain frozen.
+- 2026-07-22: Audited Stage 0–4 against the proposal before starting the main
+  grid. Formal runs use the complete intended splits: train uses all 2,093
+  expressions in the 1% seed-0 subset and validation uses all 14,229 expressions;
+  `--max-samples` appears only in debug workflows. Train and evaluation splits
+  have no expression or image leakage. The released validation set has 8,905
+  no-target, 5,324 multi-target, and no single-target expressions, so Stage 4 is
+  retained as a qualified 1%-seed-0 development result rather than a final claim.
+- 2026-07-22: Began Stage 5. Generated deterministic nested seed-0/1/2 splits;
+  the original seed-0 files reproduce byte-for-byte. The across-seed 10% union
+  contains 56,752 expressions over 16,145 images. Added split-selected shared
+  feature-bank loading and encoder-signature validation for resumable shards.
+  The existing detector cache covers 11,790 of those training images, leaving
+  4,355 new images for the next GPU proposal-cache extension.

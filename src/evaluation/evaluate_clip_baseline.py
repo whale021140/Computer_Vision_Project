@@ -350,6 +350,12 @@ def write_text_summary(result: Dict[str, Any], output_txt: str) -> None:
             lines.append(
                 f"{key}: {value:.6f}" if isinstance(value, float) else f"{key}: {value}"
             )
+    for count_group, group in result.get("by_count_group", {}).items():
+        lines.extend(["", f"[target-count {count_group}]"])
+        for key, value in group.items():
+            lines.append(
+                f"{key}: {value:.6f}" if isinstance(value, float) else f"{key}: {value}"
+            )
 
     output_path = Path(output_txt)
     output_path.parent.mkdir(parents=True, exist_ok=True)

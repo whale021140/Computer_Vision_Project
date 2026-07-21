@@ -1,16 +1,56 @@
 from __future__ import annotations
 
+import json
 from typing import Any, Dict, List, Optional
 
 import torch
 from torch.utils.data import Dataset
 
 
+def _record_key(record: Dict[str, Any]) -> tuple[int, int]:
+    metadata = record.get("metadata", {})
+    return int(metadata["ref_id"]), int(metadata["sent_id"])
+
+
+def _load_split_keys(split_file: str) -> list[tuple[int, int]]:
+    with open(split_file, "r", encoding="utf-8") as handle:
+        samples = json.load(handle)
+    keys = [(int(sample["ref_id"]), int(sample["sent_id"])) for sample in samples]
+    if len(keys) != len(set(keys)):
+        raise ValueError(f"Split contains duplicate expression keys: {split_file}")
+    return keys
+
+
 class ClipFeatureDataset(Dataset):
-    def __init__(self, feature_file: str, max_samples: Optional[int] = None):
+    def __init__(
+        self,
+        feature_file: str,
+        max_samples: Optional[int] = None,
+        split_file: str = "",
+    ):
         self.feature_file = feature_file
+        self.split_file = split_file
         self.cache = torch.load(feature_file, map_location="cpu")
         self.records = self.cache["records"]
+
+        if split_file:
+            requested_keys = _load_split_keys(split_file)
+            records_by_key: Dict[tuple[int, int], Dict[str, Any]] = {}
+            for record in self.records:
+                key = _record_key(record)
+                if key in records_by_key:
+                    raise ValueError(
+                        f"Feature cache contains duplicate expression key {key}."
+                    )
+                records_by_key[key] = record
+            missing = [key for key in requested_keys if key not in records_by_key]
+            if missing:
+                raise KeyError(
+                    f"Feature cache is missing {len(missing)} expressions requested "
+                    f"by {split_file}; first missing key: {missing[0]}"
+                )
+            # Follow split order so each representation sees the same sample order.
+            self.records = [records_by_key[key] for key in requested_keys]
 
         if max_samples is not None:
             self.records = self.records[:max_samples]

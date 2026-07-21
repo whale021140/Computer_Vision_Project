@@ -26,6 +26,16 @@ from src.features.frozen_encoders import FrozenRegionTextEncoder, build_encoder
 CACHE_FORMAT = "frozen_representation_v1"
 
 
+def shard_encoder_signature(encoder: FrozenRegionTextEncoder) -> Dict[str, Any]:
+    """Identity fields that must match before a resumed shard is reusable."""
+    metadata = dict(encoder.metadata())
+    metadata.pop("encoder_parameters", None)
+    return {
+        **metadata,
+        "similarity_spec": encoder.similarity_spec,
+    }
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Extract image-shared frozen region/text representation features."
@@ -106,6 +116,7 @@ def extract_features(
     resumed_images = 0
     if shard_dir is not None:
         shard_dir.mkdir(parents=True, exist_ok=True)
+    encoder_signature = shard_encoder_signature(encoder)
     for image_key, spec in tqdm(image_specs.items(), desc="Encoding unique images"):
         expected_boxes = spec["candidate_boxes_norm"].float()
         shard_path = shard_dir / f"{image_key}.pt" if shard_dir else None
@@ -116,6 +127,7 @@ def extract_features(
                 shard.get("candidate_feature_dim")
                 != encoder.candidate_feature_dim
                 or not torch.equal(shard["candidate_boxes_norm"], expected_boxes)
+                or shard.get("encoder_signature") != encoder_signature
             ):
                 raise ValueError(
                     f"Resume shard does not match image {image_key}; remove "
@@ -139,6 +151,7 @@ def extract_features(
                 torch.save(
                     {
                         "candidate_feature_dim": encoder.candidate_feature_dim,
+                        "encoder_signature": encoder_signature,
                         "candidate_boxes_norm": expected_boxes,
                         "candidate_features": features,
                     },
