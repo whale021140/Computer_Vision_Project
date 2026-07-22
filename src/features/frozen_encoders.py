@@ -121,7 +121,13 @@ class ClipDinov2Encoder(FrozenRegionTextEncoder):
 
         self.clip = ClipEncoder(device=device, model_id=clip_model_id)
         self.dinov2_model_id = dinov2_model_id
-        self.dinov2_processor = AutoImageProcessor.from_pretrained(dinov2_model_id)
+        # Pin the legacy/slow processor explicitly. Transformers 4.52 changes
+        # the default to the fast implementation, which can produce slightly
+        # different pixels and would break representation comparability.
+        self.dinov2_processor = AutoImageProcessor.from_pretrained(
+            dinov2_model_id,
+            use_fast=False,
+        )
         self.dinov2_model = AutoModel.from_pretrained(dinov2_model_id).to(device)
         freeze_module(self.dinov2_model)
         self.dinov2_feature_dim = int(self.dinov2_model.config.hidden_size)
@@ -190,7 +196,8 @@ class Siglip2Encoder(FrozenRegionTextEncoder):
         from transformers import AutoModel, AutoProcessor
 
         self.model_id = model_id
-        self.processor = AutoProcessor.from_pretrained(model_id)
+        # Keep preprocessing identical across library upgrades and to Stage 4.
+        self.processor = AutoProcessor.from_pretrained(model_id, use_fast=False)
         self.model = AutoModel.from_pretrained(model_id).to(device)
         freeze_module(self.model)
         self.candidate_feature_dim = int(self.model.config.vision_config.hidden_size)

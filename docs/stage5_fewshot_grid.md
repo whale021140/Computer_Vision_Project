@@ -124,3 +124,11 @@ loading, serialization, and the post-run selection check). The validated bank is
 820 MiB and contains 56,752 unique expression keys, 16,145 shared images, and
 613,389 region embeddings. All values are finite, expression/image identity
 matches the union exactly, and every seed/fraction split is present.
+
+CLIP+DINOv2 completed in 4,502.67 extraction seconds (1:17:53 wall time) with
+the expected 1,280-D candidate and 512-D text features. The final bank is 1.7
+GiB and the 16,145 resumable shards are present. A sampled cross-bank validation
+found no non-finite values, FP16 component-norm errors below `2.1e-4`, and a
+maximum absolute difference of exactly zero between its CLIP image branch and
+the standalone CLIP bank. `use_fast=False` is now explicit for Transformers
+image processors so a future default change cannot silently alter preprocessing.

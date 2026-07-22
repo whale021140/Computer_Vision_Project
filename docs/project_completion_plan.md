@@ -222,8 +222,8 @@ encoder inference. Results will be summarized as mean and standard deviation.
 - [x] Make resumable feature shards reject a different encoder/model signature.
 - [x] Extend the frozen proposal cache to the 4,355 training images newly required
   by seeds 1/2, then build the union candidate file.
-- [ ] Extract each representation's union feature bank once (CLIP complete;
-  CLIP+DINOv2 and SigLIP 2 pending).
+- [ ] Extract each representation's union feature bank once (CLIP and
+  CLIP+DINOv2 complete; SigLIP 2 pending).
 - [ ] Run and aggregate the 27 development cells.
 - [ ] Lock the final comparison and evaluate full testA/testB once.
 
@@ -357,3 +357,10 @@ the relevant acceptance checks pass.
   images, and 613,389 unique region embeddings. Expression order and image IDs
   exactly match the union split; every seed/fraction split is fully selectable;
   all values are finite and FP16 normalization error remains below `3.2e-4`.
+- 2026-07-22: Completed the CLIP+DINOv2 train-union feature bank in 4,502.67
+  extraction seconds. It has the expected 1,280-D candidate and 512-D text
+  features over the same 56,752 expressions, 16,145 images, and 613,389 regions.
+  Sampled shard validation found finite values, independently normalized CLIP
+  and DINOv2 branches, and bit-identical CLIP image features to the standalone
+  CLIP bank. Pinned the Transformers slow image processor explicitly to prevent
+  a future library default from changing preprocessing.

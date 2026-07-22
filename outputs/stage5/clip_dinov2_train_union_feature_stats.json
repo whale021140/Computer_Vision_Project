@@ -1,0 +1,48 @@
+{
+  "cache_format": "frozen_representation_v1",
+  "representation": {
+    "name": "clip_dinov2",
+    "model_ids": {
+      "clip": "ViT-B/32",
+      "dinov2": "facebook/dinov2-base"
+    },
+    "candidate_feature_dim": 1280,
+    "text_feature_dim": 512,
+    "component_normalization": {
+      "clip_image": "l2",
+      "clip_text": "l2",
+      "dinov2_cls": "l2"
+    },
+    "fusion": "concatenate normalized CLIP image and DINOv2 CLS features",
+    "similarity_source": "normalized CLIP image/text subspace",
+    "encoder_parameters": {
+      "clip": {
+        "total": 151277313,
+        "trainable": 0
+      },
+      "dinov2": {
+        "total": 86580480,
+        "trainable": 0
+      }
+    }
+  },
+  "device": "cuda",
+  "amp": true,
+  "storage_dtype": "float16",
+  "candidate_file": "cache/candidates_detector/fasterrcnn_train_stage5_union_seed0-2.jsonl",
+  "candidate_file_sha256": "d55a2a16822ee3557a12c6f4029f7e17eeb155b45ed7e8a9bfd65ea78d12369b",
+  "output_file": "cache/features/stage5/clip_dinov2_detector_train_union_seed0-2.pt",
+  "num_samples": 56752,
+  "num_unique_images": 16145,
+  "candidate_references": 2178540,
+  "unique_candidate_regions": 613389,
+  "region_reuse_factor": 3.5516450409120477,
+  "target_type_counts": {
+    "multi-target": 18883,
+    "no-target": 5207,
+    "single-target": 32662
+  },
+  "encoded_candidate_regions": 613389,
+  "resumed_images": 0,
+  "elapsed_seconds": 4502.67449426651
+}
