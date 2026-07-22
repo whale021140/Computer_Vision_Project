@@ -223,7 +223,8 @@ encoder inference. Results will be summarized as mean and standard deviation.
 - [x] Extend the frozen proposal cache to the 4,355 training images newly required
   by seeds 1/2, then build the union candidate file.
 - [x] Extract each representation's union feature bank once.
-- [ ] Run and aggregate the 27 development cells.
+- [x] Run and aggregate the 27 development cells.
+- [ ] Extract full testA/testB features once per representation.
 - [ ] Lock the final comparison and evaluate full testA/testB once.
 
 The proposal-cache extension completed in 468.63 seconds on the current local
@@ -375,3 +376,11 @@ the relevant acceptance checks pass.
   The shared-bank/split-selection route is therefore accepted for the remaining
   grid. Added phase-aware cell resumption, sequential grid orchestration, strict
   paired-cell validation, and sample-standard-deviation aggregation.
+- 2026-07-22: Completed all 27 validation cells with shared candidate/split
+  hashes. Validation reveals a split-composition tradeoff rather than a simple
+  scaling curve: additional supervision consistently improves multi-target mean
+  F1 (for SigLIP 2, `0.3900 -> 0.4581 -> 0.4845`), while overall validation F1
+  falls because models begin predicting the well-supervised single-target class
+  and the released validation split contains zero single-target expressions.
+  The locked protocol will not be altered from this observation; full testA/B,
+  which contain single-target examples, is the required final grid evaluation.

@@ -1,0 +1,153 @@
+Frozen Representation Baseline GREC Evaluation
+==============================================
+Feature file: cache/features/clip_detector_val_shared.pt
+Checkpoint: checkpoints/stage5/clip_5pct_seed2/best.pt
+Representation: {'name': 'clip', 'model_ids': ['ViT-B/32']}
+Device: cuda
+Selection policy: cardinality-threshold
+Membership threshold: 0.5
+Overlap metric: giou
+Match threshold: 0.5
+Prediction score threshold: None
+
+[released GREC metrics]
+F1_score: 0.538407
+T_acc: 0.851052
+N_acc: 0.750365
+
+[diagnostics]
+num_samples: 14229
+mean_precision: 0.624851
+mean_recall: 0.620686
+mean_f1: 0.622070
+exact_set_accuracy: 0.538407
+cardinality_accuracy: 0.772577
+count_class_accuracy: 0.772577
+count_class_evaluated: 14229
+micro_precision: 0.364598
+micro_recall: 0.402561
+micro_f1: 0.382640
+total_tp: 4307
+total_fp: 7506
+total_fn: 6392
+no_target_total: 8905
+no_target_accuracy: 0.750365
+false_grounding_rate: 0.249635
+single_target_total: 0
+single_target_localization_accuracy: 0.000000
+single_target_exact_accuracy: 0.000000
+multi_target_total: 5324
+multi_target_mean_f1: 0.407482
+multi_target_exact_accuracy: 0.183884
+
+[no-target]
+num_samples: 8905
+mean_precision: 0.750365
+mean_recall: 0.750365
+mean_f1: 0.750365
+exact_set_accuracy: 0.750365
+cardinality_accuracy: 0.750365
+count_class_accuracy: 0.750365
+count_class_evaluated: 8905
+micro_precision: 0.000000
+micro_recall: 0.000000
+micro_f1: 0.000000
+total_tp: 0
+total_fp: 2957
+total_fn: 0
+
+[single-target]
+num_samples: 0
+mean_precision: 0.000000
+mean_recall: 0.000000
+mean_f1: 0.000000
+exact_set_accuracy: 0.000000
+cardinality_accuracy: 0.000000
+count_class_accuracy: 0.000000
+count_class_evaluated: 0
+micro_precision: 0.000000
+micro_recall: 0.000000
+micro_f1: 0.000000
+total_tp: 0
+total_fp: 0
+total_fn: 0
+
+[multi-target]
+num_samples: 5324
+mean_precision: 0.414914
+mean_recall: 0.403783
+mean_f1: 0.407482
+exact_set_accuracy: 0.183884
+cardinality_accuracy: 0.809730
+count_class_accuracy: 0.809730
+count_class_evaluated: 5324
+micro_precision: 0.486337
+micro_recall: 0.402561
+micro_f1: 0.440501
+total_tp: 4307
+total_fp: 4549
+total_fn: 6392
+
+[target-count 0]
+num_samples: 8905
+mean_precision: 0.750365
+mean_recall: 0.750365
+mean_f1: 0.750365
+exact_set_accuracy: 0.750365
+cardinality_accuracy: 0.750365
+count_class_accuracy: 0.750365
+count_class_evaluated: 8905
+micro_precision: 0.000000
+micro_recall: 0.000000
+micro_f1: 0.000000
+total_tp: 0
+total_fp: 2957
+total_fn: 0
+
+[target-count 1]
+num_samples: 0
+mean_precision: 0.000000
+mean_recall: 0.000000
+mean_f1: 0.000000
+exact_set_accuracy: 0.000000
+cardinality_accuracy: 0.000000
+count_class_accuracy: 0.000000
+count_class_evaluated: 0
+micro_precision: 0.000000
+micro_recall: 0.000000
+micro_f1: 0.000000
+total_tp: 0
+total_fp: 0
+total_fn: 0
+
+[target-count 2]
+num_samples: 5296
+mean_precision: 0.415125
+mean_recall: 0.404739
+mean_f1: 0.408201
+exact_set_accuracy: 0.184856
+cardinality_accuracy: 0.814011
+count_class_accuracy: 0.814011
+count_class_evaluated: 5296
+micro_precision: 0.485779
+micro_recall: 0.404739
+micro_f1: 0.441572
+total_tp: 4287
+total_fp: 4538
+total_fn: 6305
+
+[target-count 3+]
+num_samples: 28
+mean_precision: 0.375000
+mean_recall: 0.222789
+mean_f1: 0.271429
+exact_set_accuracy: 0.000000
+cardinality_accuracy: 0.000000
+count_class_accuracy: 0.000000
+count_class_evaluated: 28
+micro_precision: 0.645161
+micro_recall: 0.186916
+micro_f1: 0.289855
+total_tp: 20
+total_fp: 11
+total_fn: 87

@@ -1,0 +1,22 @@
+CLIP baseline training summary
+==============================
+Feature file: cache/features/stage5/siglip2_detector_train_union_seed0-2.pt
+Training split file: splits/train_1pct_seed1.json
+Validation feature file: cache/features/siglip2_detector_val_shared.pt
+Dataset size: 2093
+Representation: {'name': 'siglip2', 'model_ids': {'siglip2': 'google/siglip2-base-patch16-224'}, 'candidate_feature_dim': 768, 'text_feature_dim': 768, 'component_normalization': {'siglip2_image': 'l2', 'siglip2_text': 'l2'}, 'fusion': 'none', 'similarity_source': 'normalized SigLIP 2 image/text embeddings', 'encoder_parameters': {'siglip2': {'total': 375187970, 'trainable': 0}}}
+Candidate feature dimension: 768
+Text feature dimension: 768
+Trainable head parameters: 527621
+Epochs: 20
+Batch size: 16
+Hidden dimension: 256
+Dropout: 0.1
+Learning rate: 0.0001
+Weight decay: 0.0001
+Lambda cardinality: 1.0
+Checkpoint selection: validation total loss
+Best selection loss: 0.830357
+Best checkpoint: checkpoints/stage5/siglip2_1pct_seed1/best.pt
+Last checkpoint: checkpoints/stage5/siglip2_1pct_seed1/last.pt
+Count class weights: [15.0, 1.0, 1.5, 2.0]

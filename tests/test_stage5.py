@@ -17,6 +17,7 @@ from src.data.create_fewshot_splits import (
 )
 from src.data.feature_dataset import ClipFeatureDataset
 from src.evaluation.summarize_stage5_grid import summarize_grid
+from src.evaluation.summarize_stage5_test_grid import summarize_test_grid
 
 
 def synthetic_refs() -> list[dict]:
@@ -202,6 +203,8 @@ def fake_manifest(representation: str, percentage: int, seed: int) -> dict:
         "git_commit": "commit",
         "split": {"sha256": f"split-{percentage}-{seed}"},
         "features": {"candidate_file_sha256": "candidates"},
+        "training": {"checkpoint": f"checkpoint-{representation}-{percentage}-{seed}"},
+        "calibration": {"path": f"calibration-{representation}-{percentage}-{seed}"},
         "validation_evaluation": {
             "official": {
                 "F1_score": value,
@@ -246,6 +249,67 @@ class Stage5AggregationTests(unittest.TestCase):
         manifests = [fake_manifest("a", 1, 0)]
         with self.assertRaises(ValueError):
             summarize_grid(manifests, ["a"], [1], [0, 1])
+
+    def test_locked_test_grid_is_aggregated_and_validated(self) -> None:
+        representations = ["a", "b"]
+        percentages = [1]
+        seeds = [0, 1]
+        splits = ["testA", "testB"]
+        manifests = [
+            fake_manifest(representation, 1, seed)
+            for representation in representations
+            for seed in seeds
+        ]
+        by_cell = {
+            (
+                manifest["cell"]["representation"],
+                manifest["cell"]["percentage"],
+                manifest["cell"]["seed"],
+            ): manifest
+            for manifest in manifests
+        }
+        evaluations = {}
+        for cell, manifest in by_cell.items():
+            representation, percentage, seed = cell
+            for split in splits:
+                evaluation = dict(manifest["validation_evaluation"])
+                evaluation.update(
+                    {
+                        "checkpoint": manifest["training"]["checkpoint"],
+                        "calibration_json": manifest["calibration"]["path"],
+                        "representation": {"name": representation},
+                    }
+                )
+                evaluation["diagnostics"] = dict(evaluation["diagnostics"])
+                evaluation["diagnostics"]["num_samples"] = 10
+                evaluation["by_target_type"] = {
+                    key: {
+                        "mean_f1": 0.5,
+                        "exact_set_accuracy": 0.5,
+                        "cardinality_accuracy": 0.5,
+                    }
+                    for key in ("no-target", "single-target", "multi-target")
+                }
+                evaluations[(*cell, split)] = evaluation
+        feature_stats = {
+            (representation, split): {
+                "candidate_file_sha256": f"candidate-{split}",
+                "num_samples": 10,
+            }
+            for representation in representations
+            for split in splits
+        }
+        result = summarize_test_grid(
+            manifests,
+            evaluations,
+            feature_stats,
+            representations,
+            percentages,
+            seeds,
+            splits,
+        )
+        self.assertEqual(result["num_evaluations"], 8)
+        self.assertEqual(result["expected_samples"], {"testA": 10, "testB": 10})
 
 
 if __name__ == "__main__":

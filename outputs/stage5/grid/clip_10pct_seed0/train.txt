@@ -1,0 +1,22 @@
+CLIP baseline training summary
+==============================
+Feature file: cache/features/stage5/clip_detector_train_union_seed0-2.pt
+Training split file: splits/train_10pct_seed0.json
+Validation feature file: cache/features/clip_detector_val_shared.pt
+Dataset size: 20934
+Representation: {'name': 'clip', 'model_ids': {'clip': 'ViT-B/32'}, 'candidate_feature_dim': 512, 'text_feature_dim': 512, 'component_normalization': {'clip_image': 'l2', 'clip_text': 'l2'}, 'fusion': 'none', 'encoder_parameters': {'clip': {'total': 151277313, 'trainable': 0}}}
+Candidate feature dimension: 512
+Text feature dimension: 512
+Trainable head parameters: 396549
+Epochs: 20
+Batch size: 16
+Hidden dimension: 256
+Dropout: 0.1
+Learning rate: 0.0001
+Weight decay: 0.0001
+Lambda cardinality: 1.0
+Checkpoint selection: validation total loss
+Best selection loss: 0.819284
+Best checkpoint: checkpoints/stage5/clip_10pct_seed0/best.pt
+Last checkpoint: checkpoints/stage5/clip_10pct_seed0/last.pt
+Count class weights: [15.0, 1.0, 1.5, 2.0]

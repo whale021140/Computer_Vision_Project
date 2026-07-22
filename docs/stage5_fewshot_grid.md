@@ -74,6 +74,42 @@ candidate hashes, then writes `grid_summary_val.json/.txt`. Reported standard
 deviation is the sample standard deviation with denominator `n-1` across the
 three seeds.
 
+## Complete validation grid
+
+All 27 cells completed and passed paired split/candidate-hash validation:
+
+| Representation | Fraction | F1_score | T_acc | N_acc | Mean F1 |
+|---|---:|---:|---:|---:|---:|
+| SigLIP 2 | 1% | 0.637337 ± 0.010707 | 0.856749 ± 0.041901 | 0.912633 ± 0.011511 | 0.717090 ± 0.014472 |
+| SigLIP 2 | 5% | 0.598191 ± 0.054703 | 0.901327 ± 0.080728 | 0.825454 ± 0.107470 | 0.687997 ± 0.044823 |
+| SigLIP 2 | 10% | 0.595427 ± 0.014280 | 0.925119 ± 0.024047 | 0.811529 ± 0.027778 | 0.689160 ± 0.014975 |
+| CLIP | 1% | 0.613536 ± 0.038055 | 0.563924 ± 0.339876 | 0.909601 ± 0.096180 | 0.669697 ± 0.028960 |
+| CLIP | 5% | 0.549184 ± 0.046487 | 0.847358 ± 0.046785 | 0.762343 ± 0.082185 | 0.633297 ± 0.041341 |
+| CLIP | 10% | 0.576522 ± 0.057686 | 0.851177 ± 0.067093 | 0.808010 ± 0.100924 | 0.659533 ± 0.051055 |
+| CLIP+DINOv2 | 1% | 0.632534 ± 0.001618 | 0.607751 ± 0.157404 | 0.932173 ± 0.020149 | 0.690887 ± 0.015102 |
+| CLIP+DINOv2 | 5% | 0.544569 ± 0.030341 | 0.858815 ± 0.044374 | 0.752499 ± 0.056872 | 0.631760 ± 0.026511 |
+| CLIP+DINOv2 | 10% | 0.593272 ± 0.049195 | 0.844165 ± 0.074890 | 0.832192 ± 0.087296 | 0.677625 ± 0.041921 |
+
+This table is a development-set diagnostic, not the proposal's final main table.
+The released val split has no single-target expressions. At 5%/10%, models begin
+predicting count class 1, which can only be scored as wrong on val. In contrast,
+multi-target mean F1 improves with supervision for all representations; SigLIP 2
+rises from `0.3900` to `0.4581` to `0.4845`. The correct response is to preserve
+the locked protocol and evaluate all checkpoints once on full testA/testB, not to
+retune toward the anomalous validation composition.
+
+Prepare the evaluation-only feature banks with:
+
+```bash
+bash scripts/run_stage5_extract_test_features.sh clip
+bash scripts/run_stage5_extract_test_features.sh clip_dinov2
+bash scripts/run_stage5_extract_test_features.sh siglip2
+```
+
+After all six full-split banks are present, `scripts/run_stage5_test_grid.sh`
+evaluates all 54 locked checkpoint/split combinations and aggregates them without
+any test-driven selection or calibration.
+
 ## Prepared splits
 
 `outputs/stage5/fewshot_split_manifest.json` records SHA-256 hashes and exact
