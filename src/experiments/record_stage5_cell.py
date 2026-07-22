@@ -119,7 +119,23 @@ def main() -> None:
     output = Path(args.output)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps(manifest, indent=2))
+    print(
+        json.dumps(
+            {
+                "manifest": str(output),
+                "cell": manifest["cell"],
+                "best_epoch": manifest["training"]["best_epoch"],
+                "membership_threshold": manifest["calibration"][
+                    "membership_threshold"
+                ],
+                "official": manifest["validation_evaluation"]["official"],
+                "mean_f1": manifest["validation_evaluation"]["diagnostics"][
+                    "mean_f1"
+                ],
+            },
+            indent=2,
+        )
+    )
 
 
 if __name__ == "__main__":

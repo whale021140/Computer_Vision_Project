@@ -16,6 +16,7 @@ from src.data.create_fewshot_splits import (
     summarize,
 )
 from src.data.feature_dataset import ClipFeatureDataset
+from src.evaluation.summarize_stage5_grid import summarize_grid
 
 
 def synthetic_refs() -> list[dict]:
@@ -183,6 +184,68 @@ class SplitIntegrityAuditTests(unittest.TestCase):
             )
             with self.assertRaises(ValueError):
                 audit_splits([train], [val])
+
+
+def fake_manifest(representation: str, percentage: int, seed: int) -> dict:
+    value = percentage / 100 + seed / 1000
+    group = {
+        "mean_f1": value,
+        "exact_set_accuracy": value,
+        "cardinality_accuracy": value,
+    }
+    return {
+        "cell": {
+            "representation": representation,
+            "percentage": percentage,
+            "seed": seed,
+        },
+        "git_commit": "commit",
+        "split": {"sha256": f"split-{percentage}-{seed}"},
+        "features": {"candidate_file_sha256": "candidates"},
+        "validation_evaluation": {
+            "official": {
+                "F1_score": value,
+                "T_acc": value,
+                "N_acc": value,
+            },
+            "diagnostics": {
+                "mean_f1": value,
+                "cardinality_accuracy": value,
+                "false_grounding_rate": value,
+                "multi_target_mean_f1": value,
+                "multi_target_exact_accuracy": value,
+            },
+            "by_count_group": {key: group for key in ("0", "1", "2", "3+")},
+        },
+    }
+
+
+class Stage5AggregationTests(unittest.TestCase):
+    def test_complete_paired_grid_is_aggregated(self) -> None:
+        representations = ["a", "b"]
+        percentages = [1, 5]
+        seeds = [0, 1, 2]
+        manifests = [
+            fake_manifest(representation, percentage, seed)
+            for representation in representations
+            for percentage in percentages
+            for seed in seeds
+        ]
+        result = summarize_grid(manifests, representations, percentages, seeds)
+        self.assertEqual(result["num_cells"], 12)
+        self.assertAlmostEqual(
+            result["summary"][0]["metrics"]["F1_score"]["mean"],
+            0.011,
+        )
+        self.assertAlmostEqual(
+            result["summary"][0]["metrics"]["F1_score"]["std"],
+            0.001,
+        )
+
+    def test_missing_grid_cell_is_rejected(self) -> None:
+        manifests = [fake_manifest("a", 1, 0)]
+        with self.assertRaises(ValueError):
+            summarize_grid(manifests, ["a"], [1], [0, 1])
 
 
 if __name__ == "__main__":

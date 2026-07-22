@@ -368,3 +368,10 @@ the relevant acceptance checks pass.
   all union records and regions. All 16,145 resume shards are present; sampled
   tensors are finite and their maximum FP16 L2-normalization error is `2.63e-4`.
   All three required Stage 5 representation banks are now ready.
+- 2026-07-22: Validated the first Stage 5 training cell (`SigLIP 2`, 1%, seed
+  0). Its complete 20-epoch CSV is byte-identical to Stage 4, every best-
+  checkpoint tensor is exactly equal, and the best epoch (8), validation loss
+  (`0.720189`), calibration threshold (`0.5`), and all evaluation metrics match.
+  The shared-bank/split-selection route is therefore accepted for the remaining
+  grid. Added phase-aware cell resumption, sequential grid orchestration, strict
+  paired-cell validation, and sample-standard-deviation aggregation.

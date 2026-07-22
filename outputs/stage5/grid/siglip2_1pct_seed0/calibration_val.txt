@@ -1,0 +1,31 @@
+Frozen Representation Validation Calibration
+============================================
+Feature file: cache/features/siglip2_detector_val_shared.pt
+Checkpoint: checkpoints/stage5/siglip2_1pct_seed0/best.pt
+Overlap metric: giou
+Best membership threshold: 0.5000
+Best F1_score: 0.649097
+Best T_acc: 0.894065
+Best N_acc: 0.920157
+Best mean F1: 0.733788
+Predicted count distribution: {'0': 8758, '2': 5471}
+Threshold-sensitive samples: 0
+
+[threshold sweep]
+threshold=0.1000 F1_score=0.649097 mean_f1=0.733788 T_acc=0.894065 N_acc=0.920157
+threshold=0.1500 F1_score=0.649097 mean_f1=0.733788 T_acc=0.894065 N_acc=0.920157
+threshold=0.2000 F1_score=0.649097 mean_f1=0.733788 T_acc=0.894065 N_acc=0.920157
+threshold=0.2500 F1_score=0.649097 mean_f1=0.733788 T_acc=0.894065 N_acc=0.920157
+threshold=0.3000 F1_score=0.649097 mean_f1=0.733788 T_acc=0.894065 N_acc=0.920157
+threshold=0.3500 F1_score=0.649097 mean_f1=0.733788 T_acc=0.894065 N_acc=0.920157
+threshold=0.4000 F1_score=0.649097 mean_f1=0.733788 T_acc=0.894065 N_acc=0.920157
+threshold=0.4500 F1_score=0.649097 mean_f1=0.733788 T_acc=0.894065 N_acc=0.920157
+threshold=0.5000 F1_score=0.649097 mean_f1=0.733788 T_acc=0.894065 N_acc=0.920157
+threshold=0.5500 F1_score=0.649097 mean_f1=0.733788 T_acc=0.894065 N_acc=0.920157
+threshold=0.6000 F1_score=0.649097 mean_f1=0.733788 T_acc=0.894065 N_acc=0.920157
+threshold=0.6500 F1_score=0.649097 mean_f1=0.733788 T_acc=0.894065 N_acc=0.920157
+threshold=0.7000 F1_score=0.649097 mean_f1=0.733788 T_acc=0.894065 N_acc=0.920157
+threshold=0.7500 F1_score=0.649097 mean_f1=0.733788 T_acc=0.894065 N_acc=0.920157
+threshold=0.8000 F1_score=0.649097 mean_f1=0.733788 T_acc=0.894065 N_acc=0.920157
+threshold=0.8500 F1_score=0.649097 mean_f1=0.733788 T_acc=0.894065 N_acc=0.920157
+threshold=0.9000 F1_score=0.649097 mean_f1=0.733788 T_acc=0.894065 N_acc=0.920157

@@ -52,6 +52,28 @@ Each cell trains for the locked 20 epochs, selects the checkpoint by full-val
 loss, calibrates only on val, evaluates val, and writes a manifest under
 `outputs/stage5/grid/`. Completed cells are skipped unless `FORCE=1` is explicit.
 
+After the first control cell is accepted, run the complete sequential grid with:
+
+```bash
+time bash scripts/run_stage5_grid.sh
+```
+
+The already completed control is skipped. If the process is interrupted, rerun
+the same command: complete cells are skipped, and a cell with completed training,
+calibration, or evaluation resumes from its first missing phase. The script stops
+on the first real error and never launches concurrent GPU jobs.
+
+The `SigLIP 2 / 1% / seed 0` control passed exactly: the 20-epoch CSV is
+byte-identical to Stage 4 and every tensor in the selected checkpoint is equal.
+It reproduces best epoch 8, validation loss `0.720189`, `F1_score=0.649097`,
+`T_acc=0.894065`, `N_acc=0.920157`, and mean F1 `0.733788`. This establishes
+that selecting a split from the union bank does not change training or metrics.
+
+After all cells finish, the grid script validates completeness, shared split and
+candidate hashes, then writes `grid_summary_val.json/.txt`. Reported standard
+deviation is the sample standard deviation with denominator `n-1` across the
+three seeds.
+
 ## Prepared splits
 
 `outputs/stage5/fewshot_split_manifest.json` records SHA-256 hashes and exact
