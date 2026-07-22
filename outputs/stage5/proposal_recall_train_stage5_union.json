@@ -1,0 +1,121 @@
+{
+  "iou_threshold": 0.5,
+  "unique_images": 16145,
+  "unique_targets": 36247,
+  "unique_matched_targets": 36081,
+  "unique_target_recall": 0.9954203106463984,
+  "overall": {
+    "samples": 56752,
+    "targeted_samples": 51545,
+    "targets": 71513,
+    "matched_targets": 71255,
+    "target_recall": 0.9963922643435459,
+    "fully_covered_samples": 51303,
+    "full_target_coverage": 0.9953050732369774,
+    "samples_with_positive_candidate": 51428,
+    "positive_candidate_sample_rate": 0.9061883281646462,
+    "average_candidates": 38.3870171976318,
+    "average_positive_candidates": 2.783655201578799
+  },
+  "by_target_type": {
+    "multi-target": {
+      "samples": 18883,
+      "targeted_samples": 18883,
+      "targets": 38851,
+      "matched_targets": 38707,
+      "target_recall": 0.9962935316980258,
+      "fully_covered_samples": 18755,
+      "full_target_coverage": 0.9932214160885453,
+      "samples_with_positive_candidate": 18880,
+      "positive_candidate_sample_rate": 0.9998411269395753,
+      "average_candidates": 37.68394852512842,
+      "average_positive_candidates": 4.517714346237357
+    },
+    "no-target": {
+      "samples": 5207,
+      "targeted_samples": 0,
+      "targets": 0,
+      "matched_targets": 0,
+      "target_recall": 0.0,
+      "fully_covered_samples": 0,
+      "full_target_coverage": 0.0,
+      "samples_with_positive_candidate": 0,
+      "positive_candidate_sample_rate": 0.0,
+      "average_candidates": 37.617630113309005,
+      "average_positive_candidates": 0
+    },
+    "single-target": {
+      "samples": 32662,
+      "targeted_samples": 32662,
+      "targets": 32662,
+      "matched_targets": 32548,
+      "target_recall": 0.9965097054681281,
+      "fully_covered_samples": 32548,
+      "full_target_coverage": 0.9965097054681281,
+      "samples_with_positive_candidate": 32548,
+      "positive_candidate_sample_rate": 0.9965097054681281,
+      "average_candidates": 38.916141081378974,
+      "average_positive_candidates": 2.224909680974833
+    }
+  },
+  "by_count_group": {
+    "0": {
+      "samples": 5207,
+      "targeted_samples": 0,
+      "targets": 0,
+      "matched_targets": 0,
+      "target_recall": 0.0,
+      "fully_covered_samples": 0,
+      "full_target_coverage": 0.0,
+      "samples_with_positive_candidate": 0,
+      "positive_candidate_sample_rate": 0.0,
+      "average_candidates": 37.617630113309005,
+      "average_positive_candidates": 0
+    },
+    "1": {
+      "samples": 32662,
+      "targeted_samples": 32662,
+      "targets": 32662,
+      "matched_targets": 32548,
+      "target_recall": 0.9965097054681281,
+      "fully_covered_samples": 32548,
+      "full_target_coverage": 0.9965097054681281,
+      "samples_with_positive_candidate": 32548,
+      "positive_candidate_sample_rate": 0.9965097054681281,
+      "average_candidates": 38.916141081378974,
+      "average_positive_candidates": 2.224909680974833
+    },
+    "2": {
+      "samples": 18428,
+      "targeted_samples": 18428,
+      "targets": 36856,
+      "matched_targets": 36758,
+      "target_recall": 0.9973410028217929,
+      "fully_covered_samples": 18333,
+      "full_target_coverage": 0.9948448013891904,
+      "samples_with_positive_candidate": 18425,
+      "positive_candidate_sample_rate": 0.9998372042543955,
+      "average_candidates": 37.62307358367701,
+      "average_positive_candidates": 4.408671586715867
+    },
+    "3+": {
+      "samples": 455,
+      "targeted_samples": 455,
+      "targets": 1995,
+      "matched_targets": 1949,
+      "target_recall": 0.9769423558897243,
+      "fully_covered_samples": 422,
+      "full_target_coverage": 0.9274725274725275,
+      "samples_with_positive_candidate": 455,
+      "positive_candidate_sample_rate": 1.0,
+      "average_candidates": 40.14945054945055,
+      "average_positive_candidates": 8.934065934065934
+    }
+  },
+  "split_file": "splits/train_stage5_union_seed0-2.json",
+  "split_sha256": "c9d03e710e7be6b6de81bb78a3de919ae5a49bd32ce2a40e8ff5cd2106171ac6",
+  "proposal_file": "cache/proposals/fasterrcnn_r50_fpn_v2_all_seed0_fp16.jsonl",
+  "proposal_sha256": "6950d3c649f76946338a7b758c9f49aaeeaacd67d2b153474ca3d220a56dd360",
+  "output_file": "cache/candidates_detector/fasterrcnn_train_stage5_union_seed0-2.jsonl",
+  "command": "/home/whale/488/Final_Project/src/data/build_proposal_candidate_samples.py --split-file splits/train_stage5_union_seed0-2.json --proposal-file cache/proposals/fasterrcnn_r50_fpn_v2_all_seed0_fp16.jsonl --output-file cache/candidates_detector/fasterrcnn_train_stage5_union_seed0-2.jsonl --stats-json outputs/stage5/proposal_recall_train_stage5_union.json --stats-txt outputs/stage5/proposal_recall_train_stage5_union.txt"
+}

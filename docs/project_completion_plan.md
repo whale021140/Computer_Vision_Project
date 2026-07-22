@@ -220,14 +220,14 @@ encoder inference. Results will be summarized as mean and standard deviation.
 - [x] Allow training datasets to select a split from one shared representation
   feature bank.
 - [x] Make resumable feature shards reject a different encoder/model signature.
-- [ ] Extend the frozen proposal cache to the 4,355 training images newly required
+- [x] Extend the frozen proposal cache to the 4,355 training images newly required
   by seeds 1/2, then build the union candidate file.
 - [ ] Extract each representation's union feature bank once.
 - [ ] Run and aggregate the 27 development cells.
 - [ ] Lock the final comparison and evaluate full testA/testB once.
 
-The proposal-cache extension is estimated to take several hours locally from the
-Stage 2 throughput, so it must not be started as an unannounced short command.
+The proposal-cache extension completed in 468.63 seconds on the current local
+setup, substantially faster than the old Stage 2 throughput.
 
 ## 10. Stage 6: Ablations and Reliability
 
@@ -345,3 +345,9 @@ the relevant acceptance checks pass.
   feature-bank loading and encoder-signature validation for resumable shards.
   The existing detector cache covers 11,790 of those training images, leaving
   4,355 new images for the next GPU proposal-cache extension.
+- 2026-07-22: Completed the Stage 5 proposal-cache extension locally. The frozen
+  cache now contains 19,145 unique images with no duplicate or malformed records;
+  the 4,355 new images took 468.63 seconds. Built the 56,752-expression train
+  union candidate file. Its unique-target recall is `0.995420` and full-target
+  expression coverage is `0.995305`; `3+` full coverage is `0.927473` and will
+  be retained as a target-count-specific proposal limitation.

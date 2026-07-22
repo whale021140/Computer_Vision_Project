@@ -68,13 +68,13 @@ conda run --no-capture-output -n ece485 \
   --seed SEED --count-class-weights 15.0 1.0 1.5 2.0
 ```
 
-## Next compute step
+## Proposal extension result
 
 The existing frozen detector cache contains every seed-0 10% and evaluation
-image, but the multi-seed union needs 4,355 additional training images. Stage 2
-needed about 20.4 hours for 14,790 images on the local GPU, implying roughly six
-hours for this extension before feature extraction. It should be run resumably;
-no existing proposal is recomputed.
+image. The multi-seed union required 4,355 additional training images. Although
+the historical Stage 2 throughput suggested a multi-hour run, the current local
+setup completed those images in 468.63 seconds. No existing proposal was
+recomputed.
 
 The resumable local command is:
 
@@ -86,6 +86,35 @@ It first appends only missing image records to the existing cache and then build
 the 56,752-expression union candidate file. Interrupting proposal generation is
 safe; rerunning the same command validates and resumes the JSONL cache.
 
+Post-run integrity checks found exactly 19,145 unique proposal images, one shared
+configuration, no malformed records, and exact candidate/split key and ordering
+agreement. The train union reaches `0.995420` unique-target recall and `0.995305`
+full-target expression coverage at IoU 0.5. The `3+` group has lower full
+coverage (`0.927473`), which is recorded as a proposal ceiling rather than hidden
+by aggregate metrics.
+
 After proposal completion, the pipeline will build one union candidate file,
 extract one train-union bank per representation, run all 27 validation cells,
 aggregate paired mean ± standard deviation, and finally evaluate testA/testB.
+
+## Train-union feature extraction
+
+Extract one representation at a time. Each command writes per-image shards and
+can be interrupted and rerun safely:
+
+```bash
+bash scripts/run_stage5_extract_features.sh clip
+bash scripts/run_stage5_extract_features.sh clip_dinov2
+bash scripts/run_stage5_extract_features.sh siglip2
+```
+
+The default region batch size is the Stage 4 safe value of 8. It can be raised
+only if GPU memory has been observed to remain comfortable, for example:
+
+```bash
+REGION_BATCH_SIZE=16 bash scripts/run_stage5_extract_features.sh clip
+```
+
+Do not run the three processes concurrently on one GPU. The output banks live
+under `cache/features/stage5/`; all nine training cells for a representation
+select records from its one union bank instead of repeating encoder inference.

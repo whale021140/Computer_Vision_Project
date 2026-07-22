@@ -1,0 +1,40 @@
+{
+  "proposal_config": {
+    "score_threshold": 0.05,
+    "nms_threshold": 0.7,
+    "max_proposals": 100,
+    "detector_output_limit": 300,
+    "min_box_size": 1.0,
+    "inference_precision": "float16",
+    "detector_id": "torchvision/fasterrcnn_resnet50_fpn_v2:coco_v1"
+  },
+  "requested_images": 19145,
+  "cached_images": 19145,
+  "average_proposals_per_image": 38.11585270305563,
+  "min_proposals_per_image": 1,
+  "max_proposals_per_image": 100,
+  "fallback_counts": {
+    "none": 19145
+  },
+  "elapsed_seconds_this_run": 468.63028860092163,
+  "device": "cuda",
+  "split_files": [
+    "splits/train_stage5_union_seed0-2.json",
+    "splits/val.json",
+    "splits/testA.json",
+    "splits/testB.json"
+  ],
+  "split_sha256": {
+    "splits/train_stage5_union_seed0-2.json": "c9d03e710e7be6b6de81bb78a3de919ae5a49bd32ce2a40e8ff5cd2106171ac6",
+    "splits/val.json": "e1b166d2989c23830fee09bee70eb45fc05877851519edd81f99eb0288d6fc4a",
+    "splits/testA.json": "03f2227f8707154580bdf01efaf8977e25b6ed2f5d12db9a5890fa38dbf93dc9",
+    "splits/testB.json": "e117716840d5fb2e96320a34940490a8e8177bc5dae89bbc67bee3a7c4063b85"
+  },
+  "output_file": "cache/proposals/fasterrcnn_r50_fpn_v2_all_seed0_fp16.jsonl",
+  "seed": 0,
+  "environment": {
+    "torch": "2.12.0+cu130",
+    "torchvision": "0.27.0+cu130"
+  },
+  "command": "/home/whale/488/Final_Project/src/proposals/generate_fasterrcnn_proposals.py --split-files splits/train_stage5_union_seed0-2.json splits/val.json splits/testA.json splits/testB.json --instances-json data/grefcoco/annotations/instances.json --image-root data/coco/train2014 --output-file cache/proposals/fasterrcnn_r50_fpn_v2_all_seed0_fp16.jsonl --stats-file outputs/stage5/fasterrcnn_proposals_stage5_union_stats.json --batch-size 1 --num-workers 2 --device cuda --amp --resume"
+}
