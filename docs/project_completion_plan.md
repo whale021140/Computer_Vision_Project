@@ -222,8 +222,7 @@ encoder inference. Results will be summarized as mean and standard deviation.
 - [x] Make resumable feature shards reject a different encoder/model signature.
 - [x] Extend the frozen proposal cache to the 4,355 training images newly required
   by seeds 1/2, then build the union candidate file.
-- [ ] Extract each representation's union feature bank once (CLIP and
-  CLIP+DINOv2 complete; SigLIP 2 pending).
+- [x] Extract each representation's union feature bank once.
 - [ ] Run and aggregate the 27 development cells.
 - [ ] Lock the final comparison and evaluate full testA/testB once.
 
@@ -364,3 +363,8 @@ the relevant acceptance checks pass.
   and DINOv2 branches, and bit-identical CLIP image features to the standalone
   CLIP bank. Pinned the Transformers slow image processor explicitly to prevent
   a future library default from changing preprocessing.
+- 2026-07-22: Completed the SigLIP 2 train-union feature bank in 2,918.45
+  extraction seconds. It contains the expected 768-D image/text features for
+  all union records and regions. All 16,145 resume shards are present; sampled
+  tensors are finite and their maximum FP16 L2-normalization error is `2.63e-4`.
+  All three required Stage 5 representation banks are now ready.

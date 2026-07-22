@@ -36,6 +36,22 @@ The same head topology is retained from Stage 4, but input dimensionality makes
 its parameter count representation-dependent. The main table will disclose this
 capacity confound; a parameter-matched projection experiment belongs in Stage 6.
 
+Run one development cell with:
+
+```bash
+bash scripts/run_stage5_cell.sh REPRESENTATION PERCENTAGE SEED
+```
+
+For example, the first equivalence/control cell is:
+
+```bash
+time bash scripts/run_stage5_cell.sh siglip2 1 0
+```
+
+Each cell trains for the locked 20 epochs, selects the checkpoint by full-val
+loss, calibrates only on val, evaluates val, and writes a manifest under
+`outputs/stage5/grid/`. Completed cells are skipped unless `FORCE=1` is explicit.
+
 ## Prepared splits
 
 `outputs/stage5/fewshot_split_manifest.json` records SHA-256 hashes and exact
@@ -132,3 +148,9 @@ found no non-finite values, FP16 component-norm errors below `2.1e-4`, and a
 maximum absolute difference of exactly zero between its CLIP image branch and
 the standalone CLIP bank. `use_fast=False` is now explicit for Transformers
 image processors so a future default change cannot silently alter preprocessing.
+
+SigLIP 2 completed in 2,918.45 extraction seconds (51:16 wall time) with the
+expected 768-D candidate/text representation. Its final bank is 1.2 GiB, all
+16,145 resume shards are present, and sampled region tensors are finite with a
+maximum FP16 L2-normalization error of `2.63e-4`. All three required train-union
+feature banks are therefore complete.

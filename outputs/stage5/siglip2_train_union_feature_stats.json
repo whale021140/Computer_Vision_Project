@@ -1,0 +1,42 @@
+{
+  "cache_format": "frozen_representation_v1",
+  "representation": {
+    "name": "siglip2",
+    "model_ids": {
+      "siglip2": "google/siglip2-base-patch16-224"
+    },
+    "candidate_feature_dim": 768,
+    "text_feature_dim": 768,
+    "component_normalization": {
+      "siglip2_image": "l2",
+      "siglip2_text": "l2"
+    },
+    "fusion": "none",
+    "similarity_source": "normalized SigLIP 2 image/text embeddings",
+    "encoder_parameters": {
+      "siglip2": {
+        "total": 375187970,
+        "trainable": 0
+      }
+    }
+  },
+  "device": "cuda",
+  "amp": true,
+  "storage_dtype": "float16",
+  "candidate_file": "cache/candidates_detector/fasterrcnn_train_stage5_union_seed0-2.jsonl",
+  "candidate_file_sha256": "d55a2a16822ee3557a12c6f4029f7e17eeb155b45ed7e8a9bfd65ea78d12369b",
+  "output_file": "cache/features/stage5/siglip2_detector_train_union_seed0-2.pt",
+  "num_samples": 56752,
+  "num_unique_images": 16145,
+  "candidate_references": 2178540,
+  "unique_candidate_regions": 613389,
+  "region_reuse_factor": 3.5516450409120477,
+  "target_type_counts": {
+    "multi-target": 18883,
+    "no-target": 5207,
+    "single-target": 32662
+  },
+  "encoded_candidate_regions": 613389,
+  "resumed_images": 0,
+  "elapsed_seconds": 2918.449416399002
+}
