@@ -1,0 +1,40 @@
+{
+  "dataset": "RefCOCO",
+  "split_by": "unc",
+  "source_split": "val",
+  "role": "single-target auxiliary validation; not a replacement for gRefCOCO val",
+  "source_url": "https://huggingface.co/datasets/jxu124/refcoco/resolve/main/data/validation-00000-of-00001-bfeafdc84ca37aa2.parquet",
+  "source_parquet": "data/refcoco_aux/refcoco_unc_validation.parquet",
+  "source_sha256": "df03b1b16873f92727f3df010afb3c7260e8396a86592d3c4fee053daca08c05",
+  "grefcoco_annotation_file": "data/grefcoco/annotations/grefs(unc).json",
+  "grefcoco_annotation_sha256": "cc37c5ff95373c78a6a3f98b4c7bc67fde387ea8514752a1392db64223eb3366",
+  "instances_file": "data/grefcoco/annotations/instances.json",
+  "instances_sha256": "7f86adb7f4c39db19c7f02a3cc604d17f8016e4c4e8312652d0acc4eae3a2cbd",
+  "counts": {
+    "refs": 3811,
+    "expressions": 10834,
+    "images": 1500,
+    "unique_target_annotations": 3811,
+    "target_type": {
+      "single-target": 10834
+    }
+  },
+  "integrity": {
+    "all_target_ids_in_instances": true,
+    "all_target_bboxes_match_instances": true,
+    "unique_ref_ids": true,
+    "unique_sent_ids": true,
+    "image_overlap_with_grefcoco": {
+      "train": 0,
+      "val": 1500,
+      "testA": 0,
+      "testB": 0
+    },
+    "current_grefcoco_val_images": 1501
+  },
+  "output_grefs": "data/refcoco_aux/grefs_refcoco_unc_val.json",
+  "output_grefs_sha256": "39639fbac97b3b9a3686041502a50359bf673ade8b4fa675cdb56efc3d4fa668",
+  "output_split": "splits/refcoco_unc_val.json",
+  "output_split_sha256": "03b92f0db9906dc6328e1ceb1d6e96452fd9af98fbf70e03bdbc4a2836780e4e",
+  "command": "/home/whale/488/Final_Project/src/data/build_refcoco_aux_val.py --source-parquet data/refcoco_aux/refcoco_unc_validation.parquet"
+}

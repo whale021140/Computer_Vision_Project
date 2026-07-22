@@ -16,12 +16,13 @@ def load_json(path: str | Path) -> Any:
 
 def summarize_test_grid(
     manifests: Sequence[dict[str, Any]],
-    evaluations: Mapping[tuple[str, int, int, str], dict[str, Any]],
+    evaluations: Mapping[tuple[str, int, int, str, str], dict[str, Any]],
     feature_stats: Mapping[tuple[str, str], dict[str, Any]],
     representations: Sequence[str],
     percentages: Sequence[int],
     seeds: Sequence[int],
     splits: Sequence[str],
+    checkpoint_policies: Sequence[str],
 ) -> dict[str, Any]:
     by_cell = {}
     for manifest in manifests:
@@ -44,7 +45,10 @@ def summarize_test_grid(
     if set(by_cell) != expected_cells:
         raise ValueError("Locked validation manifests are incomplete.")
     expected_evaluations = {
-        (*cell, split) for cell in expected_cells for split in splits
+        (*cell, split, checkpoint)
+        for cell in expected_cells
+        for split in splits
+        for checkpoint in checkpoint_policies
     }
     if set(evaluations) != expected_evaluations:
         missing = sorted(expected_evaluations - set(evaluations))
@@ -75,12 +79,16 @@ def summarize_test_grid(
         expected_samples[split] = next(iter(counts))
 
     for key, evaluation in evaluations.items():
-        representation, percentage, seed, split = key
-        manifest = by_cell[(representation, percentage, seed)]
-        if evaluation["checkpoint"] != manifest["training"]["checkpoint"]:
+        representation, percentage, seed, split, checkpoint_policy = key
+        expected_checkpoint = str(
+            Path("checkpoints/stage5")
+            / f"{representation}_{percentage}pct_seed{seed}"
+            / f"{checkpoint_policy}.pt"
+        )
+        if evaluation["checkpoint"] != expected_checkpoint:
             raise ValueError(f"Checkpoint mismatch for locked test cell {key}.")
-        if evaluation.get("calibration_json") != manifest["calibration"]["path"]:
-            raise ValueError(f"Calibration mismatch for locked test cell {key}.")
+        if float(evaluation["membership_threshold"]) != 0.5:
+            raise ValueError(f"Threshold mismatch for locked test cell {key}.")
         if evaluation["representation"]["name"] != representation:
             raise ValueError(f"Representation mismatch for test cell {key}.")
         if int(evaluation["diagnostics"]["num_samples"]) != expected_samples[split]:
@@ -88,69 +96,83 @@ def summarize_test_grid(
 
     summary = []
     for split in splits:
-        for representation in representations:
-            for percentage in percentages:
-                rows = [
-                    evaluations[(representation, percentage, seed, split)]
-                    for seed in seeds
-                ]
-                metrics = {
-                    name: aggregate(nested(row, path) for row in rows)
-                    for name, path in MAIN_METRICS.items()
-                }
-                by_target_type = {
-                    target_type: {
-                        metric: aggregate(
-                            row["by_target_type"][target_type][metric]
-                            for row in rows
-                        )
-                        for metric in (
-                            "mean_f1",
-                            "exact_set_accuracy",
-                            "cardinality_accuracy",
+        for checkpoint_policy in checkpoint_policies:
+            for representation in representations:
+                for percentage in percentages:
+                    rows = [
+                        evaluations[
+                            (
+                                representation,
+                                percentage,
+                                seed,
+                                split,
+                                checkpoint_policy,
+                            )
+                        ]
+                        for seed in seeds
+                    ]
+                    metrics = {
+                        name: aggregate(nested(row, path) for row in rows)
+                        for name, path in MAIN_METRICS.items()
+                    }
+                    by_target_type = {
+                        target_type: {
+                            metric: aggregate(
+                                row["by_target_type"][target_type][metric]
+                                for row in rows
+                            )
+                            for metric in (
+                                "mean_f1",
+                                "exact_set_accuracy",
+                                "cardinality_accuracy",
+                            )
+                        }
+                        for target_type in (
+                            "no-target",
+                            "single-target",
+                            "multi-target",
                         )
                     }
-                    for target_type in (
-                        "no-target",
-                        "single-target",
-                        "multi-target",
+                    by_count_group = {
+                        group: {
+                            metric: aggregate(
+                                row["by_count_group"][group][metric]
+                                for row in rows
+                            )
+                            for metric in (
+                                "mean_f1",
+                                "exact_set_accuracy",
+                                "cardinality_accuracy",
+                            )
+                        }
+                        for group in ("0", "1", "2", "3+")
+                    }
+                    summary.append(
+                        {
+                            "split": split,
+                            "checkpoint_policy": checkpoint_policy,
+                            "representation": representation,
+                            "percentage": percentage,
+                            "seeds": list(seeds),
+                            "metrics": metrics,
+                            "by_target_type": by_target_type,
+                            "by_count_group": by_count_group,
+                        }
                     )
-                }
-                by_count_group = {
-                    group: {
-                        metric: aggregate(
-                            row["by_count_group"][group][metric] for row in rows
-                        )
-                        for metric in (
-                            "mean_f1",
-                            "exact_set_accuracy",
-                            "cardinality_accuracy",
-                        )
-                    }
-                    for group in ("0", "1", "2", "3+")
-                }
-                summary.append(
-                    {
-                        "split": split,
-                        "representation": representation,
-                        "percentage": percentage,
-                        "seeds": list(seeds),
-                        "metrics": metrics,
-                        "by_target_type": by_target_type,
-                        "by_count_group": by_count_group,
-                    }
-                )
 
     return {
         "stage": 5,
         "evaluation_policy": (
-            "full locked test evaluation; checkpoints and thresholds selected on val"
+            "full locked test evaluation; primary fixed epoch-20 last.pt and "
+            "historical current-gRefCOCO-val best.pt sensitivity are both "
+            "reported; membership threshold fixed at 0.5; no test selection"
         ),
         "standard_deviation": "sample standard deviation (n-1 denominator)",
         "representations": list(representations),
         "percentages": list(percentages),
         "seeds": list(seeds),
         "splits": list(splits),
+        "checkpoint_policies": list(checkpoint_policies),
         "num_evaluations": len(evaluations),
         "expected_samples": expected_samples,
         "candidate_file_sha256": candidate_hashes,
@@ -170,26 +192,30 @@ def format_summary(result: dict[str, Any]) -> str:
         "Std: sample standard deviation (n-1)",
     ]
     for split in result["splits"]:
-        lines.extend(
-            [
-                "",
-                f"[{split}]",
-                "representation | fraction | F1_score | T_acc | N_acc | mean_f1",
-                "--- | ---: | ---: | ---: | ---: | ---:",
-            ]
-        )
-        for row in result["summary"]:
-            if row["split"] != split:
-                continue
-            metrics = row["metrics"]
-            rendered = [
-                f"{metrics[name]['mean']:.6f} ± {metrics[name]['std']:.6f}"
-                for name in ("F1_score", "T_acc", "N_acc", "mean_f1")
-            ]
-            lines.append(
-                f"{row['representation']} | {row['percentage']}% | "
-                + " | ".join(rendered)
+        for checkpoint_policy in result["checkpoint_policies"]:
+            lines.extend(
+                [
+                    "",
+                    f"[{split} / {checkpoint_policy}]",
+                    "representation | fraction | F1_score | T_acc | N_acc | mean_f1",
+                    "--- | ---: | ---: | ---: | ---: | ---:",
+                ]
             )
+            for row in result["summary"]:
+                if (
+                    row["split"] != split
+                    or row["checkpoint_policy"] != checkpoint_policy
+                ):
+                    continue
+                metrics = row["metrics"]
+                rendered = [
+                    f"{metrics[name]['mean']:.6f} ± {metrics[name]['std']:.6f}"
+                    for name in ("F1_score", "T_acc", "N_acc", "mean_f1")
+                ]
+                lines.append(
+                    f"{row['representation']} | {row['percentage']}% | "
+                    + " | ".join(rendered)
+                )
     return "\n".join(lines) + "\n"
 
 
@@ -204,6 +230,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--percentages", type=int, nargs="+", default=[1, 5, 10])
     parser.add_argument("--seeds", type=int, nargs="+", default=[0, 1, 2])
     parser.add_argument("--splits", nargs="+", default=["testA", "testB"])
+    parser.add_argument(
+        "--checkpoint-policies", nargs="+", default=["last", "best"]
+    )
     parser.add_argument(
         "--output-json",
         default="outputs/stage5/test_grid_summary.json",
@@ -225,9 +254,18 @@ def main() -> None:
             for seed in args.seeds:
                 cell_dir = grid_dir / f"{representation}_{percentage}pct_seed{seed}"
                 for split in args.splits:
-                    path = cell_dir / f"evaluation_{split}.json"
-                    if path.exists():
-                        evaluations[(representation, percentage, seed, split)] = load_json(path)
+                    for checkpoint in args.checkpoint_policies:
+                        path = cell_dir / f"evaluation_{split}_{checkpoint}.json"
+                        if path.exists():
+                            evaluations[
+                                (
+                                    representation,
+                                    percentage,
+                                    seed,
+                                    split,
+                                    checkpoint,
+                                )
+                            ] = load_json(path)
     feature_stats = {
         (representation, split): load_json(
             f"outputs/stage5/{representation}_{split}_feature_stats.json"
@@ -243,6 +281,7 @@ def main() -> None:
         args.percentages,
         args.seeds,
         args.splits,
+        args.checkpoint_policies,
     )
     output_json = Path(args.output_json)
     output_txt = Path(args.output_txt)

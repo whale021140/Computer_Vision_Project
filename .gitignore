@@ -2,6 +2,7 @@
 data/coco/
 data/grefcoco/annotations/*.json
 data/grefcoco/hf_download/
+data/refcoco_aux/
 
 # Cloned external repositories
 gRefCOCO/

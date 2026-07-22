@@ -192,11 +192,13 @@ encoder inference. Results will be summarized as mean and standard deviation.
   are stratified by no/single/multi target and satisfy `1% ⊆ 5% ⊆ 10%`.
 - All representations use the exact same split files and their recorded SHA-256
   hashes. No `--max-samples` option is allowed in a reported run.
-- The training schedule, class weights `[15.0, 1.0, 1.5, 2.0]`, head topology,
-  checkpoint criterion, and validation calibration sweep are frozen from Stage 4.
-- The released validation split is used for checkpoint selection and threshold
-  calibration. It contains no single-target expressions, so it cannot support a
-  single-target conclusion; this dataset limitation will be stated explicitly.
+- The training schedule, class weights `[15.0, 1.0, 1.5, 2.0]`, and head topology
+  are frozen from Stage 4. Historical `best.pt` uses current gRefCOCO val loss;
+  fixed epoch-20 `last.pt` is retained independently of validation composition.
+- The current released validation annotation contains no single-target
+  expressions. RefCOCO UNC val supplies a non-test, image-disjoint-from-train
+  single-target auxiliary audit. The final test reports fixed `last.pt` as the
+  primary policy and historical `best.pt` as a complete sensitivity policy.
 - Full testA and testB evaluation begins only after the development grid is
   complete. Test results cannot change hyperparameters or model selection.
 - Main summaries report per-run results and mean ± standard deviation, including
@@ -224,8 +226,13 @@ encoder inference. Results will be summarized as mean and standard deviation.
   by seeds 1/2, then build the union candidate file.
 - [x] Extract each representation's union feature bank once.
 - [x] Run and aggregate the 27 development cells.
+- [x] Add and validate RefCOCO UNC val as a 10,834-expression single-target
+  auxiliary set; compare all 27 `best.pt`/`last.pt` pairs without test access.
+- [x] Lock dual test reporting before test access: fixed epoch-20 `last.pt`
+  primary and current-gRefCOCO-val `best.pt` sensitivity, both reported in full.
 - [ ] Extract full testA/testB features once per representation.
-- [ ] Lock the final comparison and evaluate full testA/testB once.
+- [x] Lock the final comparison policy.
+- [ ] Evaluate both locked policies on full testA/testB once.
 
 The proposal-cache extension completed in 468.63 seconds on the current local
 setup, substantially faster than the old Stage 2 throughput.
@@ -384,3 +391,14 @@ the relevant acceptance checks pass.
   and the released validation split contains zero single-target expressions.
   The locked protocol will not be altered from this observation; full testA/B,
   which contain single-target examples, is the required final grid evaluation.
+- 2026-07-22: Before any Stage 5 test evaluation, verified that the current
+  official gRefCOCO annotation is byte-identical to the local file, then added
+  RefCOCO UNC val as a 10,834-expression single-target auxiliary validation set.
+  Its 1,500 images have zero overlap with train/testA/testB, all 3,811 target IDs
+  and boxes match the local instances file, and proposal recall is `0.995754`.
+  Across all nine representation/fraction groups, epoch-20 `last.pt` strongly
+  improves single-target F1 over the historical val-loss `best.pt`. A no/single/
+  multi equal-weight composite audit shows monotonic supervision scaling for
+  `last.pt`. This pre-test evidence amends the final reporting protocol: fixed
+  `last.pt` is primary and `best.pt` is a fully reported sensitivity; neither is
+  selected after observing testA/testB.

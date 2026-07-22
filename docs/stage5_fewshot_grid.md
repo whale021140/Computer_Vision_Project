@@ -91,12 +91,57 @@ All 27 cells completed and passed paired split/candidate-hash validation:
 | CLIP+DINOv2 | 10% | 0.593272 ± 0.049195 | 0.844165 ± 0.074890 | 0.832192 ± 0.087296 | 0.677625 ± 0.041921 |
 
 This table is a development-set diagnostic, not the proposal's final main table.
-The released val split has no single-target expressions. At 5%/10%, models begin
-predicting count class 1, which can only be scored as wrong on val. In contrast,
-multi-target mean F1 improves with supervision for all representations; SigLIP 2
-rises from `0.3900` to `0.4581` to `0.4845`. The correct response is to preserve
-the locked protocol and evaluate all checkpoints once on full testA/testB, not to
-retune toward the anomalous validation composition.
+The current released val annotation has no single-target expressions. At 5%/10%,
+models begin predicting count class 1, while multi-target mean F1 improves with
+supervision for all representations; SigLIP 2 rises from `0.3900` to `0.4581` to
+`0.4845`. This motivated the pre-test auxiliary audit below. No testA/testB
+metric had been generated when the audit and amended reporting policy were
+locked.
+
+## RefCOCO single-target auxiliary validation audit
+
+The current official gRefCOCO Hugging Face annotation was downloaded again and
+is byte-identical to the local file (SHA-256
+`cc37c5ff95373c78a6a3f98b4c7bc67fde387ea8514752a1392db64223eb3366`).
+The zero-single val composition is therefore not a local preprocessing error.
+Because published work contains different gRefCOCO split counts, the exact data
+hash and observed counts are part of the experiment record.
+
+RefCOCO UNC val was added as a single-target-only auxiliary validation set. Its
+annotation mirror has SHA-256
+`df03b1b16873f92727f3df010afb3c7260e8396a86592d3c4fee053daca08c05`.
+All 3,811 target IDs and bounding boxes match the current gRefCOCO COCO instances
+file. The resulting 10,834 expressions cover 1,500 images, overlap zero train,
+testA, or testB images, and are a subset of the current gRefCOCO val image set.
+Detector proposal recall is `0.995754` by expression. Existing val region
+features were validated and reused; only the new text expressions were encoded.
+
+The audit compares the historical current-gRefCOCO-val-selected `best.pt` with
+the fixed epoch-20 `last.pt`, using the already locked membership threshold 0.5.
+It does not recalibrate, retrain, or inspect test data. Single-target F1 confirms
+a systematic checkpoint-selection blind spot:
+
+| Representation | Fraction | best.pt | last.pt |
+|---|---:|---:|---:|
+| SigLIP 2 | 1% / 5% / 10% | 0.000 / 0.106 / 0.173 | 0.270 / 0.413 / 0.465 |
+| CLIP | 1% / 5% / 10% | 0.016 / 0.110 / 0.069 | 0.185 / 0.287 / 0.361 |
+| CLIP+DINOv2 | 1% / 5% / 10% | 0.000 / 0.109 / 0.048 | 0.216 / 0.286 / 0.337 |
+
+A composite suite uses current gRefCOCO val for no-target and multi-target,
+RefCOCO UNC val for single-target, and macro-averages the three target types.
+Fixed `last.pt` produces monotonic macro mean-F1 scaling for all representations:
+SigLIP 2 `0.391 -> 0.509 -> 0.553`, CLIP `0.364 -> 0.436 -> 0.467`, and
+CLIP+DINOv2 `0.342 -> 0.418 -> 0.450`. It is not uniformly better in every
+low-data cell, so the test protocol reports two complete, pre-declared policies:
+
+- primary: fixed epoch-20 `last.pt`, which does not depend on a class-incomplete
+  validation selection criterion;
+- sensitivity: the historical current-gRefCOCO-val-selected `best.pt`.
+
+Both policies will be evaluated for every representation/fraction/seed on full
+testA and testB. Neither will be selected or hidden based on test outcomes. The
+auxiliary and composite tables are recorded in
+`outputs/stage5/refcoco_aux/summary.json/.txt`.
 
 Prepare the evaluation-only feature banks with:
 
@@ -107,8 +152,8 @@ bash scripts/run_stage5_extract_test_features.sh siglip2
 ```
 
 After all six full-split banks are present, `scripts/run_stage5_test_grid.sh`
-evaluates all 54 locked checkpoint/split combinations and aggregates them without
-any test-driven selection or calibration.
+evaluates all 108 locked checkpoint-policy/split combinations and aggregates
+them without any test-driven selection or calibration.
 
 ## Prepared splits
 

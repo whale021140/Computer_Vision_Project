@@ -1,0 +1,33 @@
+{
+  "stage": 5,
+  "locked_before_any_stage5_test_evaluation": true,
+  "stage5_test_evaluations_present_at_lock": 0,
+  "reason": "The current gRefCOCO val annotation has zero single-target expressions and its val-loss checkpoint selection systematically suppresses count class 1.",
+  "validation_evidence": {
+    "grefcoco_current_annotation_sha256": "cc37c5ff95373c78a6a3f98b4c7bc67fde387ea8514752a1392db64223eb3366",
+    "refcoco_unc_val_source_sha256": "df03b1b16873f92727f3df010afb3c7260e8396a86592d3c4fee053daca08c05",
+    "refcoco_unc_val_split_sha256": "03b92f0db9906dc6328e1ceb1d6e96452fd9af98fbf70e03bdbc4a2836780e4e",
+    "auxiliary_summary_json": "outputs/stage5/refcoco_aux/summary.json",
+    "auxiliary_summary_sha256": "f921e6f6f49ce9cc4028dd2e49ef17927b63a153afb3248eb5a8d474252ba7b6"
+  },
+  "test_splits": [
+    "testA",
+    "testB"
+  ],
+  "checkpoint_policies": {
+    "primary": {
+      "name": "last",
+      "file": "last.pt",
+      "definition": "fixed epoch-20 training endpoint for every representation, fraction, and seed"
+    },
+    "sensitivity": {
+      "name": "best",
+      "file": "best.pt",
+      "definition": "historical minimum current-gRefCOCO-val-loss checkpoint"
+    }
+  },
+  "selection_policy": "cardinality-threshold",
+  "membership_threshold": 0.5,
+  "reporting_rule": "Evaluate and report both checkpoint policies for every representation/fraction/seed on both full test splits; do not select, tune, or hide a policy based on test outcomes.",
+  "expected_evaluations": 108
+}

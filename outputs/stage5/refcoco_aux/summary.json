@@ -1,0 +1,3866 @@
+{
+  "dataset": "RefCOCO UNC val",
+  "role": "single-target auxiliary validation audit",
+  "selection_policy": "cardinality-threshold",
+  "membership_threshold": 0.5,
+  "cells": 54,
+  "rows": [
+    {
+      "representation": "siglip2",
+      "percentage": 1,
+      "checkpoints": {
+        "best": {
+          "seeds": [
+            0,
+            1,
+            2
+          ],
+          "files": [
+            "outputs/stage5/refcoco_aux/grid/siglip2_1pct_seed0/evaluation_best.json",
+            "outputs/stage5/refcoco_aux/grid/siglip2_1pct_seed1/evaluation_best.json",
+            "outputs/stage5/refcoco_aux/grid/siglip2_1pct_seed2/evaluation_best.json"
+          ],
+          "metrics": {
+            "F1_score": {
+              "values": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "mean": 0.0,
+              "sample_std": 0.0
+            },
+            "T_acc": {
+              "values": [
+                0.03913605316595902,
+                0.06239616023629315,
+                0.0437511537751523
+              ],
+              "mean": 0.04842778905913482,
+              "sample_std": 0.01231508560325078
+            },
+            "mean_f1": {
+              "values": [
+                0.007691834348655471,
+                0.012676143006584229,
+                0.007876438373023204
+              ],
+              "mean": 0.009414805242754301,
+              "sample_std": 0.0028259091756089026
+            },
+            "localization_accuracy": {
+              "values": [
+                0.0115377515229832,
+                0.019014214509876316,
+                0.011814657559534798
+              ],
+              "mean": 0.014122207864131438,
+              "sample_std": 0.004238863763413342
+            },
+            "cardinality_accuracy": {
+              "values": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "mean": 0.0,
+              "sample_std": 0.0
+            }
+          }
+        },
+        "last": {
+          "seeds": [
+            0,
+            1,
+            2
+          ],
+          "files": [
+            "outputs/stage5/refcoco_aux/grid/siglip2_1pct_seed0/evaluation_last.json",
+            "outputs/stage5/refcoco_aux/grid/siglip2_1pct_seed1/evaluation_last.json",
+            "outputs/stage5/refcoco_aux/grid/siglip2_1pct_seed2/evaluation_last.json"
+          ],
+          "metrics": {
+            "F1_score": {
+              "values": [
+                0.26721432527229094,
+                0.2469078825918405,
+                0.29508953295181833
+              ],
+              "mean": 0.2697372469386499,
+              "sample_std": 0.024189702523051537
+            },
+            "T_acc": {
+              "values": [
+                0.8043197341702049,
+                0.7594609562488462,
+                0.8989292966586672
+              ],
+              "mean": 0.8209033290259061,
+              "sample_std": 0.071197726142911
+            },
+            "mean_f1": {
+              "values": [
+                0.27939819088056084,
+                0.2554612023875451,
+                0.3071503292105095
+              ],
+              "mean": 0.2806699074928718,
+              "sample_std": 0.025868018967185043
+            },
+            "localization_accuracy": {
+              "values": [
+                0.28549012368469634,
+                0.2597378622853978,
+                0.313180727339856
+              ],
+              "mean": 0.28613623776998337,
+              "sample_std": 0.026727290432545958
+            },
+            "cardinality_accuracy": {
+              "values": [
+                0.7583533321026399,
+                0.7206018091194388,
+                0.848901606055012
+              ],
+              "mean": 0.7759522490923636,
+              "sample_std": 0.06593558131112301
+            }
+          }
+        }
+      },
+      "paired_delta_last_minus_best": {
+        "F1_score": {
+          "values": [
+            0.26721432527229094,
+            0.2469078825918405,
+            0.29508953295181833
+          ],
+          "mean": 0.2697372469386499,
+          "sample_std": 0.024189702523051537
+        },
+        "T_acc": {
+          "values": [
+            0.7651836810042458,
+            0.6970647960125531,
+            0.8551781428835149
+          ],
+          "mean": 0.7724755399667713,
+          "sample_std": 0.07930848643134789
+        },
+        "mean_f1": {
+          "values": [
+            0.2717063565319054,
+            0.24278505938096087,
+            0.2992738908374863
+          ],
+          "mean": 0.2712551022501175,
+          "sample_std": 0.02824711919207086
+        },
+        "localization_accuracy": {
+          "values": [
+            0.27395237216171314,
+            0.2407236477755215,
+            0.3013660697803212
+          ],
+          "mean": 0.27201402990585194,
+          "sample_std": 0.030367642560424363
+        },
+        "cardinality_accuracy": {
+          "values": [
+            0.7583533321026399,
+            0.7206018091194388,
+            0.848901606055012
+          ],
+          "mean": 0.7759522490923636,
+          "sample_std": 0.06593558131112301
+        }
+      }
+    },
+    {
+      "representation": "siglip2",
+      "percentage": 5,
+      "checkpoints": {
+        "best": {
+          "seeds": [
+            0,
+            1,
+            2
+          ],
+          "files": [
+            "outputs/stage5/refcoco_aux/grid/siglip2_5pct_seed0/evaluation_best.json",
+            "outputs/stage5/refcoco_aux/grid/siglip2_5pct_seed1/evaluation_best.json",
+            "outputs/stage5/refcoco_aux/grid/siglip2_5pct_seed2/evaluation_best.json"
+          ],
+          "metrics": {
+            "F1_score": {
+              "values": [
+                0.0,
+                0.11196234077902899,
+                0.20491046704818164
+              ],
+              "mean": 0.10562426927573687,
+              "sample_std": 0.10260216001265089
+            },
+            "T_acc": {
+              "values": [
+                0.0351670666420528,
+                0.30607347240169835,
+                0.5434742477386006
+              ],
+              "mean": 0.29490492892745057,
+              "sample_std": 0.2543375706832984
+            },
+            "mean_f1": {
+              "values": [
+                0.006830348901606053,
+                0.12057719524952318,
+                0.2166020552581381
+              ],
+              "mean": 0.11466986646975579,
+              "sample_std": 0.10501054517007795
+            },
+            "localization_accuracy": {
+              "values": [
+                0.010245523352409082,
+                0.12488462248477017,
+                0.22244784936311612
+              ],
+              "mean": 0.11919266506676512,
+              "sample_std": 0.1062156089071888
+            },
+            "cardinality_accuracy": {
+              "values": [
+                0.0,
+                0.2710910097840133,
+                0.5021229462802289
+              ],
+              "mean": 0.2577379853547474,
+              "sample_std": 0.2513276561410241
+            }
+          }
+        },
+        "last": {
+          "seeds": [
+            0,
+            1,
+            2
+          ],
+          "files": [
+            "outputs/stage5/refcoco_aux/grid/siglip2_5pct_seed0/evaluation_last.json",
+            "outputs/stage5/refcoco_aux/grid/siglip2_5pct_seed1/evaluation_last.json",
+            "outputs/stage5/refcoco_aux/grid/siglip2_5pct_seed2/evaluation_last.json"
+          ],
+          "metrics": {
+            "F1_score": {
+              "values": [
+                0.42154328964371424,
+                0.39062211556211923,
+                0.4264352962894591
+              ],
+              "mean": 0.41286690049843083,
+              "sample_std": 0.01941921149023745
+            },
+            "T_acc": {
+              "values": [
+                0.9459110208602548,
+                0.8629315119069596,
+                0.934742477386007
+              ],
+              "mean": 0.9145283367177405,
+              "sample_std": 0.04503174812007469
+            },
+            "mean_f1": {
+              "values": [
+                0.43532705679650474,
+                0.40029844317272706,
+                0.4368319803461349
+              ],
+              "mean": 0.42415249343845557,
+              "sample_std": 0.02067191293234578
+            },
+            "localization_accuracy": {
+              "values": [
+                0.4422189403729001,
+                0.40520583348717004,
+                0.4425881484216356
+              ],
+              "mean": 0.4300043074272352,
+              "sample_std": 0.02147690180083902
+            },
+            "cardinality_accuracy": {
+              "values": [
+                0.9059442495846409,
+                0.8342255861177774,
+                0.9033597932434927
+              ],
+              "mean": 0.8811765429819703,
+              "sample_std": 0.040681250183497365
+            }
+          }
+        }
+      },
+      "paired_delta_last_minus_best": {
+        "F1_score": {
+          "values": [
+            0.42154328964371424,
+            0.27865977478309023,
+            0.22152482924127745
+          ],
+          "mean": 0.30724263122269396,
+          "sample_std": 0.10302708812310256
+        },
+        "T_acc": {
+          "values": [
+            0.910743954218202,
+            0.5568580395052612,
+            0.3912682296474064
+          ],
+          "mean": 0.6196234077902899,
+          "sample_std": 0.2653646089751886
+        },
+        "mean_f1": {
+          "values": [
+            0.4284967078948987,
+            0.27972124792320385,
+            0.2202299250879968
+          ],
+          "mean": 0.30948262696869977,
+          "sample_std": 0.10727566344330654
+        },
+        "localization_accuracy": {
+          "values": [
+            0.431973417020491,
+            0.2803212110023999,
+            0.22014029905851945
+          ],
+          "mean": 0.3108116423604701,
+          "sample_std": 0.10915845028981282
+        },
+        "cardinality_accuracy": {
+          "values": [
+            0.9059442495846409,
+            0.5631345763337641,
+            0.4012368469632638
+          ],
+          "mean": 0.6234385576272229,
+          "sample_std": 0.25770102480410434
+        }
+      }
+    },
+    {
+      "representation": "siglip2",
+      "percentage": 10,
+      "checkpoints": {
+        "best": {
+          "seeds": [
+            0,
+            1,
+            2
+          ],
+          "files": [
+            "outputs/stage5/refcoco_aux/grid/siglip2_10pct_seed0/evaluation_best.json",
+            "outputs/stage5/refcoco_aux/grid/siglip2_10pct_seed1/evaluation_best.json",
+            "outputs/stage5/refcoco_aux/grid/siglip2_10pct_seed2/evaluation_best.json"
+          ],
+          "metrics": {
+            "F1_score": {
+              "values": [
+                0.14269891083625624,
+                0.27902898283182576,
+                0.0958094886468525
+              ],
+              "mean": 0.17251246077164484,
+              "sample_std": 0.09517868239349499
+            },
+            "T_acc": {
+              "values": [
+                0.3670851024552335,
+                0.6422374007753369,
+                0.2771829425881484
+              ],
+              "mean": 0.4288351486062396,
+              "sample_std": 0.1901998699009123
+            },
+            "mean_f1": {
+              "values": [
+                0.14737554612023884,
+                0.2851209156359606,
+                0.1040551350686111
+              ],
+              "mean": 0.17885053227493686,
+              "sample_std": 0.09454739704610969
+            },
+            "localization_accuracy": {
+              "values": [
+                0.14971386376223,
+                0.2881668820380284,
+                0.10817795827949049
+              ],
+              "mean": 0.18201956802658298,
+              "sample_std": 0.09424302130636024
+            },
+            "cardinality_accuracy": {
+              "values": [
+                0.3458556396529444,
+                0.6213771460217833,
+                0.24016983570241832
+              ],
+              "mean": 0.40246754045904864,
+              "sample_std": 0.19680811427604122
+            }
+          }
+        },
+        "last": {
+          "seeds": [
+            0,
+            1,
+            2
+          ],
+          "files": [
+            "outputs/stage5/refcoco_aux/grid/siglip2_10pct_seed0/evaluation_last.json",
+            "outputs/stage5/refcoco_aux/grid/siglip2_10pct_seed1/evaluation_last.json",
+            "outputs/stage5/refcoco_aux/grid/siglip2_10pct_seed2/evaluation_last.json"
+          ],
+          "metrics": {
+            "F1_score": {
+              "values": [
+                0.45449510799335424,
+                0.4675096917112793,
+                0.4723093963448403
+              ],
+              "mean": 0.464771398683158,
+              "sample_std": 0.009217423929621911
+            },
+            "T_acc": {
+              "values": [
+                0.9099132361085471,
+                0.9644637253092118,
+                0.9499723093963448
+              ],
+              "mean": 0.9414497569380346,
+              "sample_std": 0.028256227513796753
+            },
+            "mean_f1": {
+              "values": [
+                0.46205640092477845,
+                0.4824387363708029,
+                0.482799739796233
+              ],
+              "mean": 0.4757649590306048,
+              "sample_std": 0.01187333166697139
+            },
+            "localization_accuracy": {
+              "values": [
+                0.46603285951633744,
+                0.49040059073287795,
+                0.48836994646483295
+              ],
+              "mean": 0.4816011322380161,
+              "sample_std": 0.013520695828553322
+            },
+            "cardinality_accuracy": {
+              "values": [
+                0.8895144914159129,
+                0.9222817057411852,
+                0.9198818534244046
+              ],
+              "mean": 0.9105593501938343,
+              "sample_std": 0.01826484009025481
+            }
+          }
+        }
+      },
+      "paired_delta_last_minus_best": {
+        "F1_score": {
+          "values": [
+            0.311796197157098,
+            0.18848070887945356,
+            0.3764999076979878
+          ],
+          "mean": 0.29225893791151314,
+          "sample_std": 0.0955200667672127
+        },
+        "T_acc": {
+          "values": [
+            0.5428281336533136,
+            0.3222263245338749,
+            0.6727893668081963
+          ],
+          "mean": 0.512614608331795,
+          "sample_std": 0.17722374131707766
+        },
+        "mean_f1": {
+          "values": [
+            0.3146808548045396,
+            0.19731782073484233,
+            0.3787446047276219
+          ],
+          "mean": 0.2969144267556679,
+          "sample_std": 0.09200898848320459
+        },
+        "localization_accuracy": {
+          "values": [
+            0.31631899575410743,
+            0.20223370869484952,
+            0.38019198818534244
+          ],
+          "mean": 0.2995815642114331,
+          "sample_std": 0.09015205777345506
+        },
+        "cardinality_accuracy": {
+          "values": [
+            0.5436588517629685,
+            0.3009045597194019,
+            0.6797120177219863
+          ],
+          "mean": 0.5080918097347855,
+          "sample_std": 0.19189198372670713
+        }
+      }
+    },
+    {
+      "representation": "clip",
+      "percentage": 1,
+      "checkpoints": {
+        "best": {
+          "seeds": [
+            0,
+            1,
+            2
+          ],
+          "files": [
+            "outputs/stage5/refcoco_aux/grid/clip_1pct_seed0/evaluation_best.json",
+            "outputs/stage5/refcoco_aux/grid/clip_1pct_seed1/evaluation_best.json",
+            "outputs/stage5/refcoco_aux/grid/clip_1pct_seed2/evaluation_best.json"
+          ],
+          "metrics": {
+            "F1_score": {
+              "values": [
+                0.0,
+                0.04855085840871331,
+                0.0
+              ],
+              "mean": 0.016183619469571104,
+              "sample_std": 0.028030851171658034
+            },
+            "T_acc": {
+              "values": [
+                0.029536643898836996,
+                0.23693926527598302,
+                0.0144914159128669
+              ],
+              "mean": 0.09365577502922898,
+              "sample_std": 0.12431495748403006
+            },
+            "mean_f1": {
+              "values": [
+                0.00621500215371361,
+                0.06276536828502856,
+                0.005107378007507225
+              ],
+              "mean": 0.0246959161487498,
+              "sample_std": 0.03297376377181758
+            },
+            "localization_accuracy": {
+              "values": [
+                0.009322503230570427,
+                0.06987262322318627,
+                0.007661067011260845
+              ],
+              "mean": 0.02895206448833918,
+              "sample_std": 0.03544797861594877
+            },
+            "cardinality_accuracy": {
+              "values": [
+                0.0,
+                0.17158944064980616,
+                0.0
+              ],
+              "mean": 0.05719648021660206,
+              "sample_std": 0.0990672097492629
+            }
+          }
+        },
+        "last": {
+          "seeds": [
+            0,
+            1,
+            2
+          ],
+          "files": [
+            "outputs/stage5/refcoco_aux/grid/clip_1pct_seed0/evaluation_last.json",
+            "outputs/stage5/refcoco_aux/grid/clip_1pct_seed1/evaluation_last.json",
+            "outputs/stage5/refcoco_aux/grid/clip_1pct_seed2/evaluation_last.json"
+          ],
+          "metrics": {
+            "F1_score": {
+              "values": [
+                0.20223370869484955,
+                0.14639099132361086,
+                0.20620269521875578
+              ],
+              "mean": 0.18494246507907205,
+              "sample_std": 0.033445482655289155
+            },
+            "T_acc": {
+              "values": [
+                0.7400775336902344,
+                0.5479970463356101,
+                0.812534613254569
+              ],
+              "mean": 0.7002030644268045,
+              "sample_std": 0.1367022715690227
+            },
+            "mean_f1": {
+              "values": [
+                0.21761737739216058,
+                0.16349763091502115,
+                0.23838533013353003
+              ],
+              "mean": 0.20650011281357059,
+              "sample_std": 0.038661829397265236
+            },
+            "localization_accuracy": {
+              "values": [
+                0.22530921174081595,
+                0.1720509507107255,
+                0.2544766475909175
+              ],
+              "mean": 0.21727893668081963,
+              "sample_std": 0.041795488568752516
+            },
+            "cardinality_accuracy": {
+              "values": [
+                0.6734354808934835,
+                0.4707402621377146,
+                0.6888499169281891
+              ],
+              "mean": 0.6110085533197958,
+              "sample_std": 0.12172015586139723
+            }
+          }
+        }
+      },
+      "paired_delta_last_minus_best": {
+        "F1_score": {
+          "values": [
+            0.20223370869484955,
+            0.09784013291489754,
+            0.20620269521875578
+          ],
+          "mean": 0.16875884560950097,
+          "sample_std": 0.061449459486650614
+        },
+        "T_acc": {
+          "values": [
+            0.7105408897913974,
+            0.31105778105962706,
+            0.7980431973417021
+          ],
+          "mean": 0.6065472893975755,
+          "sample_std": 0.2596145231107245
+        },
+        "mean_f1": {
+          "values": [
+            0.21140237523844696,
+            0.10073226262999259,
+            0.23327795212602281
+          ],
+          "mean": 0.18180419666482078,
+          "sample_std": 0.07105722399694286
+        },
+        "localization_accuracy": {
+          "values": [
+            0.2159867085102455,
+            0.10217832748753922,
+            0.24681558057965663
+          ],
+          "mean": 0.18832687219248045,
+          "sample_std": 0.07618256791650223
+        },
+        "cardinality_accuracy": {
+          "values": [
+            0.6734354808934835,
+            0.2991508214879084,
+            0.6888499169281891
+          ],
+          "mean": 0.5538120731031937,
+          "sample_std": 0.2206777424555198
+        }
+      }
+    },
+    {
+      "representation": "clip",
+      "percentage": 5,
+      "checkpoints": {
+        "best": {
+          "seeds": [
+            0,
+            1,
+            2
+          ],
+          "files": [
+            "outputs/stage5/refcoco_aux/grid/clip_5pct_seed0/evaluation_best.json",
+            "outputs/stage5/refcoco_aux/grid/clip_5pct_seed1/evaluation_best.json",
+            "outputs/stage5/refcoco_aux/grid/clip_5pct_seed2/evaluation_best.json"
+          ],
+          "metrics": {
+            "F1_score": {
+              "values": [
+                0.16125161528521323,
+                0.06276536828502861,
+                0.10605501199926158
+              ],
+              "mean": 0.11002399852316781,
+              "sample_std": 0.049362940072138685
+            },
+            "T_acc": {
+              "values": [
+                0.49233893298873915,
+                0.2160790105224294,
+                0.3857301089163744
+              ],
+              "mean": 0.36471601747584764,
+              "sample_std": 0.1393236527642596
+            },
+            "mean_f1": {
+              "values": [
+                0.17115869792628174,
+                0.070457202633684,
+                0.11750046151006092
+              ],
+              "mean": 0.11970545402334222,
+              "sample_std": 0.05038694555665179
+            },
+            "localization_accuracy": {
+              "values": [
+                0.17611223924681557,
+                0.07430311980801181,
+                0.12322318626546058
+              ],
+              "mean": 0.12454618177342933,
+              "sample_std": 0.05091745219531051
+            },
+            "cardinality_accuracy": {
+              "values": [
+                0.45311057781059627,
+                0.18100424589256045,
+                0.33339486800812257
+              ],
+              "mean": 0.3225032305704264,
+              "sample_std": 0.13637974480115342
+            }
+          }
+        },
+        "last": {
+          "seeds": [
+            0,
+            1,
+            2
+          ],
+          "files": [
+            "outputs/stage5/refcoco_aux/grid/clip_5pct_seed0/evaluation_last.json",
+            "outputs/stage5/refcoco_aux/grid/clip_5pct_seed1/evaluation_last.json",
+            "outputs/stage5/refcoco_aux/grid/clip_5pct_seed2/evaluation_last.json"
+          ],
+          "metrics": {
+            "F1_score": {
+              "values": [
+                0.2799520029536644,
+                0.2796750969171128,
+                0.3027505999630792
+              ],
+              "mean": 0.28745923327795214,
+              "sample_std": 0.01324343575370568
+            },
+            "T_acc": {
+              "values": [
+                0.8361639283736385,
+                0.823518552704449,
+                0.889422189403729
+              ],
+              "mean": 0.8497015568272721,
+              "sample_std": 0.034975318020843575
+            },
+            "mean_f1": {
+              "values": [
+                0.29613562242323466,
+                0.29561257768752636,
+                0.31574980001230624
+              ],
+              "mean": 0.30249933337435575,
+              "sample_std": 0.011478220399585782
+            },
+            "localization_accuracy": {
+              "values": [
+                0.30422743215802106,
+                0.303581318072734,
+                0.3223186265460587
+              ],
+              "mean": 0.31004245892560456,
+              "sample_std": 0.01063638023187006
+            },
+            "cardinality_accuracy": {
+              "values": [
+                0.7799520029536644,
+                0.7654605870407974,
+                0.8421635591655898
+              ],
+              "mean": 0.7958587163866839,
+              "sample_std": 0.04075051082347706
+            }
+          }
+        }
+      },
+      "paired_delta_last_minus_best": {
+        "F1_score": {
+          "values": [
+            0.11870038766845117,
+            0.2169097286320842,
+            0.1966955879638176
+          ],
+          "mean": 0.17743523475478432,
+          "sample_std": 0.05186028892544198
+        },
+        "T_acc": {
+          "values": [
+            0.34382499538489936,
+            0.6074395421820196,
+            0.5036920804873546
+          ],
+          "mean": 0.4849855393514245,
+          "sample_std": 0.13279912775208824
+        },
+        "mean_f1": {
+          "values": [
+            0.12497692449695291,
+            0.22515537505384237,
+            0.1982493385022453
+          ],
+          "mean": 0.18279387935101352,
+          "sample_std": 0.051846734730128685
+        },
+        "localization_accuracy": {
+          "values": [
+            0.1281151929112055,
+            0.22927819826472218,
+            0.1990954402805981
+          ],
+          "mean": 0.18549627715217526,
+          "sample_std": 0.05193449086478083
+        },
+        "cardinality_accuracy": {
+          "values": [
+            0.32684142514306813,
+            0.584456341148237,
+            0.5087686911574673
+          ],
+          "mean": 0.47335548581625747,
+          "sample_std": 0.13240820432092404
+        }
+      }
+    },
+    {
+      "representation": "clip",
+      "percentage": 10,
+      "checkpoints": {
+        "best": {
+          "seeds": [
+            0,
+            1,
+            2
+          ],
+          "files": [
+            "outputs/stage5/refcoco_aux/grid/clip_10pct_seed0/evaluation_best.json",
+            "outputs/stage5/refcoco_aux/grid/clip_10pct_seed1/evaluation_best.json",
+            "outputs/stage5/refcoco_aux/grid/clip_10pct_seed2/evaluation_best.json"
+          ],
+          "metrics": {
+            "F1_score": {
+              "values": [
+                0.08648698541628208,
+                0.11334687096178697,
+                0.008491785120915635
+              ],
+              "mean": 0.06944188049966156,
+              "sample_std": 0.054466034901469326
+            },
+            "T_acc": {
+              "values": [
+                0.3437326933727155,
+                0.3781613439172974,
+                0.07190326749123131
+              ],
+              "mean": 0.26459910159374805,
+              "sample_std": 0.1677650033675937
+            },
+            "mean_f1": {
+              "values": [
+                0.10445511045474107,
+                0.12589994461879278,
+                0.015999015445203366
+              ],
+              "mean": 0.08211802350624574,
+              "sample_std": 0.05825600954676745
+            },
+            "localization_accuracy": {
+              "values": [
+                0.11343917297397084,
+                0.13217648144729555,
+                0.01975263060734724
+              ],
+              "mean": 0.08845609500953787,
+              "sample_std": 0.060232019705912555
+            },
+            "cardinality_accuracy": {
+              "values": [
+                0.2679527413697619,
+                0.32545689496031016,
+                0.03452095255676574
+              ],
+              "mean": 0.2093101962956126,
+              "sample_std": 0.15407836225485996
+            }
+          }
+        },
+        "last": {
+          "seeds": [
+            0,
+            1,
+            2
+          ],
+          "files": [
+            "outputs/stage5/refcoco_aux/grid/clip_10pct_seed0/evaluation_last.json",
+            "outputs/stage5/refcoco_aux/grid/clip_10pct_seed1/evaluation_last.json",
+            "outputs/stage5/refcoco_aux/grid/clip_10pct_seed2/evaluation_last.json"
+          ],
+          "metrics": {
+            "F1_score": {
+              "values": [
+                0.37133099501569133,
+                0.3448403175189219,
+                0.366069780321211
+              ],
+              "mean": 0.36074703095194144,
+              "sample_std": 0.014024540783765662
+            },
+            "T_acc": {
+              "values": [
+                0.9517260476278383,
+                0.9139745246446372,
+                0.9384345578733616
+              ],
+              "mean": 0.9347117100486124,
+              "sample_std": 0.019149127103668968
+            },
+            "mean_f1": {
+              "values": [
+                0.3862070026459901,
+                0.36327302935203876,
+                0.3752384468648078
+              ],
+              "mean": 0.37490615962094553,
+              "sample_std": 0.011470596927415927
+            },
+            "localization_accuracy": {
+              "values": [
+                0.3937603839763707,
+                0.3727155251984493,
+                0.3800073841609747
+              ],
+              "mean": 0.38216109777859825,
+              "sample_std": 0.010686457879284258
+            },
+            "cardinality_accuracy": {
+              "values": [
+                0.9009599409267122,
+                0.8522244784936311,
+                0.9083441019014215
+              ],
+              "mean": 0.8871761737739216,
+              "sample_std": 0.03049339617933386
+            }
+          }
+        }
+      },
+      "paired_delta_last_minus_best": {
+        "F1_score": {
+          "values": [
+            0.28484400959940925,
+            0.23149344655713494,
+            0.3575779952002954
+          ],
+          "mean": 0.29130515045227984,
+          "sample_std": 0.06329011066097015
+        },
+        "T_acc": {
+          "values": [
+            0.6079933542551228,
+            0.5358131807273399,
+            0.8665312903821303
+          ],
+          "mean": 0.6701126084548643,
+          "sample_std": 0.17388996037770144
+        },
+        "mean_f1": {
+          "values": [
+            0.2817518921912491,
+            0.23737308473324598,
+            0.3592394314196044
+          ],
+          "mean": 0.29278813611469984,
+          "sample_std": 0.061678202175674296
+        },
+        "localization_accuracy": {
+          "values": [
+            0.2803212110023999,
+            0.24053904375115376,
+            0.36025475355362746
+          ],
+          "mean": 0.29370500276906036,
+          "sample_std": 0.06096972367427559
+        },
+        "cardinality_accuracy": {
+          "values": [
+            0.6330071995569503,
+            0.526767583533321,
+            0.8738231493446558
+          ],
+          "mean": 0.677865977478309,
+          "sample_std": 0.17782329405228317
+        }
+      }
+    },
+    {
+      "representation": "clip_dinov2",
+      "percentage": 1,
+      "checkpoints": {
+        "best": {
+          "seeds": [
+            0,
+            1,
+            2
+          ],
+          "files": [
+            "outputs/stage5/refcoco_aux/grid/clip_dinov2_1pct_seed0/evaluation_best.json",
+            "outputs/stage5/refcoco_aux/grid/clip_dinov2_1pct_seed1/evaluation_best.json",
+            "outputs/stage5/refcoco_aux/grid/clip_dinov2_1pct_seed2/evaluation_best.json"
+          ],
+          "metrics": {
+            "F1_score": {
+              "values": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "mean": 0.0,
+              "sample_std": 0.0
+            },
+            "T_acc": {
+              "values": [
+                0.04781244231124238,
+                0.05491969724940004,
+                0.033136422374007754
+              ],
+              "mean": 0.04528952064488339,
+              "sample_std": 0.011108628014978352
+            },
+            "mean_f1": {
+              "values": [
+                0.011445449510799366,
+                0.011876192234324073,
+                0.009045597194018843
+              ],
+              "mean": 0.010789079646380761,
+              "sample_std": 0.0015251829791004799
+            },
+            "localization_accuracy": {
+              "values": [
+                0.017168174266199,
+                0.017814288351486064,
+                0.013568395791028245
+              ],
+              "mean": 0.016183619469571104,
+              "sample_std": 0.0022877744686507044
+            },
+            "cardinality_accuracy": {
+              "values": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "mean": 0.0,
+              "sample_std": 0.0
+            }
+          }
+        },
+        "last": {
+          "seeds": [
+            0,
+            1,
+            2
+          ],
+          "files": [
+            "outputs/stage5/refcoco_aux/grid/clip_dinov2_1pct_seed0/evaluation_last.json",
+            "outputs/stage5/refcoco_aux/grid/clip_dinov2_1pct_seed1/evaluation_last.json",
+            "outputs/stage5/refcoco_aux/grid/clip_dinov2_1pct_seed2/evaluation_last.json"
+          ],
+          "metrics": {
+            "F1_score": {
+              "values": [
+                0.22844748015506738,
+                0.19844932619531105,
+                0.2214325272290936
+              ],
+              "mean": 0.21610977785982402,
+              "sample_std": 0.015691432563165034
+            },
+            "T_acc": {
+              "values": [
+                0.8467786597747831,
+                0.7263245338748384,
+                0.8476093778844379
+              ],
+              "mean": 0.8069041905113531,
+              "sample_std": 0.06978526578647089
+            },
+            "mean_f1": {
+              "values": [
+                0.24536951572210922,
+                0.22017106639591436,
+                0.2464771398683156
+              ],
+              "mean": 0.23733924066211307,
+              "sample_std": 0.01487838578402376
+            },
+            "localization_accuracy": {
+              "values": [
+                0.2538305335056304,
+                0.23103193649621562,
+                0.2589994461879269
+              ],
+              "mean": 0.24795397206325764,
+              "sample_std": 0.014881057770819855
+            },
+            "cardinality_accuracy": {
+              "values": [
+                0.7768137345394129,
+                0.6349455418128115,
+                0.7497692449695403
+              ],
+              "mean": 0.7205095071072549,
+              "sample_std": 0.07532426715013746
+            }
+          }
+        }
+      },
+      "paired_delta_last_minus_best": {
+        "F1_score": {
+          "values": [
+            0.22844748015506738,
+            0.19844932619531105,
+            0.2214325272290936
+          ],
+          "mean": 0.21610977785982402,
+          "sample_std": 0.015691432563165034
+        },
+        "T_acc": {
+          "values": [
+            0.7989662174635407,
+            0.6714048366254384,
+            0.8144729555104302
+          ],
+          "mean": 0.7616146698664698,
+          "sample_std": 0.07850780369647803
+        },
+        "mean_f1": {
+          "values": [
+            0.23392406621130984,
+            0.2082948741615903,
+            0.23743154267429675
+          ],
+          "mean": 0.2265501610157323,
+          "sample_std": 0.01590651506081264
+        },
+        "localization_accuracy": {
+          "values": [
+            0.2366623592394314,
+            0.21321764814472954,
+            0.24543105039689866
+          ],
+          "mean": 0.23177035259368653,
+          "sample_std": 0.01665456747956916
+        },
+        "cardinality_accuracy": {
+          "values": [
+            0.7768137345394129,
+            0.6349455418128115,
+            0.7497692449695403
+          ],
+          "mean": 0.7205095071072549,
+          "sample_std": 0.07532426715013746
+        }
+      }
+    },
+    {
+      "representation": "clip_dinov2",
+      "percentage": 5,
+      "checkpoints": {
+        "best": {
+          "seeds": [
+            0,
+            1,
+            2
+          ],
+          "files": [
+            "outputs/stage5/refcoco_aux/grid/clip_dinov2_5pct_seed0/evaluation_best.json",
+            "outputs/stage5/refcoco_aux/grid/clip_dinov2_5pct_seed1/evaluation_best.json",
+            "outputs/stage5/refcoco_aux/grid/clip_dinov2_5pct_seed2/evaluation_best.json"
+          ],
+          "metrics": {
+            "F1_score": {
+              "values": [
+                0.15737493077349085,
+                0.08860993169651099,
+                0.08011814657559535
+              ],
+              "mean": 0.10870100301519907,
+              "sample_std": 0.042366154371142856
+            },
+            "T_acc": {
+              "values": [
+                0.5099686173158575,
+                0.29324349270814104,
+                0.3257338009968617
+              ],
+              "mean": 0.3763153036736201,
+              "sample_std": 0.11688161197911648
+            },
+            "mean_f1": {
+              "values": [
+                0.16906651898344757,
+                0.09802473693926513,
+                0.09488646852501358
+              ],
+              "mean": 0.12065924148257542,
+              "sample_std": 0.041951288042738386
+            },
+            "localization_accuracy": {
+              "values": [
+                0.17491231308842534,
+                0.10273213956064242,
+                0.1022706294997231
+              ],
+              "mean": 0.1266383607162636,
+              "sample_std": 0.041807105928375214
+            },
+            "cardinality_accuracy": {
+              "values": [
+                0.46603285951633744,
+                0.25189219124976925,
+                0.26509137899206203
+              ],
+              "mean": 0.3276721432527229,
+              "sample_std": 0.12000550192803415
+            }
+          }
+        },
+        "last": {
+          "seeds": [
+            0,
+            1,
+            2
+          ],
+          "files": [
+            "outputs/stage5/refcoco_aux/grid/clip_dinov2_5pct_seed0/evaluation_last.json",
+            "outputs/stage5/refcoco_aux/grid/clip_dinov2_5pct_seed1/evaluation_last.json",
+            "outputs/stage5/refcoco_aux/grid/clip_dinov2_5pct_seed2/evaluation_last.json"
+          ],
+          "metrics": {
+            "F1_score": {
+              "values": [
+                0.2828133653313642,
+                0.28650544581871884,
+                0.28927450618423484
+              ],
+              "mean": 0.2861977724447726,
+              "sample_std": 0.0032415401368693663
+            },
+            "T_acc": {
+              "values": [
+                0.888683773306258,
+                0.8681004245892561,
+                0.8951449141591287
+              ],
+              "mean": 0.8839763706848809,
+              "sample_std": 0.014123414374843924
+            },
+            "mean_f1": {
+              "values": [
+                0.2969048058581003,
+                0.30293520398744594,
+                0.3016385804829588
+              ],
+              "mean": 0.300492863442835,
+              "sample_std": 0.003174259921875698
+            },
+            "localization_accuracy": {
+              "values": [
+                0.30395052612146944,
+                0.31115008307181097,
+                0.30791951264537565
+              ],
+              "mean": 0.3076733739462187,
+              "sample_std": 0.003606084201002487
+            },
+            "cardinality_accuracy": {
+              "values": [
+                0.8360716263614547,
+                0.8085656267306627,
+                0.8501015322134022
+              ],
+              "mean": 0.8315795951018399,
+              "sample_std": 0.02112916514431619
+            }
+          }
+        }
+      },
+      "paired_delta_last_minus_best": {
+        "F1_score": {
+          "values": [
+            0.12543843455787335,
+            0.19789551412220785,
+            0.20915635960863949
+          ],
+          "mean": 0.17749676942957357,
+          "sample_std": 0.045434065770937566
+        },
+        "T_acc": {
+          "values": [
+            0.3787151559904005,
+            0.574856931881115,
+            0.569411113162267
+          ],
+          "mean": 0.5076610670112608,
+          "sample_std": 0.11170362667402235
+        },
+        "mean_f1": {
+          "values": [
+            0.12783828687465273,
+            0.20491046704818083,
+            0.20675211195794518
+          ],
+          "mean": 0.1798336219602596,
+          "sample_std": 0.04503869521857643
+        },
+        "localization_accuracy": {
+          "values": [
+            0.1290382130330441,
+            0.20841794351116855,
+            0.20564888314565255
+          ],
+          "mean": 0.18103501322995508,
+          "sample_std": 0.04505182956179558
+        },
+        "cardinality_accuracy": {
+          "values": [
+            0.3700387668451173,
+            0.5566734354808934,
+            0.5850101532213402
+          ],
+          "mean": 0.503907451849117,
+          "sample_std": 0.11679623714658152
+        }
+      }
+    },
+    {
+      "representation": "clip_dinov2",
+      "percentage": 10,
+      "checkpoints": {
+        "best": {
+          "seeds": [
+            0,
+            1,
+            2
+          ],
+          "files": [
+            "outputs/stage5/refcoco_aux/grid/clip_dinov2_10pct_seed0/evaluation_best.json",
+            "outputs/stage5/refcoco_aux/grid/clip_dinov2_10pct_seed1/evaluation_best.json",
+            "outputs/stage5/refcoco_aux/grid/clip_dinov2_10pct_seed2/evaluation_best.json"
+          ],
+          "metrics": {
+            "F1_score": {
+              "values": [
+                0.03655159682481078,
+                0.10614731401144545,
+                0.00046151006091932806
+              ],
+              "mean": 0.04772014029905852,
+              "sample_std": 0.05372080194551624
+            },
+            "T_acc": {
+              "values": [
+                0.20712571534059443,
+                0.35730108916374376,
+                0.0402436773121654
+              ],
+              "mean": 0.20155682727216787,
+              "sample_std": 0.15860204913002965
+            },
+            "mean_f1": {
+              "values": [
+                0.058150267675835345,
+                0.1199310811642361,
+                0.008584087133099511
+              ],
+              "mean": 0.06222181199105699,
+              "sample_std": 0.055785046157331465
+            },
+            "localization_accuracy": {
+              "values": [
+                0.06894960310134761,
+                0.12682296474063134,
+                0.012645375669189588
+              ],
+              "mean": 0.06947264783705619,
+              "sample_std": 0.05709059154876939
+            },
+            "cardinality_accuracy": {
+              "values": [
+                0.12414620638729924,
+                0.30395052612146944,
+                0.0026767583533321027
+              ],
+              "mean": 0.14359116362070026,
+              "sample_std": 0.15157523068647788
+            }
+          }
+        },
+        "last": {
+          "seeds": [
+            0,
+            1,
+            2
+          ],
+          "files": [
+            "outputs/stage5/refcoco_aux/grid/clip_dinov2_10pct_seed0/evaluation_last.json",
+            "outputs/stage5/refcoco_aux/grid/clip_dinov2_10pct_seed1/evaluation_last.json",
+            "outputs/stage5/refcoco_aux/grid/clip_dinov2_10pct_seed2/evaluation_last.json"
+          ],
+          "metrics": {
+            "F1_score": {
+              "values": [
+                0.33671774044674174,
+                0.334502492154329,
+                0.3392098947757061
+              ],
+              "mean": 0.3368100424589256,
+              "sample_std": 0.002355058302044133
+            },
+            "T_acc": {
+              "values": [
+                0.9213586856193465,
+                0.9688019198818534,
+                0.9194203433634853
+              ],
+              "mean": 0.9365269829548951,
+              "sample_std": 0.027967712775709183
+            },
+            "mean_f1": {
+              "values": [
+                0.3500461510060912,
+                0.3516937419235727,
+                0.34906159620946337
+              ],
+              "mean": 0.3502671630463758,
+              "sample_std": 0.0013299182330275502
+            },
+            "localization_accuracy": {
+              "values": [
+                0.35683957910282443,
+                0.3604393575779952,
+                0.35416282074949235
+              ],
+              "mean": 0.35714725247677065,
+              "sample_std": 0.003149559622973477
+            },
+            "cardinality_accuracy": {
+              "values": [
+                0.8775152298320104,
+                0.9118515783644083,
+                0.8871146390991324
+              ],
+              "mean": 0.8921604824318503,
+              "sample_std": 0.01771557531773462
+            }
+          }
+        }
+      },
+      "paired_delta_last_minus_best": {
+        "F1_score": {
+          "values": [
+            0.30016614362193095,
+            0.22835517814288353,
+            0.3387483847147868
+          ],
+          "mean": 0.2890899021598671,
+          "sample_std": 0.05602389988211445
+        },
+        "T_acc": {
+          "values": [
+            0.7142329702787521,
+            0.6115008307181096,
+            0.8791766660513199
+          ],
+          "mean": 0.7349701556827272,
+          "sample_std": 0.13503744424859396
+        },
+        "mean_f1": {
+          "values": [
+            0.29189588333025585,
+            0.2317626607593366,
+            0.34047750907636387
+          ],
+          "mean": 0.28804535105531875,
+          "sample_std": 0.054459613570505716
+        },
+        "localization_accuracy": {
+          "values": [
+            0.2878899760014768,
+            0.23361639283736388,
+            0.34151744508030274
+          ],
+          "mean": 0.2876746046397145,
+          "sample_std": 0.05395084853272426
+        },
+        "cardinality_accuracy": {
+          "values": [
+            0.7533690234447111,
+            0.6079010522429389,
+            0.8844378807458002
+          ],
+          "mean": 0.7485693188111501,
+          "sample_std": 0.1383308796076722
+        }
+      }
+    }
+  ],
+  "composite_validation_suite": {
+    "definition": "gRefCOCO current val supplies no-target and multi-target; RefCOCO UNC val supplies single-target; target types are macro-averaged with equal weight",
+    "rows": [
+      {
+        "representation": "siglip2",
+        "percentage": 1,
+        "checkpoints": {
+          "best": {
+            "seeds": [
+              0,
+              1,
+              2
+            ],
+            "target_type_macro_mean_f1": {
+              "values": [
+                0.449970886905397,
+                0.433473131334882,
+                0.42862626109880114
+              ],
+              "mean": 0.4373567597796934,
+              "sample_std": 0.011189735927577127
+            },
+            "target_type_macro_exact_accuracy": {
+              "values": [
+                0.371958240227529,
+                0.3579584106549179,
+                0.35958872721254337
+              ],
+              "mean": 0.36316845936499675,
+              "sample_std": 0.0076556951825435425
+            },
+            "target_type_macro_cardinality_accuracy": {
+              "values": [
+                0.6038014658724076,
+                0.5869215962296737,
+                0.575591732471747
+              ],
+              "mean": 0.5887715981912761,
+              "sample_std": 0.014195567796940558
+            },
+            "records": [
+              {
+                "seed": 0,
+                "gref_file": "outputs/stage5/grid/siglip2_1pct_seed0/evaluation_val.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/siglip2_1pct_seed0/evaluation_best.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.920157215047726,
+                    "exact_accuracy": 0.920157215047726,
+                    "cardinality_accuracy": 0.920157215047726
+                  },
+                  "single-target": {
+                    "mean_f1": 0.007691834348655471,
+                    "exact_accuracy": 0.0,
+                    "cardinality_accuracy": 0.0
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.42206361131980963,
+                    "exact_accuracy": 0.195717505634861,
+                    "cardinality_accuracy": 0.8912471825694966
+                  }
+                },
+                "target_type_macro_mean_f1": 0.449970886905397,
+                "target_type_macro_exact_accuracy": 0.371958240227529,
+                "target_type_macro_cardinality_accuracy": 0.6038014658724076
+              },
+              {
+                "seed": 1,
+                "gref_file": "outputs/stage5/grid/siglip2_1pct_seed1/evaluation_val.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/siglip2_1pct_seed1/evaluation_best.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.8993823694553622,
+                    "exact_accuracy": 0.8993823694553622,
+                    "cardinality_accuracy": 0.8993823694553622
+                  },
+                  "single-target": {
+                    "mean_f1": 0.012676143006584229,
+                    "exact_accuracy": 0.0,
+                    "cardinality_accuracy": 0.0
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.3883608815426997,
+                    "exact_accuracy": 0.17449286250939144,
+                    "cardinality_accuracy": 0.8613824192336589
+                  }
+                },
+                "target_type_macro_mean_f1": 0.433473131334882,
+                "target_type_macro_exact_accuracy": 0.3579584106549179,
+                "target_type_macro_cardinality_accuracy": 0.5869215962296737
+              },
+              {
+                "seed": 2,
+                "gref_file": "outputs/stage5/grid/siglip2_1pct_seed2/evaluation_val.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/siglip2_1pct_seed2/evaluation_best.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.9183604716451432,
+                    "exact_accuracy": 0.9183604716451432,
+                    "cardinality_accuracy": 0.9183604716451432
+                  },
+                  "single-target": {
+                    "mean_f1": 0.007876438373023204,
+                    "exact_accuracy": 0.0,
+                    "cardinality_accuracy": 0.0
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.35964187327823693,
+                    "exact_accuracy": 0.16040570999248685,
+                    "cardinality_accuracy": 0.8084147257700977
+                  }
+                },
+                "target_type_macro_mean_f1": 0.42862626109880114,
+                "target_type_macro_exact_accuracy": 0.35958872721254337,
+                "target_type_macro_cardinality_accuracy": 0.575591732471747
+              }
+            ]
+          },
+          "last": {
+            "seeds": [
+              0,
+              1,
+              2
+            ],
+            "target_type_macro_mean_f1": {
+              "values": [
+                0.4064890203675518,
+                0.408661465296622,
+                0.3569239279885879
+              ],
+              "mean": 0.39069147121758724,
+              "sample_std": 0.029263716630568554
+            },
+            "target_type_macro_exact_accuracy": {
+              "values": [
+                0.3126485945316634,
+                0.3182747308731699,
+                0.2615834355049956
+              ],
+              "mean": 0.2975022536366096,
+              "sample_std": 0.031233547261114592
+            },
+            "target_type_macro_cardinality_accuracy": {
+              "values": [
+                0.7125874921252507,
+                0.7016297562195845,
+                0.6841038134915598
+              ],
+              "mean": 0.699440353945465,
+              "sample_std": 0.014367501483044472
+            },
+            "records": [
+              {
+                "seed": 0,
+                "gref_file": "outputs/stage5/refcoco_aux/grid/siglip2_1pct_seed0/evaluation_gref_val_last.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/siglip2_1pct_seed0/evaluation_last.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.4434587310499719,
+                    "exact_accuracy": 0.4434587310499719,
+                    "cardinality_accuracy": 0.4434587310499719
+                  },
+                  "single-target": {
+                    "mean_f1": 0.27939819088056084,
+                    "exact_accuracy": 0.26721432527229094,
+                    "cardinality_accuracy": 0.7583533321026399
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.4966101391721226,
+                    "exact_accuracy": 0.22727272727272727,
+                    "cardinality_accuracy": 0.9359504132231405
+                  }
+                },
+                "target_type_macro_mean_f1": 0.4064890203675518,
+                "target_type_macro_exact_accuracy": 0.3126485945316634,
+                "target_type_macro_cardinality_accuracy": 0.7125874921252507
+              },
+              {
+                "seed": 1,
+                "gref_file": "outputs/stage5/refcoco_aux/grid/siglip2_1pct_seed1/evaluation_gref_val_last.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/siglip2_1pct_seed1/evaluation_last.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.4870297585626053,
+                    "exact_accuracy": 0.4870297585626053,
+                    "cardinality_accuracy": 0.4870297585626053
+                  },
+                  "single-target": {
+                    "mean_f1": 0.2554612023875451,
+                    "exact_accuracy": 0.2469078825918405,
+                    "cardinality_accuracy": 0.7206018091194388
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.4834934349397157,
+                    "exact_accuracy": 0.22088655146506386,
+                    "cardinality_accuracy": 0.8972577009767092
+                  }
+                },
+                "target_type_macro_mean_f1": 0.408661465296622,
+                "target_type_macro_exact_accuracy": 0.3182747308731699,
+                "target_type_macro_cardinality_accuracy": 0.7016297562195845
+              },
+              {
+                "seed": 2,
+                "gref_file": "outputs/stage5/refcoco_aux/grid/siglip2_1pct_seed2/evaluation_gref_val_last.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/siglip2_1pct_seed2/evaluation_last.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.26558113419427287,
+                    "exact_accuracy": 0.26558113419427287,
+                    "cardinality_accuracy": 0.26558113419427287
+                  },
+                  "single-target": {
+                    "mean_f1": 0.3071503292105095,
+                    "exact_accuracy": 0.29508953295181833,
+                    "cardinality_accuracy": 0.848901606055012
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.49804032056098135,
+                    "exact_accuracy": 0.22407963936889558,
+                    "cardinality_accuracy": 0.9378287002253944
+                  }
+                },
+                "target_type_macro_mean_f1": 0.3569239279885879,
+                "target_type_macro_exact_accuracy": 0.2615834355049956,
+                "target_type_macro_cardinality_accuracy": 0.6841038134915598
+              }
+            ]
+          }
+        },
+        "paired_delta_last_minus_best": {
+          "target_type_macro_mean_f1": {
+            "values": [
+              -0.04348186653784519,
+              -0.024811666038260016,
+              -0.07170233311021323
+            ],
+            "mean": -0.046665288562106146,
+            "sample_std": 0.023606869687690525
+          },
+          "target_type_macro_exact_accuracy": {
+            "values": [
+              -0.05930964569586561,
+              -0.03968367978174803,
+              -0.09800529170754779
+            ],
+            "mean": -0.06566620572838715,
+            "sample_std": 0.029675865547464406
+          },
+          "target_type_macro_cardinality_accuracy": {
+            "values": [
+              0.10878602625284317,
+              0.1147081599899108,
+              0.1085120810198128
+            ],
+            "mean": 0.11066875575418893,
+            "sample_std": 0.003500907229897827
+          }
+        }
+      },
+      {
+        "representation": "siglip2",
+        "percentage": 5,
+        "checkpoints": {
+          "best": {
+            "seeds": [
+              0,
+              1,
+              2
+            ],
+            "target_type_macro_mean_f1": {
+              "values": [
+                0.43742051240875374,
+                0.4815254912350925,
+                0.4792630078885509
+              ],
+              "mean": 0.46606967051079906,
+              "sample_std": 0.024836674549752743
+            },
+            "target_type_macro_exact_accuracy": {
+              "values": [
+                0.3689382865832163,
+                0.3915720155418581,
+                0.3886369529822687
+              ],
+              "mean": 0.38304908503578106,
+              "sample_std": 0.01230811207228197
+            },
+            "target_type_macro_cardinality_accuracy": {
+              "values": [
+                0.5794316499691416,
+                0.6743294055858436,
+                0.7179857658692846
+              ],
+              "mean": 0.6572489404747567,
+              "sample_std": 0.0708386721680034
+            },
+            "records": [
+              {
+                "seed": 0,
+                "gref_file": "outputs/stage5/grid/siglip2_5pct_seed0/evaluation_val.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/siglip2_5pct_seed0/evaluation_best.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.9325098259404829,
+                    "exact_accuracy": 0.9325098259404829,
+                    "cardinality_accuracy": 0.9325098259404829
+                  },
+                  "single-target": {
+                    "mean_f1": 0.006830348901606053,
+                    "exact_accuracy": 0.0,
+                    "cardinality_accuracy": 0.0
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.3729213623841723,
+                    "exact_accuracy": 0.17430503380916604,
+                    "cardinality_accuracy": 0.8057851239669421
+                  }
+                },
+                "target_type_macro_mean_f1": 0.43742051240875374,
+                "target_type_macro_exact_accuracy": 0.3689382865832163,
+                "target_type_macro_cardinality_accuracy": 0.5794316499691416
+              },
+              {
+                "seed": 1,
+                "gref_file": "outputs/stage5/grid/siglip2_5pct_seed1/evaluation_val.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/siglip2_5pct_seed1/evaluation_best.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.8262773722627738,
+                    "exact_accuracy": 0.8262773722627738,
+                    "cardinality_accuracy": 0.8262773722627738
+                  },
+                  "single-target": {
+                    "mean_f1": 0.12057719524952318,
+                    "exact_accuracy": 0.11196234077902899,
+                    "cardinality_accuracy": 0.2710910097840133
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.4977219061929805,
+                    "exact_accuracy": 0.2364763335837716,
+                    "cardinality_accuracy": 0.9256198347107438
+                  }
+                },
+                "target_type_macro_mean_f1": 0.4815254912350925,
+                "target_type_macro_exact_accuracy": 0.3915720155418581,
+                "target_type_macro_cardinality_accuracy": 0.6743294055858436
+              },
+              {
+                "seed": 2,
+                "gref_file": "outputs/stage5/grid/siglip2_5pct_seed2/evaluation_val.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/siglip2_5pct_seed2/evaluation_best.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.7175743964065132,
+                    "exact_accuracy": 0.7175743964065132,
+                    "cardinality_accuracy": 0.7175743964065132
+                  },
+                  "single-target": {
+                    "mean_f1": 0.2166020552581381,
+                    "exact_accuracy": 0.20491046704818164,
+                    "cardinality_accuracy": 0.5021229462802289
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.5036125720010015,
+                    "exact_accuracy": 0.2434259954921112,
+                    "cardinality_accuracy": 0.9342599549211119
+                  }
+                },
+                "target_type_macro_mean_f1": 0.4792630078885509,
+                "target_type_macro_exact_accuracy": 0.3886369529822687,
+                "target_type_macro_cardinality_accuracy": 0.7179857658692846
+              }
+            ]
+          },
+          "last": {
+            "seeds": [
+              0,
+              1,
+              2
+            ],
+            "target_type_macro_mean_f1": {
+              "values": [
+                0.49422700965298205,
+                0.5254969747386165,
+                0.5082499357150396
+              ],
+              "mean": 0.509324640035546,
+              "sample_std": 0.01566266009165062
+            },
+            "target_type_macro_exact_accuracy": {
+              "values": [
+                0.39515219926232653,
+                0.4272034133545151,
+                0.4099808241967551
+              ],
+              "mean": 0.4107788122711989,
+              "sample_std": 0.016040500924878968
+            },
+            "target_type_macro_cardinality_accuracy": {
+              "values": [
+                0.783077988814386,
+                0.7930151387012672,
+                0.7917831045488258
+              ],
+              "mean": 0.7892920773548263,
+              "sample_std": 0.005416700963641953
+            },
+            "records": [
+              {
+                "seed": 0,
+                "gref_file": "outputs/stage5/refcoco_aux/grid/siglip2_5pct_seed0/evaluation_gref_val_last.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/siglip2_5pct_seed0/evaluation_last.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.4802919708029197,
+                    "exact_accuracy": 0.4802919708029197,
+                    "cardinality_accuracy": 0.4802919708029197
+                  },
+                  "single-target": {
+                    "mean_f1": 0.43532705679650474,
+                    "exact_accuracy": 0.42154328964371424,
+                    "cardinality_accuracy": 0.9059442495846409
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.5670620013595217,
+                    "exact_accuracy": 0.2836213373403456,
+                    "cardinality_accuracy": 0.9629977460555973
+                  }
+                },
+                "target_type_macro_mean_f1": 0.49422700965298205,
+                "target_type_macro_exact_accuracy": 0.39515219926232653,
+                "target_type_macro_cardinality_accuracy": 0.783077988814386
+              },
+              {
+                "seed": 1,
+                "gref_file": "outputs/stage5/refcoco_aux/grid/siglip2_5pct_seed1/evaluation_gref_val_last.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/siglip2_5pct_seed1/evaluation_last.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.6094329028635598,
+                    "exact_accuracy": 0.6094329028635598,
+                    "cardinality_accuracy": 0.6094329028635598
+                  },
+                  "single-target": {
+                    "mean_f1": 0.40029844317272706,
+                    "exact_accuracy": 0.39062211556211923,
+                    "cardinality_accuracy": 0.8342255861177774
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.5667595781795624,
+                    "exact_accuracy": 0.2815552216378663,
+                    "cardinality_accuracy": 0.9353869271224643
+                  }
+                },
+                "target_type_macro_mean_f1": 0.5254969747386165,
+                "target_type_macro_exact_accuracy": 0.4272034133545151,
+                "target_type_macro_cardinality_accuracy": 0.7930151387012672
+              },
+              {
+                "seed": 2,
+                "gref_file": "outputs/stage5/refcoco_aux/grid/siglip2_5pct_seed2/evaluation_gref_val_last.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/siglip2_5pct_seed2/evaluation_last.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.522515440763616,
+                    "exact_accuracy": 0.522515440763616,
+                    "cardinality_accuracy": 0.522515440763616
+                  },
+                  "single-target": {
+                    "mean_f1": 0.4368319803461349,
+                    "exact_accuracy": 0.4264352962894591,
+                    "cardinality_accuracy": 0.9033597932434927
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.565402386035368,
+                    "exact_accuracy": 0.2809917355371901,
+                    "cardinality_accuracy": 0.9494740796393689
+                  }
+                },
+                "target_type_macro_mean_f1": 0.5082499357150396,
+                "target_type_macro_exact_accuracy": 0.4099808241967551,
+                "target_type_macro_cardinality_accuracy": 0.7917831045488258
+              }
+            ]
+          }
+        },
+        "paired_delta_last_minus_best": {
+          "target_type_macro_mean_f1": {
+            "values": [
+              0.056806497244228316,
+              0.04397148350352398,
+              0.028986927826488706
+            ],
+            "mean": 0.043254969524747,
+            "sample_std": 0.01392361859785183
+          },
+          "target_type_macro_exact_accuracy": {
+            "values": [
+              0.02621391267911022,
+              0.035631397812657006,
+              0.021343871214486387
+            ],
+            "mean": 0.027729727235417872,
+            "sample_std": 0.007263375551366861
+          },
+          "target_type_macro_cardinality_accuracy": {
+            "values": [
+              0.2036463388452443,
+              0.11868573311542352,
+              0.07379733867954119
+            ],
+            "mean": 0.13204313688006966,
+            "sample_std": 0.0659469930133818
+          }
+        }
+      },
+      {
+        "representation": "siglip2",
+        "percentage": 10,
+        "checkpoints": {
+          "best": {
+            "seeds": [
+              0,
+              1,
+              2
+            ],
+            "target_type_macro_mean_f1": {
+              "values": [
+                0.4688348072362223,
+                0.5356205625609598,
+                0.47040663393110344
+              ],
+              "mean": 0.4916206679094285,
+              "sample_std": 0.03811313037260354
+            },
+            "target_type_macro_exact_accuracy": {
+              "values": [
+                0.3868226355450175,
+                0.4444222677616281,
+                0.3867686118790054
+              ],
+              "mean": 0.4060045050618837,
+              "sample_std": 0.03327076941971026
+            },
+            "target_type_macro_cardinality_accuracy": {
+              "values": [
+                0.6715463034776525,
+                0.7744787178507424,
+                0.6679215349771668
+              ],
+              "mean": 0.7046488521018539,
+              "sample_std": 0.06050158964482976
+            },
+            "records": [
+              {
+                "seed": 0,
+                "gref_file": "outputs/stage5/grid/siglip2_10pct_seed0/evaluation_val.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/siglip2_10pct_seed0/evaluation_best.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.7998877035373386,
+                    "exact_accuracy": 0.7998877035373386,
+                    "cardinality_accuracy": 0.7998877035373386
+                  },
+                  "single-target": {
+                    "mean_f1": 0.14737554612023884,
+                    "exact_accuracy": 0.14269891083625624,
+                    "cardinality_accuracy": 0.3458556396529444
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.45924117205108933,
+                    "exact_accuracy": 0.21788129226145755,
+                    "cardinality_accuracy": 0.8688955672426747
+                  }
+                },
+                "target_type_macro_mean_f1": 0.4688348072362223,
+                "target_type_macro_exact_accuracy": 0.3868226355450175,
+                "target_type_macro_cardinality_accuracy": 0.6715463034776525
+              },
+              {
+                "seed": 1,
+                "gref_file": "outputs/stage5/grid/siglip2_10pct_seed1/evaluation_val.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/siglip2_10pct_seed1/evaluation_best.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.7914654688377316,
+                    "exact_accuracy": 0.7914654688377316,
+                    "cardinality_accuracy": 0.7914654688377316
+                  },
+                  "single-target": {
+                    "mean_f1": 0.2851209156359606,
+                    "exact_accuracy": 0.27902898283182576,
+                    "cardinality_accuracy": 0.6213771460217833
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.530275303209187,
+                    "exact_accuracy": 0.2627723516153268,
+                    "cardinality_accuracy": 0.9105935386927122
+                  }
+                },
+                "target_type_macro_mean_f1": 0.5356205625609598,
+                "target_type_macro_exact_accuracy": 0.4444222677616281,
+                "target_type_macro_cardinality_accuracy": 0.7744787178507424
+              },
+              {
+                "seed": 2,
+                "gref_file": "outputs/stage5/grid/siglip2_10pct_seed2/evaluation_val.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/siglip2_10pct_seed2/evaluation_best.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.8432341381246491,
+                    "exact_accuracy": 0.8432341381246491,
+                    "cardinality_accuracy": 0.8432341381246491
+                  },
+                  "single-target": {
+                    "mean_f1": 0.1040551350686111,
+                    "exact_accuracy": 0.0958094886468525,
+                    "cardinality_accuracy": 0.24016983570241832
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.4639306286000501,
+                    "exact_accuracy": 0.22126220886551465,
+                    "cardinality_accuracy": 0.9203606311044328
+                  }
+                },
+                "target_type_macro_mean_f1": 0.47040663393110344,
+                "target_type_macro_exact_accuracy": 0.3867686118790054,
+                "target_type_macro_cardinality_accuracy": 0.6679215349771668
+              }
+            ]
+          },
+          "last": {
+            "seeds": [
+              0,
+              1,
+              2
+            ],
+            "target_type_macro_mean_f1": {
+              "values": [
+                0.569152374313711,
+                0.5402551644632325,
+                0.5508845446995335
+              ],
+              "mean": 0.553430694492159,
+              "sample_std": 0.014615893519060444
+            },
+            "target_type_macro_exact_accuracy": {
+              "values": [
+                0.47119923410949993,
+                0.44083201425180707,
+                0.4523563441860993
+              ],
+              "mean": 0.45479586418246876,
+              "sample_std": 0.015329887600073222
+            },
+            "target_type_macro_cardinality_accuracy": {
+              "values": [
+                0.8327095770434908,
+                0.8133092370601729,
+                0.8215571807432995
+              ],
+              "mean": 0.8225253316156544,
+              "sample_std": 0.00973633837491344
+            },
+            "records": [
+              {
+                "seed": 0,
+                "gref_file": "outputs/stage5/refcoco_aux/grid/siglip2_10pct_seed0/evaluation_gref_val_last.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/siglip2_10pct_seed0/evaluation_last.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.6704098820887142,
+                    "exact_accuracy": 0.6704098820887142,
+                    "cardinality_accuracy": 0.6704098820887142
+                  },
+                  "single-target": {
+                    "mean_f1": 0.46205640092477845,
+                    "exact_accuracy": 0.45449510799335424,
+                    "cardinality_accuracy": 0.8895144914159129
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.5749908399276404,
+                    "exact_accuracy": 0.2886927122464313,
+                    "cardinality_accuracy": 0.9382043576258452
+                  }
+                },
+                "target_type_macro_mean_f1": 0.569152374313711,
+                "target_type_macro_exact_accuracy": 0.47119923410949993,
+                "target_type_macro_cardinality_accuracy": 0.8327095770434908
+              },
+              {
+                "seed": 1,
+                "gref_file": "outputs/stage5/refcoco_aux/grid/siglip2_10pct_seed1/evaluation_gref_val_last.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/siglip2_10pct_seed1/evaluation_last.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.5501403705783268,
+                    "exact_accuracy": 0.5501403705783268,
+                    "cardinality_accuracy": 0.5501403705783268
+                  },
+                  "single-target": {
+                    "mean_f1": 0.4824387363708029,
+                    "exact_accuracy": 0.4675096917112793,
+                    "cardinality_accuracy": 0.9222817057411852
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.5881863864405679,
+                    "exact_accuracy": 0.3048459804658152,
+                    "cardinality_accuracy": 0.9675056348610067
+                  }
+                },
+                "target_type_macro_mean_f1": 0.5402551644632325,
+                "target_type_macro_exact_accuracy": 0.44083201425180707,
+                "target_type_macro_cardinality_accuracy": 0.8133092370601729
+              },
+              {
+                "seed": 2,
+                "gref_file": "outputs/stage5/refcoco_aux/grid/siglip2_10pct_seed2/evaluation_gref_val_last.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/siglip2_10pct_seed2/evaluation_last.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.586299831555306,
+                    "exact_accuracy": 0.586299831555306,
+                    "cardinality_accuracy": 0.586299831555306
+                  },
+                  "single-target": {
+                    "mean_f1": 0.482799739796233,
+                    "exact_accuracy": 0.4723093963448403,
+                    "cardinality_accuracy": 0.9198818534244046
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.5835540627470617,
+                    "exact_accuracy": 0.29845980465815175,
+                    "cardinality_accuracy": 0.9584898572501879
+                  }
+                },
+                "target_type_macro_mean_f1": 0.5508845446995335,
+                "target_type_macro_exact_accuracy": 0.4523563441860993,
+                "target_type_macro_cardinality_accuracy": 0.8215571807432995
+              }
+            ]
+          }
+        },
+        "paired_delta_last_minus_best": {
+          "target_type_macro_mean_f1": {
+            "values": [
+              0.10031756707748873,
+              0.004634601902272717,
+              0.08047791076843008
+            ],
+            "mean": 0.061810026582730514,
+            "sample_std": 0.05049925624361629
+          },
+          "target_type_macro_exact_accuracy": {
+            "values": [
+              0.08437659856448243,
+              -0.0035902535098210064,
+              0.06558773230709392
+            ],
+            "mean": 0.04879135912058511,
+            "sample_std": 0.046326346501002535
+          },
+          "target_type_macro_cardinality_accuracy": {
+            "values": [
+              0.16116327356583826,
+              0.03883051920943048,
+              0.15363564576613276
+            ],
+            "mean": 0.1178764795138005,
+            "sample_std": 0.06855920197466388
+          }
+        }
+      },
+      {
+        "representation": "clip",
+        "percentage": 1,
+        "checkpoints": {
+          "best": {
+            "seeds": [
+              0,
+              1,
+              2
+            ],
+            "target_type_macro_mean_f1": {
+              "values": [
+                0.41568613466375465,
+                0.42627686078450033,
+                0.36076443772127437
+              ],
+              "mean": 0.4009091443898431,
+              "sample_std": 0.035167299797826845
+            },
+            "target_type_macro_exact_accuracy": {
+              "values": [
+                0.35777508168773176,
+                0.3445581415311294,
+                0.3417838249502604
+              ],
+              "mean": 0.34803901605637383,
+              "sample_std": 0.008545024201621823
+            },
+            "target_type_macro_cardinality_accuracy": {
+              "values": [
+                0.5249426248883328,
+                0.5923077916595779,
+                0.39199669747718247
+              ],
+              "mean": 0.5030823713416978,
+              "sample_std": 0.10192907645505037
+            },
+            "records": [
+              {
+                "seed": 0,
+                "gref_file": "outputs/stage5/grid/clip_1pct_seed0/evaluation_val.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_1pct_seed0/evaluation_best.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.9482313307130825,
+                    "exact_accuracy": 0.9482313307130825,
+                    "cardinality_accuracy": 0.9482313307130825
+                  },
+                  "single-target": {
+                    "mean_f1": 0.00621500215371361,
+                    "exact_accuracy": 0.0,
+                    "cardinality_accuracy": 0.0
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.29261207112446785,
+                    "exact_accuracy": 0.1250939143501127,
+                    "cardinality_accuracy": 0.6265965439519159
+                  }
+                },
+                "target_type_macro_mean_f1": 0.41568613466375465,
+                "target_type_macro_exact_accuracy": 0.35777508168773176,
+                "target_type_macro_cardinality_accuracy": 0.5249426248883328
+              },
+              {
+                "seed": 1,
+                "gref_file": "outputs/stage5/grid/clip_1pct_seed1/evaluation_val.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_1pct_seed1/evaluation_best.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.8001122964626615,
+                    "exact_accuracy": 0.8001122964626615,
+                    "cardinality_accuracy": 0.8001122964626615
+                  },
+                  "single-target": {
+                    "mean_f1": 0.06276536828502856,
+                    "exact_accuracy": 0.04855085840871331,
+                    "cardinality_accuracy": 0.17158944064980616
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.41595291760581093,
+                    "exact_accuracy": 0.1850112697220135,
+                    "cardinality_accuracy": 0.805221637866266
+                  }
+                },
+                "target_type_macro_mean_f1": 0.42627686078450033,
+                "target_type_macro_exact_accuracy": 0.3445581415311294,
+                "target_type_macro_cardinality_accuracy": 0.5923077916595779
+              },
+              {
+                "seed": 2,
+                "gref_file": "outputs/stage5/grid/clip_1pct_seed2/evaluation_val.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_1pct_seed2/evaluation_best.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.9804604154969119,
+                    "exact_accuracy": 0.9804604154969119,
+                    "cardinality_accuracy": 0.9804604154969119
+                  },
+                  "single-target": {
+                    "mean_f1": 0.005107378007507225,
+                    "exact_accuracy": 0.0,
+                    "cardinality_accuracy": 0.0
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.09672551965940396,
+                    "exact_accuracy": 0.04489105935386927,
+                    "cardinality_accuracy": 0.1955296769346356
+                  }
+                },
+                "target_type_macro_mean_f1": 0.36076443772127437,
+                "target_type_macro_exact_accuracy": 0.3417838249502604,
+                "target_type_macro_cardinality_accuracy": 0.39199669747718247
+              }
+            ]
+          },
+          "last": {
+            "seeds": [
+              0,
+              1,
+              2
+            ],
+            "target_type_macro_mean_f1": {
+              "values": [
+                0.3589805685382206,
+                0.4047270069465096,
+                0.32850395228710394
+              ],
+              "mean": 0.364070509257278,
+              "sample_std": 0.038365598363577294
+            },
+            "target_type_macro_exact_accuracy": {
+              "values": [
+                0.2668471454793132,
+                0.31691443395306246,
+                0.2300604043102532
+              ],
+              "mean": 0.2712739945808763,
+              "sample_std": 0.043595909911647725
+            },
+            "target_type_macro_cardinality_accuracy": {
+              "values": [
+                0.6411695994728974,
+                0.6408460341167419,
+                0.6299235278001745
+              ],
+              "mean": 0.6373130537966046,
+              "sample_std": 0.006401561877687628
+            },
+            "records": [
+              {
+                "seed": 0,
+                "gref_file": "outputs/stage5/refcoco_aux/grid/clip_1pct_seed0/evaluation_gref_val_last.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_1pct_seed0/evaluation_last.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.42156092083099383,
+                    "exact_accuracy": 0.42156092083099383,
+                    "cardinality_accuracy": 0.42156092083099383
+                  },
+                  "single-target": {
+                    "mean_f1": 0.21761737739216058,
+                    "exact_accuracy": 0.20223370869484955,
+                    "cardinality_accuracy": 0.6734354808934835
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.43776340739150726,
+                    "exact_accuracy": 0.17674680691209615,
+                    "cardinality_accuracy": 0.8285123966942148
+                  }
+                },
+                "target_type_macro_mean_f1": 0.3589805685382206,
+                "target_type_macro_exact_accuracy": 0.2668471454793132,
+                "target_type_macro_cardinality_accuracy": 0.6411695994728974
+              },
+              {
+                "seed": 1,
+                "gref_file": "outputs/stage5/refcoco_aux/grid/clip_1pct_seed1/evaluation_gref_val_last.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_1pct_seed1/evaluation_last.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.6120157215047726,
+                    "exact_accuracy": 0.6120157215047726,
+                    "cardinality_accuracy": 0.6120157215047726
+                  },
+                  "single-target": {
+                    "mean_f1": 0.16349763091502115,
+                    "exact_accuracy": 0.14639099132361086,
+                    "cardinality_accuracy": 0.4707402621377146
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.43866766841973504,
+                    "exact_accuracy": 0.19233658903080392,
+                    "cardinality_accuracy": 0.8397821187077386
+                  }
+                },
+                "target_type_macro_mean_f1": 0.4047270069465096,
+                "target_type_macro_exact_accuracy": 0.31691443395306246,
+                "target_type_macro_cardinality_accuracy": 0.6408460341167419
+              },
+              {
+                "seed": 2,
+                "gref_file": "outputs/stage5/refcoco_aux/grid/clip_1pct_seed2/evaluation_gref_val_last.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_1pct_seed2/evaluation_last.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.2893879842784952,
+                    "exact_accuracy": 0.2893879842784952,
+                    "cardinality_accuracy": 0.2893879842784952
+                  },
+                  "single-target": {
+                    "mean_f1": 0.23838533013353003,
+                    "exact_accuracy": 0.20620269521875578,
+                    "cardinality_accuracy": 0.6888499169281891
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.4577385424492866,
+                    "exact_accuracy": 0.19459053343350863,
+                    "cardinality_accuracy": 0.9115326821938392
+                  }
+                },
+                "target_type_macro_mean_f1": 0.32850395228710394,
+                "target_type_macro_exact_accuracy": 0.2300604043102532,
+                "target_type_macro_cardinality_accuracy": 0.6299235278001745
+              }
+            ]
+          }
+        },
+        "paired_delta_last_minus_best": {
+          "target_type_macro_mean_f1": {
+            "values": [
+              -0.05670556612553407,
+              -0.02154985383799074,
+              -0.03226048543417043
+            ],
+            "mean": -0.03683863513256508,
+            "sample_std": 0.01801945109060802
+          },
+          "target_type_macro_exact_accuracy": {
+            "values": [
+              -0.09092793620841855,
+              -0.027643707578066945,
+              -0.11172342064000718
+            ],
+            "mean": -0.07676502147549756,
+            "sample_std": 0.04379258672930321
+          },
+          "target_type_macro_cardinality_accuracy": {
+            "values": [
+              0.11622697458456466,
+              0.04853824245716398,
+              0.237926830322992
+            ],
+            "mean": 0.13423068245490688,
+            "sample_std": 0.09596931502445759
+          }
+        }
+      },
+      {
+        "representation": "clip",
+        "percentage": 5,
+        "checkpoints": {
+          "best": {
+            "seeds": [
+              0,
+              1,
+              2
+            ],
+            "target_type_macro_mean_f1": {
+              "values": [
+                0.4364596132573096,
+                0.4379267977625046,
+                0.4251157560797853
+              ],
+              "mean": 0.43316738903319985,
+              "sample_std": 0.007011401607771026
+            },
+            "target_type_macro_exact_accuracy": {
+              "values": [
+                0.3532465753588384,
+                0.3650022218751866,
+                0.3467680910078575
+              ],
+              "mean": 0.35500562941396085,
+              "sample_std": 0.009243461770265136
+            },
+            "target_type_macro_cardinality_accuracy": {
+              "values": [
+                0.6616523552539761,
+                0.5998196388788493,
+                0.6311631193944826
+              ],
+              "mean": 0.6308783711757693,
+              "sample_std": 0.030917341650645944
+            },
+            "records": [
+              {
+                "seed": 0,
+                "gref_file": "outputs/stage5/grid/clip_5pct_seed0/evaluation_val.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_5pct_seed0/evaluation_best.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.6868051656372824,
+                    "exact_accuracy": 0.6868051656372824,
+                    "cardinality_accuracy": 0.6868051656372824
+                  },
+                  "single-target": {
+                    "mean_f1": 0.17115869792628174,
+                    "exact_accuracy": 0.16125161528521323,
+                    "cardinality_accuracy": 0.45311057781059627
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.45141497620836457,
+                    "exact_accuracy": 0.21168294515401953,
+                    "cardinality_accuracy": 0.8450413223140496
+                  }
+                },
+                "target_type_macro_mean_f1": 0.4364596132573096,
+                "target_type_macro_exact_accuracy": 0.3532465753588384,
+                "target_type_macro_cardinality_accuracy": 0.6616523552539761
+              },
+              {
+                "seed": 1,
+                "gref_file": "outputs/stage5/grid/clip_5pct_seed1/evaluation_val.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_5pct_seed1/evaluation_best.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.8498596294216733,
+                    "exact_accuracy": 0.8498596294216733,
+                    "cardinality_accuracy": 0.8498596294216733
+                  },
+                  "single-target": {
+                    "mean_f1": 0.070457202633684,
+                    "exact_accuracy": 0.06276536828502861,
+                    "cardinality_accuracy": 0.18100424589256045
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.3934635612321566,
+                    "exact_accuracy": 0.18238166791885801,
+                    "cardinality_accuracy": 0.768595041322314
+                  }
+                },
+                "target_type_macro_mean_f1": 0.4379267977625046,
+                "target_type_macro_exact_accuracy": 0.3650022218751866,
+                "target_type_macro_cardinality_accuracy": 0.5998196388788493
+              },
+              {
+                "seed": 2,
+                "gref_file": "outputs/stage5/grid/clip_5pct_seed2/evaluation_val.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_5pct_seed2/evaluation_best.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.7503649635036497,
+                    "exact_accuracy": 0.7503649635036497,
+                    "cardinality_accuracy": 0.7503649635036497
+                  },
+                  "single-target": {
+                    "mean_f1": 0.11750046151006092,
+                    "exact_accuracy": 0.10605501199926158,
+                    "cardinality_accuracy": 0.33339486800812257
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.40748184322564523,
+                    "exact_accuracy": 0.18388429752066116,
+                    "cardinality_accuracy": 0.8097295266716754
+                  }
+                },
+                "target_type_macro_mean_f1": 0.4251157560797853,
+                "target_type_macro_exact_accuracy": 0.3467680910078575,
+                "target_type_macro_cardinality_accuracy": 0.6311631193944826
+              }
+            ]
+          },
+          "last": {
+            "seeds": [
+              0,
+              1,
+              2
+            ],
+            "target_type_macro_mean_f1": {
+              "values": [
+                0.43704237327871975,
+                0.44524616586472204,
+                0.424537252394013
+              ],
+              "mean": 0.4356085971791516,
+              "sample_std": 0.01042864131668637
+            },
+            "target_type_macro_exact_accuracy": {
+              "values": [
+                0.34082699222146534,
+                0.3480422074492352,
+                0.3282608443874308
+              ],
+              "mean": 0.33904334801937713,
+              "sample_std": 0.010010575464250894
+            },
+            "target_type_macro_cardinality_accuracy": {
+              "values": [
+                0.7315732982570275,
+                0.7355529731278287,
+                0.7290143251534067
+              ],
+              "mean": 0.7320468655127543,
+              "sample_std": 0.0032949474643195523
+            },
+            "records": [
+              {
+                "seed": 0,
+                "gref_file": "outputs/stage5/refcoco_aux/grid/clip_5pct_seed0/evaluation_gref_val_last.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_5pct_seed0/evaluation_last.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.5039865244244807,
+                    "exact_accuracy": 0.5039865244244807,
+                    "cardinality_accuracy": 0.5039865244244807
+                  },
+                  "single-target": {
+                    "mean_f1": 0.29613562242323466,
+                    "exact_accuracy": 0.2799520029536644,
+                    "cardinality_accuracy": 0.7799520029536644
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.5110049729884439,
+                    "exact_accuracy": 0.23854244928625093,
+                    "cardinality_accuracy": 0.9107813673929377
+                  }
+                },
+                "target_type_macro_mean_f1": 0.43704237327871975,
+                "target_type_macro_exact_accuracy": 0.34082699222146534,
+                "target_type_macro_cardinality_accuracy": 0.7315732982570275
+              },
+              {
+                "seed": 1,
+                "gref_file": "outputs/stage5/refcoco_aux/grid/clip_5pct_seed1/evaluation_gref_val_last.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_5pct_seed1/evaluation_last.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.5294778214486243,
+                    "exact_accuracy": 0.5294778214486243,
+                    "cardinality_accuracy": 0.5294778214486243
+                  },
+                  "single-target": {
+                    "mean_f1": 0.29561257768752636,
+                    "exact_accuracy": 0.2796750969171128,
+                    "cardinality_accuracy": 0.7654605870407974
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.5106480984580155,
+                    "exact_accuracy": 0.23497370398196846,
+                    "cardinality_accuracy": 0.9117205108940646
+                  }
+                },
+                "target_type_macro_mean_f1": 0.44524616586472204,
+                "target_type_macro_exact_accuracy": 0.3480422074492352,
+                "target_type_macro_cardinality_accuracy": 0.7355529731278287
+              },
+              {
+                "seed": 2,
+                "gref_file": "outputs/stage5/refcoco_aux/grid/clip_5pct_seed2/evaluation_gref_val_last.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_5pct_seed2/evaluation_last.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.4453677709152162,
+                    "exact_accuracy": 0.4453677709152162,
+                    "cardinality_accuracy": 0.4453677709152162
+                  },
+                  "single-target": {
+                    "mean_f1": 0.31574980001230624,
+                    "exact_accuracy": 0.3027505999630792,
+                    "cardinality_accuracy": 0.8421635591655898
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.5124941862545166,
+                    "exact_accuracy": 0.236664162283997,
+                    "cardinality_accuracy": 0.899511645379414
+                  }
+                },
+                "target_type_macro_mean_f1": 0.424537252394013,
+                "target_type_macro_exact_accuracy": 0.3282608443874308,
+                "target_type_macro_cardinality_accuracy": 0.7290143251534067
+              }
+            ]
+          }
+        },
+        "paired_delta_last_minus_best": {
+          "target_type_macro_mean_f1": {
+            "values": [
+              0.0005827600214101669,
+              0.0073193681022174495,
+              -0.0005785036857722803
+            ],
+            "mean": 0.0024412081459517787,
+            "sample_std": 0.004264324890130933
+          },
+          "target_type_macro_exact_accuracy": {
+            "values": [
+              -0.01241958313737307,
+              -0.01696001442595141,
+              -0.018507246620426687
+            ],
+            "mean": -0.01596228139458372,
+            "sample_std": 0.0031640978291035413
+          },
+          "target_type_macro_cardinality_accuracy": {
+            "values": [
+              0.0699209430030514,
+              0.1357333342489795,
+              0.09785120575892414
+            ],
+            "mean": 0.10116849433698501,
+            "sample_std": 0.03303136408036122
+          }
+        }
+      },
+      {
+        "representation": "clip",
+        "percentage": 10,
+        "checkpoints": {
+          "best": {
+            "seeds": [
+              0,
+              1,
+              2
+            ],
+            "target_type_macro_mean_f1": {
+              "values": [
+                0.42778072908787906,
+                0.43540817949541577,
+                0.43812583851733394
+              ],
+              "mean": 0.43377158236687624,
+              "sample_std": 0.0053632229021090385
+            },
+            "target_type_macro_exact_accuracy": {
+              "values": [
+                0.34351269976334725,
+                0.35478588856024385,
+                0.36848510300644977
+              ],
+              "mean": 0.3555945637766803,
+              "sample_std": 0.012505826547585254
+            },
+            "target_type_macro_cardinality_accuracy": {
+              "values": [
+                0.6314618410541265,
+                0.644747932622862,
+                0.5741937986881719
+              ],
+              "mean": 0.6168011907883868,
+              "sample_std": 0.03749229858890087
+            },
+            "records": [
+              {
+                "seed": 0,
+                "gref_file": "outputs/stage5/grid/clip_10pct_seed0/evaluation_val.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_10pct_seed0/evaluation_best.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.7511510387422796,
+                    "exact_accuracy": 0.7511510387422796,
+                    "cardinality_accuracy": 0.7511510387422796
+                  },
+                  "single-target": {
+                    "mean_f1": 0.10445511045474107,
+                    "exact_accuracy": 0.08648698541628208,
+                    "cardinality_accuracy": 0.2679527413697619
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.4277360380666165,
+                    "exact_accuracy": 0.19290007513148008,
+                    "cardinality_accuracy": 0.8752817430503381
+                  }
+                },
+                "target_type_macro_mean_f1": 0.42778072908787906,
+                "target_type_macro_exact_accuracy": 0.34351269976334725,
+                "target_type_macro_cardinality_accuracy": 0.6314618410541265
+              },
+              {
+                "seed": 1,
+                "gref_file": "outputs/stage5/grid/clip_10pct_seed1/evaluation_val.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_10pct_seed1/evaluation_best.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.748343627175744,
+                    "exact_accuracy": 0.748343627175744,
+                    "cardinality_accuracy": 0.748343627175744
+                  },
+                  "single-target": {
+                    "mean_f1": 0.12589994461879278,
+                    "exact_accuracy": 0.11334687096178697,
+                    "cardinality_accuracy": 0.32545689496031016
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.4319809666917105,
+                    "exact_accuracy": 0.2026671675432006,
+                    "cardinality_accuracy": 0.8604432757325319
+                  }
+                },
+                "target_type_macro_mean_f1": 0.43540817949541577,
+                "target_type_macro_exact_accuracy": 0.35478588856024385,
+                "target_type_macro_cardinality_accuracy": 0.644747932622862
+              },
+              {
+                "seed": 2,
+                "gref_file": "outputs/stage5/grid/clip_10pct_seed2/evaluation_val.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_10pct_seed2/evaluation_best.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.9245367770915216,
+                    "exact_accuracy": 0.9245367770915216,
+                    "cardinality_accuracy": 0.9245367770915216
+                  },
+                  "single-target": {
+                    "mean_f1": 0.015999015445203366,
+                    "exact_accuracy": 0.008491785120915635,
+                    "cardinality_accuracy": 0.03452095255676574
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.3738417230152769,
+                    "exact_accuracy": 0.17242674680691208,
+                    "cardinality_accuracy": 0.7635236664162284
+                  }
+                },
+                "target_type_macro_mean_f1": 0.43812583851733394,
+                "target_type_macro_exact_accuracy": 0.36848510300644977,
+                "target_type_macro_cardinality_accuracy": 0.5741937986881719
+              }
+            ]
+          },
+          "last": {
+            "seeds": [
+              0,
+              1,
+              2
+            ],
+            "target_type_macro_mean_f1": {
+              "values": [
+                0.4698896091909596,
+                0.4674655807611959,
+                0.46349113885987625
+              ],
+              "mean": 0.46694877627067727,
+              "sample_std": 0.0032303901940019105
+            },
+            "target_type_macro_exact_accuracy": {
+              "values": [
+                0.36877690201615343,
+                0.368051623457572,
+                0.364446152611401
+              ],
+              "mean": 0.3670915593617088,
+              "sample_std": 0.0023195128589458256
+            },
+            "target_type_macro_cardinality_accuracy": {
+              "values": [
+                0.7701508381562908,
+                0.7643897948217938,
+                0.7622716276986187
+              ],
+              "mean": 0.7656040868922345,
+              "sample_std": 0.004077544393789449
+            },
+            "records": [
+              {
+                "seed": 0,
+                "gref_file": "outputs/stage5/refcoco_aux/grid/clip_10pct_seed0/evaluation_gref_val_last.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_10pct_seed0/evaluation_last.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.47692307692307695,
+                    "exact_accuracy": 0.47692307692307695,
+                    "cardinality_accuracy": 0.47692307692307695
+                  },
+                  "single-target": {
+                    "mean_f1": 0.3862070026459901,
+                    "exact_accuracy": 0.37133099501569133,
+                    "cardinality_accuracy": 0.9009599409267122
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.5465387480038119,
+                    "exact_accuracy": 0.25807663410969195,
+                    "cardinality_accuracy": 0.9325694966190834
+                  }
+                },
+                "target_type_macro_mean_f1": 0.4698896091909596,
+                "target_type_macro_exact_accuracy": 0.36877690201615343,
+                "target_type_macro_cardinality_accuracy": 0.7701508381562908
+              },
+              {
+                "seed": 1,
+                "gref_file": "outputs/stage5/refcoco_aux/grid/clip_10pct_seed1/evaluation_gref_val_last.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_10pct_seed1/evaluation_last.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.4952274003368894,
+                    "exact_accuracy": 0.4952274003368894,
+                    "cardinality_accuracy": 0.4952274003368894
+                  },
+                  "single-target": {
+                    "mean_f1": 0.36327302935203876,
+                    "exact_accuracy": 0.3448403175189219,
+                    "cardinality_accuracy": 0.8522244784936311
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.5438963125946595,
+                    "exact_accuracy": 0.26408715251690457,
+                    "cardinality_accuracy": 0.945717505634861
+                  }
+                },
+                "target_type_macro_mean_f1": 0.4674655807611959,
+                "target_type_macro_exact_accuracy": 0.368051623457572,
+                "target_type_macro_cardinality_accuracy": 0.7643897948217938
+              },
+              {
+                "seed": 2,
+                "gref_file": "outputs/stage5/refcoco_aux/grid/clip_10pct_seed2/evaluation_gref_val_last.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_10pct_seed2/evaluation_last.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.4853453116226839,
+                    "exact_accuracy": 0.4853453116226839,
+                    "cardinality_accuracy": 0.4853453116226839
+                  },
+                  "single-target": {
+                    "mean_f1": 0.3752384468648078,
+                    "exact_accuracy": 0.366069780321211,
+                    "cardinality_accuracy": 0.9083441019014215
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.5298896580921371,
+                    "exact_accuracy": 0.24192336589030805,
+                    "cardinality_accuracy": 0.8931254695717505
+                  }
+                },
+                "target_type_macro_mean_f1": 0.46349113885987625,
+                "target_type_macro_exact_accuracy": 0.364446152611401,
+                "target_type_macro_cardinality_accuracy": 0.7622716276986187
+              }
+            ]
+          }
+        },
+        "paired_delta_last_minus_best": {
+          "target_type_macro_mean_f1": {
+            "values": [
+              0.04210888010308056,
+              0.032057401265780106,
+              0.025365300342542307
+            ],
+            "mean": 0.03317719390380099,
+            "sample_std": 0.008427770610517403
+          },
+          "target_type_macro_exact_accuracy": {
+            "values": [
+              0.025264202252806178,
+              0.01326573489732813,
+              -0.004038950395048757
+            ],
+            "mean": 0.011496995585028516,
+            "sample_std": 0.014731429592610064
+          },
+          "target_type_macro_cardinality_accuracy": {
+            "values": [
+              0.1386889971021643,
+              0.1196418621989318,
+              0.18807782901044678
+            ],
+            "mean": 0.14880289610384764,
+            "sample_std": 0.03532122029487208
+          }
+        }
+      },
+      {
+        "representation": "clip_dinov2",
+        "percentage": 1,
+        "checkpoints": {
+          "best": {
+            "seeds": [
+              0,
+              1,
+              2
+            ],
+            "target_type_macro_mean_f1": {
+              "values": [
+                0.4192146119969672,
+                0.42222771484895216,
+                0.38882873017439756
+              ],
+              "mean": 0.41009035234010566,
+              "sample_std": 0.018474634774120886
+            },
+            "target_type_macro_exact_accuracy": {
+              "values": [
+                0.35534019177018517,
+                0.35853528346138586,
+                0.3496523323452201
+              ],
+              "mean": 0.3545092691922637,
+              "sample_std": 0.004499392112377229
+            },
+            "target_type_macro_cardinality_accuracy": {
+              "values": [
+                0.5369079353213998,
+                0.5409169513802439,
+                0.4598451698107848
+              ],
+              "mean": 0.5125566855041428,
+              "sample_std": 0.04569350027584189
+            },
+            "records": [
+              {
+                "seed": 0,
+                "gref_file": "outputs/stage5/grid/clip_dinov2_1pct_seed0/evaluation_val.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_dinov2_1pct_seed0/evaluation_best.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.9213924761370017,
+                    "exact_accuracy": 0.9213924761370017,
+                    "cardinality_accuracy": 0.9213924761370017
+                  },
+                  "single-target": {
+                    "mean_f1": 0.011445449510799366,
+                    "exact_accuracy": 0.0,
+                    "cardinality_accuracy": 0.0
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.3248059103431005,
+                    "exact_accuracy": 0.1446280991735537,
+                    "cardinality_accuracy": 0.6893313298271976
+                  }
+                },
+                "target_type_macro_mean_f1": 0.4192146119969672,
+                "target_type_macro_exact_accuracy": 0.35534019177018517,
+                "target_type_macro_cardinality_accuracy": 0.5369079353213998
+              },
+              {
+                "seed": 1,
+                "gref_file": "outputs/stage5/grid/clip_dinov2_1pct_seed1/evaluation_val.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_dinov2_1pct_seed1/evaluation_best.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.9197080291970803,
+                    "exact_accuracy": 0.9197080291970803,
+                    "cardinality_accuracy": 0.9197080291970803
+                  },
+                  "single-target": {
+                    "mean_f1": 0.011876192234324073,
+                    "exact_accuracy": 0.0,
+                    "cardinality_accuracy": 0.0
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.3350989231154521,
+                    "exact_accuracy": 0.15589782118707737,
+                    "cardinality_accuracy": 0.7030428249436514
+                  }
+                },
+                "target_type_macro_mean_f1": 0.42222771484895216,
+                "target_type_macro_exact_accuracy": 0.35853528346138586,
+                "target_type_macro_cardinality_accuracy": 0.5409169513802439
+              },
+              {
+                "seed": 2,
+                "gref_file": "outputs/stage5/grid/clip_dinov2_1pct_seed2/evaluation_val.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_dinov2_1pct_seed2/evaluation_best.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.9554183043234138,
+                    "exact_accuracy": 0.9554183043234138,
+                    "cardinality_accuracy": 0.9554183043234138
+                  },
+                  "single-target": {
+                    "mean_f1": 0.009045597194018843,
+                    "exact_accuracy": 0.0,
+                    "cardinality_accuracy": 0.0
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.20202228900576003,
+                    "exact_accuracy": 0.09353869271224644,
+                    "cardinality_accuracy": 0.42411720510894063
+                  }
+                },
+                "target_type_macro_mean_f1": 0.38882873017439756,
+                "target_type_macro_exact_accuracy": 0.3496523323452201,
+                "target_type_macro_cardinality_accuracy": 0.4598451698107848
+              }
+            ]
+          },
+          "last": {
+            "seeds": [
+              0,
+              1,
+              2
+            ],
+            "target_type_macro_mean_f1": {
+              "values": [
+                0.3330059828287284,
+                0.3716568473735895,
+                0.3201187007976641
+              ],
+              "mean": 0.3415938436666607,
+              "sample_std": 0.026820862280119952
+            },
+            "target_type_macro_exact_accuracy": {
+              "values": [
+                0.24096410220269934,
+                0.27766445162928627,
+                0.22200924773243208
+              ],
+              "mean": 0.24687926718813924,
+              "sample_std": 0.028295181794853942
+            },
+            "target_type_macro_cardinality_accuracy": {
+              "values": [
+                0.6338705596496225,
+                0.647743706071283,
+                0.623202879416012
+              ],
+              "mean": 0.6349390483789725,
+              "sample_std": 0.012305254745618832
+            },
+            "records": [
+              {
+                "seed": 0,
+                "gref_file": "outputs/stage5/refcoco_aux/grid/clip_dinov2_1pct_seed0/evaluation_gref_val_last.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_dinov2_1pct_seed0/evaluation_last.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.30398652442448065,
+                    "exact_accuracy": 0.30398652442448065,
+                    "cardinality_accuracy": 0.30398652442448065
+                  },
+                  "single-target": {
+                    "mean_f1": 0.24536951572210922,
+                    "exact_accuracy": 0.22844748015506738,
+                    "cardinality_accuracy": 0.7768137345394129
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.4496619083395953,
+                    "exact_accuracy": 0.19045830202854996,
+                    "cardinality_accuracy": 0.8208114199849738
+                  }
+                },
+                "target_type_macro_mean_f1": 0.3330059828287284,
+                "target_type_macro_exact_accuracy": 0.24096410220269934,
+                "target_type_macro_cardinality_accuracy": 0.6338705596496225
+              },
+              {
+                "seed": 1,
+                "gref_file": "outputs/stage5/refcoco_aux/grid/clip_dinov2_1pct_seed1/evaluation_gref_val_last.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_dinov2_1pct_seed1/evaluation_last.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.4467153284671533,
+                    "exact_accuracy": 0.4467153284671533,
+                    "cardinality_accuracy": 0.4467153284671533
+                  },
+                  "single-target": {
+                    "mean_f1": 0.22017106639591436,
+                    "exact_accuracy": 0.19844932619531105,
+                    "cardinality_accuracy": 0.6349455418128115
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.44808414725770085,
+                    "exact_accuracy": 0.18782870022539444,
+                    "cardinality_accuracy": 0.8615702479338843
+                  }
+                },
+                "target_type_macro_mean_f1": 0.3716568473735895,
+                "target_type_macro_exact_accuracy": 0.27766445162928627,
+                "target_type_macro_cardinality_accuracy": 0.647743706071283
+              },
+              {
+                "seed": 2,
+                "gref_file": "outputs/stage5/refcoco_aux/grid/clip_dinov2_1pct_seed2/evaluation_gref_val_last.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_dinov2_1pct_seed2/evaluation_last.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.25131948343627175,
+                    "exact_accuracy": 0.25131948343627175,
+                    "cardinality_accuracy": 0.25131948343627175
+                  },
+                  "single-target": {
+                    "mean_f1": 0.2464771398683156,
+                    "exact_accuracy": 0.2214325272290936,
+                    "cardinality_accuracy": 0.7497692449695403
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.46255947908840483,
+                    "exact_accuracy": 0.19327573253193087,
+                    "cardinality_accuracy": 0.8685199098422239
+                  }
+                },
+                "target_type_macro_mean_f1": 0.3201187007976641,
+                "target_type_macro_exact_accuracy": 0.22200924773243208,
+                "target_type_macro_cardinality_accuracy": 0.623202879416012
+              }
+            ]
+          }
+        },
+        "paired_delta_last_minus_best": {
+          "target_type_macro_mean_f1": {
+            "values": [
+              -0.08620862916823879,
+              -0.05057086747536266,
+              -0.06871002937673348
+            ],
+            "mean": -0.06849650867344498,
+            "sample_std": 0.017819840289340617
+          },
+          "target_type_macro_exact_accuracy": {
+            "values": [
+              -0.11437608956748582,
+              -0.08087083183209959,
+              -0.127643084612788
+            ],
+            "mean": -0.10763000200412447,
+            "sample_std": 0.024104837286415312
+          },
+          "target_type_macro_cardinality_accuracy": {
+            "values": [
+              0.09696262432822267,
+              0.10682675469103908,
+              0.16335770960522722
+            ],
+            "mean": 0.12238236287482966,
+            "sample_std": 0.03582679928085798
+          }
+        }
+      },
+      {
+        "representation": "clip_dinov2",
+        "percentage": 5,
+        "checkpoints": {
+          "best": {
+            "seeds": [
+              0,
+              1,
+              2
+            ],
+            "target_type_macro_mean_f1": {
+              "values": [
+                0.43818839899198087,
+                0.4352442587067094,
+                0.4295356817894303
+              ],
+              "mean": 0.4343227798293735,
+              "sample_std": 0.004399343273473981
+            },
+            "target_type_macro_exact_accuracy": {
+              "values": [
+                0.3528152867353352,
+                0.35723538339705774,
+                0.34793079744649447
+              ],
+              "mean": 0.35266048919296245,
+              "sample_std": 0.004654224063922828
+            },
+            "target_type_macro_cardinality_accuracy": {
+              "values": [
+                0.6672589890034867,
+                0.611950807255156,
+                0.6177653510017955
+              ],
+              "mean": 0.6323250490868128,
+              "sample_std": 0.030393047697158213
+            },
+            "records": [
+              {
+                "seed": 0,
+                "gref_file": "outputs/stage5/grid/clip_dinov2_5pct_seed0/evaluation_val.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_dinov2_5pct_seed0/evaluation_best.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.6893879842784952,
+                    "exact_accuracy": 0.6893879842784952,
+                    "cardinality_accuracy": 0.6893879842784952
+                  },
+                  "single-target": {
+                    "mean_f1": 0.16906651898344757,
+                    "exact_accuracy": 0.15737493077349085,
+                    "cardinality_accuracy": 0.46603285951633744
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.45611069371399976,
+                    "exact_accuracy": 0.21168294515401953,
+                    "cardinality_accuracy": 0.8463561232156274
+                  }
+                },
+                "target_type_macro_mean_f1": 0.43818839899198087,
+                "target_type_macro_exact_accuracy": 0.3528152867353352,
+                "target_type_macro_cardinality_accuracy": 0.6672589890034867
+              },
+              {
+                "seed": 1,
+                "gref_file": "outputs/stage5/grid/clip_dinov2_5pct_seed1/evaluation_val.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_dinov2_5pct_seed1/evaluation_best.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.7997754070746772,
+                    "exact_accuracy": 0.7997754070746772,
+                    "cardinality_accuracy": 0.7997754070746772
+                  },
+                  "single-target": {
+                    "mean_f1": 0.09802473693926513,
+                    "exact_accuracy": 0.08860993169651099,
+                    "cardinality_accuracy": 0.25189219124976925
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.40793263210618597,
+                    "exact_accuracy": 0.18332081141998496,
+                    "cardinality_accuracy": 0.7841848234410218
+                  }
+                },
+                "target_type_macro_mean_f1": 0.4352442587067094,
+                "target_type_macro_exact_accuracy": 0.35723538339705774,
+                "target_type_macro_cardinality_accuracy": 0.611950807255156
+              },
+              {
+                "seed": 2,
+                "gref_file": "outputs/stage5/grid/clip_dinov2_5pct_seed2/evaluation_val.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_dinov2_5pct_seed2/evaluation_best.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.7683323975294778,
+                    "exact_accuracy": 0.7683323975294778,
+                    "cardinality_accuracy": 0.7683323975294778
+                  },
+                  "single-target": {
+                    "mean_f1": 0.09488646852501358,
+                    "exact_accuracy": 0.08011814657559535,
+                    "cardinality_accuracy": 0.26509137899206203
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.4253881793137995,
+                    "exact_accuracy": 0.19534184823441023,
+                    "cardinality_accuracy": 0.8198722764838468
+                  }
+                },
+                "target_type_macro_mean_f1": 0.4295356817894303,
+                "target_type_macro_exact_accuracy": 0.34793079744649447,
+                "target_type_macro_cardinality_accuracy": 0.6177653510017955
+              }
+            ]
+          },
+          "last": {
+            "seeds": [
+              0,
+              1,
+              2
+            ],
+            "target_type_macro_mean_f1": {
+              "values": [
+                0.41350221298832357,
+                0.42900885903777475,
+                0.4126402467864732
+              ],
+              "mean": 0.4183837729375238,
+              "sample_std": 0.009211682116290804
+            },
+            "target_type_macro_exact_accuracy": {
+              "values": [
+                0.3175140568798623,
+                0.3308638532469971,
+                0.31875156860402626
+              ],
+              "mean": 0.3223764929102952,
+              "sample_std": 0.007376267547386407
+            },
+            "target_type_macro_cardinality_accuracy": {
+              "values": [
+                0.7234461243557077,
+                0.728024409418747,
+                0.7217595254396941
+              ],
+              "mean": 0.7244100197380496,
+              "sample_std": 0.003241760871628797
+            },
+            "records": [
+              {
+                "seed": 0,
+                "gref_file": "outputs/stage5/refcoco_aux/grid/clip_dinov2_5pct_seed0/evaluation_gref_val_last.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_dinov2_5pct_seed0/evaluation_last.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.4402021336327906,
+                    "exact_accuracy": 0.4402021336327906,
+                    "cardinality_accuracy": 0.4402021336327906
+                  },
+                  "single-target": {
+                    "mean_f1": 0.2969048058581003,
+                    "exact_accuracy": 0.2828133653313642,
+                    "cardinality_accuracy": 0.8360716263614547
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.5033996994740798,
+                    "exact_accuracy": 0.229526671675432,
+                    "cardinality_accuracy": 0.8940646130728775
+                  }
+                },
+                "target_type_macro_mean_f1": 0.41350221298832357,
+                "target_type_macro_exact_accuracy": 0.3175140568798623,
+                "target_type_macro_cardinality_accuracy": 0.7234461243557077
+              },
+              {
+                "seed": 1,
+                "gref_file": "outputs/stage5/refcoco_aux/grid/clip_dinov2_5pct_seed1/evaluation_gref_val_last.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_dinov2_5pct_seed1/evaluation_last.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.47355418304323416,
+                    "exact_accuracy": 0.47355418304323416,
+                    "cardinality_accuracy": 0.47355418304323416
+                  },
+                  "single-target": {
+                    "mean_f1": 0.30293520398744594,
+                    "exact_accuracy": 0.28650544581871884,
+                    "cardinality_accuracy": 0.8085656267306627
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.5105371900826441,
+                    "exact_accuracy": 0.2325319308790383,
+                    "cardinality_accuracy": 0.9019534184823441
+                  }
+                },
+                "target_type_macro_mean_f1": 0.42900885903777475,
+                "target_type_macro_exact_accuracy": 0.3308638532469971,
+                "target_type_macro_cardinality_accuracy": 0.728024409418747
+              },
+              {
+                "seed": 2,
+                "gref_file": "outputs/stage5/refcoco_aux/grid/clip_dinov2_5pct_seed2/evaluation_gref_val_last.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_dinov2_5pct_seed2/evaluation_last.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.4314430095451993,
+                    "exact_accuracy": 0.4314430095451993,
+                    "cardinality_accuracy": 0.4314430095451993
+                  },
+                  "single-target": {
+                    "mean_f1": 0.3016385804829588,
+                    "exact_accuracy": 0.28927450618423484,
+                    "cardinality_accuracy": 0.8501015322134022
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.5048391503312615,
+                    "exact_accuracy": 0.23553719008264462,
+                    "cardinality_accuracy": 0.8837340345604808
+                  }
+                },
+                "target_type_macro_mean_f1": 0.4126402467864732,
+                "target_type_macro_exact_accuracy": 0.31875156860402626,
+                "target_type_macro_cardinality_accuracy": 0.7217595254396941
+              }
+            ]
+          }
+        },
+        "paired_delta_last_minus_best": {
+          "target_type_macro_mean_f1": {
+            "values": [
+              -0.024686186003657296,
+              -0.00623539966893466,
+              -0.016895435002957093
+            ],
+            "mean": -0.015939006891849683,
+            "sample_std": 0.009262502099388925
+          },
+          "target_type_macro_exact_accuracy": {
+            "values": [
+              -0.035301229855472904,
+              -0.026371530150060662,
+              -0.029179228842468208
+            ],
+            "mean": -0.030283996282667258,
+            "sample_std": 0.004566209317355354
+          },
+          "target_type_macro_cardinality_accuracy": {
+            "values": [
+              0.056187135352220974,
+              0.11607360216359097,
+              0.1039941744378986
+            ],
+            "mean": 0.09208497065123684,
+            "sample_std": 0.031669687051051026
+          }
+        }
+      },
+      {
+        "representation": "clip_dinov2",
+        "percentage": 10,
+        "checkpoints": {
+          "best": {
+            "seeds": [
+              0,
+              1,
+              2
+            ],
+            "target_type_macro_mean_f1": {
+              "values": [
+                0.43484871909406575,
+                0.44001752113668247,
+                0.43864105526060804
+              ],
+              "mean": 0.4378357651637854,
+              "sample_std": 0.0026768447366199858
+            },
+            "target_type_macro_exact_accuracy": {
+              "values": [
+                0.34691203884461747,
+                0.3575053262755844,
+                0.36914581774084715
+              ],
+              "mean": 0.3578543942870163,
+              "sample_std": 0.011120998937103667
+            },
+            "target_type_macro_cardinality_accuracy": {
+              "values": [
+                0.6049482084733858,
+                0.6397557834051717,
+                0.5624712611360891
+              ],
+              "mean": 0.6023917510048822,
+              "sample_std": 0.038705632040844914
+            },
+            "records": [
+              {
+                "seed": 0,
+                "gref_file": "outputs/stage5/grid/clip_dinov2_10pct_seed0/evaluation_val.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_dinov2_10pct_seed0/evaluation_best.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.8064008983717013,
+                    "exact_accuracy": 0.8064008983717013,
+                    "cardinality_accuracy": 0.8064008983717013
+                  },
+                  "single-target": {
+                    "mean_f1": 0.058150267675835345,
+                    "exact_accuracy": 0.03655159682481078,
+                    "cardinality_accuracy": 0.12414620638729924
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.4399949912346606,
+                    "exact_accuracy": 0.19778362133734034,
+                    "cardinality_accuracy": 0.8842975206611571
+                  }
+                },
+                "target_type_macro_mean_f1": 0.43484871909406575,
+                "target_type_macro_exact_accuracy": 0.34691203884461747,
+                "target_type_macro_cardinality_accuracy": 0.6049482084733858
+              },
+              {
+                "seed": 1,
+                "gref_file": "outputs/stage5/grid/clip_dinov2_10pct_seed1/evaluation_val.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_dinov2_10pct_seed1/evaluation_best.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.7606962380685008,
+                    "exact_accuracy": 0.7606962380685008,
+                    "cardinality_accuracy": 0.7606962380685008
+                  },
+                  "single-target": {
+                    "mean_f1": 0.1199310811642361,
+                    "exact_accuracy": 0.10614731401144545,
+                    "cardinality_accuracy": 0.30395052612146944
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.4394252441773104,
+                    "exact_accuracy": 0.2056724267468069,
+                    "cardinality_accuracy": 0.8546205860255447
+                  }
+                },
+                "target_type_macro_mean_f1": 0.44001752113668247,
+                "target_type_macro_exact_accuracy": 0.3575053262755844,
+                "target_type_macro_cardinality_accuracy": 0.6397557834051717
+              },
+              {
+                "seed": 2,
+                "gref_file": "outputs/stage5/grid/clip_dinov2_10pct_seed2/evaluation_val.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_dinov2_10pct_seed2/evaluation_best.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.9294778214486243,
+                    "exact_accuracy": 0.9294778214486243,
+                    "cardinality_accuracy": 0.9294778214486243
+                  },
+                  "single-target": {
+                    "mean_f1": 0.008584087133099511,
+                    "exact_accuracy": 0.00046151006091932806,
+                    "cardinality_accuracy": 0.0026767583533321027
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.3778612572001003,
+                    "exact_accuracy": 0.17749812171299775,
+                    "cardinality_accuracy": 0.755259203606311
+                  }
+                },
+                "target_type_macro_mean_f1": 0.43864105526060804,
+                "target_type_macro_exact_accuracy": 0.36914581774084715,
+                "target_type_macro_cardinality_accuracy": 0.5624712611360891
+              }
+            ]
+          },
+          "last": {
+            "seeds": [
+              0,
+              1,
+              2
+            ],
+            "target_type_macro_mean_f1": {
+              "values": [
+                0.46204214293937845,
+                0.4240329061665833,
+                0.46323797144075624
+              ],
+              "mean": 0.449771006848906,
+              "sample_std": 0.02229786697200457
+            },
+            "target_type_macro_exact_accuracy": {
+              "values": [
+                0.3650263744292751,
+                0.3254006256005914,
+                0.3656674920688203
+              ],
+              "mean": 0.35203149736622896,
+              "sample_std": 0.02306523913176074
+            },
+            "target_type_macro_cardinality_accuracy": {
+              "values": [
+                0.7607943329496338,
+                0.7433073708411663,
+                0.7577314075946106
+              ],
+              "mean": 0.7539443704618035,
+              "sample_std": 0.009338345604532389
+            },
+            "records": [
+              {
+                "seed": 0,
+                "gref_file": "outputs/stage5/refcoco_aux/grid/clip_dinov2_10pct_seed0/evaluation_gref_val_last.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_dinov2_10pct_seed0/evaluation_last.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.4991577765300393,
+                    "exact_accuracy": 0.4991577765300393,
+                    "cardinality_accuracy": 0.4991577765300393
+                  },
+                  "single-target": {
+                    "mean_f1": 0.3500461510060912,
+                    "exact_accuracy": 0.33671774044674174,
+                    "cardinality_accuracy": 0.8775152298320104
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.5369225012820049,
+                    "exact_accuracy": 0.25920360631104433,
+                    "cardinality_accuracy": 0.905709992486852
+                  }
+                },
+                "target_type_macro_mean_f1": 0.46204214293937845,
+                "target_type_macro_exact_accuracy": 0.3650263744292751,
+                "target_type_macro_cardinality_accuracy": 0.7607943329496338
+              },
+              {
+                "seed": 1,
+                "gref_file": "outputs/stage5/refcoco_aux/grid/clip_dinov2_10pct_seed1/evaluation_gref_val_last.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_dinov2_10pct_seed1/evaluation_last.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.3785513756316676,
+                    "exact_accuracy": 0.3785513756316676,
+                    "cardinality_accuracy": 0.3785513756316676
+                  },
+                  "single-target": {
+                    "mean_f1": 0.3516937419235727,
+                    "exact_accuracy": 0.334502492154329,
+                    "cardinality_accuracy": 0.9118515783644083
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.5418536009445096,
+                    "exact_accuracy": 0.2631480090157776,
+                    "cardinality_accuracy": 0.939519158527423
+                  }
+                },
+                "target_type_macro_mean_f1": 0.4240329061665833,
+                "target_type_macro_exact_accuracy": 0.3254006256005914,
+                "target_type_macro_cardinality_accuracy": 0.7433073708411663
+              },
+              {
+                "seed": 2,
+                "gref_file": "outputs/stage5/refcoco_aux/grid/clip_dinov2_10pct_seed2/evaluation_gref_val_last.json",
+                "single_file": "outputs/stage5/refcoco_aux/grid/clip_dinov2_10pct_seed2/evaluation_last.json",
+                "per_target_type": {
+                  "no-target": {
+                    "mean_f1": 0.5111734980348119,
+                    "exact_accuracy": 0.5111734980348119,
+                    "cardinality_accuracy": 0.5111734980348119
+                  },
+                  "single-target": {
+                    "mean_f1": 0.34906159620946337,
+                    "exact_accuracy": 0.3392098947757061,
+                    "cardinality_accuracy": 0.8871146390991324
+                  },
+                  "multi-target": {
+                    "mean_f1": 0.5294788200779934,
+                    "exact_accuracy": 0.2466190833959429,
+                    "cardinality_accuracy": 0.8749060856498873
+                  }
+                },
+                "target_type_macro_mean_f1": 0.46323797144075624,
+                "target_type_macro_exact_accuracy": 0.3656674920688203,
+                "target_type_macro_cardinality_accuracy": 0.7577314075946106
+              }
+            ]
+          }
+        },
+        "paired_delta_last_minus_best": {
+          "target_type_macro_mean_f1": {
+            "values": [
+              0.027193423845312703,
+              -0.015984614970099176,
+              0.0245969161801482
+            ],
+            "mean": 0.011935241685120576,
+            "sample_std": 0.024214133470967496
+          },
+          "target_type_macro_exact_accuracy": {
+            "values": [
+              0.018114335584657637,
+              -0.03210470067499299,
+              -0.0034783256720268274
+            ],
+            "mean": -0.005822896920787394,
+            "sample_std": 0.025191479938015
+          },
+          "target_type_macro_cardinality_accuracy": {
+            "values": [
+              0.15584612447624802,
+              0.10355158743599457,
+              0.1952601464585214
+            ],
+            "mean": 0.15155261945692133,
+            "sample_std": 0.04600478875628394
+          }
+        }
+      }
+    ]
+  }
+}

@@ -255,6 +255,7 @@ class Stage5AggregationTests(unittest.TestCase):
         percentages = [1]
         seeds = [0, 1]
         splits = ["testA", "testB"]
+        checkpoint_policies = ["last", "best"]
         manifests = [
             fake_manifest(representation, 1, seed)
             for representation in representations
@@ -272,25 +273,30 @@ class Stage5AggregationTests(unittest.TestCase):
         for cell, manifest in by_cell.items():
             representation, percentage, seed = cell
             for split in splits:
-                evaluation = dict(manifest["validation_evaluation"])
-                evaluation.update(
-                    {
-                        "checkpoint": manifest["training"]["checkpoint"],
-                        "calibration_json": manifest["calibration"]["path"],
-                        "representation": {"name": representation},
+                for checkpoint_policy in checkpoint_policies:
+                    evaluation = dict(manifest["validation_evaluation"])
+                    evaluation.update(
+                        {
+                            "checkpoint": (
+                                f"checkpoints/stage5/{representation}_"
+                                f"{percentage}pct_seed{seed}/"
+                                f"{checkpoint_policy}.pt"
+                            ),
+                            "membership_threshold": 0.5,
+                            "representation": {"name": representation},
+                        }
+                    )
+                    evaluation["diagnostics"] = dict(evaluation["diagnostics"])
+                    evaluation["diagnostics"]["num_samples"] = 10
+                    evaluation["by_target_type"] = {
+                        key: {
+                            "mean_f1": 0.5,
+                            "exact_set_accuracy": 0.5,
+                            "cardinality_accuracy": 0.5,
+                        }
+                        for key in ("no-target", "single-target", "multi-target")
                     }
-                )
-                evaluation["diagnostics"] = dict(evaluation["diagnostics"])
-                evaluation["diagnostics"]["num_samples"] = 10
-                evaluation["by_target_type"] = {
-                    key: {
-                        "mean_f1": 0.5,
-                        "exact_set_accuracy": 0.5,
-                        "cardinality_accuracy": 0.5,
-                    }
-                    for key in ("no-target", "single-target", "multi-target")
-                }
-                evaluations[(*cell, split)] = evaluation
+                    evaluations[(*cell, split, checkpoint_policy)] = evaluation
         feature_stats = {
             (representation, split): {
                 "candidate_file_sha256": f"candidate-{split}",
@@ -307,8 +313,9 @@ class Stage5AggregationTests(unittest.TestCase):
             percentages,
             seeds,
             splits,
+            checkpoint_policies,
         )
-        self.assertEqual(result["num_evaluations"], 8)
+        self.assertEqual(result["num_evaluations"], 16)
         self.assertEqual(result["expected_samples"], {"testA": 10, "testB": 10})
 
 

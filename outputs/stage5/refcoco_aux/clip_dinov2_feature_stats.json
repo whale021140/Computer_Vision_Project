@@ -1,0 +1,49 @@
+{
+  "cache_format": "frozen_representation_v1",
+  "representation": {
+    "name": "clip_dinov2",
+    "model_ids": {
+      "clip": "ViT-B/32",
+      "dinov2": "facebook/dinov2-base"
+    },
+    "candidate_feature_dim": 1280,
+    "text_feature_dim": 512,
+    "component_normalization": {
+      "clip_image": "l2",
+      "clip_text": "l2",
+      "dinov2_cls": "l2"
+    },
+    "fusion": "concatenate normalized CLIP image and DINOv2 CLS features",
+    "similarity_source": "normalized CLIP image/text subspace",
+    "encoder_parameters": {
+      "clip": {
+        "total": 151277313,
+        "trainable": 0
+      },
+      "dinov2": {
+        "total": 86580480,
+        "trainable": 0
+      }
+    }
+  },
+  "device": "cpu",
+  "amp": false,
+  "storage_dtype": "float16",
+  "candidate_file": "cache/candidates_detector/fasterrcnn_refcoco_unc_val.jsonl",
+  "candidate_file_sha256": "af586cc75c91ec418db226512543aec946d6820a0210c2bb51c85a0598e7f320",
+  "reused_image_feature_file": "cache/features/clip_dinov2_detector_val_shared.pt",
+  "reused_image_feature_file_sha256": "f57d0825cd934575fdf3163d5445ebb4a6cc95576f58d357974e3f69d3e92246",
+  "output_file": "cache/features/stage5/refcoco_aux/clip_dinov2.pt",
+  "num_samples": 10834,
+  "num_unique_images": 1500,
+  "candidate_references": 427674,
+  "unique_candidate_regions": 58190,
+  "region_reuse_factor": 7.349613335624678,
+  "target_type_counts": {
+    "single-target": 10834
+  },
+  "reused_image_feature_images": 1500,
+  "encoded_candidate_regions": 0,
+  "encoded_expressions": 10834,
+  "elapsed_seconds": 266.2741279602051
+}

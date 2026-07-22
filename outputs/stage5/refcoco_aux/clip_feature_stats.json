@@ -1,0 +1,42 @@
+{
+  "cache_format": "frozen_representation_v1",
+  "representation": {
+    "name": "clip",
+    "model_ids": {
+      "clip": "ViT-B/32"
+    },
+    "candidate_feature_dim": 512,
+    "text_feature_dim": 512,
+    "component_normalization": {
+      "clip_image": "l2",
+      "clip_text": "l2"
+    },
+    "fusion": "none",
+    "encoder_parameters": {
+      "clip": {
+        "total": 151277313,
+        "trainable": 0
+      }
+    }
+  },
+  "device": "cpu",
+  "amp": false,
+  "storage_dtype": "float16",
+  "candidate_file": "cache/candidates_detector/fasterrcnn_refcoco_unc_val.jsonl",
+  "candidate_file_sha256": "af586cc75c91ec418db226512543aec946d6820a0210c2bb51c85a0598e7f320",
+  "reused_image_feature_file": "cache/features/clip_detector_val_shared.pt",
+  "reused_image_feature_file_sha256": "f8b01b7d03f36b53bfaf5c4f59161673d0b059e5357b3ea80a90b99df84fbdd9",
+  "output_file": "cache/features/stage5/refcoco_aux/clip.pt",
+  "num_samples": 10834,
+  "num_unique_images": 1500,
+  "candidate_references": 427674,
+  "unique_candidate_regions": 58190,
+  "region_reuse_factor": 7.349613335624678,
+  "target_type_counts": {
+    "single-target": 10834
+  },
+  "reused_image_feature_images": 1500,
+  "encoded_candidate_regions": 0,
+  "encoded_expressions": 10834,
+  "elapsed_seconds": 248.14773964881897
+}

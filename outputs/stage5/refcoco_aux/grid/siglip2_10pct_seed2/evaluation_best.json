@@ -1,0 +1,602 @@
+{
+  "feature_file": "cache/features/stage5/refcoco_aux/siglip2.pt",
+  "checkpoint": "checkpoints/stage5/siglip2_10pct_seed2/best.pt",
+  "clip_model": "none",
+  "feature_dim": 768,
+  "candidate_feature_dim": 768,
+  "text_feature_dim": 768,
+  "representation": {
+    "name": "siglip2",
+    "model_ids": {
+      "siglip2": "google/siglip2-base-patch16-224"
+    },
+    "candidate_feature_dim": 768,
+    "text_feature_dim": 768,
+    "component_normalization": {
+      "siglip2_image": "l2",
+      "siglip2_text": "l2"
+    },
+    "fusion": "none",
+    "similarity_source": "normalized SigLIP 2 image/text embeddings",
+    "encoder_parameters": {
+      "siglip2": {
+        "total": 375187970,
+        "trainable": 0
+      }
+    }
+  },
+  "device": "cpu",
+  "batch_size": 64,
+  "selection_policy": "cardinality-threshold",
+  "membership_threshold": 0.5,
+  "config": {
+    "match_threshold": 0.5,
+    "overlap_metric": "giou",
+    "prediction_score_threshold": null,
+    "image_f1_threshold": 1.0
+  },
+  "official": {
+    "F1_score": 0.0958094886468525,
+    "T_acc": 0.2771829425881484,
+    "N_acc": 0.0
+  },
+  "diagnostics": {
+    "num_samples": 10834,
+    "mean_precision": 0.1019937234631715,
+    "mean_recall": 0.10817795827949049,
+    "mean_f1": 0.1040551350686111,
+    "exact_set_accuracy": 0.0958094886468525,
+    "cardinality_accuracy": 0.24016983570241832,
+    "count_class_accuracy": 0.24016983570241832,
+    "count_class_evaluated": 10834,
+    "micro_precision": 0.34430082256169214,
+    "micro_recall": 0.10817795827949049,
+    "micro_f1": 0.16462986374490798,
+    "total_tp": 1172,
+    "total_fp": 2232,
+    "total_fn": 9662,
+    "no_target_total": 0,
+    "no_target_accuracy": 0.0,
+    "false_grounding_rate": 0.0,
+    "single_target_total": 10834,
+    "single_target_localization_accuracy": 0.10817795827949049,
+    "single_target_exact_accuracy": 0.0958094886468525,
+    "multi_target_total": 0,
+    "multi_target_mean_f1": 0.0,
+    "multi_target_exact_accuracy": 0.0
+  },
+  "by_target_type": {
+    "no-target": {
+      "num_samples": 0,
+      "mean_precision": 0.0,
+      "mean_recall": 0.0,
+      "mean_f1": 0.0,
+      "exact_set_accuracy": 0.0,
+      "cardinality_accuracy": 0.0,
+      "count_class_accuracy": 0.0,
+      "count_class_evaluated": 0,
+      "micro_precision": 0.0,
+      "micro_recall": 0.0,
+      "micro_f1": 0.0,
+      "total_tp": 0,
+      "total_fp": 0,
+      "total_fn": 0
+    },
+    "single-target": {
+      "num_samples": 10834,
+      "mean_precision": 0.1019937234631715,
+      "mean_recall": 0.10817795827949049,
+      "mean_f1": 0.1040551350686111,
+      "exact_set_accuracy": 0.0958094886468525,
+      "cardinality_accuracy": 0.24016983570241832,
+      "count_class_accuracy": 0.24016983570241832,
+      "count_class_evaluated": 10834,
+      "micro_precision": 0.34430082256169214,
+      "micro_recall": 0.10817795827949049,
+      "micro_f1": 0.16462986374490798,
+      "total_tp": 1172,
+      "total_fp": 2232,
+      "total_fn": 9662
+    },
+    "multi-target": {
+      "num_samples": 0,
+      "mean_precision": 0.0,
+      "mean_recall": 0.0,
+      "mean_f1": 0.0,
+      "exact_set_accuracy": 0.0,
+      "cardinality_accuracy": 0.0,
+      "count_class_accuracy": 0.0,
+      "count_class_evaluated": 0,
+      "micro_precision": 0.0,
+      "micro_recall": 0.0,
+      "micro_f1": 0.0,
+      "total_tp": 0,
+      "total_fp": 0,
+      "total_fn": 0
+    }
+  },
+  "by_count_group": {
+    "0": {
+      "num_samples": 0,
+      "mean_precision": 0.0,
+      "mean_recall": 0.0,
+      "mean_f1": 0.0,
+      "exact_set_accuracy": 0.0,
+      "cardinality_accuracy": 0.0,
+      "count_class_accuracy": 0.0,
+      "count_class_evaluated": 0,
+      "micro_precision": 0.0,
+      "micro_recall": 0.0,
+      "micro_f1": 0.0,
+      "total_tp": 0,
+      "total_fp": 0,
+      "total_fn": 0
+    },
+    "1": {
+      "num_samples": 10834,
+      "mean_precision": 0.1019937234631715,
+      "mean_recall": 0.10817795827949049,
+      "mean_f1": 0.1040551350686111,
+      "exact_set_accuracy": 0.0958094886468525,
+      "cardinality_accuracy": 0.24016983570241832,
+      "count_class_accuracy": 0.24016983570241832,
+      "count_class_evaluated": 10834,
+      "micro_precision": 0.34430082256169214,
+      "micro_recall": 0.10817795827949049,
+      "micro_f1": 0.16462986374490798,
+      "total_tp": 1172,
+      "total_fp": 2232,
+      "total_fn": 9662
+    },
+    "2": {
+      "num_samples": 0,
+      "mean_precision": 0.0,
+      "mean_recall": 0.0,
+      "mean_f1": 0.0,
+      "exact_set_accuracy": 0.0,
+      "cardinality_accuracy": 0.0,
+      "count_class_accuracy": 0.0,
+      "count_class_evaluated": 0,
+      "micro_precision": 0.0,
+      "micro_recall": 0.0,
+      "micro_f1": 0.0,
+      "total_tp": 0,
+      "total_fp": 0,
+      "total_fn": 0
+    },
+    "3+": {
+      "num_samples": 0,
+      "mean_precision": 0.0,
+      "mean_recall": 0.0,
+      "mean_f1": 0.0,
+      "exact_set_accuracy": 0.0,
+      "cardinality_accuracy": 0.0,
+      "count_class_accuracy": 0.0,
+      "count_class_evaluated": 0,
+      "micro_precision": 0.0,
+      "micro_recall": 0.0,
+      "micro_f1": 0.0,
+      "total_tp": 0,
+      "total_fp": 0,
+      "total_fn": 0
+    }
+  },
+  "examples": [
+    {
+      "sample_id": "0000000",
+      "image_id": 580957,
+      "file_name": "COCO_train2014_000000580957.jpg",
+      "target_type": "single-target",
+      "expression": "bowl behind the others can only see part",
+      "true_count_class": 1,
+      "pred_count_class": 2,
+      "gt_candidate_indices": [
+        1
+      ],
+      "pred_candidate_indices": [
+        3,
+        45
+      ],
+      "num_predictions": 2,
+      "num_targets": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000001",
+      "image_id": 580957,
+      "file_name": "COCO_train2014_000000580957.jpg",
+      "target_type": "single-target",
+      "expression": "dish in top right corner",
+      "true_count_class": 1,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        1
+      ],
+      "pred_candidate_indices": [],
+      "num_predictions": 0,
+      "num_targets": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000002",
+      "image_id": 580957,
+      "file_name": "COCO_train2014_000000580957.jpg",
+      "target_type": "single-target",
+      "expression": "white dish in the top right corner",
+      "true_count_class": 1,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        1
+      ],
+      "pred_candidate_indices": [],
+      "num_predictions": 0,
+      "num_targets": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000003",
+      "image_id": 580957,
+      "file_name": "COCO_train2014_000000580957.jpg",
+      "target_type": "single-target",
+      "expression": "white pot upper right corner",
+      "true_count_class": 1,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        1
+      ],
+      "pred_candidate_indices": [],
+      "num_predictions": 0,
+      "num_targets": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000004",
+      "image_id": 580957,
+      "file_name": "COCO_train2014_000000580957.jpg",
+      "target_type": "single-target",
+      "expression": "front bowl wcarrots in it",
+      "true_count_class": 1,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        3,
+        27,
+        45
+      ],
+      "pred_candidate_indices": [],
+      "num_predictions": 0,
+      "num_targets": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000005",
+      "image_id": 580957,
+      "file_name": "COCO_train2014_000000580957.jpg",
+      "target_type": "single-target",
+      "expression": "bowl of carrots",
+      "true_count_class": 1,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        3,
+        27,
+        45
+      ],
+      "pred_candidate_indices": [],
+      "num_predictions": 0,
+      "num_targets": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000006",
+      "image_id": 580957,
+      "file_name": "COCO_train2014_000000580957.jpg",
+      "target_type": "single-target",
+      "expression": "bowl of carrots",
+      "true_count_class": 1,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        3,
+        27,
+        45
+      ],
+      "pred_candidate_indices": [],
+      "num_predictions": 0,
+      "num_targets": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000007",
+      "image_id": 580957,
+      "file_name": "COCO_train2014_000000580957.jpg",
+      "target_type": "single-target",
+      "expression": "carrots",
+      "true_count_class": 1,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        3,
+        27,
+        45
+      ],
+      "pred_candidate_indices": [],
+      "num_predictions": 0,
+      "num_targets": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000008",
+      "image_id": 580905,
+      "file_name": "COCO_train2014_000000580905.jpg",
+      "target_type": "single-target",
+      "expression": "little girl",
+      "true_count_class": 1,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        0,
+        26
+      ],
+      "pred_candidate_indices": [],
+      "num_predictions": 0,
+      "num_targets": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000009",
+      "image_id": 580905,
+      "file_name": "COCO_train2014_000000580905.jpg",
+      "target_type": "single-target",
+      "expression": "pink",
+      "true_count_class": 1,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        0,
+        26
+      ],
+      "pred_candidate_indices": [],
+      "num_predictions": 0,
+      "num_targets": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000010",
+      "image_id": 580905,
+      "file_name": "COCO_train2014_000000580905.jpg",
+      "target_type": "single-target",
+      "expression": "your monitors colors off friend p pink shirt girl",
+      "true_count_class": 1,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        0,
+        26
+      ],
+      "pred_candidate_indices": [],
+      "num_predictions": 0,
+      "num_targets": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000011",
+      "image_id": 580905,
+      "file_name": "COCO_train2014_000000580905.jpg",
+      "target_type": "single-target",
+      "expression": "green woman",
+      "true_count_class": 1,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        1,
+        11
+      ],
+      "pred_candidate_indices": [],
+      "num_predictions": 0,
+      "num_targets": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000012",
+      "image_id": 580905,
+      "file_name": "COCO_train2014_000000580905.jpg",
+      "target_type": "single-target",
+      "expression": "person holding umbrella",
+      "true_count_class": 1,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        1,
+        11
+      ],
+      "pred_candidate_indices": [],
+      "num_predictions": 0,
+      "num_targets": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000013",
+      "image_id": 580905,
+      "file_name": "COCO_train2014_000000580905.jpg",
+      "target_type": "single-target",
+      "expression": "woman",
+      "true_count_class": 1,
+      "pred_count_class": 1,
+      "gt_candidate_indices": [
+        1,
+        11
+      ],
+      "pred_candidate_indices": [
+        11
+      ],
+      "num_predictions": 1,
+      "num_targets": 1,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "exact": 1.0
+    },
+    {
+      "sample_id": "0000014",
+      "image_id": 580785,
+      "file_name": "COCO_train2014_000000580785.jpg",
+      "target_type": "single-target",
+      "expression": "mom",
+      "true_count_class": 1,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        1,
+        7,
+        11,
+        38,
+        52
+      ],
+      "pred_candidate_indices": [],
+      "num_predictions": 0,
+      "num_targets": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000015",
+      "image_id": 580785,
+      "file_name": "COCO_train2014_000000580785.jpg",
+      "target_type": "single-target",
+      "expression": "adult",
+      "true_count_class": 1,
+      "pred_count_class": 1,
+      "gt_candidate_indices": [
+        1,
+        7,
+        11,
+        38,
+        52
+      ],
+      "pred_candidate_indices": [
+        1
+      ],
+      "num_predictions": 1,
+      "num_targets": 1,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "exact": 1.0
+    },
+    {
+      "sample_id": "0000016",
+      "image_id": 580785,
+      "file_name": "COCO_train2014_000000580785.jpg",
+      "target_type": "single-target",
+      "expression": "lady sitting",
+      "true_count_class": 1,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        1,
+        7,
+        11,
+        38,
+        52
+      ],
+      "pred_candidate_indices": [],
+      "num_predictions": 0,
+      "num_targets": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000017",
+      "image_id": 580785,
+      "file_name": "COCO_train2014_000000580785.jpg",
+      "target_type": "single-target",
+      "expression": "child sitting on womans lap",
+      "true_count_class": 1,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        3,
+        10
+      ],
+      "pred_candidate_indices": [],
+      "num_predictions": 0,
+      "num_targets": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000018",
+      "image_id": 580785,
+      "file_name": "COCO_train2014_000000580785.jpg",
+      "target_type": "single-target",
+      "expression": "small girl on lap",
+      "true_count_class": 1,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        3,
+        10
+      ],
+      "pred_candidate_indices": [],
+      "num_predictions": 0,
+      "num_targets": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000019",
+      "image_id": 580785,
+      "file_name": "COCO_train2014_000000580785.jpg",
+      "target_type": "single-target",
+      "expression": "child",
+      "true_count_class": 1,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        3,
+        10
+      ],
+      "pred_candidate_indices": [],
+      "num_predictions": 0,
+      "num_targets": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    }
+  ]
+}

@@ -26,9 +26,12 @@ validation-selected training and calibration, and a full 1% detector baseline.
 Stage 4 completes the controlled 1% seed-0 comparison with real frozen
 CLIP+DINOv2 and SigLIP 2 features. SigLIP 2 gives the strongest validation
 result (`F1_score=0.649097`, `T_acc=0.894065`, `N_acc=0.920157`).
-Stage 5 is in progress: deterministic nested splits for seeds 0/1/2 and the
-shared-feature-bank training path are prepared; the long proposal/feature compute
-and the 27-cell grid remain.
+Stage 5 has completed its 27-cell development grid and a pre-test RefCOCO UNC
+val single-target audit. That audit exposed a checkpoint-selection blind spot in
+the current gRefCOCO val, so the final test protocol was amended before test
+access: fixed epoch-20 `last.pt` is primary and historical val-loss `best.pt` is
+reported as a complete sensitivity. Full testA/testB features and evaluation
+remain.
 
 ## Environment
 
