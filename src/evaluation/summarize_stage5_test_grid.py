@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from itertools import combinations
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 
@@ -160,6 +161,69 @@ def summarize_test_grid(
                         }
                     )
 
+    paired_differences = []
+    for split in splits:
+        for checkpoint_policy in checkpoint_policies:
+            for percentage in percentages:
+                for left, right in combinations(representations, 2):
+                    left_rows = [
+                        evaluations[
+                            (left, percentage, seed, split, checkpoint_policy)
+                        ]
+                        for seed in seeds
+                    ]
+                    right_rows = [
+                        evaluations[
+                            (right, percentage, seed, split, checkpoint_policy)
+                        ]
+                        for seed in seeds
+                    ]
+                    metrics = {
+                        name: aggregate(
+                            float(nested(left_row, path))
+                            - float(nested(right_row, path))
+                            for left_row, right_row in zip(left_rows, right_rows)
+                        )
+                        for name, path in MAIN_METRICS.items()
+                    }
+                    by_target_type = {
+                        target_type: {
+                            "mean_f1": aggregate(
+                                float(
+                                    left_row["by_target_type"][target_type][
+                                        "mean_f1"
+                                    ]
+                                )
+                                - float(
+                                    right_row["by_target_type"][target_type][
+                                        "mean_f1"
+                                    ]
+                                )
+                                for left_row, right_row in zip(
+                                    left_rows, right_rows
+                                )
+                            )
+                        }
+                        for target_type in (
+                            "no-target",
+                            "single-target",
+                            "multi-target",
+                        )
+                    }
+                    paired_differences.append(
+                        {
+                            "split": split,
+                            "checkpoint_policy": checkpoint_policy,
+                            "percentage": percentage,
+                            "left_representation": left,
+                            "right_representation": right,
+                            "difference": "left_minus_right",
+                            "seeds": list(seeds),
+                            "metrics": metrics,
+                            "by_target_type": by_target_type,
+                        }
+                    )
+
     return {
         "stage": 5,
         "evaluation_policy": (
@@ -180,6 +244,7 @@ def summarize_test_grid(
             {manifest["git_commit"] for manifest in manifests}
         ),
         "summary": summary,
+        "paired_differences": paired_differences,
     }
 
 
@@ -216,6 +281,28 @@ def format_summary(result: dict[str, Any]) -> str:
                     f"{row['representation']} | {row['percentage']}% | "
                     + " | ".join(rendered)
                 )
+    primary_policy = result["checkpoint_policies"][0]
+    lines.extend(
+        [
+            "",
+            f"[paired differences / {primary_policy}; left minus right]",
+            "split | fraction | comparison | F1_score | mean_f1",
+            "--- | ---: | --- | ---: | ---:",
+        ]
+    )
+    for row in result["paired_differences"]:
+        if row["checkpoint_policy"] != primary_policy:
+            continue
+        metrics = row["metrics"]
+        rendered = [
+            f"{metrics[name]['mean']:+.6f} ± {metrics[name]['std']:.6f}"
+            for name in ("F1_score", "mean_f1")
+        ]
+        lines.append(
+            f"{row['split']} | {row['percentage']}% | "
+            f"{row['left_representation']} - {row['right_representation']} | "
+            + " | ".join(rendered)
+        )
     return "\n".join(lines) + "\n"
 
 

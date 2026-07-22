@@ -53,7 +53,7 @@ uses ground-truth instance boxes and does not yet use the released GREC metric.
 | 2. Frozen detector proposals | Complete | Shared realistic candidate pools and proposal-recall diagnostics |
 | 3. Detector-based CLIP baseline | Complete | Re-established 1% baseline without oracle candidates |
 | 4. Frozen representation variants | Complete | Controlled 1% CLIP, CLIP+DINOv2, and SigLIP 2 validation comparison |
-| 5. Few-shot experiment grid | In progress | 1%/5%/10%, multiple seeds, aggregate comparison |
+| 5. Few-shot experiment grid | Complete | 1%/5%/10%, multiple seeds, locked full-test comparison |
 | 6. Ablations and reliability | Not started | Cardinality, spatial-feature, and counterfactual analyses |
 | 7. Final report and reproducibility | Not started | Final figures, tables, documentation, and reproducible commands |
 
@@ -230,9 +230,19 @@ encoder inference. Results will be summarized as mean and standard deviation.
   auxiliary set; compare all 27 `best.pt`/`last.pt` pairs without test access.
 - [x] Lock dual test reporting before test access: fixed epoch-20 `last.pt`
   primary and current-gRefCOCO-val `best.pt` sensitivity, both reported in full.
-- [ ] Extract full testA/testB features once per representation.
+- [x] Extract full testA/testB features once per representation.
 - [x] Lock the final comparison policy.
-- [ ] Evaluate both locked policies on full testA/testB once.
+- [x] Evaluate both locked policies on full testA/testB once.
+
+Stage 5 is accepted. All six complete test feature banks and all 108 locked
+evaluations are present and finite. Under the primary fixed-epoch policy,
+official F1 and mean F1 scale monotonically with supervision for all three
+representations on both test splits. SigLIP 2 is strongest at 5% and 10%; its
+10% official F1 is `0.411094 ± 0.007549` on testA and
+`0.361452 ± 0.010721` on testB. CLIP+DINOv2 does not improve over CLIP in
+the primary grid. The historical validation-selected checkpoint sensitivity is
+reported in full and confirms a strong empty-prediction bias caused by the
+class-incomplete current validation split.
 
 The proposal-cache extension completed in 468.63 seconds on the current local
 setup, substantially faster than the old Stage 2 throughput.
@@ -402,3 +412,16 @@ the relevant acceptance checks pass.
   `last.pt`. This pre-test evidence amends the final reporting protocol: fixed
   `last.pt` is primary and `best.pt` is a fully reported sensitivity; neither is
   selected after observing testA/testB.
+- 2026-07-22: Completed Stage 5. Extracted all six full testA/testB feature banks
+  on CUDA with AMP and evaluated all 108 pre-declared split/checkpoint cells at
+  the locked threshold. No evaluation is missing or non-finite. Primary
+  fixed-epoch results scale monotonically with supervision for every
+  representation and split. At 10%, SigLIP 2 reaches official F1
+  `0.411094 ± 0.007549` on testA and `0.361452 ± 0.010721` on testB,
+  paired improvements of `0.081059 ± 0.005048` and
+  `0.067505 ± 0.011725` over CLIP. CLIP+DINOv2 trails CLIP throughout the
+  primary grid. Added same-seed paired comparisons and retained the complete
+  historical `best.pt` sensitivity, which exposes the expected high-N_acc/
+  low-T_acc empty-prediction bias. The strongest model still has only
+  `0.1291/0.1378` cardinality accuracy for `3+` targets on testA/testB, making
+  this the main Stage 6 reliability target.

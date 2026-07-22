@@ -1,0 +1,638 @@
+{
+  "feature_file": "cache/features/stage5/clip_detector_testA.pt",
+  "checkpoint": "checkpoints/stage5/clip_10pct_seed0/last.pt",
+  "clip_model": "ViT-B/32",
+  "feature_dim": 512,
+  "candidate_feature_dim": 512,
+  "text_feature_dim": 512,
+  "representation": {
+    "name": "clip",
+    "model_ids": {
+      "clip": "ViT-B/32"
+    },
+    "candidate_feature_dim": 512,
+    "text_feature_dim": 512,
+    "component_normalization": {
+      "clip_image": "l2",
+      "clip_text": "l2"
+    },
+    "fusion": "none",
+    "encoder_parameters": {
+      "clip": {
+        "total": 151277313,
+        "trainable": 0
+      }
+    }
+  },
+  "device": "cuda",
+  "batch_size": 64,
+  "selection_policy": "cardinality-threshold",
+  "membership_threshold": 0.5,
+  "config": {
+    "match_threshold": 0.5,
+    "overlap_metric": "giou",
+    "prediction_score_threshold": null,
+    "image_f1_threshold": 1.0
+  },
+  "official": {
+    "F1_score": 0.3318229166666667,
+    "T_acc": 0.9641404555314533,
+    "N_acc": 0.5042715827338129
+  },
+  "diagnostics": {
+    "num_samples": 19200,
+    "mean_precision": 0.5133002908549791,
+    "mean_recall": 0.47965792945480196,
+    "mean_f1": 0.48603794465973615,
+    "exact_set_accuracy": 0.3318229166666667,
+    "cardinality_accuracy": 0.6893229166666667,
+    "count_class_accuracy": 0.7050520833333334,
+    "count_class_evaluated": 19200,
+    "micro_precision": 0.49212537636068865,
+    "micro_recall": 0.4308550185873606,
+    "micro_f1": 0.4594565374081015,
+    "total_tp": 12749,
+    "total_fp": 13157,
+    "total_fn": 16841,
+    "no_target_total": 4448,
+    "no_target_accuracy": 0.5042715827338129,
+    "false_grounding_rate": 0.49572841726618705,
+    "single_target_total": 5917,
+    "single_target_localization_accuracy": 0.429271590332939,
+    "single_target_exact_accuracy": 0.38144329896907214,
+    "multi_target_total": 8835,
+    "multi_target_mean_f1": 0.5255719906584088,
+    "multi_target_exact_accuracy": 0.21177136389360499
+  },
+  "by_target_type": {
+    "no-target": {
+      "num_samples": 4448,
+      "mean_precision": 0.5042715827338129,
+      "mean_recall": 0.5042715827338129,
+      "mean_f1": 0.5042715827338129,
+      "exact_set_accuracy": 0.5042715827338129,
+      "cardinality_accuracy": 0.5042715827338129,
+      "count_class_accuracy": 0.5042715827338129,
+      "count_class_evaluated": 4448,
+      "micro_precision": 0.0,
+      "micro_recall": 0.0,
+      "micro_f1": 0.0,
+      "total_tp": 0,
+      "total_fp": 2643,
+      "total_fn": 0
+    },
+    "single-target": {
+      "num_samples": 5917,
+      "mean_precision": 0.40532927722381834,
+      "mean_recall": 0.429271590332939,
+      "mean_f1": 0.41330065911779623,
+      "exact_set_accuracy": 0.38144329896907214,
+      "cardinality_accuracy": 0.8576981578502619,
+      "count_class_accuracy": 0.8576981578502619,
+      "count_class_evaluated": 5917,
+      "micro_precision": 0.42066909572706196,
+      "micro_recall": 0.429271590332939,
+      "micro_f1": 0.424926808866583,
+      "total_tp": 2540,
+      "total_fp": 3498,
+      "total_fn": 3377
+    },
+    "multi-target": {
+      "num_samples": 8835,
+      "mean_precision": 0.5901564517353984,
+      "mean_recall": 0.501011006851416,
+      "mean_f1": 0.5255719906584088,
+      "exact_set_accuracy": 0.21177136389360499,
+      "cardinality_accuracy": 0.6697226938313525,
+      "count_class_accuracy": 0.7039049235993209,
+      "count_class_evaluated": 8835,
+      "micro_precision": 0.5926850507982584,
+      "micro_recall": 0.43125079204156636,
+      "micro_f1": 0.4992420167245342,
+      "total_tp": 10209,
+      "total_fp": 7016,
+      "total_fn": 13464
+    }
+  },
+  "by_count_group": {
+    "0": {
+      "num_samples": 4448,
+      "mean_precision": 0.5042715827338129,
+      "mean_recall": 0.5042715827338129,
+      "mean_f1": 0.5042715827338129,
+      "exact_set_accuracy": 0.5042715827338129,
+      "cardinality_accuracy": 0.5042715827338129,
+      "count_class_accuracy": 0.5042715827338129,
+      "count_class_evaluated": 4448,
+      "micro_precision": 0.0,
+      "micro_recall": 0.0,
+      "micro_f1": 0.0,
+      "total_tp": 0,
+      "total_fp": 2643,
+      "total_fn": 0
+    },
+    "1": {
+      "num_samples": 5917,
+      "mean_precision": 0.40532927722381834,
+      "mean_recall": 0.429271590332939,
+      "mean_f1": 0.41330065911779623,
+      "exact_set_accuracy": 0.38144329896907214,
+      "cardinality_accuracy": 0.8576981578502619,
+      "count_class_accuracy": 0.8576981578502619,
+      "count_class_evaluated": 5917,
+      "micro_precision": 0.42066909572706196,
+      "micro_recall": 0.429271590332939,
+      "micro_f1": 0.424926808866583,
+      "total_tp": 2540,
+      "total_fp": 3498,
+      "total_fn": 3377
+    },
+    "2": {
+      "num_samples": 5940,
+      "mean_precision": 0.6019921436588104,
+      "mean_recall": 0.5852693602693603,
+      "mean_f1": 0.590791245791244,
+      "exact_set_accuracy": 0.29983164983164984,
+      "cardinality_accuracy": 0.9387205387205387,
+      "count_class_accuracy": 0.9387205387205387,
+      "count_class_evaluated": 5940,
+      "micro_precision": 0.606719022687609,
+      "micro_recall": 0.5852693602693603,
+      "micro_f1": 0.5958011996572408,
+      "total_tp": 6953,
+      "total_fp": 4507,
+      "total_fn": 4927
+    },
+    "3+": {
+      "num_samples": 2895,
+      "mean_precision": 0.5658718196023904,
+      "mean_recall": 0.3281285822218484,
+      "mean_f1": 0.39175424437547185,
+      "exact_set_accuracy": 0.031088082901554404,
+      "cardinality_accuracy": 0.11778929188255613,
+      "count_class_accuracy": 0.2221070811744387,
+      "count_class_evaluated": 2895,
+      "micro_precision": 0.5647875108412836,
+      "micro_recall": 0.2760959891461036,
+      "micro_f1": 0.37088506663629117,
+      "total_tp": 3256,
+      "total_fp": 2509,
+      "total_fn": 8537
+    }
+  },
+  "examples": [
+    {
+      "sample_id": "0000000",
+      "image_id": 839,
+      "file_name": "COCO_train2014_000000000839.jpg",
+      "target_type": "multi-target",
+      "expression": "blue shirt and a frisbee",
+      "true_count_class": 2,
+      "pred_count_class": 2,
+      "gt_candidate_indices": [
+        0,
+        1
+      ],
+      "pred_candidate_indices": [
+        0,
+        2
+      ],
+      "num_predictions": 2,
+      "num_targets": 2,
+      "precision": 0.5,
+      "recall": 0.5,
+      "f1": 0.5,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000001",
+      "image_id": 839,
+      "file_name": "COCO_train2014_000000000839.jpg",
+      "target_type": "multi-target",
+      "expression": "blue shirt and frisbee",
+      "true_count_class": 2,
+      "pred_count_class": 2,
+      "gt_candidate_indices": [
+        0,
+        1
+      ],
+      "pred_candidate_indices": [
+        0,
+        2
+      ],
+      "num_predictions": 2,
+      "num_targets": 2,
+      "precision": 0.5,
+      "recall": 0.5,
+      "f1": 0.5,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000002",
+      "image_id": 839,
+      "file_name": "COCO_train2014_000000000839.jpg",
+      "target_type": "multi-target",
+      "expression": "blue shirt and white shirt",
+      "true_count_class": 2,
+      "pred_count_class": 2,
+      "gt_candidate_indices": [
+        0,
+        2
+      ],
+      "pred_candidate_indices": [
+        0,
+        2
+      ],
+      "num_predictions": 2,
+      "num_targets": 2,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "exact": 1.0
+    },
+    {
+      "sample_id": "0000003",
+      "image_id": 839,
+      "file_name": "COCO_train2014_000000000839.jpg",
+      "target_type": "multi-target",
+      "expression": "blue cshirt and falling",
+      "true_count_class": 2,
+      "pred_count_class": 2,
+      "gt_candidate_indices": [
+        0,
+        2
+      ],
+      "pred_candidate_indices": [
+        0,
+        2
+      ],
+      "num_predictions": 2,
+      "num_targets": 2,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "exact": 1.0
+    },
+    {
+      "sample_id": "0000004",
+      "image_id": 839,
+      "file_name": "COCO_train2014_000000000839.jpg",
+      "target_type": "multi-target",
+      "expression": "guy flopping around on the right and person on left",
+      "true_count_class": 2,
+      "pred_count_class": 2,
+      "gt_candidate_indices": [
+        0,
+        2
+      ],
+      "pred_candidate_indices": [
+        0,
+        2
+      ],
+      "num_predictions": 2,
+      "num_targets": 2,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "exact": 1.0
+    },
+    {
+      "sample_id": "0000005",
+      "image_id": 839,
+      "file_name": "COCO_train2014_000000000839.jpg",
+      "target_type": "multi-target",
+      "expression": "guy flopping around on the right and person on the left",
+      "true_count_class": 2,
+      "pred_count_class": 2,
+      "gt_candidate_indices": [
+        0,
+        2
+      ],
+      "pred_candidate_indices": [
+        0,
+        2
+      ],
+      "num_predictions": 2,
+      "num_targets": 2,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "exact": 1.0
+    },
+    {
+      "sample_id": "0000006",
+      "image_id": 839,
+      "file_name": "COCO_train2014_000000000839.jpg",
+      "target_type": "multi-target",
+      "expression": "person on left and falling",
+      "true_count_class": 2,
+      "pred_count_class": 2,
+      "gt_candidate_indices": [
+        0,
+        2
+      ],
+      "pred_candidate_indices": [
+        0,
+        2
+      ],
+      "num_predictions": 2,
+      "num_targets": 2,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "exact": 1.0
+    },
+    {
+      "sample_id": "0000007",
+      "image_id": 839,
+      "file_name": "COCO_train2014_000000000839.jpg",
+      "target_type": "multi-target",
+      "expression": "blue cshirt and falling",
+      "true_count_class": 2,
+      "pred_count_class": 2,
+      "gt_candidate_indices": [
+        0,
+        2
+      ],
+      "pred_candidate_indices": [
+        0,
+        2
+      ],
+      "num_predictions": 2,
+      "num_targets": 2,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "exact": 1.0
+    },
+    {
+      "sample_id": "0000008",
+      "image_id": 839,
+      "file_name": "COCO_train2014_000000000839.jpg",
+      "target_type": "multi-target",
+      "expression": "two individuals and a flying disc.",
+      "true_count_class": 3,
+      "pred_count_class": 2,
+      "gt_candidate_indices": [
+        0,
+        1,
+        2
+      ],
+      "pred_candidate_indices": [
+        0,
+        2
+      ],
+      "num_predictions": 2,
+      "num_targets": 3,
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "f1": 0.8,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000009",
+      "image_id": 839,
+      "file_name": "COCO_train2014_000000000839.jpg",
+      "target_type": "multi-target",
+      "expression": "a pair of people and a frisbee.",
+      "true_count_class": 3,
+      "pred_count_class": 2,
+      "gt_candidate_indices": [
+        0,
+        1,
+        2
+      ],
+      "pred_candidate_indices": [
+        0,
+        2
+      ],
+      "num_predictions": 2,
+      "num_targets": 3,
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "f1": 0.8,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000010",
+      "image_id": 839,
+      "file_name": "COCO_train2014_000000000839.jpg",
+      "target_type": "multi-target",
+      "expression": "the duo and a flying saucer.",
+      "true_count_class": 3,
+      "pred_count_class": 2,
+      "gt_candidate_indices": [
+        0,
+        1,
+        2
+      ],
+      "pred_candidate_indices": [
+        0,
+        2
+      ],
+      "num_predictions": 2,
+      "num_targets": 3,
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "f1": 0.8,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000011",
+      "image_id": 839,
+      "file_name": "COCO_train2014_000000000839.jpg",
+      "target_type": "multi-target",
+      "expression": "two persons and a flying disk.",
+      "true_count_class": 3,
+      "pred_count_class": 2,
+      "gt_candidate_indices": [
+        0,
+        1,
+        2
+      ],
+      "pred_candidate_indices": [
+        0,
+        2
+      ],
+      "num_predictions": 2,
+      "num_targets": 3,
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "f1": 0.8,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000012",
+      "image_id": 839,
+      "file_name": "COCO_train2014_000000000839.jpg",
+      "target_type": "multi-target",
+      "expression": "the twosome and a flying disc.",
+      "true_count_class": 3,
+      "pred_count_class": 2,
+      "gt_candidate_indices": [
+        0,
+        1,
+        2
+      ],
+      "pred_candidate_indices": [
+        0,
+        2
+      ],
+      "num_predictions": 2,
+      "num_targets": 3,
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "f1": 0.8,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000013",
+      "image_id": 839,
+      "file_name": "COCO_train2014_000000000839.jpg",
+      "target_type": "multi-target",
+      "expression": "the guy wearing white uniform on the right side with one leg up and one leg on the ground and a white frisbee",
+      "true_count_class": 2,
+      "pred_count_class": 2,
+      "gt_candidate_indices": [
+        1,
+        2
+      ],
+      "pred_candidate_indices": [
+        0,
+        2
+      ],
+      "num_predictions": 2,
+      "num_targets": 2,
+      "precision": 0.5,
+      "recall": 0.5,
+      "f1": 0.5,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000014",
+      "image_id": 839,
+      "file_name": "COCO_train2014_000000000839.jpg",
+      "target_type": "single-target",
+      "expression": "person on left",
+      "true_count_class": 1,
+      "pred_count_class": 1,
+      "gt_candidate_indices": [
+        0
+      ],
+      "pred_candidate_indices": [
+        0
+      ],
+      "num_predictions": 1,
+      "num_targets": 1,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "exact": 1.0
+    },
+    {
+      "sample_id": "0000015",
+      "image_id": 839,
+      "file_name": "COCO_train2014_000000000839.jpg",
+      "target_type": "single-target",
+      "expression": "blue",
+      "true_count_class": 1,
+      "pred_count_class": 1,
+      "gt_candidate_indices": [
+        0
+      ],
+      "pred_candidate_indices": [
+        0
+      ],
+      "num_predictions": 1,
+      "num_targets": 1,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "exact": 1.0
+    },
+    {
+      "sample_id": "0000016",
+      "image_id": 839,
+      "file_name": "COCO_train2014_000000000839.jpg",
+      "target_type": "single-target",
+      "expression": "blue cshirt",
+      "true_count_class": 1,
+      "pred_count_class": 1,
+      "gt_candidate_indices": [
+        0
+      ],
+      "pred_candidate_indices": [
+        0
+      ],
+      "num_predictions": 1,
+      "num_targets": 1,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "exact": 1.0
+    },
+    {
+      "sample_id": "0000017",
+      "image_id": 839,
+      "file_name": "COCO_train2014_000000000839.jpg",
+      "target_type": "single-target",
+      "expression": "guy flopping around on the right",
+      "true_count_class": 1,
+      "pred_count_class": 1,
+      "gt_candidate_indices": [
+        2
+      ],
+      "pred_candidate_indices": [
+        0
+      ],
+      "num_predictions": 1,
+      "num_targets": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000018",
+      "image_id": 839,
+      "file_name": "COCO_train2014_000000000839.jpg",
+      "target_type": "single-target",
+      "expression": "falling",
+      "true_count_class": 1,
+      "pred_count_class": 1,
+      "gt_candidate_indices": [
+        2
+      ],
+      "pred_candidate_indices": [
+        2
+      ],
+      "num_predictions": 1,
+      "num_targets": 1,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "exact": 1.0
+    },
+    {
+      "sample_id": "0000019",
+      "image_id": 839,
+      "file_name": "COCO_train2014_000000000839.jpg",
+      "target_type": "single-target",
+      "expression": "player in white",
+      "true_count_class": 1,
+      "pred_count_class": 1,
+      "gt_candidate_indices": [
+        2
+      ],
+      "pred_candidate_indices": [
+        0
+      ],
+      "num_predictions": 1,
+      "num_targets": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    }
+  ]
+}

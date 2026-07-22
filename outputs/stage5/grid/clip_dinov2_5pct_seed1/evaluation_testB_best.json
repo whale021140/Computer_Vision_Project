@@ -1,0 +1,622 @@
+{
+  "feature_file": "cache/features/stage5/clip_dinov2_detector_testB.pt",
+  "checkpoint": "checkpoints/stage5/clip_dinov2_5pct_seed1/best.pt",
+  "clip_model": "ViT-B/32",
+  "feature_dim": 1280,
+  "candidate_feature_dim": 1280,
+  "text_feature_dim": 512,
+  "representation": {
+    "name": "clip_dinov2",
+    "model_ids": {
+      "clip": "ViT-B/32",
+      "dinov2": "facebook/dinov2-base"
+    },
+    "candidate_feature_dim": 1280,
+    "text_feature_dim": 512,
+    "component_normalization": {
+      "clip_image": "l2",
+      "clip_text": "l2",
+      "dinov2_cls": "l2"
+    },
+    "fusion": "concatenate normalized CLIP image and DINOv2 CLS features",
+    "similarity_source": "normalized CLIP image/text subspace",
+    "encoder_parameters": {
+      "clip": {
+        "total": 151277313,
+        "trainable": 0
+      },
+      "dinov2": {
+        "total": 86580480,
+        "trainable": 0
+      }
+    }
+  },
+  "device": "cuda",
+  "batch_size": 64,
+  "selection_policy": "cardinality-threshold",
+  "membership_threshold": 0.5,
+  "config": {
+    "match_threshold": 0.5,
+    "overlap_metric": "giou",
+    "prediction_score_threshold": null,
+    "image_f1_threshold": 1.0
+  },
+  "official": {
+    "F1_score": 0.29732926601506565,
+    "T_acc": 0.456540825285338,
+    "N_acc": 0.8823025893430344
+  },
+  "diagnostics": {
+    "num_samples": 16063,
+    "mean_precision": 0.3793500591421279,
+    "mean_recall": 0.37442216609402024,
+    "mean_f1": 0.3737517094953449,
+    "exact_set_accuracy": 0.29732926601506565,
+    "cardinality_accuracy": 0.4765610409014505,
+    "count_class_accuracy": 0.4765610409014505,
+    "count_class_evaluated": 16063,
+    "micro_precision": 0.358309591642925,
+    "micro_recall": 0.1769201913157648,
+    "micro_f1": 0.23687845303867403,
+    "total_tp": 3773,
+    "total_fp": 6757,
+    "total_fn": 17553,
+    "no_target_total": 4673,
+    "no_target_accuracy": 0.8823025893430344,
+    "false_grounding_rate": 0.11769741065696554,
+    "single_target_total": 5646,
+    "single_target_localization_accuracy": 0.05579171094580234,
+    "single_target_exact_accuracy": 0.01753453772582359,
+    "multi_target_total": 5744,
+    "multi_target_mean_f1": 0.2850929160208415,
+    "multi_target_exact_accuracy": 0.09644846796657382
+  },
+  "by_target_type": {
+    "no-target": {
+      "num_samples": 4673,
+      "mean_precision": 0.8823025893430344,
+      "mean_recall": 0.8823025893430344,
+      "mean_f1": 0.8823025893430344,
+      "exact_set_accuracy": 0.8823025893430344,
+      "cardinality_accuracy": 0.8823025893430344,
+      "count_class_accuracy": 0.8823025893430344,
+      "count_class_evaluated": 4673,
+      "micro_precision": 0.0,
+      "micro_recall": 0.0,
+      "micro_f1": 0.0,
+      "total_tp": 0,
+      "total_fp": 755,
+      "total_fn": 0
+    },
+    "single-target": {
+      "num_samples": 5646,
+      "mean_precision": 0.036663124335812966,
+      "mean_recall": 0.05579171094580234,
+      "mean_f1": 0.04303931987247598,
+      "exact_set_accuracy": 0.01753453772582359,
+      "cardinality_accuracy": 0.0750974140984768,
+      "count_class_accuracy": 0.0750974140984768,
+      "count_class_evaluated": 5646,
+      "micro_precision": 0.18399532710280375,
+      "micro_recall": 0.05579171094580234,
+      "micro_f1": 0.0856210926882305,
+      "total_tp": 315,
+      "total_fp": 1397,
+      "total_fn": 5331
+    },
+    "multi-target": {
+      "num_samples": 5744,
+      "mean_precision": 0.3070160167130919,
+      "mean_recall": 0.2744330177521331,
+      "mean_f1": 0.2850929160208415,
+      "exact_set_accuracy": 0.09644846796657382,
+      "cardinality_accuracy": 0.5410863509749304,
+      "count_class_accuracy": 0.5410863509749304,
+      "count_class_evaluated": 5744,
+      "micro_precision": 0.42887262805407417,
+      "micro_recall": 0.22053571428571428,
+      "micro_f1": 0.2912858526723666,
+      "total_tp": 3458,
+      "total_fp": 4605,
+      "total_fn": 12222
+    }
+  },
+  "by_count_group": {
+    "0": {
+      "num_samples": 4673,
+      "mean_precision": 0.8823025893430344,
+      "mean_recall": 0.8823025893430344,
+      "mean_f1": 0.8823025893430344,
+      "exact_set_accuracy": 0.8823025893430344,
+      "cardinality_accuracy": 0.8823025893430344,
+      "count_class_accuracy": 0.8823025893430344,
+      "count_class_evaluated": 4673,
+      "micro_precision": 0.0,
+      "micro_recall": 0.0,
+      "micro_f1": 0.0,
+      "total_tp": 0,
+      "total_fp": 755,
+      "total_fn": 0
+    },
+    "1": {
+      "num_samples": 5646,
+      "mean_precision": 0.036663124335812966,
+      "mean_recall": 0.05579171094580234,
+      "mean_f1": 0.04303931987247598,
+      "exact_set_accuracy": 0.01753453772582359,
+      "cardinality_accuracy": 0.0750974140984768,
+      "count_class_accuracy": 0.0750974140984768,
+      "count_class_evaluated": 5646,
+      "micro_precision": 0.18399532710280375,
+      "micro_recall": 0.05579171094580234,
+      "micro_f1": 0.0856210926882305,
+      "total_tp": 315,
+      "total_fp": 1397,
+      "total_fn": 5331
+    },
+    "2": {
+      "num_samples": 3957,
+      "mean_precision": 0.3407884761182714,
+      "mean_recall": 0.3390194591862522,
+      "mean_f1": 0.33960913149692545,
+      "exact_set_accuracy": 0.1400050543340915,
+      "cardinality_accuracy": 0.7854435178165277,
+      "count_class_accuracy": 0.7854435178165277,
+      "count_class_evaluated": 3957,
+      "micro_precision": 0.42941741357234314,
+      "micro_recall": 0.3390194591862522,
+      "micro_f1": 0.37890128512921906,
+      "total_tp": 2683,
+      "total_fp": 3565,
+      "total_fn": 5231
+    },
+    "3+": {
+      "num_samples": 1787,
+      "mean_precision": 0.23223279238947958,
+      "mean_recall": 0.13141760154910714,
+      "mean_f1": 0.16437625981554438,
+      "exact_set_accuracy": 0.0,
+      "cardinality_accuracy": 0.0,
+      "count_class_accuracy": 0.0,
+      "count_class_evaluated": 1787,
+      "micro_precision": 0.42699724517906334,
+      "micro_recall": 0.09979397373165079,
+      "micro_f1": 0.16177851998747522,
+      "total_tp": 775,
+      "total_fp": 1040,
+      "total_fn": 6991
+    }
+  },
+  "examples": [
+    {
+      "sample_id": "0000000",
+      "image_id": 154,
+      "file_name": "COCO_train2014_000000000154.jpg",
+      "target_type": "multi-target",
+      "expression": "three zebras standing on the savannah.",
+      "true_count_class": 3,
+      "pred_count_class": 2,
+      "gt_candidate_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "pred_candidate_indices": [
+        0,
+        1
+      ],
+      "num_predictions": 2,
+      "num_targets": 3,
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "f1": 0.8,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000001",
+      "image_id": 154,
+      "file_name": "COCO_train2014_000000000154.jpg",
+      "target_type": "multi-target",
+      "expression": "a trio of zebras positioned on the grassland.",
+      "true_count_class": 3,
+      "pred_count_class": 2,
+      "gt_candidate_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "pred_candidate_indices": [
+        1,
+        3
+      ],
+      "num_predictions": 2,
+      "num_targets": 3,
+      "precision": 0.5,
+      "recall": 0.3333333333333333,
+      "f1": 0.4,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000002",
+      "image_id": 154,
+      "file_name": "COCO_train2014_000000000154.jpg",
+      "target_type": "multi-target",
+      "expression": "there are three zebras standing in the prairie.",
+      "true_count_class": 3,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "pred_candidate_indices": [],
+      "num_predictions": 0,
+      "num_targets": 3,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000003",
+      "image_id": 154,
+      "file_name": "COCO_train2014_000000000154.jpg",
+      "target_type": "multi-target",
+      "expression": "three zebras, all stationary on the grassy plain.",
+      "true_count_class": 3,
+      "pred_count_class": 2,
+      "gt_candidate_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "pred_candidate_indices": [
+        1,
+        3
+      ],
+      "num_predictions": 2,
+      "num_targets": 3,
+      "precision": 0.5,
+      "recall": 0.3333333333333333,
+      "f1": 0.4,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000004",
+      "image_id": 154,
+      "file_name": "COCO_train2014_000000000154.jpg",
+      "target_type": "multi-target",
+      "expression": "all striped equines",
+      "true_count_class": 3,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "pred_candidate_indices": [],
+      "num_predictions": 0,
+      "num_targets": 3,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000005",
+      "image_id": 154,
+      "file_name": "COCO_train2014_000000000154.jpg",
+      "target_type": "multi-target",
+      "expression": "the zebra in the front cloest to us and the zebra in the far background",
+      "true_count_class": 2,
+      "pred_count_class": 2,
+      "gt_candidate_indices": [
+        1,
+        2,
+        3
+      ],
+      "pred_candidate_indices": [
+        0,
+        1
+      ],
+      "num_predictions": 2,
+      "num_targets": 2,
+      "precision": 0.5,
+      "recall": 0.5,
+      "f1": 0.5,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000006",
+      "image_id": 154,
+      "file_name": "COCO_train2014_000000000154.jpg",
+      "target_type": "single-target",
+      "expression": "zebra in the middle",
+      "true_count_class": 1,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        0
+      ],
+      "pred_candidate_indices": [],
+      "num_predictions": 0,
+      "num_targets": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000007",
+      "image_id": 154,
+      "file_name": "COCO_train2014_000000000154.jpg",
+      "target_type": "single-target",
+      "expression": "giraffe in the middle",
+      "true_count_class": 1,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        0
+      ],
+      "pred_candidate_indices": [],
+      "num_predictions": 0,
+      "num_targets": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000008",
+      "image_id": 154,
+      "file_name": "COCO_train2014_000000000154.jpg",
+      "target_type": "single-target",
+      "expression": "middle zebra",
+      "true_count_class": 1,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        0
+      ],
+      "pred_candidate_indices": [],
+      "num_predictions": 0,
+      "num_targets": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000009",
+      "image_id": 154,
+      "file_name": "COCO_train2014_000000000154.jpg",
+      "target_type": "single-target",
+      "expression": "mid zebra",
+      "true_count_class": 1,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        0
+      ],
+      "pred_candidate_indices": [],
+      "num_predictions": 0,
+      "num_targets": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000010",
+      "image_id": 154,
+      "file_name": "COCO_train2014_000000000154.jpg",
+      "target_type": "single-target",
+      "expression": "middle zebra",
+      "true_count_class": 1,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        0
+      ],
+      "pred_candidate_indices": [],
+      "num_predictions": 0,
+      "num_targets": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000011",
+      "image_id": 154,
+      "file_name": "COCO_train2014_000000000154.jpg",
+      "target_type": "single-target",
+      "expression": "zebra at the bottom",
+      "true_count_class": 1,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        1,
+        3
+      ],
+      "pred_candidate_indices": [],
+      "num_predictions": 0,
+      "num_targets": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000012",
+      "image_id": 154,
+      "file_name": "COCO_train2014_000000000154.jpg",
+      "target_type": "single-target",
+      "expression": "the zebra in the foreground the first zebra",
+      "true_count_class": 1,
+      "pred_count_class": 2,
+      "gt_candidate_indices": [
+        1,
+        3
+      ],
+      "pred_candidate_indices": [
+        0,
+        1
+      ],
+      "num_predictions": 2,
+      "num_targets": 1,
+      "precision": 0.5,
+      "recall": 1.0,
+      "f1": 0.6666666666666666,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000013",
+      "image_id": 154,
+      "file_name": "COCO_train2014_000000000154.jpg",
+      "target_type": "single-target",
+      "expression": "the butt",
+      "true_count_class": 1,
+      "pred_count_class": 1,
+      "gt_candidate_indices": [
+        1,
+        3
+      ],
+      "pred_candidate_indices": [
+        0
+      ],
+      "num_predictions": 1,
+      "num_targets": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000014",
+      "image_id": 154,
+      "file_name": "COCO_train2014_000000000154.jpg",
+      "target_type": "multi-target",
+      "expression": "the butt and zebra in the middle",
+      "true_count_class": 2,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        0,
+        1,
+        3
+      ],
+      "pred_candidate_indices": [],
+      "num_predictions": 0,
+      "num_targets": 2,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000015",
+      "image_id": 154,
+      "file_name": "COCO_train2014_000000000154.jpg",
+      "target_type": "multi-target",
+      "expression": "giraffe in the middle and zebra at the bottom",
+      "true_count_class": 2,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        0,
+        1,
+        3
+      ],
+      "pred_candidate_indices": [],
+      "num_predictions": 0,
+      "num_targets": 2,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000016",
+      "image_id": 154,
+      "file_name": "COCO_train2014_000000000154.jpg",
+      "target_type": "multi-target",
+      "expression": "the butt and middle zebra",
+      "true_count_class": 2,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        0,
+        1,
+        3
+      ],
+      "pred_candidate_indices": [],
+      "num_predictions": 0,
+      "num_targets": 2,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000017",
+      "image_id": 154,
+      "file_name": "COCO_train2014_000000000154.jpg",
+      "target_type": "multi-target",
+      "expression": "the butt and mid zebra",
+      "true_count_class": 2,
+      "pred_count_class": 0,
+      "gt_candidate_indices": [
+        0,
+        1,
+        3
+      ],
+      "pred_candidate_indices": [],
+      "num_predictions": 0,
+      "num_targets": 2,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    },
+    {
+      "sample_id": "0000018",
+      "image_id": 154,
+      "file_name": "COCO_train2014_000000000154.jpg",
+      "target_type": "multi-target",
+      "expression": "the zebra in the foreground the first zebra and zebra in the middle",
+      "true_count_class": 2,
+      "pred_count_class": 2,
+      "gt_candidate_indices": [
+        0,
+        1,
+        3
+      ],
+      "pred_candidate_indices": [
+        0,
+        1
+      ],
+      "num_predictions": 2,
+      "num_targets": 2,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "exact": 1.0
+    },
+    {
+      "sample_id": "0000019",
+      "image_id": 154,
+      "file_name": "COCO_train2014_000000000154.jpg",
+      "target_type": "no-target",
+      "expression": "the giraffe in the middle facing right",
+      "true_count_class": 0,
+      "pred_count_class": 1,
+      "gt_candidate_indices": [],
+      "pred_candidate_indices": [
+        0
+      ],
+      "num_predictions": 1,
+      "num_targets": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "exact": 0.0
+    }
+  ]
+}

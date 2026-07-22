@@ -317,6 +317,12 @@ class Stage5AggregationTests(unittest.TestCase):
         )
         self.assertEqual(result["num_evaluations"], 16)
         self.assertEqual(result["expected_samples"], {"testA": 10, "testB": 10})
+        self.assertEqual(len(result["paired_differences"]), 4)
+        paired = result["paired_differences"][0]
+        self.assertEqual(paired["difference"], "left_minus_right")
+        self.assertEqual(paired["left_representation"], "a")
+        self.assertEqual(paired["right_representation"], "b")
+        self.assertEqual(paired["metrics"]["F1_score"]["values"], [0.0, 0.0])
 
 
 if __name__ == "__main__":

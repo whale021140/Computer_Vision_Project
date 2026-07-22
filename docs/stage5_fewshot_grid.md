@@ -138,10 +138,78 @@ low-data cell, so the test protocol reports two complete, pre-declared policies:
   validation selection criterion;
 - sensitivity: the historical current-gRefCOCO-val-selected `best.pt`.
 
-Both policies will be evaluated for every representation/fraction/seed on full
-testA and testB. Neither will be selected or hidden based on test outcomes. The
+Both policies were evaluated for every representation/fraction/seed on full
+testA and testB. Neither was selected or hidden based on test outcomes. The
 auxiliary and composite tables are recorded in
 `outputs/stage5/refcoco_aux/summary.json/.txt`.
+
+## Locked full-test results
+
+All six CUDA/AMP test feature banks and all 108 pre-declared evaluations are
+complete. There are no missing, malformed, or non-finite results. TestA contains
+19,200 expressions (4,448 no-target, 5,917 single-target, and 8,835
+multi-target); testB contains 16,063 (4,673 / 5,646 / 5,744). These are full
+splits: neither feature extraction nor evaluation used a sample limit.
+
+The primary fixed-epoch-20 `last.pt` results are:
+
+### testA / primary `last.pt`
+
+| Representation | Fraction | F1_score | T_acc | N_acc | Mean F1 |
+|---|---:|---:|---:|---:|---:|
+| SigLIP 2 | 1% | 0.280885 ± 0.012934 | 0.941183 ± 0.030579 | 0.390737 ± 0.073089 | 0.426890 ± 0.009769 |
+| SigLIP 2 | 5% | 0.380330 ± 0.010429 | 0.954967 ± 0.026088 | 0.549535 ± 0.056684 | 0.531918 ± 0.006404 |
+| SigLIP 2 | 10% | **0.411094 ± 0.007549** | 0.952278 ± 0.029818 | **0.581235 ± 0.071117** | **0.560910 ± 0.004039** |
+| CLIP | 1% | 0.242031 ± 0.025368 | 0.918000 ± 0.062443 | 0.411571 ± 0.142966 | 0.385808 ± 0.020033 |
+| CLIP | 5% | 0.303576 ± 0.004729 | 0.942110 ± 0.008527 | 0.505995 ± 0.032866 | 0.455231 ± 0.006055 |
+| CLIP | 10% | 0.330035 ± 0.002831 | **0.961067 ± 0.002661** | 0.493705 ± 0.009185 | 0.482760 ± 0.002850 |
+| CLIP+DINOv2 | 1% | 0.224635 ± 0.019484 | 0.939511 ± 0.036272 | 0.324940 ± 0.089128 | 0.371895 ± 0.016602 |
+| CLIP+DINOv2 | 5% | 0.291632 ± 0.007451 | 0.948640 ± 0.002384 | 0.473771 ± 0.013753 | 0.442839 ± 0.006314 |
+| CLIP+DINOv2 | 10% | 0.317812 ± 0.017852 | 0.956752 ± 0.022620 | 0.475869 ± 0.080566 | 0.469639 ± 0.014432 |
+
+### testB / primary `last.pt`
+
+| Representation | Fraction | F1_score | T_acc | N_acc | Mean F1 |
+|---|---:|---:|---:|---:|---:|
+| SigLIP 2 | 1% | 0.212870 ± 0.004363 | 0.865320 ± 0.054227 | 0.387403 ± 0.055858 | 0.309420 ± 0.005111 |
+| SigLIP 2 | 5% | 0.327938 ± 0.019271 | **0.950366 ± 0.023521** | **0.541337 ± 0.075429** | **0.445956 ± 0.017714** |
+| SigLIP 2 | 10% | **0.361452 ± 0.010721** | **0.960755 ± 0.015511** | **0.577859 ± 0.043622** | **0.480099 ± 0.009432** |
+| CLIP | 1% | 0.218618 ± 0.024589 | 0.733363 ± 0.115892 | 0.511377 ± 0.134346 | 0.312528 ± 0.020668 |
+| CLIP | 5% | 0.270124 ± 0.011310 | 0.888382 ± 0.025425 | 0.527784 ± 0.054282 | 0.376186 ± 0.010917 |
+| CLIP | 10% | 0.293947 ± 0.001502 | 0.947439 ± 0.013474 | 0.486340 ± 0.018314 | 0.408382 ± 0.003275 |
+| CLIP+DINOv2 | 1% | 0.186080 ± 0.010926 | 0.844162 ± 0.054704 | 0.344746 ± 0.061702 | 0.285543 ± 0.013543 |
+| CLIP+DINOv2 | 5% | 0.246965 ± 0.004667 | 0.907287 ± 0.012298 | 0.443256 ± 0.020621 | 0.357099 ± 0.004979 |
+| CLIP+DINOv2 | 10% | 0.281371 ± 0.021929 | 0.946678 ± 0.025291 | 0.459091 ± 0.076048 | 0.395678 ± 0.019120 |
+
+The central result is clean supervision scaling under the primary policy. Every
+representation improves monotonically from 1% to 5% to 10% in both official
+`F1_score` and diagnostic mean F1 on both tests. SigLIP 2 is strongest at 5%
+and 10%; at 10%, its paired gains over CLIP are `+0.081059 ± 0.005048`
+official F1 on testA and `+0.067505 ± 0.011725` on testB. The 1% testB
+SigLIP-2/CLIP difference is effectively unresolved (`-0.005748 ± 0.024779`).
+CLIP+DINOv2 does not improve over CLIP in any primary aggregate cell, so the
+proposal's DINOv2 hypothesis receives a controlled negative result.
+
+The historical `best.pt` sensitivity confirms the validation-selection failure:
+it has much higher `N_acc` but markedly lower `T_acc`, favoring empty predictions.
+Fixed `last.pt` is not uniformly higher in official F1, especially at 1%, because
+official F1 counts only exact per-expression successes and the no-target gain can
+outweigh poor target coverage. At 5%/10%, however, `last.pt` usually improves
+mean F1 and gives the intended variable-target behavior. All 18 sensitivity
+aggregate rows and their 54 seed-level evaluations are retained in
+`outputs/stage5/test_grid_summary.json/.txt`, rather than selectively omitted.
+
+The strongest model, 10% SigLIP 2, reaches target-type mean F1 of
+`0.5812/0.5436/0.5623` on testA and `0.5779/0.3971/0.4822` on testB for
+no/single/multi target. Its main remaining weakness is the `3+` group:
+cardinality accuracy is only `0.1291` on testA and `0.1378` on testB. This and
+the known lower `3+` proposal full coverage motivate the Stage 6 cardinality and
+proposal-label diagnostics; they do not invalidate the completed Stage 5 grid.
+
+The aggregate file also records same-seed paired differences for all
+representation pairs. This is important because the reported standard deviation
+combines subset and initialization variation, while paired deltas still compare
+representations on the identical split/seed cells.
 
 Prepare the evaluation-only feature banks with:
 

@@ -26,12 +26,13 @@ validation-selected training and calibration, and a full 1% detector baseline.
 Stage 4 completes the controlled 1% seed-0 comparison with real frozen
 CLIP+DINOv2 and SigLIP 2 features. SigLIP 2 gives the strongest validation
 result (`F1_score=0.649097`, `T_acc=0.894065`, `N_acc=0.920157`).
-Stage 5 has completed its 27-cell development grid and a pre-test RefCOCO UNC
-val single-target audit. That audit exposed a checkpoint-selection blind spot in
-the current gRefCOCO val, so the final test protocol was amended before test
-access: fixed epoch-20 `last.pt` is primary and historical val-loss `best.pt` is
-reported as a complete sensitivity. Full testA/testB features and evaluation
-remain.
+Stage 5 is complete: its 27-cell development grid, pre-test RefCOCO UNC
+single-target audit, six full test feature banks, and 108 locked test
+evaluations are recorded. The audit exposed a checkpoint-selection blind spot
+in the current gRefCOCO val, so fixed epoch-20 `last.pt` is the pre-declared
+primary policy and historical val-loss `best.pt` is reported as a complete
+sensitivity. Under the primary policy, SigLIP 2 is strongest at 5% and 10% and
+all representations improve monotonically with supervision on both test splits.
 
 ## Environment
 
@@ -138,7 +139,26 @@ for cache statistics, calibration findings, and the proposal-gap analysis.
 All rows use the same detector proposals, 1% seed-0 split, lightweight head,
 optimization schedule, validation checkpoint selection, and GIoU evaluator.
 These are development-set results; the multi-fraction, multi-seed Stage 5 grid
-is still pending.
+is reported below.
+
+## Stage 5 Locked Test Result
+
+The main result uses the pre-declared fixed epoch-20 checkpoint. Values are
+mean ± sample standard deviation over three paired data/training seeds.
+
+| Split | Representation | 1% F1_score | 5% F1_score | 10% F1_score |
+|---|---|---:|---:|---:|
+| testA | SigLIP 2 | 0.2809 ± 0.0129 | 0.3803 ± 0.0104 | **0.4111 ± 0.0075** |
+| testA | CLIP | 0.2420 ± 0.0254 | 0.3036 ± 0.0047 | 0.3300 ± 0.0028 |
+| testA | CLIP+DINOv2 | 0.2246 ± 0.0195 | 0.2916 ± 0.0075 | 0.3178 ± 0.0179 |
+| testB | SigLIP 2 | 0.2129 ± 0.0044 | 0.3279 ± 0.0193 | **0.3615 ± 0.0107** |
+| testB | CLIP | **0.2186 ± 0.0246** | 0.2701 ± 0.0113 | 0.2939 ± 0.0015 |
+| testB | CLIP+DINOv2 | 0.1861 ± 0.0109 | 0.2470 ± 0.0047 | 0.2814 ± 0.0219 |
+
+The 10% SigLIP 2 paired gain over CLIP is `+0.0811 ± 0.0050` on testA
+and `+0.0675 ± 0.0117` on testB. Complete `T_acc`, `N_acc`, mean-F1,
+target-count breakdowns, and the full historical-checkpoint sensitivity are in
+[`outputs/stage5/test_grid_summary.txt`](outputs/stage5/test_grid_summary.txt).
 
 ## Milestone 2 Historical Result
 
