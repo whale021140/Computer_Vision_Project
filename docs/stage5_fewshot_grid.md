@@ -118,3 +118,9 @@ REGION_BATCH_SIZE=16 bash scripts/run_stage5_extract_features.sh clip
 Do not run the three processes concurrently on one GPU. The output banks live
 under `cache/features/stage5/`; all nine training cells for a representation
 select records from its one union bank instead of repeating encoder inference.
+
+CLIP completed in 1,672.51 extraction seconds (29:08 wall time including model
+loading, serialization, and the post-run selection check). The validated bank is
+820 MiB and contains 56,752 unique expression keys, 16,145 shared images, and
+613,389 region embeddings. All values are finite, expression/image identity
+matches the union exactly, and every seed/fraction split is present.
