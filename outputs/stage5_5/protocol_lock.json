@@ -1,0 +1,53 @@
+{
+  "stage": "5.5",
+  "status": "locked_before_any_stage5_5_test_output",
+  "primary_stage_remains": "Stage 5 locked full grid",
+  "data": {
+    "source_union": "splits/train_stage5_union_seed0-2.json",
+    "source_union_sha256": "c9d03e710e7be6b6de81bb78a3de919ae5a49bd32ce2a40e8ff5cd2106171ac6",
+    "shadow_dev": "splits/stage5_5/shadow_dev.json",
+    "shadow_dev_sha256": "7f9734ab979a892e66fe78d9b1acccfa9053657121c99c80e27e47ac2cf74a06",
+    "shadow_dev_image_disjoint_from_all_enhanced_train": true,
+    "train_seeds": [0, 1, 2],
+    "train_fraction": 10,
+    "train_expressions_per_seed": 20934
+  },
+  "pilots": [
+    "selection_only",
+    "balanced",
+    "hierarchical",
+    "one_to_one",
+    "combined"
+  ],
+  "pilot_representation": "siglip2",
+  "pilot_seed": 0,
+  "training": {
+    "epochs": 40,
+    "batch_size": 16,
+    "hidden_dim": 256,
+    "dropout": 0.1,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001,
+    "lambda_cardinality": 1.0,
+    "schedule": "cosine",
+    "effective_number_beta": 0.9999
+  },
+  "epoch_selection": {
+    "primary": "shadow_dev_equal_weight_macro_mean_f1_over_0_1_2_3plus",
+    "secondary": "shadow_dev_official_F1_score",
+    "final_tie_break": "earlier_epoch"
+  },
+  "calibration_grid": {
+    "class0_logit_bias": [-1.0, -0.5, 0.0, 0.5, 1.0],
+    "class3_logit_bias": [0.0, 0.5, 1.0, 1.5, 2.0],
+    "membership_threshold": [0.3, 0.4, 0.5, 0.6, 0.7]
+  },
+  "final_grid": {
+    "representations": ["clip", "clip_dinov2", "siglip2"],
+    "seeds": [0, 1, 2],
+    "fraction": 10,
+    "evaluation_splits": ["gref_val", "refcoco_aux", "testA", "testB"],
+    "test_evaluations_per_split": 9
+  },
+  "test_policy": "run only the pilot-selected final recipe; do not select or alter settings from Stage 5.5 test results"
+}

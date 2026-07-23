@@ -33,6 +33,11 @@ in the current gRefCOCO val, so fixed epoch-20 `last.pt` is the pre-declared
 primary policy and historical val-loss `best.pt` is reported as a complete
 sensitivity. Under the primary policy, SigLIP 2 is strongest at 5% and 10% and
 all representations improve monotonically with supervision on both test splits.
+Stage 5.5 is also complete as a transparently post-hoc repair study. A locked
+shadow-dev pilot selected hierarchical cardinality prediction with richer
+candidate pooling; nine final 10% models and 36 external evaluations show
+consistent gains over the Stage 5 aggregate means while preserving Stage 5 as
+the primary untouched-test experiment.
 
 ## Environment
 
@@ -160,6 +165,28 @@ and `+0.0675 ± 0.0117` on testB. Complete `T_acc`, `N_acc`, mean-F1,
 target-count breakdowns, and the full historical-checkpoint sensitivity are in
 [`outputs/stage5/test_grid_summary.txt`](outputs/stage5/test_grid_summary.txt).
 
+## Stage 5.5 Post-Hoc Enhanced Result
+
+The enhanced recipe was selected and calibrated only on a locked, image-level
+shadow-dev split containing all four target-count groups. Values are mean ±
+sample standard deviation over three seeds.
+
+| Split | Representation | F1_score | Mean F1 | Cardinality accuracy | ΔF1 vs. Stage 5 |
+|---|---|---:|---:|---:|---:|
+| testA | CLIP | 0.3573 ± 0.0053 | 0.5083 ± 0.0040 | 0.7161 ± 0.0022 | +0.0273 |
+| testA | CLIP+DINOv2 | 0.3426 ± 0.0007 | 0.4976 ± 0.0005 | 0.6909 ± 0.0070 | +0.0248 |
+| testA | SigLIP 2 | **0.4479 ± 0.0013** | **0.5989 ± 0.0016** | **0.7385 ± 0.0022** | **+0.0368** |
+| testB | CLIP | 0.3358 ± 0.0146 | 0.4466 ± 0.0122 | 0.6975 ± 0.0021 | +0.0419 |
+| testB | CLIP+DINOv2 | 0.3069 ± 0.0028 | 0.4225 ± 0.0010 | 0.6629 ± 0.0067 | +0.0255 |
+| testB | SigLIP 2 | **0.3953 ± 0.0025** | **0.5112 ± 0.0028** | **0.7305 ± 0.0014** | **+0.0339** |
+
+The gRefCOCO validation set is still reported but has no single-target records;
+the image-disjoint RefCOCO UNC auxiliary validation set supplies the complementary
+single-target audit. The complete pilot, availability metadata, group breakdowns,
+paired differences, and Stage 5 comparison are in
+[`outputs/stage5_5/summary.txt`](outputs/stage5_5/summary.txt) and
+[`docs/stage5_5_enhanced_system.md`](docs/stage5_5_enhanced_system.md).
+
 ## Milestone 2 Historical Result
 
 The selected Milestone 2 model uses count-class weights
@@ -189,5 +216,7 @@ official GREC results.
   common encoder contract, CLIP+DINOv2/SigLIP 2 results, and reproduction.
 - [`docs/stage5_fewshot_grid.md`](docs/stage5_fewshot_grid.md): audited Stage 5
   protocol, multi-seed split manifest, compute plan, and run contract.
+- [`docs/stage5_5_enhanced_system.md`](docs/stage5_5_enhanced_system.md): locked
+  post-hoc repair protocol, shadow-dev pilot, and enhanced multi-seed results.
 - [`docs/488proposal.pdf`](docs/488proposal.pdf): original project proposal
   when present in the local checkout.

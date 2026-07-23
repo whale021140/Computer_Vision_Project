@@ -15,8 +15,15 @@ class ClipCandidateBaseline(nn.Module):
         hidden_dim: int = 256,
         dropout: float = 0.1,
         num_count_classes: int = 4,
+        pooling: str = "mean",
+        hierarchical_cardinality: bool = False,
     ):
         super().__init__()
+
+        if pooling not in {"mean", "mean_max_stats"}:
+            raise ValueError("pooling must be 'mean' or 'mean_max_stats'.")
+        self.pooling = pooling
+        self.hierarchical_cardinality = bool(hierarchical_cardinality)
 
         self.candidate_feature_dim = int(candidate_feature_dim or feature_dim)
         self.text_feature_dim = int(text_feature_dim or feature_dim)
@@ -37,12 +44,28 @@ class ClipCandidateBaseline(nn.Module):
 
         self.membership_head = nn.Linear(hidden_dim, 1)
 
-        self.count_head = nn.Sequential(
-            nn.Linear(hidden_dim, hidden_dim),
-            nn.ReLU(),
-            nn.Dropout(dropout),
-            nn.Linear(hidden_dim, num_count_classes),
-        )
+        pooled_dim = hidden_dim if pooling == "mean" else hidden_dim * 2 + 4
+        if self.hierarchical_cardinality:
+            self.presence_head = nn.Sequential(
+                nn.Linear(pooled_dim, hidden_dim),
+                nn.ReLU(),
+                nn.Dropout(dropout),
+                nn.Linear(hidden_dim, 2),
+            )
+            self.positive_count_head = nn.Sequential(
+                nn.Linear(pooled_dim, hidden_dim),
+                nn.ReLU(),
+                nn.Dropout(dropout),
+                nn.Linear(hidden_dim, 3),
+            )
+            self.count_head = None
+        else:
+            self.count_head = nn.Sequential(
+                nn.Linear(pooled_dim, hidden_dim),
+                nn.ReLU(),
+                nn.Dropout(dropout),
+                nn.Linear(hidden_dim, num_count_classes),
+            )
 
     def _build_candidate_input(
         self,
@@ -107,12 +130,48 @@ class ClipCandidateBaseline(nn.Module):
             logits = self.membership_head(h).squeeze(-1)
 
             membership_logits.append(logits)
-            pooled_features.append(h.mean(dim=0))
+            if self.pooling == "mean":
+                pooled_features.append(h.mean(dim=0))
+            else:
+                probabilities = torch.sigmoid(logits)
+                statistics = torch.stack(
+                    [
+                        probabilities.mean(),
+                        probabilities.max(),
+                        probabilities.std(unbiased=False),
+                        torch.log1p(
+                            torch.as_tensor(
+                                float(probabilities.numel()), device=device
+                            )
+                        )
+                        / torch.log(torch.as_tensor(101.0, device=device)),
+                    ]
+                )
+                pooled_features.append(
+                    torch.cat([h.mean(dim=0), h.max(dim=0).values, statistics])
+                )
 
         pooled_features = torch.stack(pooled_features, dim=0)
-        count_logits = self.count_head(pooled_features)
+        if self.hierarchical_cardinality:
+            presence_logits = self.presence_head(pooled_features)
+            positive_count_logits = self.positive_count_head(pooled_features)
+            presence_log_probs = torch.log_softmax(presence_logits, dim=1)
+            positive_log_probs = torch.log_softmax(positive_count_logits, dim=1)
+            count_logits = torch.cat(
+                [
+                    presence_log_probs[:, :1],
+                    presence_log_probs[:, 1:] + positive_log_probs,
+                ],
+                dim=1,
+            )
+        else:
+            presence_logits = None
+            positive_count_logits = None
+            count_logits = self.count_head(pooled_features)
 
         return {
             "membership_logits": membership_logits,
             "count_logits": count_logits,
+            "presence_logits": presence_logits,
+            "positive_count_logits": positive_count_logits,
         }

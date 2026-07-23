@@ -1,0 +1,29 @@
+CLIP baseline training summary
+==============================
+Feature file: cache/features/stage5/clip_dinov2_detector_train_union_seed0-2.pt
+Training split file: splits/stage5_5/train_10pct_seed0.json
+Validation feature file: cache/features/stage5/clip_dinov2_detector_train_union_seed0-2.pt
+Validation split file: splits/stage5_5/shadow_dev.json
+Dataset size: 20934
+Representation: {'name': 'clip_dinov2', 'model_ids': {'clip': 'ViT-B/32', 'dinov2': 'facebook/dinov2-base'}, 'candidate_feature_dim': 1280, 'text_feature_dim': 512, 'component_normalization': {'clip_image': 'l2', 'clip_text': 'l2', 'dinov2_cls': 'l2'}, 'fusion': 'concatenate normalized CLIP image and DINOv2 CLS features', 'similarity_source': 'normalized CLIP image/text subspace', 'encoder_parameters': {'clip': {'total': 151277313, 'trainable': 0}, 'dinov2': {'total': 86580480, 'trainable': 0}}}
+Candidate feature dimension: 1280
+Text feature dimension: 512
+Trainable head parameters: 792326
+Epochs: 40
+Batch size: 16
+Hidden dimension: 256
+Dropout: 0.1
+Pooling: mean_max_stats
+Hierarchical cardinality: True
+Label policy: cached
+Count weight policy: effective-number
+Resolved count weights: [0.340171258896768, 0.08457400029845451, 0.12029028508418953, 3.454964455720588]
+Learning-rate schedule: cosine
+Learning rate: 0.0001
+Weight decay: 0.0001
+Lambda cardinality: 1.0
+Checkpoint selection: validation total loss
+Best selection loss: 0.819017
+Best checkpoint: checkpoints/stage5_5/clip_dinov2_10pct_seed0_hierarchical/best.pt
+Last checkpoint: checkpoints/stage5_5/clip_dinov2_10pct_seed0_hierarchical/last.pt
+Count class weights: None

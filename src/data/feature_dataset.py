@@ -6,6 +6,8 @@ from typing import Any, Dict, List, Optional
 import torch
 from torch.utils.data import Dataset
 
+from src.evaluation.grec_metrics import greedy_one_to_one_matches, pairwise_iou
+
 
 def _record_key(record: Dict[str, Any]) -> tuple[int, int]:
     metadata = record.get("metadata", {})
@@ -27,10 +29,22 @@ class ClipFeatureDataset(Dataset):
         feature_file: str,
         max_samples: Optional[int] = None,
         split_file: str = "",
+        label_policy: str = "cached",
+        cache: Optional[Dict[str, Any]] = None,
     ):
+        if label_policy not in {"cached", "one-to-one"}:
+            raise ValueError("label_policy must be 'cached' or 'one-to-one'.")
         self.feature_file = feature_file
         self.split_file = split_file
-        self.cache = torch.load(feature_file, map_location="cpu")
+        self.label_policy = label_policy
+        # Train and validation splits can select different records from the
+        # same multi-GB feature bank. Allow callers to share the immutable
+        # loaded cache instead of deserializing and retaining it twice.
+        self.cache = (
+            torch.load(feature_file, map_location="cpu")
+            if cache is None
+            else cache
+        )
         self.records = self.cache["records"]
 
         if split_file:
@@ -119,6 +133,18 @@ class ClipFeatureDataset(Dataset):
             candidate_boxes_norm = r["candidate_boxes_norm"].float()
             candidate_text_similarity = r["candidate_text_similarity"].float()
 
+        candidate_labels = r["candidate_labels"].float()
+        if self.label_policy == "one-to-one":
+            target_boxes_norm = r["target_boxes_norm"].float().reshape(-1, 4)
+            candidate_labels = torch.zeros(
+                candidate_boxes_norm.shape[0], dtype=torch.float32
+            )
+            overlaps = pairwise_iou(candidate_boxes_norm, target_boxes_norm)
+            for candidate_index, _, _ in greedy_one_to_one_matches(
+                overlaps, threshold=0.5
+            ):
+                candidate_labels[candidate_index] = 1.0
+
         return {
             "sample_id": r["sample_id"],
             "metadata": r["metadata"],
@@ -127,7 +153,7 @@ class ClipFeatureDataset(Dataset):
             "candidate_features": candidate_features,
             "candidate_text_similarity": candidate_text_similarity,
             "candidate_boxes_norm": candidate_boxes_norm,
-            "candidate_labels": r["candidate_labels"].float(),
+            "candidate_labels": candidate_labels,
             "count_class": torch.as_tensor(r["count_class"], dtype=torch.long),
             "target_boxes_xyxy": r["target_boxes_xyxy"].float(),
             "target_boxes_norm": r["target_boxes_norm"].float(),

@@ -4,6 +4,7 @@ import argparse
 import csv
 import os
 import random
+from collections import Counter
 from pathlib import Path
 from typing import Dict, List
 
@@ -35,6 +36,11 @@ def parse_args():
         default="",
         help="Optional validation cache used for checkpoint selection.",
     )
+    parser.add_argument(
+        "--val-split-file",
+        default="",
+        help="Optional split selection applied to the validation feature bank.",
+    )
     parser.add_argument("--output-dir", type=str, default="checkpoints/clip_baseline_1pct")
     parser.add_argument("--log-file", type=str, default="outputs/milestone2/train_clip_baseline_1pct_log.csv")
     parser.add_argument("--summary-file", type=str, default="outputs/milestone2/train_clip_baseline_1pct_summary.txt")
@@ -47,6 +53,23 @@ def parse_args():
     parser.add_argument("--lr", type=float, default=1e-4)
     parser.add_argument("--weight-decay", type=float, default=1e-4)
     parser.add_argument("--lambda-cardinality", type=float, default=1.0)
+    parser.add_argument(
+        "--count-weight-policy",
+        choices=["manual", "effective-number"],
+        default="manual",
+    )
+    parser.add_argument("--effective-number-beta", type=float, default=0.9999)
+    parser.add_argument(
+        "--pooling", choices=["mean", "mean_max_stats"], default="mean"
+    )
+    parser.add_argument("--hierarchical-cardinality", action="store_true")
+    parser.add_argument(
+        "--label-policy", choices=["cached", "one-to-one"], default="cached"
+    )
+    parser.add_argument(
+        "--lr-schedule", choices=["constant", "cosine"], default="constant"
+    )
+    parser.add_argument("--save-every-epoch", action="store_true")
 
     parser.add_argument("--max-samples", type=int, default=None)
     parser.add_argument("--num-workers", type=int, default=0)
@@ -105,6 +128,22 @@ def build_count_loss(
         raise ValueError("at least one count class weight must be positive.")
 
     return nn.CrossEntropyLoss(weight=count_weights)
+
+
+def effective_number_weights(
+    class_counts: List[int], beta: float = 0.9999
+) -> List[float]:
+    if len(class_counts) != 4 or any(int(count) <= 0 for count in class_counts):
+        raise ValueError("class_counts must contain four positive counts.")
+    if not 0.0 <= beta < 1.0:
+        raise ValueError("effective-number beta must be in [0, 1).")
+    if beta == 0.0:
+        return [1.0] * 4
+    weights = [
+        (1.0 - beta) / (1.0 - beta ** int(count)) for count in class_counts
+    ]
+    scale = len(weights) / sum(weights)
+    return [float(weight * scale) for weight in weights]
 
 
 def compute_losses(
@@ -276,6 +315,7 @@ def main():
         feature_file=args.feature_file,
         max_samples=args.max_samples,
         split_file=args.train_split_file,
+        label_policy=args.label_policy,
     )
 
     loader = DataLoader(
@@ -289,7 +329,18 @@ def main():
     val_dataset = None
     val_loader = None
     if args.val_feature_file:
-        val_dataset = ClipFeatureDataset(feature_file=args.val_feature_file)
+        shared_cache = (
+            dataset.cache
+            if Path(args.val_feature_file).resolve()
+            == Path(args.feature_file).resolve()
+            else None
+        )
+        val_dataset = ClipFeatureDataset(
+            feature_file=args.val_feature_file,
+            split_file=args.val_split_file,
+            label_policy=args.label_policy,
+            cache=shared_cache,
+        )
         if (
             val_dataset.candidate_feature_dim != dataset.candidate_feature_dim
             or val_dataset.text_feature_dim != dataset.text_feature_dim
@@ -314,6 +365,8 @@ def main():
         text_feature_dim=dataset.text_feature_dim,
         hidden_dim=args.hidden_dim,
         dropout=args.dropout,
+        pooling=args.pooling,
+        hierarchical_cardinality=args.hierarchical_cardinality,
     ).to(device)
     trainable_parameter_count = sum(
         parameter.numel()
@@ -328,7 +381,25 @@ def main():
     )
 
     bce_loss = nn.BCEWithLogitsLoss()
-    ce_loss = build_count_loss(args.count_class_weights, device)
+    count_class_counts = Counter(
+        int(torch.as_tensor(record["count_class"]).item())
+        for record in dataset.records
+    )
+    if args.count_weight_policy == "effective-number":
+        resolved_count_weights = effective_number_weights(
+            [count_class_counts[index] for index in range(4)],
+            beta=args.effective_number_beta,
+        )
+    else:
+        resolved_count_weights = args.count_class_weights
+    args.resolved_count_class_weights = resolved_count_weights
+    ce_loss = build_count_loss(resolved_count_weights, device)
+
+    scheduler = None
+    if args.lr_schedule == "cosine":
+        scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
+            optimizer, T_max=args.epochs
+        )
 
     best_selection_loss = float("inf")
 
@@ -345,6 +416,7 @@ def main():
                 "val_membership_loss",
                 "val_count_loss",
                 "val_count_accuracy",
+                "learning_rate",
             ],
         )
         writer.writeheader()
@@ -386,6 +458,7 @@ def main():
                 "val_count_accuracy": (
                     val_metrics["count_accuracy"] if val_metrics is not None else ""
                 ),
+                "learning_rate": optimizer.param_groups[0]["lr"],
             }
             writer.writerow(row)
             f.flush()
@@ -443,12 +516,29 @@ def main():
                     text_feature_dim=dataset.text_feature_dim,
                 )
 
+            if args.save_every_epoch:
+                epoch_dir = Path(args.output_dir) / "epochs"
+                epoch_dir.mkdir(parents=True, exist_ok=True)
+                save_checkpoint(
+                    path=str(epoch_dir / f"epoch_{epoch:03d}.pt"),
+                    model=model,
+                    optimizer=optimizer,
+                    epoch=epoch,
+                    metrics=checkpoint_metrics,
+                    args=args,
+                    candidate_feature_dim=dataset.candidate_feature_dim,
+                    text_feature_dim=dataset.text_feature_dim,
+                )
+            if scheduler is not None:
+                scheduler.step()
+
     with open(args.summary_file, "w") as f:
         f.write("CLIP baseline training summary\n")
         f.write("==============================\n")
         f.write(f"Feature file: {args.feature_file}\n")
         f.write(f"Training split file: {args.train_split_file or 'cache-native'}\n")
         f.write(f"Validation feature file: {args.val_feature_file or 'none'}\n")
+        f.write(f"Validation split file: {args.val_split_file or 'cache-native'}\n")
         f.write(f"Dataset size: {len(dataset)}\n")
         f.write(f"Representation: {dataset.representation}\n")
         f.write(f"Candidate feature dimension: {dataset.candidate_feature_dim}\n")
@@ -458,6 +548,12 @@ def main():
         f.write(f"Batch size: {args.batch_size}\n")
         f.write(f"Hidden dimension: {args.hidden_dim}\n")
         f.write(f"Dropout: {args.dropout}\n")
+        f.write(f"Pooling: {args.pooling}\n")
+        f.write(f"Hierarchical cardinality: {args.hierarchical_cardinality}\n")
+        f.write(f"Label policy: {args.label_policy}\n")
+        f.write(f"Count weight policy: {args.count_weight_policy}\n")
+        f.write(f"Resolved count weights: {resolved_count_weights}\n")
+        f.write(f"Learning-rate schedule: {args.lr_schedule}\n")
         f.write(f"Learning rate: {args.lr}\n")
         f.write(f"Weight decay: {args.weight_decay}\n")
         f.write(f"Lambda cardinality: {args.lambda_cardinality}\n")

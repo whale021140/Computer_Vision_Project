@@ -1,0 +1,9 @@
+Stage 5.5 Shadow-Dev Selection
+================================
+Selected epoch: 31
+Uncalibrated count-macro mean F1: 0.600758
+Calibration: bias=[1.0, 0.0, 0.0, 2.0] threshold=0.7
+Calibrated count-macro mean F1: 0.606305
+Calibrated F1_score: 0.511841
+Calibrated T_acc: 0.956660
+Calibrated N_acc: 0.871000

@@ -1,0 +1,137 @@
+{
+  "stage": "5.5",
+  "protocol": "pre-test-train-union image-disjoint shadow-dev; exact count-group 10% training targets; no test-based sampling",
+  "source_union": "splits/train_stage5_union_seed0-2.json",
+  "source_union_sha256": "c9d03e710e7be6b6de81bb78a3de919ae5a49bd32ce2a40e8ff5cd2106171ac6",
+  "source_summary": {
+    "expressions": 56752,
+    "unique_refs": 42716,
+    "unique_images": 16145,
+    "by_target_type": {
+      "no-target": 5207,
+      "single-target": 32662,
+      "multi-target": 18883
+    },
+    "by_count_group": {
+      "0": 5207,
+      "1": 32662,
+      "2": 18428,
+      "3+": 455
+    }
+  },
+  "shadow_seed": 55,
+  "shadow_dev": {
+    "path": "splits/stage5_5/shadow_dev.json",
+    "sha256": "7f9734ab979a892e66fe78d9b1acccfa9053657121c99c80e27e47ac2cf74a06",
+    "requested_minimum_by_count_group": {
+      "0": 1000,
+      "1": 1000,
+      "2": 1000,
+      "3+": 120
+    },
+    "expressions": 4138,
+    "unique_refs": 3228,
+    "unique_images": 915,
+    "by_target_type": {
+      "no-target": 1000,
+      "single-target": 1913,
+      "multi-target": 1225
+    },
+    "by_count_group": {
+      "0": 1000,
+      "1": 1913,
+      "2": 1081,
+      "3+": 144
+    }
+  },
+  "remaining_pool": {
+    "expressions": 52614,
+    "unique_refs": 39488,
+    "unique_images": 15230,
+    "by_target_type": {
+      "no-target": 4207,
+      "single-target": 30749,
+      "multi-target": 17658
+    },
+    "by_count_group": {
+      "0": 4207,
+      "1": 30749,
+      "2": 17347,
+      "3+": 311
+    }
+  },
+  "train_requested_by_count_group": {
+    "0": 1914,
+    "1": 12062,
+    "2": 6785,
+    "3+": 173
+  },
+  "train_splits": [
+    {
+      "seed": 0,
+      "path": "splits/stage5_5/train_10pct_seed0.json",
+      "sha256": "dd7bece9cbe2957f9ff70cc7216ebc8cae6553bdf26876c4395833d527a2911a",
+      "expressions": 20934,
+      "unique_refs": 18703,
+      "unique_images": 11510,
+      "by_target_type": {
+        "no-target": 1914,
+        "single-target": 12062,
+        "multi-target": 6958
+      },
+      "by_count_group": {
+        "0": 1914,
+        "1": 12062,
+        "2": 6785,
+        "3+": 173
+      }
+    },
+    {
+      "seed": 1,
+      "path": "splits/stage5_5/train_10pct_seed1.json",
+      "sha256": "e31eddfb6e3a9d814df464c60f96ff1e3ea6cba6f3aa3f330fc5d7e98e4e1c91",
+      "expressions": 20934,
+      "unique_refs": 18687,
+      "unique_images": 11516,
+      "by_target_type": {
+        "no-target": 1914,
+        "single-target": 12062,
+        "multi-target": 6958
+      },
+      "by_count_group": {
+        "0": 1914,
+        "1": 12062,
+        "2": 6785,
+        "3+": 173
+      }
+    },
+    {
+      "seed": 2,
+      "path": "splits/stage5_5/train_10pct_seed2.json",
+      "sha256": "e5568e87a5caa436a0c948ea35150200a38b63318fd3fc3100f9d7bc49ce19c5",
+      "expressions": 20934,
+      "unique_refs": 18666,
+      "unique_images": 11471,
+      "by_target_type": {
+        "no-target": 1914,
+        "single-target": 12062,
+        "multi-target": 6958
+      },
+      "by_count_group": {
+        "0": 1914,
+        "1": 12062,
+        "2": 6785,
+        "3+": 173
+      }
+    }
+  ],
+  "integrity": {
+    "shadow_train_expression_overlap": 0,
+    "shadow_train_image_overlap": 0,
+    "pairwise_train_expression_overlap": {
+      "seed0-seed1": 8307,
+      "seed0-seed2": 8386,
+      "seed1-seed2": 8418
+    }
+  }
+}

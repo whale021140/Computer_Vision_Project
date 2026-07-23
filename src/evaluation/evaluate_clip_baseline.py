@@ -63,6 +63,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--overlap-metric", choices=["iou", "giou"], default="iou")
     parser.add_argument("--prediction-score-threshold", type=float, default=None)
     parser.add_argument("--image-f1-threshold", type=float, default=1.0)
+    parser.add_argument(
+        "--count-logit-bias",
+        type=float,
+        nargs=4,
+        default=[0.0, 0.0, 0.0, 0.0],
+        metavar=("B0", "B1", "B2", "B3"),
+    )
     return parser.parse_args()
 
 
@@ -130,6 +137,13 @@ def load_model(
     if isinstance(ckpt_args, dict):
         hidden_dim = int(ckpt_args.get("hidden_dim", hidden_dim))
         dropout = float(ckpt_args.get("dropout", dropout))
+        pooling = str(ckpt_args.get("pooling", "mean"))
+        hierarchical_cardinality = bool(
+            ckpt_args.get("hierarchical_cardinality", False)
+        )
+    else:
+        pooling = "mean"
+        hierarchical_cardinality = False
     candidate_feature_dim = int(
         ckpt.get("candidate_feature_dim", ckpt.get("feature_dim", candidate_feature_dim))
     )
@@ -142,6 +156,8 @@ def load_model(
         text_feature_dim=text_feature_dim,
         hidden_dim=hidden_dim,
         dropout=dropout,
+        pooling=pooling,
+        hierarchical_cardinality=hierarchical_cardinality,
     )
     model.load_state_dict(ckpt.get("model_state_dict", ckpt))
     model.to(device)
@@ -206,7 +222,10 @@ def evaluate(args: argparse.Namespace) -> Dict[str, Any]:
         outputs = model(batch)
         membership_logits_list: List[torch.Tensor] = outputs["membership_logits"]
         count_logits: torch.Tensor = outputs["count_logits"]
-        pred_count_classes = count_logits.argmax(dim=1).detach().cpu()
+        count_bias = torch.as_tensor(
+            args.count_logit_bias, dtype=count_logits.dtype, device=count_logits.device
+        )
+        pred_count_classes = (count_logits + count_bias).argmax(dim=1).detach().cpu()
         true_count_classes = batch["count_class"].detach().cpu()
 
         for i, membership_logits in enumerate(membership_logits_list):
@@ -299,6 +318,7 @@ def evaluate(args: argparse.Namespace) -> Dict[str, Any]:
         "batch_size": args.batch_size,
         "selection_policy": args.selection_policy,
         "membership_threshold": args.membership_threshold,
+        "count_logit_bias": [float(value) for value in args.count_logit_bias],
         **metrics,
         "examples": examples,
     }
@@ -331,6 +351,7 @@ def write_text_summary(result: Dict[str, Any], output_txt: str) -> None:
         f"Device: {result['device']}",
         f"Selection policy: {result['selection_policy']}",
         f"Membership threshold: {result['membership_threshold']}",
+        f"Count logit bias: {result.get('count_logit_bias', [0.0] * 4)}",
         f"Overlap metric: {config['overlap_metric']}",
         f"Match threshold: {config['match_threshold']}",
         f"Prediction score threshold: {config['prediction_score_threshold']}",
@@ -371,6 +392,10 @@ def main() -> None:
         args.membership_threshold = float(
             calibration["best"]["membership_threshold"]
         )
+        if "count_logit_bias" in calibration["best"]:
+            args.count_logit_bias = [
+                float(value) for value in calibration["best"]["count_logit_bias"]
+            ]
     result = evaluate(args)
     if args.calibration_json:
         result["calibration_json"] = args.calibration_json

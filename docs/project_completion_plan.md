@@ -54,6 +54,7 @@ uses ground-truth instance boxes and does not yet use the released GREC metric.
 | 3. Detector-based CLIP baseline | Complete | Re-established 1% baseline without oracle candidates |
 | 4. Frozen representation variants | Complete | Controlled 1% CLIP, CLIP+DINOv2, and SigLIP 2 validation comparison |
 | 5. Few-shot experiment grid | Complete | 1%/5%/10%, multiple seeds, locked full-test comparison |
+| 5.5. Post-hoc enhanced system | Complete | Shadow-dev repair study with hierarchical cardinality and calibrated 10% models |
 | 6. Ablations and reliability | Not started | Cardinality, spatial-feature, and counterfactual analyses |
 | 7. Final report and reproducibility | Not started | Final figures, tables, documentation, and reproducible commands |
 
@@ -247,7 +248,44 @@ class-incomplete current validation split.
 The proposal-cache extension completed in 468.63 seconds on the current local
 setup, substantially faster than the old Stage 2 throughput.
 
-## 10. Stage 6: Ablations and Reliability
+## 10. Stage 5.5: Post-Hoc Enhanced System
+
+Stage 5.5 is a transparent repair study prompted by the Stage 5 validation-set
+diagnosis. It does not replace the locked Stage 5 grid, which remains the
+primary untouched-test comparison.
+
+- [x] Create a deterministic, whole-image shadow-dev split from pre-test
+  training data with all `0/1/2/3+` groups represented.
+- [x] Remove every shadow-dev image and expression from the enhanced training
+  splits and verify zero overlap.
+- [x] Run five locked SigLIP 2 seed-0 pilots: selection-only, effective-number
+  balancing, hierarchical cardinality/pooling, one-to-one positives, and the
+  combined recipe.
+- [x] Select the recipe, checkpoint, and inference calibration using only the
+  shadow-dev count-macro mean F1.
+- [x] Apply the selected recipe unchanged to CLIP, CLIP+DINOv2, and SigLIP 2
+  at 10% for seeds 0/1/2.
+- [x] Evaluate all nine locked models on gRefCOCO val, RefCOCO UNC auxiliary
+  val, full testA, and full testB; retain availability metadata for structurally
+  absent target groups.
+
+The hierarchical pilot won with calibrated shadow-dev count-macro mean F1
+`0.644855`, versus `0.615107` for selection-only, `0.606305` for balancing,
+`0.603985` for one-to-one positives, and `0.630399` for the combined recipe.
+Thus the useful change is the hierarchical presence/positive-count model with
+mean/max/membership-statistic pooling; balancing or one-to-one labeling alone
+does not explain the gain.
+
+Stage 5.5 is accepted. All nine selected checkpoints, nine shadow-dev
+calibrations, and 36 external evaluations exist and are finite. On testA,
+CLIP/CLIP+DINOv2/SigLIP 2 reach F1 `0.357292/0.342639/0.447882`; on testB they
+reach `0.335824/0.306854/0.395339`. Every representation improves over its
+Stage 5 aggregate mean on both splits, with gains of `+0.024826` to `+0.041877`.
+SigLIP 2 remains strongest, while CLIP+DINOv2 still trails CLIP. These are
+explicitly post-hoc secondary results because Stage 5 test outcomes were known
+before the repair study was designed.
+
+## 11. Stage 6: Ablations and Reliability
 
 Required ablations:
 
@@ -256,8 +294,8 @@ Required ablations:
 - learned membership head without the cardinality head;
 - count gating versus membership-threshold selection.
 - parameter-matched input projection for the three representations;
-- one-to-one proposal/target assignment or duplicate-positive suppression as a
-  diagnostic for the current IoU-label/count mismatch.
+- duplicate-positive suppression as a further diagnostic for the current
+  IoU-label/count mismatch. Stage 5.5 already completed the one-to-one variant.
 
 Reliability extension:
 
@@ -267,7 +305,7 @@ Reliability extension:
 - report unavailable or incompatible extensions explicitly rather than silently
   omitting them.
 
-## 11. Stage 7: Final Deliverables
+## 12. Stage 7: Final Deliverables
 
 - Main few-shot result table with mean and standard deviation.
 - Proposal-recall and oracle-versus-detector analysis.
@@ -277,7 +315,7 @@ Reliability extension:
   documented conditional outcome.
 - Reproducible commands and experiment manifests.
 
-## 12. Artifact and Git Policy
+## 13. Artifact and Git Policy
 
 Commit:
 
@@ -295,7 +333,7 @@ identifier, proposal configuration, split hash, seed, command, environment,
 and output metrics. Work should be synchronized in stage-sized commits after
 the relevant acceptance checks pass.
 
-## 13. Progress Log
+## 14. Progress Log
 
 - 2026-07-15: Audited the proposal, milestone handoff, code, local artifacts,
   `ece485`, and GitHub state. Confirmed the diagnostic baseline and identified
@@ -425,3 +463,14 @@ the relevant acceptance checks pass.
   low-T_acc empty-prediction bias. The strongest model still has only
   `0.1291/0.1378` cardinality accuracy for `3+` targets on testA/testB, making
   this the main Stage 6 reliability target.
+- 2026-07-22: Completed Stage 5.5 as a transparently post-hoc repair study.
+  Built an image-disjoint 4,138-expression shadow-dev set with all count groups,
+  excluded its 915 images from enhanced training, and selected the hierarchical
+  cardinality/pooling recipe from five locked SigLIP 2 pilots without test
+  access. Trained, selected, and calibrated nine 10% models, then completed all
+  36 gRefCOCO-val/RefCOCO-aux/testA/testB evaluations. SigLIP 2 reaches F1
+  `0.447882 ± 0.001261` on testA and `0.395339 ± 0.002472` on testB. All three
+  representations improve over their Stage 5 aggregate means on both tests,
+  although CLIP+DINOv2 still trails CLIP. Availability metadata now explicitly
+  records that gRefCOCO val lacks count-1/single-target samples and RefCOCO aux
+  contains only that group.
