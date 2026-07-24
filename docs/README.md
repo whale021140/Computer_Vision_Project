@@ -32,6 +32,12 @@
   pre-selection NMS repair, and one-time test gate.
 - `stage6_final_report_zh.md`: concise Chinese final report for Stage 6,
   including the accepted three-seed test result and remaining limitations.
+- `stage7_final_deliverables.md`: frozen-input contract, reporting rules, and
+  acceptance criteria for the final submission.
+- `final_report.md`: final English project report covering the method, complete
+  results, ablations, proposal commitments, and limitations.
+- `reproducibility.md`: lightweight final-artifact regeneration, full historical
+  pipeline entry points, validation commands, and metric provenance.
 
 The completion plan is the source of truth for work after Milestone 2. Update
 its stage table, checklists, and progress log whenever a stage is accepted.

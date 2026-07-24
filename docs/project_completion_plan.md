@@ -6,7 +6,7 @@ Proposal: `docs/488proposal.pdf`
 
 Working environment: Conda environment `ece485`
 
-Last updated: 2026-07-24
+Last updated: 2026-07-25
 
 ## 1. Goal and Experimental Contract
 
@@ -56,8 +56,8 @@ uses ground-truth instance boxes and does not yet use the released GREC metric.
 | 5. Few-shot experiment grid | Complete | 1%/5%/10%, multiple seeds, locked full-test comparison |
 | 5.5. Post-hoc enhanced system | Complete | Shadow-dev repair study with hierarchical cardinality and calibrated 10% models |
 | 5.6. Final unified protocol retraining | Complete | Complete-train, image-disjoint all-count dev; fresh grid plus audited wide dev-only calibration |
-| 6. Ablations and reliability | In progress | Baseline frozen; cardinality, spatial-feature, and counterfactual analyses |
-| 7. Final report and reproducibility | Not started | Final figures, tables, documentation, and reproducible commands |
+| 6. Ablations and reliability | Complete | Cardinality/input ablations, pre-NMS repair, reliability audits, and one locked final test |
+| 7. Final report and reproducibility | Complete | Final figures, tables, documentation, and reproducible commands |
 
 ## 4. Stage 0: Repository Hardening
 
@@ -376,13 +376,26 @@ The full experiment matrix, stopping rules, and acceptance checklist are in
 
 ## 13. Stage 7: Final Deliverables
 
-- Main few-shot result table with mean and standard deviation.
-- Proposal-recall and oracle-versus-detector analysis.
-- No-target, single-target, and multi-target breakdowns.
-- Supervision-scaling plots and targeted qualitative examples.
-- Final report mapping every proposal commitment to a result, limitation, or
-  documented conditional outcome.
-- Reproducible commands and experiment manifests.
+Stage 7 is a report-only stage over frozen Stage 5.6/6 artifacts. It does not
+retrain models, retune development choices, or reopen the final test gate.
+
+- [x] Use Stage 5.6 as the main `representation x supervision` table with mean
+  and sample standard deviation.
+- [x] Report the Stage 6 SigLIP 2 configuration separately as the final enhanced
+  system; do not mix it into the Stage 5.6 grid average.
+- [x] Produce supervision-scaling, final-system, target-count, proposal-recall,
+  and exact-count-repair figures from existing JSON artifacts.
+- [x] Retain the Stage 3 oracle-versus-detector comparison as a diagnostic, not
+  as a directly comparable final benchmark row.
+- [x] Reuse the locked Stage 6 qualitative examples and clearly distinguish
+  original and repaired inference.
+- [x] Write a final report mapping every proposal commitment to a result,
+  negative result, limitation, conditional outcome, or optional future item.
+- [x] Provide lightweight report-regeneration commands, full experiment entry
+  points, environment requirements, and a SHA-256 artifact manifest.
+
+The exact Stage 7 contract and reporting rules are in
+`docs/stage7_final_deliverables.md`.
 
 ## 14. Artifact and Git Policy
 
@@ -645,3 +658,10 @@ the relevant acceptance checks pass.
 - 2026-07-24: Rendered 16 calibrated original/enhanced qualitative examples
   and synchronized the root README, documentation index, Stage 6 protocol,
   Chinese complete guide, and Stage 6 final report.
+- 2026-07-25: Completed Stage 7 without reopening either final test gate.
+  Added a deterministic frozen-result reporting module, full CSV/Markdown
+  tables, six PNG/PDF figure pairs, a final English report, a reproduction
+  guide, and a manifest hashing every input and generated artifact. Two
+  consecutive builds produced identical hashes. All 73 unit tests pass,
+  `compileall`, shell syntax, Markdown-link, JSON, and whitespace audits pass,
+  and Stage 5.6 remains separate from the Stage 6 enhanced-system aggregate.

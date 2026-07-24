@@ -1,0 +1,183 @@
+{
+  "stage": "7 final deliverables",
+  "policy": "Generated only from frozen Stage 5.6/6 artifacts; no model training, calibration, or test inference.",
+  "source_commit": "bf72502b9fa9d8f9ac199c012fdf62797b5de480",
+  "source_branch": "agent/stage7-final-deliverables",
+  "working_tree_dirty_during_build": true,
+  "command": "conda run --no-capture-output -n ece485 python -m src.reporting.build_stage7_deliverables",
+  "environment": {
+    "python": "3.10.19",
+    "torch": "2.12.0+cu130",
+    "torchvision": "0.27.0+cu130",
+    "numpy": "2.2.6",
+    "matplotlib": "3.10.7"
+  },
+  "inputs": [
+    {
+      "path": "outputs/stage3/oracle_vs_detector_val.json",
+      "sha256": "1166e351dcae5bda74cffc88e4deff97c616fe821835c4be405dcfbceb675685"
+    },
+    {
+      "path": "outputs/stage5_6/proposal_recall_feature_union.json",
+      "sha256": "a27222e8953182906851d152f04a0d30797a7d54cb0359fc8d504c986226c7ee"
+    },
+    {
+      "path": "outputs/stage5_6/test_summary.json",
+      "sha256": "d547e84e6f0f56c4286886158d324b6992f05ac3a0edd20108f76b1eda3afa52"
+    },
+    {
+      "path": "outputs/stage6/candidate_cap_audit_dev.json",
+      "sha256": "a71699caf666b78c9a118266d45cabbb44f5a4cd54d004e45320969d56bf283a"
+    },
+    {
+      "path": "outputs/stage6/counterfactual_local_audit.json",
+      "sha256": "5d689ecfda650cde5508f2fa8a10d73c83c6b4d04e4fcec0aab0a783e51a61b6"
+    },
+    {
+      "path": "outputs/stage6/final_test/hierarchical_lambda010_seed0/evaluation_testA.json",
+      "sha256": "a90944c8a9d85f7dad0f02b60d92e569f17241129372ae74b4a45626ebf59ebe"
+    },
+    {
+      "path": "outputs/stage6/final_test/hierarchical_lambda010_seed0/evaluation_testB.json",
+      "sha256": "ca7e2f056b698573cc88596ee2bf56e13122365248c79d11e9d00432393cf291"
+    },
+    {
+      "path": "outputs/stage6/final_test/hierarchical_lambda010_seed1/evaluation_testA.json",
+      "sha256": "fff781f9e6ef02ad651a3cdafad9d19895fbabe8e442b1ba495d99cd89aa2617"
+    },
+    {
+      "path": "outputs/stage6/final_test/hierarchical_lambda010_seed1/evaluation_testB.json",
+      "sha256": "9031a1cceaa6d4bbc15725ef3ba98ba3a1dea4d56379c0b37a2b32131a104ee2"
+    },
+    {
+      "path": "outputs/stage6/final_test/hierarchical_lambda010_seed2/evaluation_testA.json",
+      "sha256": "e71cc1dd5f3dc1b22695ccecf54e14e666dace739c4d46b5c9ff519d75eb97ec"
+    },
+    {
+      "path": "outputs/stage6/final_test/hierarchical_lambda010_seed2/evaluation_testB.json",
+      "sha256": "f0527cfc73e48e0792b7f2602c7615cbdba152e06a3d38e094e09b76ff5c4348"
+    },
+    {
+      "path": "outputs/stage6/final_test_lock.json",
+      "sha256": "d7ac2e108f85c6f8b00eb81f7fa1df4f4b3d86788ec9ec574d8900c1cbb1a747"
+    },
+    {
+      "path": "outputs/stage6/multitarget_failure_diagnosis_dev.json",
+      "sha256": "05cfb50887ee5bc66709103dd653ae223071b68715fb8f396d4c01246845db49"
+    },
+    {
+      "path": "outputs/stage6/stage6_1_three_seed_confirmation.json",
+      "sha256": "36503df71abbdd89cb9cb93a2bd7106cb4b6acb850bbcbff628b0ce54a47d8e6"
+    },
+    {
+      "path": "outputs/stage6/stage6_2_input_ablation_summary.json",
+      "sha256": "23e5d94519a8008e50ef5bed4f103310ce248715da344d3d38e72f0dd986a300"
+    },
+    {
+      "path": "outputs/stage6/stage6_final_summary.json",
+      "sha256": "8418f0673b414269761d567dbce8ca3015fbf500766eb7a59ae68900d2069852"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "outputs/stage7/figures/core_ablations.pdf",
+      "sha256": "d90638987ed3de317ed9d9687dcbde43c20ad06b5803b6cce2aeb2f76d34964c",
+      "bytes": 16110
+    },
+    {
+      "path": "outputs/stage7/figures/core_ablations.png",
+      "sha256": "ad005a22c752da23f6e7c9112ec24725bc72a0933bfd03f85fabee440af10cfb",
+      "bytes": 91788
+    },
+    {
+      "path": "outputs/stage7/figures/count_group_breakdown.pdf",
+      "sha256": "a807695fa88dd5b2ad3c56500c5901d4c2821cb3b2b0249a7f15bb7fe86ddda4",
+      "bytes": 15971
+    },
+    {
+      "path": "outputs/stage7/figures/count_group_breakdown.png",
+      "sha256": "80858342fa4182d8ea062d9c744864d65c048d01ef1450ed24379bad8fb5d69a",
+      "bytes": 58142
+    },
+    {
+      "path": "outputs/stage7/figures/final_system_comparison.pdf",
+      "sha256": "a9c87d448132780046339c11c13ede6586eb9075f7d9bc1e58da38a74922d2b3",
+      "bytes": 17457
+    },
+    {
+      "path": "outputs/stage7/figures/final_system_comparison.png",
+      "sha256": "b6070e3d84d6efccaf45c53dd1be185ccc980f4172825fe7e6a34f257e2edfcb",
+      "bytes": 78399
+    },
+    {
+      "path": "outputs/stage7/figures/final_target_type_breakdown.pdf",
+      "sha256": "4aebe6460eda2e9dcb2e3f909e03b476d6ce23f5c89fb19c580059cbb4794c37",
+      "bytes": 13819
+    },
+    {
+      "path": "outputs/stage7/figures/final_target_type_breakdown.png",
+      "sha256": "87cf897ef0b5c6a8411737e9f5c0bbd0225e9f55f5d928bd0d385315d3688897",
+      "bytes": 54478
+    },
+    {
+      "path": "outputs/stage7/figures/proposal_and_exact_count_diagnostics.pdf",
+      "sha256": "ed88000a02c8b40b5030ca42969755a0c83197ef0d8a9d0e9a6f5c6247a63e58",
+      "bytes": 17559
+    },
+    {
+      "path": "outputs/stage7/figures/proposal_and_exact_count_diagnostics.png",
+      "sha256": "e3c53717cf6fadfee1c4359e00047bc660106b5153b6aa329667453a8fdba632",
+      "bytes": 86176
+    },
+    {
+      "path": "outputs/stage7/figures/supervision_scaling.pdf",
+      "sha256": "9c7d86f19dadea87918bc73a14ef45ec797b2ac5a84563a2cc8758dd8120e068",
+      "bytes": 20209
+    },
+    {
+      "path": "outputs/stage7/figures/supervision_scaling.png",
+      "sha256": "fab7bdcf9135d07f0efb6a977c56cfb1c2c555fe0907fbef2ccc5e751cee5560",
+      "bytes": 106738
+    },
+    {
+      "path": "outputs/stage7/tables/final_target_type_breakdown.csv",
+      "sha256": "827eb8db887f02f08a859b6d598201c8428813e270870488a9906df95462f410",
+      "bytes": 1032
+    },
+    {
+      "path": "outputs/stage7/tables/final_target_type_breakdown.md",
+      "sha256": "918dd7a2bfc709dbaea029d238636b062aa155a83abe34f686db9665f0ff6624",
+      "bytes": 644
+    },
+    {
+      "path": "outputs/stage7/tables/proposal_and_exact_count_diagnostics.csv",
+      "sha256": "fb313dbe0dfdbc6d778522fdb74465a1cade3ed213c3c083b0538771a199d4ee",
+      "bytes": 677
+    },
+    {
+      "path": "outputs/stage7/tables/proposal_and_exact_count_diagnostics.md",
+      "sha256": "52c78235f6bf1cfb8b113f63d8971b5b0c6d550d9730455927aac1fc91ea5ec3",
+      "bytes": 661
+    },
+    {
+      "path": "outputs/stage7/tables/stage5_6_main_results.csv",
+      "sha256": "b6b516b6839f47fed0b0f2689befead7d2e4e73cacacfb8ddd24d52b6a900bb0",
+      "bytes": 3331
+    },
+    {
+      "path": "outputs/stage7/tables/stage5_6_main_results.md",
+      "sha256": "f27c320caf6ad59204a6aa263c78359e92e9f556875504e9c58cbceb709cc254",
+      "bytes": 1948
+    },
+    {
+      "path": "outputs/stage7/tables/stage6_final_system_results.csv",
+      "sha256": "1cbd5cf6440a3dbdcf125c99ee1f7213472880639b748296927d6ca748a9d45e",
+      "bytes": 1633
+    },
+    {
+      "path": "outputs/stage7/tables/stage6_final_system_results.md",
+      "sha256": "af58f1063c0dc670bc9e54cb9da7286e92c0c252e7f2c02fa9bc0008384ae55d",
+      "bytes": 963
+    }
+  ]
+}

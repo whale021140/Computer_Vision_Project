@@ -2,8 +2,8 @@
 
 > 项目名称：Beyond Single-Target Grounding: Few-Shot Generalized Referring Expression Comprehension with Frozen Region-Aware Representations  
 > 中文说明：超越单目标定位——基于冻结区域表征的少样本广义指代表达理解  
-> 当前主实验阶段：Stage 5.6 已完成  
-> 文档更新时间：2026-07-24  
+> 当前项目阶段：Stage 7 最终交付已完成
+> 文档更新时间：2026-07-25
 > 运行环境：Conda `ece485`  
 > 原始方案：[`488proposal.pdf`](488proposal.pdf)
 
@@ -16,13 +16,14 @@
 1. 这个项目到底要让计算机完成什么任务？
 2. 为什么传统的“找一个物体”方法不够？
 3. CLIP、DINOv2、SigLIP 2、Faster R-CNN、候选框、IoU、F1 等名词是什么意思？
-4. 从最初的 Milestone 2 到目前的 Stage 5.6，具体完成了哪些工作？
+4. 从最初的 Milestone 2 到最终 Stage 7，具体完成了哪些工作？
 5. 哪些实验是早期探索，哪一批才是当前正式主实验？
 6. 当前结果支持原始 proposal 中的哪些假设，又否定了哪些假设？
 7. 目前结果的优点、缺点和可信度分别是什么？
-8. 如果继续进入 Stage 6，最应该补哪些实验？
+8. 最终结果还存在哪些限制，后续研究最值得补什么？
 
-如果只想快速了解结论，可以先阅读第 1 节、第 14 节和第 17 节。如果需要完整理解实验，再按顺序阅读全文。
+如果只想快速了解结论，可以先阅读第 1、17、21、22 和 23 节。如果需要
+完整理解实验，再按顺序阅读全文。
 
 ---
 
@@ -1550,12 +1551,14 @@ bash scripts/run_stage5_6.sh
 
 1. 本项目完成了一个基于冻结检测候选、冻结视觉语言表征和小型层级基数头的 few-shot GREC 系统。
 2. 当前正式实验覆盖 CLIP、CLIP+DINOv2、SigLIP 2，覆盖 1%/5%/10%，并使用三个配对种子。
-3. SigLIP 2 在全部六个正式比较中平均 F1 最高，在 10% testA/testB
-   上分别达到 F1 0.4625 和 0.4180。
+3. SigLIP 2 在 Stage 5.6 全部六个正式表征比较中平均 F1 最高，在 10%
+   testA/testB 上分别达到 F1 0.4625 和 0.4180。
 4. 简单 CLIP+DINOv2 拼接没有优于 CLIP，是清楚且一致的负结果。
 5. 三种表征都随监督数据增加而提高。
 6. 新统一开发集解决了旧 val 缺少单目标导致的模型选择盲点。
-7. 3+ 精确计数和无目标—有目标权衡仍是主要限制。
+7. Stage 6 的最终增强系统使用 `lambda=0.10` 和选择前 NMS，把 10%
+   SigLIP 2 的 testA/testB F1 提高到 0.5390 和 0.4921。
+8. 3+ 精确计数和无目标—有目标权衡仍是主要限制。
 
 ### 17.2 不应该说
 
@@ -1588,41 +1591,38 @@ bash scripts/run_stage5_6.sh
 | 基数感知输出 | 已完成 | 层级存在性+正计数头 |
 | 无目标/单目标/多目标分组 | 已完成 | 另有 0/1/2/3+ |
 | 官方 GREC 评估 | 已完成 | GIoU、一对一匹配 |
-| C-RefCOCO 系列 | 尚未完成 | Stage 6 可靠性扩展 |
-| FineCops-Ref | 可选，未完成 | 依赖兼容预处理 |
-| CLIP matcher 与计数头消融 | 尚未完整完成 | Stage 6 |
-| 空间坐标消融 | 尚未完成 | Stage 6 |
-| 最终定性分析 | 尚未完成 | 仅有 Milestone 2 旧定性图 |
-| 最终报告与发布级复现整理 | 尚未完成 | Stage 7 |
+| C-RefCOCO 系列 | 条件项未运行 | 本地缺少反事实注释；已完成可核查 availability 审计 |
+| FineCops-Ref | 可选，未完成 | 本地缺少注释 |
+| CLIP matcher 与计数头消融 | 已完成 | membership-only、flat、hierarchical 与 λ 三种子对照 |
+| 空间坐标消融 | 已完成 | seed-0 dev 输入消融 |
+| 最终定性分析 | 已完成 | Stage 5.6 原推理与 Stage 6 修复推理统一对照 |
+| 最终报告与发布级复现整理 | 已完成 | Stage 7 已生成表、图、报告和 manifest |
 
 ---
 
-## 19. 进入下一阶段前的建议
+## 19. Stage 7 最终交付逻辑
 
-不建议再次原样重训全部 27 个模型。宽校准已经完成并通过审计，Stage
-5.6 结果完整且所有监督曲线单调。Stage 6 已按最新版结果重新设计为
-“机制消融与可靠性验证”，完整协议见
-[`stage6_ablations_and_reliability.md`](stage6_ablations_and_reliability.md)。
+Stage 7 不再训练模型，也不重新打开 Stage 6 测试门。它只读取已经冻结的
+Stage 5.6/6 JSON 结果，生成最终表格、图、英文报告和复现 manifest。
 
-新的优先顺序是：
+最终报告保留两层结果：
 
-1. 冻结 Stage 5.6 `v2_wide` 结果、哈希和测试门；
-2. 用 `SigLIP 2, 10%, seed 0` 做 membership-only、flat、
-   hierarchical、去 count gating、去 logit calibration 和
-   `lambda_cardinality` pilot，再只对关键对照做三种子确认；
-3. 做坐标/相似度消融与固定 PCA 共同维度的参数匹配表征比较；
-4. 把 3+ 拆为 3、4、5、6+，将失败归因于 proposal miss、计数、
-   重复框或排序，并先在 dev 上分析候选上限和 NMS；
-5. 冻结模型测试 C-RefCOCO 系列，再完成 CLIP/SigLIP 2 定性对照；
-6. 所有结构和阈值只由 dev 决定，manifest 锁定后仅进行一次 Stage 6
-   testA/B 确认。
+1. Stage 5.6 是回答 proposal 核心问题的主表，即三种表征 ×
+   1%/5%/10% × 三个种子；
+2. Stage 6 是在最佳 SigLIP 2、10% 设置上的最终增强系统。
 
-为 Stage 5.6 10% SigLIP 2 和 CLIP 生成定性对照，尤其展示：
+二者不能混合平均，也不能用 Stage 6 的单一表征结果替代 Stage 5.6 的
+受控表征比较。Stage 5/5.5 继续保留为开发历史，但不进入最终主聚合。
 
-- SigLIP 2 修正 CLIP 错误的案例；
-- 两者都 false grounding 的案例；
-- 候选缺失导致无法成功的案例；
-- 3+ 数量错误和重复框案例。
+Stage 7 的生成命令为：
+
+```bash
+conda run --no-capture-output -n ece485 \
+  python -m src.reporting.build_stage7_deliverables
+```
+
+该命令不需要 checkpoint 或特征缓存，不执行 test 推理。每个输入 JSON
+和生成文件的 SHA-256 都记录在 `outputs/stage7/manifest.json`。
 
 ---
 
@@ -2245,3 +2245,56 @@ cap=50/100 的缓存审计已经证明增加到 100 有小幅召回收益，但 
 包含不受支持的 DINOv2 简单融合假设；既证明了轻量冻结表征方案的
 可行性，也通过错误归因找到并修复了重复候选选择问题；同时没有掩盖
 高数量目标、反事实数据缺失、参数匹配控制未完成和测试历史暴露等限制。
+
+---
+
+## 23. Stage 7：最终交付物怎样组织
+
+Stage 7 没有继续增加实验，而是把已经冻结的 Stage 5.6/6 结果整理成一套
+可提交、可阅读、可追溯的最终产物。
+
+### 23.1 两层结果不能混在一起
+
+最终报告把结果明确分成：
+
+1. **Stage 5.6 主受控实验**：三种表征 × 1%/5%/10% × 三个种子，用于
+   回答 proposal 的核心表征问题；
+2. **Stage 6 最终增强系统**：只在最佳 SigLIP 2、10% 设置上研究
+   `lambda=0.10`、选择前 NMS 和机制消融。
+
+因此 Stage 6 的 0.5390/0.4921 是最终系统性能，但不能替代 Stage 5.6
+完整表征表；Stage 5.6 的 0.4625/0.4180 又是 Stage 6 必须保留的正式
+基线。Stage 5/5.5 作为历史过程保留，但不与二者混合平均。
+
+### 23.2 最终生成了什么
+
+- `docs/final_report.md`：英文最终报告；
+- `docs/reproducibility.md`：环境、完整流水线入口与数值溯源；
+- `outputs/stage7/tables/`：机器可读 CSV 和可直接引用的 Markdown 表；
+- `outputs/stage7/figures/`：监督缩放、最终系统、计数组、目标类型、
+  proposal/精确计数和核心消融图，每张同时提供 PNG/PDF；
+- `outputs/stage7/manifest.json`：所有冻结输入和生成输出的 SHA-256。
+
+统一生成命令为：
+
+```bash
+conda run --no-capture-output -n ece485 \
+  python -m src.reporting.build_stage7_deliverables
+```
+
+它只读取结构化结果，不加载 checkpoint，不提取特征，不训练，不校准，
+也不运行 testA/testB 推理。连续两次运行得到完全相同的表图哈希。
+
+### 23.3 最终验证状态
+
+- 73 个单元测试全部通过；
+- `src/` 和 `tests/` 全部通过 `compileall`；
+- Stage 7 shell 脚本通过语法检查；
+- Markdown 本地链接无缺失；
+- 所有 JSON 可解析且关键数值有限；
+- Stage 5.6/6 的最终配置、单元数量和哈希通过报告生成硬门。
+
+因此截至 Stage 7，proposal 中的必做核心实验、正式结果、主要消融、
+定性分析和发布级复现整理均已完成。未完成项只包括原 proposal 明确标为
+可选/条件性的 RegionCLIP、FineCops-Ref/C-RefCOCO 实测，以及在 Stage 6
+硬时间预算前移入 future work 的参数匹配 PCA 控制和更大规模候选重生成。

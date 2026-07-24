@@ -8,7 +8,7 @@ output may be an empty set, one box, or multiple boxes.
 The implementation is being developed according to
 [`docs/project_completion_plan.md`](docs/project_completion_plan.md).
 
-## Current Status
+## Final Status
 
 The completed Stage 4 system uses:
 
@@ -41,7 +41,12 @@ recipe/checkpoint/calibration choices, and 54 full testA/testB evaluations.
 Its corrected `v2_wide` calibration covers class-0 bias `[-1,16]`, class-3
 bias `[0,32]`, and the complete membership-threshold domain `[0,1]`.
 All 31 unique pilot/final calibrations passed the boundary audit before the
-corrected test pass.
+corrected test pass. Stage 6 is also complete. Its final 10% SigLIP 2 system
+uses `lambda_cardinality=0.10`, pre-selection NMS at IoU 0.30, and a
+development-calibrated `3+` threshold of 0.50. It reaches official F1
+`0.5390 ± 0.0036` on testA and `0.4921 ± 0.0033` on testB over three seeds.
+Stage 7 provides the final report, tables, figures, and reproducibility
+manifest exclusively from these frozen results.
 
 ## Environment
 
@@ -93,6 +98,7 @@ src/
 ├── features/        Frozen feature extraction
 ├── models/          Lightweight prediction heads
 ├── proposals/       Frozen detector loading and image-level candidate caches
+├── reporting/       Deterministic final tables, figures, and manifests
 ├── training/        Training and forward smoke tests
 ├── utils/           Box utilities
 └── visualization/   Dataset and prediction figures
@@ -221,6 +227,22 @@ model or inference change. Full results are in
 [`outputs/stage6/stage6_final_summary.txt`](outputs/stage6/stage6_final_summary.txt)
 and [`docs/stage6_final_report_zh.md`](docs/stage6_final_report_zh.md).
 
+## Stage 7 Final Deliverables
+
+Regenerate all final tables, figures, and the SHA-256 manifest without model
+inference:
+
+```bash
+conda run --no-capture-output -n ece485 \
+  python -m src.reporting.build_stage7_deliverables
+```
+
+- [`docs/final_report.md`](docs/final_report.md): final English report.
+- [`docs/reproducibility.md`](docs/reproducibility.md): environment, pipelines,
+  validation, and metric provenance.
+- [`outputs/stage7/`](outputs/stage7/): final CSV/Markdown tables, PNG/PDF
+  figures, and artifact manifest.
+
 ## Stage 5 Historical Locked Test Result
 
 The main result uses the pre-declared fixed epoch-20 checkpoint. Values are
@@ -303,5 +325,10 @@ official GREC results.
   reliability audit, and one-time test gate.
 - [`docs/stage6_final_report_zh.md`](docs/stage6_final_report_zh.md): concise
   Chinese Stage 6 final report, accepted results, and limitations.
+- [`docs/stage7_final_deliverables.md`](docs/stage7_final_deliverables.md):
+  final-stage frozen-input contract and acceptance criteria.
+- [`docs/final_report.md`](docs/final_report.md): final English project report.
+- [`docs/reproducibility.md`](docs/reproducibility.md): final artifact
+  regeneration and full experiment entry points.
 - [`docs/488proposal.pdf`](docs/488proposal.pdf): original project proposal
   when present in the local checkout.
