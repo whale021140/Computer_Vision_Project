@@ -1,0 +1,10 @@
+Stage 6.4 Counterfactual Local-Data Audit
+=========================================
+Files scanned under data/: 82804
+C-RefCOCO: absent
+C-RefCOCO+: absent
+C-RefCOCOg: absent
+FineCops-Ref: absent
+
+COCO image root present: True
+No counterfactual evaluation is run for a dataset whose annotations are absent. This is an availability result, not evidence that the dataset format is intrinsically incompatible.

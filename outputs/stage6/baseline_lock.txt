@@ -1,0 +1,11 @@
+Stage 6.0 Baseline Lock
+=======================
+Stage 5.6 source commit: 02d61fc8f772ec9a9a98366d1f8b78d359516908
+Validated formal cells: 27/27
+Validated test evaluations: 54/54
+Validated wide calibrations: 31/31
+Calibration boundary gate: passed
+Train/dev/test image disjointness: passed
+All F1 supervision curves monotonic: passed
+Large feature/candidate identity: full SHA-256
+Stage 6 baseline lock: passed

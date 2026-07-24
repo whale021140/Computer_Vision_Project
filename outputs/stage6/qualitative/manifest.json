@@ -1,0 +1,616 @@
+{
+  "stage": "6 compact calibrated qualitative visualization",
+  "source": "outputs/stage6/multitarget_failure_diagnosis_dev.json",
+  "legend": {
+    "ground_truth": "red solid",
+    "prediction": "blue dashed"
+  },
+  "examples": [
+    {
+      "sample_id": "0000125",
+      "image_id": 960,
+      "file_name": "COCO_train2014_000000000960.jpg",
+      "expression": "four people",
+      "category": "enhanced_multi_target_failure",
+      "policy": "pre_nms_0.3_thr_0.5",
+      "num_targets": 4,
+      "num_predictions": 5,
+      "matched_targets": 2,
+      "target_boxes_xyxy": [
+        [
+          5.75,
+          0.0,
+          353.79998779296875,
+          640.0
+        ],
+        [
+          1.440000057220459,
+          253.1199951171875,
+          122.25,
+          629.9299926757812
+        ],
+        [
+          24.600000381469727,
+          62.22999954223633,
+          136.63999938964844,
+          192.52999877929688
+        ],
+        [
+          325.7900085449219,
+          163.52000427246094,
+          427.0,
+          640.0
+        ]
+      ],
+      "predicted_boxes_xyxy": [
+        [
+          9.966292381286621,
+          54.746761322021484,
+          347.64617919921875,
+          630.6243286132812
+        ],
+        [
+          0.0,
+          131.427001953125,
+          163.947509765625,
+          454.12762451171875
+        ],
+        [
+          351.1593017578125,
+          77.06170654296875,
+          427.0,
+          578.4177856445312
+        ],
+        [
+          244.75753784179688,
+          213.41127014160156,
+          401.0799560546875,
+          474.094970703125
+        ],
+        [
+          109.22594451904297,
+          237.92481994628906,
+          257.19342041015625,
+          600.1068115234375
+        ]
+      ],
+      "predicted_scores": [
+        0.8757827281951904,
+        0.8198502063751221,
+        0.6211167573928833,
+        0.5960521697998047,
+        0.5623854398727417
+      ],
+      "output_file": "outputs/stage6/qualitative/enhanced_multi_target_failure_01.png"
+    },
+    {
+      "sample_id": "0000334",
+      "image_id": 2907,
+      "file_name": "COCO_train2014_000000002907.jpg",
+      "expression": "3 middle front people",
+      "category": "enhanced_multi_target_success",
+      "policy": "pre_nms_0.3_thr_0.5",
+      "num_targets": 3,
+      "num_predictions": 3,
+      "matched_targets": 3,
+      "target_boxes_xyxy": [
+        [
+          170.27000427246094,
+          328.7699890136719,
+          299.0899963378906,
+          587.4199829101562
+        ],
+        [
+          41.439998626708984,
+          229.13999938964844,
+          257.2300109863281,
+          569.77001953125
+        ],
+        [
+          257.5400085449219,
+          241.44000244140625,
+          365.5199890136719,
+          423.1000061035156
+        ]
+      ],
+      "predicted_boxes_xyxy": [
+        [
+          41.00493621826172,
+          224.17823791503906,
+          349.46380615234375,
+          582.200439453125
+        ],
+        [
+          232.06224060058594,
+          238.52401733398438,
+          368.2502746582031,
+          467.3895568847656
+        ],
+        [
+          147.49688720703125,
+          360.12213134765625,
+          286.7999572753906,
+          590.3096923828125
+        ]
+      ],
+      "predicted_scores": [
+        0.8369445204734802,
+        0.1995907574892044,
+        0.059581026434898376
+      ],
+      "output_file": "outputs/stage6/qualitative/enhanced_multi_target_success_01.png"
+    },
+    {
+      "sample_id": "0000578",
+      "image_id": 5326,
+      "file_name": "COCO_train2014_000000005326.jpg",
+      "expression": "dog with person",
+      "category": "enhanced_no_target_failure",
+      "policy": "pre_nms_0.3_thr_0.5",
+      "num_targets": 0,
+      "num_predictions": 1,
+      "matched_targets": 0,
+      "target_boxes_xyxy": [],
+      "predicted_boxes_xyxy": [
+        [
+          164.53048706054688,
+          11.499774932861328,
+          638.7715454101562,
+          353.6002502441406
+        ]
+      ],
+      "predicted_scores": [
+        0.4017082452774048
+      ],
+      "output_file": "outputs/stage6/qualitative/enhanced_no_target_failure_01.png"
+    },
+    {
+      "sample_id": "0000126",
+      "image_id": 960,
+      "file_name": "COCO_train2014_000000000960.jpg",
+      "expression": "cow",
+      "category": "enhanced_no_target_success",
+      "policy": "pre_nms_0.3_thr_0.5",
+      "num_targets": 0,
+      "num_predictions": 0,
+      "matched_targets": 0,
+      "target_boxes_xyxy": [],
+      "predicted_boxes_xyxy": [],
+      "predicted_scores": [],
+      "output_file": "outputs/stage6/qualitative/enhanced_no_target_success_01.png"
+    },
+    {
+      "sample_id": "0000116",
+      "image_id": 960,
+      "file_name": "COCO_train2014_000000000960.jpg",
+      "expression": "right most gray suit",
+      "category": "enhanced_single_target_failure",
+      "policy": "pre_nms_0.3_thr_0.5",
+      "num_targets": 1,
+      "num_predictions": 0,
+      "matched_targets": 0,
+      "target_boxes_xyxy": [
+        [
+          325.7900085449219,
+          163.52000427246094,
+          427.0,
+          640.0
+        ]
+      ],
+      "predicted_boxes_xyxy": [],
+      "predicted_scores": [],
+      "output_file": "outputs/stage6/qualitative/enhanced_single_target_failure_01.png"
+    },
+    {
+      "sample_id": "0000117",
+      "image_id": 960,
+      "file_name": "COCO_train2014_000000000960.jpg",
+      "expression": "side view of person on the far right",
+      "category": "enhanced_single_target_success",
+      "policy": "pre_nms_0.3_thr_0.5",
+      "num_targets": 1,
+      "num_predictions": 1,
+      "matched_targets": 1,
+      "target_boxes_xyxy": [
+        [
+          325.7900085449219,
+          163.52000427246094,
+          427.0,
+          640.0
+        ]
+      ],
+      "predicted_boxes_xyxy": [
+        [
+          300.2536926269531,
+          158.4277801513672,
+          426.1800537109375,
+          635.8340454101562
+        ]
+      ],
+      "predicted_scores": [
+        0.3964850902557373
+      ],
+      "output_file": "outputs/stage6/qualitative/enhanced_single_target_success_01.png"
+    },
+    {
+      "sample_id": "0000128",
+      "image_id": 960,
+      "file_name": "COCO_train2014_000000000960.jpg",
+      "expression": "figure on right cut off and white stuff to the very left towards bottom",
+      "category": "enhanced_two_target_failure",
+      "policy": "pre_nms_0.3_thr_0.5",
+      "num_targets": 2,
+      "num_predictions": 2,
+      "matched_targets": 1,
+      "target_boxes_xyxy": [
+        [
+          325.7900085449219,
+          163.52000427246094,
+          427.0,
+          640.0
+        ],
+        [
+          1.440000057220459,
+          253.1199951171875,
+          122.25,
+          629.9299926757812
+        ]
+      ],
+      "predicted_boxes_xyxy": [
+        [
+          1.503883957862854,
+          189.52577209472656,
+          170.89736938476562,
+          631.9588012695312
+        ],
+        [
+          105.6624755859375,
+          265.10626220703125,
+          227.6644287109375,
+          617.22900390625
+        ]
+      ],
+      "predicted_scores": [
+        0.5164382457733154,
+        0.3317909240722656
+      ],
+      "output_file": "outputs/stage6/qualitative/enhanced_two_target_failure_01.png"
+    },
+    {
+      "sample_id": "0000129",
+      "image_id": 960,
+      "file_name": "COCO_train2014_000000000960.jpg",
+      "expression": "side view of person on the far right and white stuff to the very left towards bottom",
+      "category": "enhanced_two_target_success",
+      "policy": "pre_nms_0.3_thr_0.5",
+      "num_targets": 2,
+      "num_predictions": 2,
+      "matched_targets": 2,
+      "target_boxes_xyxy": [
+        [
+          325.7900085449219,
+          163.52000427246094,
+          427.0,
+          640.0
+        ],
+        [
+          1.440000057220459,
+          253.1199951171875,
+          122.25,
+          629.9299926757812
+        ]
+      ],
+      "predicted_boxes_xyxy": [
+        [
+          0.09436891227960587,
+          153.0922088623047,
+          125.07000732421875,
+          633.6967163085938
+        ],
+        [
+          300.2536926269531,
+          158.4277801513672,
+          426.1800537109375,
+          635.8340454101562
+        ]
+      ],
+      "predicted_scores": [
+        0.4547070860862732,
+        0.294708788394928
+      ],
+      "output_file": "outputs/stage6/qualitative/enhanced_two_target_success_01.png"
+    },
+    {
+      "sample_id": "0000125",
+      "image_id": 960,
+      "file_name": "COCO_train2014_000000000960.jpg",
+      "expression": "four people",
+      "category": "multi_target_failure",
+      "num_targets": 4,
+      "num_predictions": 3,
+      "matched_targets": 1,
+      "target_boxes_xyxy": [
+        [
+          5.75,
+          0.0,
+          353.79998779296875,
+          640.0
+        ],
+        [
+          1.440000057220459,
+          253.1199951171875,
+          122.25,
+          629.9299926757812
+        ],
+        [
+          24.600000381469727,
+          62.22999954223633,
+          136.63999938964844,
+          192.52999877929688
+        ],
+        [
+          325.7900085449219,
+          163.52000427246094,
+          427.0,
+          640.0
+        ]
+      ],
+      "predicted_boxes_xyxy": [
+        [
+          9.966292381286621,
+          54.746761322021484,
+          347.64617919921875,
+          630.6243286132812
+        ],
+        [
+          0.9590657353401184,
+          3.738466739654541,
+          167.57249450683594,
+          480.13140869140625
+        ],
+        [
+          3.079340696334839,
+          84.6634521484375,
+          370.2787780761719,
+          504.62762451171875
+        ]
+      ],
+      "predicted_scores": [
+        0.8757827281951904,
+        0.8673361539840698,
+        0.8714514970779419
+      ],
+      "output_file": "outputs/stage6/qualitative/multi_target_failure_01.png"
+    },
+    {
+      "sample_id": "0002794",
+      "image_id": 22651,
+      "file_name": "COCO_train2014_000000022651.jpg",
+      "expression": "all  glasses ",
+      "category": "multi_target_success",
+      "num_targets": 3,
+      "num_predictions": 3,
+      "matched_targets": 3,
+      "target_boxes_xyxy": [
+        [
+          0.0,
+          142.5399932861328,
+          334.2699890136719,
+          480.0
+        ],
+        [
+          350.55999755859375,
+          90.61000061035156,
+          637.47998046875,
+          474.6099853515625
+        ],
+        [
+          184.08999633789062,
+          35.40999984741211,
+          397.5799865722656,
+          300.1400146484375
+        ]
+      ],
+      "predicted_boxes_xyxy": [
+        [
+          345.0677795410156,
+          94.50381469726562,
+          634.1442260742188,
+          480.0
+        ],
+        [
+          2.389591693878174,
+          143.77597045898438,
+          339.52410888671875,
+          471.8240661621094
+        ],
+        [
+          92.70265197753906,
+          32.378963470458984,
+          404.10791015625,
+          368.4210205078125
+        ]
+      ],
+      "predicted_scores": [
+        0.8492662906646729,
+        0.8606017231941223,
+        0.8501613140106201
+      ],
+      "output_file": "outputs/stage6/qualitative/multi_target_success_01.png"
+    },
+    {
+      "sample_id": "0000578",
+      "image_id": 5326,
+      "file_name": "COCO_train2014_000000005326.jpg",
+      "expression": "dog with person",
+      "category": "no_target_failure",
+      "num_targets": 0,
+      "num_predictions": 1,
+      "matched_targets": 0,
+      "target_boxes_xyxy": [],
+      "predicted_boxes_xyxy": [
+        [
+          164.53048706054688,
+          11.499774932861328,
+          638.7715454101562,
+          353.6002502441406
+        ]
+      ],
+      "predicted_scores": [
+        0.4017082452774048
+      ],
+      "output_file": "outputs/stage6/qualitative/no_target_failure_01.png"
+    },
+    {
+      "sample_id": "0000126",
+      "image_id": 960,
+      "file_name": "COCO_train2014_000000000960.jpg",
+      "expression": "cow",
+      "category": "no_target_success",
+      "num_targets": 0,
+      "num_predictions": 0,
+      "matched_targets": 0,
+      "target_boxes_xyxy": [],
+      "predicted_boxes_xyxy": [],
+      "predicted_scores": [],
+      "output_file": "outputs/stage6/qualitative/no_target_success_01.png"
+    },
+    {
+      "sample_id": "0000116",
+      "image_id": 960,
+      "file_name": "COCO_train2014_000000000960.jpg",
+      "expression": "right most gray suit",
+      "category": "single_target_failure",
+      "num_targets": 1,
+      "num_predictions": 0,
+      "matched_targets": 0,
+      "target_boxes_xyxy": [
+        [
+          325.7900085449219,
+          163.52000427246094,
+          427.0,
+          640.0
+        ]
+      ],
+      "predicted_boxes_xyxy": [],
+      "predicted_scores": [],
+      "output_file": "outputs/stage6/qualitative/single_target_failure_01.png"
+    },
+    {
+      "sample_id": "0000117",
+      "image_id": 960,
+      "file_name": "COCO_train2014_000000000960.jpg",
+      "expression": "side view of person on the far right",
+      "category": "single_target_success",
+      "num_targets": 1,
+      "num_predictions": 1,
+      "matched_targets": 1,
+      "target_boxes_xyxy": [
+        [
+          325.7900085449219,
+          163.52000427246094,
+          427.0,
+          640.0
+        ]
+      ],
+      "predicted_boxes_xyxy": [
+        [
+          300.2536926269531,
+          158.4277801513672,
+          426.1800537109375,
+          635.8340454101562
+        ]
+      ],
+      "predicted_scores": [
+        0.3964850902557373
+      ],
+      "output_file": "outputs/stage6/qualitative/single_target_success_01.png"
+    },
+    {
+      "sample_id": "0000128",
+      "image_id": 960,
+      "file_name": "COCO_train2014_000000000960.jpg",
+      "expression": "figure on right cut off and white stuff to the very left towards bottom",
+      "category": "two_target_failure",
+      "num_targets": 2,
+      "num_predictions": 2,
+      "matched_targets": 1,
+      "target_boxes_xyxy": [
+        [
+          325.7900085449219,
+          163.52000427246094,
+          427.0,
+          640.0
+        ],
+        [
+          1.440000057220459,
+          253.1199951171875,
+          122.25,
+          629.9299926757812
+        ]
+      ],
+      "predicted_boxes_xyxy": [
+        [
+          0.0,
+          21.631240844726562,
+          142.9476318359375,
+          610.8958740234375
+        ],
+        [
+          1.503883957862854,
+          189.52577209472656,
+          170.89736938476562,
+          631.9588012695312
+        ]
+      ],
+      "predicted_scores": [
+        0.4223305583000183,
+        0.5164382457733154
+      ],
+      "output_file": "outputs/stage6/qualitative/two_target_failure_01.png"
+    },
+    {
+      "sample_id": "0000165",
+      "image_id": 1271,
+      "file_name": "COCO_train2014_000000001271.jpg",
+      "expression": "wife beaters beer and bald man",
+      "category": "two_target_success",
+      "num_targets": 2,
+      "num_predictions": 2,
+      "matched_targets": 2,
+      "target_boxes_xyxy": [
+        [
+          436.7200012207031,
+          50.86000061035156,
+          639.0499877929688,
+          482.04998779296875
+        ],
+        [
+          97.38999938964844,
+          64.19000244140625,
+          277.30999755859375,
+          412.9700012207031
+        ]
+      ],
+      "predicted_boxes_xyxy": [
+        [
+          97.65293884277344,
+          67.95481872558594,
+          272.1932067871094,
+          407.7477111816406
+        ],
+        [
+          438.9185791015625,
+          53.16630935668945,
+          638.0045166015625,
+          489.2637023925781
+        ]
+      ],
+      "predicted_scores": [
+        0.7121468782424927,
+        0.9109683036804199
+      ],
+      "output_file": "outputs/stage6/qualitative/two_target_success_01.png"
+    }
+  ]
+}

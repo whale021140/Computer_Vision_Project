@@ -1,0 +1,6471 @@
+{
+  "stage": "6.3 multi-target failure and duplicate-suppression diagnosis",
+  "scope": "locked development split",
+  "checkpoint": "checkpoints/stage6/pilots/hierarchical_lambda010/selected.pt",
+  "calibration_json": "outputs/stage6/pilots/hierarchical_lambda010/calibration_dev.json",
+  "membership_threshold": 0.925,
+  "count_logit_bias": [
+    3.0,
+    0.0,
+    0.0,
+    3.5
+  ],
+  "exact_count_failures": {
+    "3": {
+      "num_samples": 218,
+      "counts": {
+        "success": 46,
+        "proposal_miss": 1,
+        "count_under": 30,
+        "count_over": 1,
+        "duplicate_selection": 96,
+        "ranking_selection_error": 44
+      },
+      "fractions": {
+        "success": 0.21100917431192662,
+        "proposal_miss": 0.0045871559633027525,
+        "count_under": 0.13761467889908258,
+        "count_over": 0.0045871559633027525,
+        "duplicate_selection": 0.44036697247706424,
+        "ranking_selection_error": 0.2018348623853211
+      }
+    },
+    "4": {
+      "num_samples": 74,
+      "counts": {
+        "success": 0,
+        "proposal_miss": 2,
+        "count_under": 72,
+        "count_over": 0,
+        "duplicate_selection": 0,
+        "ranking_selection_error": 0
+      },
+      "fractions": {
+        "success": 0.0,
+        "proposal_miss": 0.02702702702702703,
+        "count_under": 0.972972972972973,
+        "count_over": 0.0,
+        "duplicate_selection": 0.0,
+        "ranking_selection_error": 0.0
+      }
+    },
+    "5": {
+      "num_samples": 40,
+      "counts": {
+        "success": 0,
+        "proposal_miss": 2,
+        "count_under": 38,
+        "count_over": 0,
+        "duplicate_selection": 0,
+        "ranking_selection_error": 0
+      },
+      "fractions": {
+        "success": 0.0,
+        "proposal_miss": 0.05,
+        "count_under": 0.95,
+        "count_over": 0.0,
+        "duplicate_selection": 0.0,
+        "ranking_selection_error": 0.0
+      }
+    },
+    "6+": {
+      "num_samples": 56,
+      "counts": {
+        "success": 0,
+        "proposal_miss": 16,
+        "count_under": 40,
+        "count_over": 0,
+        "duplicate_selection": 0,
+        "ranking_selection_error": 0
+      },
+      "fractions": {
+        "success": 0.0,
+        "proposal_miss": 0.2857142857142857,
+        "count_under": 0.7142857142857143,
+        "count_over": 0.0,
+        "duplicate_selection": 0.0,
+        "ranking_selection_error": 0.0
+      }
+    }
+  },
+  "exact_count_failures_by_policy": {
+    "none": {
+      "3": {
+        "num_samples": 218,
+        "counts": {
+          "success": 46,
+          "proposal_miss": 1,
+          "count_under": 30,
+          "count_over": 1,
+          "duplicate_selection": 96,
+          "ranking_selection_error": 44
+        },
+        "fractions": {
+          "success": 0.21100917431192662,
+          "proposal_miss": 0.0045871559633027525,
+          "count_under": 0.13761467889908258,
+          "count_over": 0.0045871559633027525,
+          "duplicate_selection": 0.44036697247706424,
+          "ranking_selection_error": 0.2018348623853211
+        }
+      },
+      "4": {
+        "num_samples": 74,
+        "counts": {
+          "success": 0,
+          "proposal_miss": 2,
+          "count_under": 72,
+          "count_over": 0,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 0
+        },
+        "fractions": {
+          "success": 0.0,
+          "proposal_miss": 0.02702702702702703,
+          "count_under": 0.972972972972973,
+          "count_over": 0.0,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.0
+        }
+      },
+      "5": {
+        "num_samples": 40,
+        "counts": {
+          "success": 0,
+          "proposal_miss": 2,
+          "count_under": 38,
+          "count_over": 0,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 0
+        },
+        "fractions": {
+          "success": 0.0,
+          "proposal_miss": 0.05,
+          "count_under": 0.95,
+          "count_over": 0.0,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.0
+        }
+      },
+      "6+": {
+        "num_samples": 56,
+        "counts": {
+          "success": 0,
+          "proposal_miss": 16,
+          "count_under": 40,
+          "count_over": 0,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 0
+        },
+        "fractions": {
+          "success": 0.0,
+          "proposal_miss": 0.2857142857142857,
+          "count_under": 0.7142857142857143,
+          "count_over": 0.0,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.0
+        }
+      }
+    },
+    "pre_nms_0.3_thr_0": {
+      "3": {
+        "num_samples": 218,
+        "counts": {
+          "success": 2,
+          "proposal_miss": 1,
+          "count_under": 31,
+          "count_over": 181,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 3
+        },
+        "fractions": {
+          "success": 0.009174311926605505,
+          "proposal_miss": 0.0045871559633027525,
+          "count_under": 0.14220183486238533,
+          "count_over": 0.8302752293577982,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.013761467889908258
+        }
+      },
+      "4": {
+        "num_samples": 74,
+        "counts": {
+          "success": 0,
+          "proposal_miss": 2,
+          "count_under": 7,
+          "count_over": 65,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 0
+        },
+        "fractions": {
+          "success": 0.0,
+          "proposal_miss": 0.02702702702702703,
+          "count_under": 0.0945945945945946,
+          "count_over": 0.8783783783783784,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.0
+        }
+      },
+      "5": {
+        "num_samples": 40,
+        "counts": {
+          "success": 0,
+          "proposal_miss": 2,
+          "count_under": 8,
+          "count_over": 30,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 0
+        },
+        "fractions": {
+          "success": 0.0,
+          "proposal_miss": 0.05,
+          "count_under": 0.2,
+          "count_over": 0.75,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.0
+        }
+      },
+      "6+": {
+        "num_samples": 56,
+        "counts": {
+          "success": 0,
+          "proposal_miss": 16,
+          "count_under": 8,
+          "count_over": 32,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 0
+        },
+        "fractions": {
+          "success": 0.0,
+          "proposal_miss": 0.2857142857142857,
+          "count_under": 0.14285714285714285,
+          "count_over": 0.5714285714285714,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.0
+        }
+      }
+    },
+    "pre_nms_0.3_thr_0.1": {
+      "3": {
+        "num_samples": 218,
+        "counts": {
+          "success": 41,
+          "proposal_miss": 1,
+          "count_under": 31,
+          "count_over": 121,
+          "duplicate_selection": 2,
+          "ranking_selection_error": 22
+        },
+        "fractions": {
+          "success": 0.18807339449541285,
+          "proposal_miss": 0.0045871559633027525,
+          "count_under": 0.14220183486238533,
+          "count_over": 0.555045871559633,
+          "duplicate_selection": 0.009174311926605505,
+          "ranking_selection_error": 0.10091743119266056
+        }
+      },
+      "4": {
+        "num_samples": 74,
+        "counts": {
+          "success": 2,
+          "proposal_miss": 2,
+          "count_under": 13,
+          "count_over": 53,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 4
+        },
+        "fractions": {
+          "success": 0.02702702702702703,
+          "proposal_miss": 0.02702702702702703,
+          "count_under": 0.17567567567567569,
+          "count_over": 0.7162162162162162,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.05405405405405406
+        }
+      },
+      "5": {
+        "num_samples": 40,
+        "counts": {
+          "success": 1,
+          "proposal_miss": 2,
+          "count_under": 14,
+          "count_over": 17,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 6
+        },
+        "fractions": {
+          "success": 0.025,
+          "proposal_miss": 0.05,
+          "count_under": 0.35,
+          "count_over": 0.425,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.15
+        }
+      },
+      "6+": {
+        "num_samples": 56,
+        "counts": {
+          "success": 2,
+          "proposal_miss": 16,
+          "count_under": 21,
+          "count_over": 13,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 4
+        },
+        "fractions": {
+          "success": 0.03571428571428571,
+          "proposal_miss": 0.2857142857142857,
+          "count_under": 0.375,
+          "count_over": 0.23214285714285715,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.07142857142857142
+        }
+      }
+    },
+    "pre_nms_0.3_thr_0.2": {
+      "3": {
+        "num_samples": 218,
+        "counts": {
+          "success": 56,
+          "proposal_miss": 1,
+          "count_under": 31,
+          "count_over": 91,
+          "duplicate_selection": 2,
+          "ranking_selection_error": 37
+        },
+        "fractions": {
+          "success": 0.25688073394495414,
+          "proposal_miss": 0.0045871559633027525,
+          "count_under": 0.14220183486238533,
+          "count_over": 0.41743119266055045,
+          "duplicate_selection": 0.009174311926605505,
+          "ranking_selection_error": 0.16972477064220184
+        }
+      },
+      "4": {
+        "num_samples": 74,
+        "counts": {
+          "success": 3,
+          "proposal_miss": 2,
+          "count_under": 17,
+          "count_over": 46,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 6
+        },
+        "fractions": {
+          "success": 0.04054054054054054,
+          "proposal_miss": 0.02702702702702703,
+          "count_under": 0.22972972972972974,
+          "count_over": 0.6216216216216216,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.08108108108108109
+        }
+      },
+      "5": {
+        "num_samples": 40,
+        "counts": {
+          "success": 1,
+          "proposal_miss": 2,
+          "count_under": 21,
+          "count_over": 11,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 5
+        },
+        "fractions": {
+          "success": 0.025,
+          "proposal_miss": 0.05,
+          "count_under": 0.525,
+          "count_over": 0.275,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.125
+        }
+      },
+      "6+": {
+        "num_samples": 56,
+        "counts": {
+          "success": 1,
+          "proposal_miss": 16,
+          "count_under": 28,
+          "count_over": 9,
+          "duplicate_selection": 1,
+          "ranking_selection_error": 1
+        },
+        "fractions": {
+          "success": 0.017857142857142856,
+          "proposal_miss": 0.2857142857142857,
+          "count_under": 0.5,
+          "count_over": 0.16071428571428573,
+          "duplicate_selection": 0.017857142857142856,
+          "ranking_selection_error": 0.017857142857142856
+        }
+      }
+    },
+    "pre_nms_0.3_thr_0.3": {
+      "3": {
+        "num_samples": 218,
+        "counts": {
+          "success": 62,
+          "proposal_miss": 1,
+          "count_under": 31,
+          "count_over": 72,
+          "duplicate_selection": 2,
+          "ranking_selection_error": 50
+        },
+        "fractions": {
+          "success": 0.28440366972477066,
+          "proposal_miss": 0.0045871559633027525,
+          "count_under": 0.14220183486238533,
+          "count_over": 0.3302752293577982,
+          "duplicate_selection": 0.009174311926605505,
+          "ranking_selection_error": 0.22935779816513763
+        }
+      },
+      "4": {
+        "num_samples": 74,
+        "counts": {
+          "success": 4,
+          "proposal_miss": 2,
+          "count_under": 26,
+          "count_over": 31,
+          "duplicate_selection": 1,
+          "ranking_selection_error": 10
+        },
+        "fractions": {
+          "success": 0.05405405405405406,
+          "proposal_miss": 0.02702702702702703,
+          "count_under": 0.35135135135135137,
+          "count_over": 0.4189189189189189,
+          "duplicate_selection": 0.013513513513513514,
+          "ranking_selection_error": 0.13513513513513514
+        }
+      },
+      "5": {
+        "num_samples": 40,
+        "counts": {
+          "success": 1,
+          "proposal_miss": 2,
+          "count_under": 26,
+          "count_over": 5,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 6
+        },
+        "fractions": {
+          "success": 0.025,
+          "proposal_miss": 0.05,
+          "count_under": 0.65,
+          "count_over": 0.125,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.15
+        }
+      },
+      "6+": {
+        "num_samples": 56,
+        "counts": {
+          "success": 1,
+          "proposal_miss": 16,
+          "count_under": 32,
+          "count_over": 6,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 1
+        },
+        "fractions": {
+          "success": 0.017857142857142856,
+          "proposal_miss": 0.2857142857142857,
+          "count_under": 0.5714285714285714,
+          "count_over": 0.10714285714285714,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.017857142857142856
+        }
+      }
+    },
+    "pre_nms_0.3_thr_0.4": {
+      "3": {
+        "num_samples": 218,
+        "counts": {
+          "success": 74,
+          "proposal_miss": 1,
+          "count_under": 31,
+          "count_over": 49,
+          "duplicate_selection": 2,
+          "ranking_selection_error": 61
+        },
+        "fractions": {
+          "success": 0.3394495412844037,
+          "proposal_miss": 0.0045871559633027525,
+          "count_under": 0.14220183486238533,
+          "count_over": 0.22477064220183487,
+          "duplicate_selection": 0.009174311926605505,
+          "ranking_selection_error": 0.2798165137614679
+        }
+      },
+      "4": {
+        "num_samples": 74,
+        "counts": {
+          "success": 3,
+          "proposal_miss": 2,
+          "count_under": 35,
+          "count_over": 24,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 10
+        },
+        "fractions": {
+          "success": 0.04054054054054054,
+          "proposal_miss": 0.02702702702702703,
+          "count_under": 0.47297297297297297,
+          "count_over": 0.32432432432432434,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.13513513513513514
+        }
+      },
+      "5": {
+        "num_samples": 40,
+        "counts": {
+          "success": 1,
+          "proposal_miss": 2,
+          "count_under": 29,
+          "count_over": 3,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 5
+        },
+        "fractions": {
+          "success": 0.025,
+          "proposal_miss": 0.05,
+          "count_under": 0.725,
+          "count_over": 0.075,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.125
+        }
+      },
+      "6+": {
+        "num_samples": 56,
+        "counts": {
+          "success": 0,
+          "proposal_miss": 16,
+          "count_under": 35,
+          "count_over": 4,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 1
+        },
+        "fractions": {
+          "success": 0.0,
+          "proposal_miss": 0.2857142857142857,
+          "count_under": 0.625,
+          "count_over": 0.07142857142857142,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.017857142857142856
+        }
+      }
+    },
+    "pre_nms_0.3_thr_0.5": {
+      "3": {
+        "num_samples": 218,
+        "counts": {
+          "success": 83,
+          "proposal_miss": 1,
+          "count_under": 31,
+          "count_over": 33,
+          "duplicate_selection": 2,
+          "ranking_selection_error": 68
+        },
+        "fractions": {
+          "success": 0.38073394495412843,
+          "proposal_miss": 0.0045871559633027525,
+          "count_under": 0.14220183486238533,
+          "count_over": 0.15137614678899083,
+          "duplicate_selection": 0.009174311926605505,
+          "ranking_selection_error": 0.3119266055045872
+        }
+      },
+      "4": {
+        "num_samples": 74,
+        "counts": {
+          "success": 8,
+          "proposal_miss": 2,
+          "count_under": 41,
+          "count_over": 14,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 9
+        },
+        "fractions": {
+          "success": 0.10810810810810811,
+          "proposal_miss": 0.02702702702702703,
+          "count_under": 0.5540540540540541,
+          "count_over": 0.1891891891891892,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.12162162162162163
+        }
+      },
+      "5": {
+        "num_samples": 40,
+        "counts": {
+          "success": 1,
+          "proposal_miss": 2,
+          "count_under": 31,
+          "count_over": 3,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 3
+        },
+        "fractions": {
+          "success": 0.025,
+          "proposal_miss": 0.05,
+          "count_under": 0.775,
+          "count_over": 0.075,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.075
+        }
+      },
+      "6+": {
+        "num_samples": 56,
+        "counts": {
+          "success": 1,
+          "proposal_miss": 16,
+          "count_under": 37,
+          "count_over": 1,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 1
+        },
+        "fractions": {
+          "success": 0.017857142857142856,
+          "proposal_miss": 0.2857142857142857,
+          "count_under": 0.6607142857142857,
+          "count_over": 0.017857142857142856,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.017857142857142856
+        }
+      }
+    },
+    "pre_nms_0.3_thr_0.6": {
+      "3": {
+        "num_samples": 218,
+        "counts": {
+          "success": 90,
+          "proposal_miss": 1,
+          "count_under": 31,
+          "count_over": 16,
+          "duplicate_selection": 2,
+          "ranking_selection_error": 78
+        },
+        "fractions": {
+          "success": 0.41284403669724773,
+          "proposal_miss": 0.0045871559633027525,
+          "count_under": 0.14220183486238533,
+          "count_over": 0.07339449541284404,
+          "duplicate_selection": 0.009174311926605505,
+          "ranking_selection_error": 0.3577981651376147
+        }
+      },
+      "4": {
+        "num_samples": 74,
+        "counts": {
+          "success": 7,
+          "proposal_miss": 2,
+          "count_under": 46,
+          "count_over": 9,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 10
+        },
+        "fractions": {
+          "success": 0.0945945945945946,
+          "proposal_miss": 0.02702702702702703,
+          "count_under": 0.6216216216216216,
+          "count_over": 0.12162162162162163,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.13513513513513514
+        }
+      },
+      "5": {
+        "num_samples": 40,
+        "counts": {
+          "success": 1,
+          "proposal_miss": 2,
+          "count_under": 35,
+          "count_over": 1,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 1
+        },
+        "fractions": {
+          "success": 0.025,
+          "proposal_miss": 0.05,
+          "count_under": 0.875,
+          "count_over": 0.025,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.025
+        }
+      },
+      "6+": {
+        "num_samples": 56,
+        "counts": {
+          "success": 1,
+          "proposal_miss": 16,
+          "count_under": 38,
+          "count_over": 0,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 1
+        },
+        "fractions": {
+          "success": 0.017857142857142856,
+          "proposal_miss": 0.2857142857142857,
+          "count_under": 0.6785714285714286,
+          "count_over": 0.0,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.017857142857142856
+        }
+      }
+    },
+    "pre_nms_0.3_thr_0.7": {
+      "3": {
+        "num_samples": 218,
+        "counts": {
+          "success": 92,
+          "proposal_miss": 1,
+          "count_under": 31,
+          "count_over": 9,
+          "duplicate_selection": 2,
+          "ranking_selection_error": 83
+        },
+        "fractions": {
+          "success": 0.42201834862385323,
+          "proposal_miss": 0.0045871559633027525,
+          "count_under": 0.14220183486238533,
+          "count_over": 0.04128440366972477,
+          "duplicate_selection": 0.009174311926605505,
+          "ranking_selection_error": 0.38073394495412843
+        }
+      },
+      "4": {
+        "num_samples": 74,
+        "counts": {
+          "success": 7,
+          "proposal_miss": 2,
+          "count_under": 58,
+          "count_over": 4,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 3
+        },
+        "fractions": {
+          "success": 0.0945945945945946,
+          "proposal_miss": 0.02702702702702703,
+          "count_under": 0.7837837837837838,
+          "count_over": 0.05405405405405406,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.04054054054054054
+        }
+      },
+      "5": {
+        "num_samples": 40,
+        "counts": {
+          "success": 1,
+          "proposal_miss": 2,
+          "count_under": 36,
+          "count_over": 1,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 0
+        },
+        "fractions": {
+          "success": 0.025,
+          "proposal_miss": 0.05,
+          "count_under": 0.9,
+          "count_over": 0.025,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.0
+        }
+      },
+      "6+": {
+        "num_samples": 56,
+        "counts": {
+          "success": 1,
+          "proposal_miss": 16,
+          "count_under": 39,
+          "count_over": 0,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 0
+        },
+        "fractions": {
+          "success": 0.017857142857142856,
+          "proposal_miss": 0.2857142857142857,
+          "count_under": 0.6964285714285714,
+          "count_over": 0.0,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.0
+        }
+      }
+    },
+    "pre_nms_0.3_thr_0.8": {
+      "3": {
+        "num_samples": 218,
+        "counts": {
+          "success": 96,
+          "proposal_miss": 1,
+          "count_under": 31,
+          "count_over": 3,
+          "duplicate_selection": 2,
+          "ranking_selection_error": 85
+        },
+        "fractions": {
+          "success": 0.44036697247706424,
+          "proposal_miss": 0.0045871559633027525,
+          "count_under": 0.14220183486238533,
+          "count_over": 0.013761467889908258,
+          "duplicate_selection": 0.009174311926605505,
+          "ranking_selection_error": 0.38990825688073394
+        }
+      },
+      "4": {
+        "num_samples": 74,
+        "counts": {
+          "success": 4,
+          "proposal_miss": 2,
+          "count_under": 67,
+          "count_over": 1,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 0
+        },
+        "fractions": {
+          "success": 0.05405405405405406,
+          "proposal_miss": 0.02702702702702703,
+          "count_under": 0.9054054054054054,
+          "count_over": 0.013513513513513514,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.0
+        }
+      },
+      "5": {
+        "num_samples": 40,
+        "counts": {
+          "success": 0,
+          "proposal_miss": 2,
+          "count_under": 37,
+          "count_over": 1,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 0
+        },
+        "fractions": {
+          "success": 0.0,
+          "proposal_miss": 0.05,
+          "count_under": 0.925,
+          "count_over": 0.025,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.0
+        }
+      },
+      "6+": {
+        "num_samples": 56,
+        "counts": {
+          "success": 0,
+          "proposal_miss": 16,
+          "count_under": 40,
+          "count_over": 0,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 0
+        },
+        "fractions": {
+          "success": 0.0,
+          "proposal_miss": 0.2857142857142857,
+          "count_under": 0.7142857142857143,
+          "count_over": 0.0,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.0
+        }
+      }
+    },
+    "pre_nms_0.3_thr_0.85": {
+      "3": {
+        "num_samples": 218,
+        "counts": {
+          "success": 97,
+          "proposal_miss": 1,
+          "count_under": 31,
+          "count_over": 1,
+          "duplicate_selection": 2,
+          "ranking_selection_error": 86
+        },
+        "fractions": {
+          "success": 0.44495412844036697,
+          "proposal_miss": 0.0045871559633027525,
+          "count_under": 0.14220183486238533,
+          "count_over": 0.0045871559633027525,
+          "duplicate_selection": 0.009174311926605505,
+          "ranking_selection_error": 0.3944954128440367
+        }
+      },
+      "4": {
+        "num_samples": 74,
+        "counts": {
+          "success": 1,
+          "proposal_miss": 2,
+          "count_under": 70,
+          "count_over": 1,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 0
+        },
+        "fractions": {
+          "success": 0.013513513513513514,
+          "proposal_miss": 0.02702702702702703,
+          "count_under": 0.9459459459459459,
+          "count_over": 0.013513513513513514,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.0
+        }
+      },
+      "5": {
+        "num_samples": 40,
+        "counts": {
+          "success": 0,
+          "proposal_miss": 2,
+          "count_under": 38,
+          "count_over": 0,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 0
+        },
+        "fractions": {
+          "success": 0.0,
+          "proposal_miss": 0.05,
+          "count_under": 0.95,
+          "count_over": 0.0,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.0
+        }
+      },
+      "6+": {
+        "num_samples": 56,
+        "counts": {
+          "success": 0,
+          "proposal_miss": 16,
+          "count_under": 40,
+          "count_over": 0,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 0
+        },
+        "fractions": {
+          "success": 0.0,
+          "proposal_miss": 0.2857142857142857,
+          "count_under": 0.7142857142857143,
+          "count_over": 0.0,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.0
+        }
+      }
+    },
+    "pre_nms_0.3_thr_0.9": {
+      "3": {
+        "num_samples": 218,
+        "counts": {
+          "success": 97,
+          "proposal_miss": 1,
+          "count_under": 31,
+          "count_over": 0,
+          "duplicate_selection": 2,
+          "ranking_selection_error": 87
+        },
+        "fractions": {
+          "success": 0.44495412844036697,
+          "proposal_miss": 0.0045871559633027525,
+          "count_under": 0.14220183486238533,
+          "count_over": 0.0,
+          "duplicate_selection": 0.009174311926605505,
+          "ranking_selection_error": 0.39908256880733944
+        }
+      },
+      "4": {
+        "num_samples": 74,
+        "counts": {
+          "success": 0,
+          "proposal_miss": 2,
+          "count_under": 72,
+          "count_over": 0,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 0
+        },
+        "fractions": {
+          "success": 0.0,
+          "proposal_miss": 0.02702702702702703,
+          "count_under": 0.972972972972973,
+          "count_over": 0.0,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.0
+        }
+      },
+      "5": {
+        "num_samples": 40,
+        "counts": {
+          "success": 0,
+          "proposal_miss": 2,
+          "count_under": 38,
+          "count_over": 0,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 0
+        },
+        "fractions": {
+          "success": 0.0,
+          "proposal_miss": 0.05,
+          "count_under": 0.95,
+          "count_over": 0.0,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.0
+        }
+      },
+      "6+": {
+        "num_samples": 56,
+        "counts": {
+          "success": 0,
+          "proposal_miss": 16,
+          "count_under": 40,
+          "count_over": 0,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 0
+        },
+        "fractions": {
+          "success": 0.0,
+          "proposal_miss": 0.2857142857142857,
+          "count_under": 0.7142857142857143,
+          "count_over": 0.0,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.0
+        }
+      }
+    },
+    "pre_nms_0.3": {
+      "3": {
+        "num_samples": 218,
+        "counts": {
+          "success": 97,
+          "proposal_miss": 1,
+          "count_under": 31,
+          "count_over": 0,
+          "duplicate_selection": 2,
+          "ranking_selection_error": 87
+        },
+        "fractions": {
+          "success": 0.44495412844036697,
+          "proposal_miss": 0.0045871559633027525,
+          "count_under": 0.14220183486238533,
+          "count_over": 0.0,
+          "duplicate_selection": 0.009174311926605505,
+          "ranking_selection_error": 0.39908256880733944
+        }
+      },
+      "4": {
+        "num_samples": 74,
+        "counts": {
+          "success": 0,
+          "proposal_miss": 2,
+          "count_under": 72,
+          "count_over": 0,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 0
+        },
+        "fractions": {
+          "success": 0.0,
+          "proposal_miss": 0.02702702702702703,
+          "count_under": 0.972972972972973,
+          "count_over": 0.0,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.0
+        }
+      },
+      "5": {
+        "num_samples": 40,
+        "counts": {
+          "success": 0,
+          "proposal_miss": 2,
+          "count_under": 38,
+          "count_over": 0,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 0
+        },
+        "fractions": {
+          "success": 0.0,
+          "proposal_miss": 0.05,
+          "count_under": 0.95,
+          "count_over": 0.0,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.0
+        }
+      },
+      "6+": {
+        "num_samples": 56,
+        "counts": {
+          "success": 0,
+          "proposal_miss": 16,
+          "count_under": 40,
+          "count_over": 0,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 0
+        },
+        "fractions": {
+          "success": 0.0,
+          "proposal_miss": 0.2857142857142857,
+          "count_under": 0.7142857142857143,
+          "count_over": 0.0,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.0
+        }
+      }
+    },
+    "pre_nms_0.3_thr_0.95": {
+      "3": {
+        "num_samples": 218,
+        "counts": {
+          "success": 97,
+          "proposal_miss": 1,
+          "count_under": 31,
+          "count_over": 0,
+          "duplicate_selection": 2,
+          "ranking_selection_error": 87
+        },
+        "fractions": {
+          "success": 0.44495412844036697,
+          "proposal_miss": 0.0045871559633027525,
+          "count_under": 0.14220183486238533,
+          "count_over": 0.0,
+          "duplicate_selection": 0.009174311926605505,
+          "ranking_selection_error": 0.39908256880733944
+        }
+      },
+      "4": {
+        "num_samples": 74,
+        "counts": {
+          "success": 0,
+          "proposal_miss": 2,
+          "count_under": 72,
+          "count_over": 0,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 0
+        },
+        "fractions": {
+          "success": 0.0,
+          "proposal_miss": 0.02702702702702703,
+          "count_under": 0.972972972972973,
+          "count_over": 0.0,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.0
+        }
+      },
+      "5": {
+        "num_samples": 40,
+        "counts": {
+          "success": 0,
+          "proposal_miss": 2,
+          "count_under": 38,
+          "count_over": 0,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 0
+        },
+        "fractions": {
+          "success": 0.0,
+          "proposal_miss": 0.05,
+          "count_under": 0.95,
+          "count_over": 0.0,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.0
+        }
+      },
+      "6+": {
+        "num_samples": 56,
+        "counts": {
+          "success": 0,
+          "proposal_miss": 16,
+          "count_under": 40,
+          "count_over": 0,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 0
+        },
+        "fractions": {
+          "success": 0.0,
+          "proposal_miss": 0.2857142857142857,
+          "count_under": 0.7142857142857143,
+          "count_over": 0.0,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.0
+        }
+      }
+    },
+    "pre_nms_0.3_thr_1": {
+      "3": {
+        "num_samples": 218,
+        "counts": {
+          "success": 97,
+          "proposal_miss": 1,
+          "count_under": 31,
+          "count_over": 0,
+          "duplicate_selection": 2,
+          "ranking_selection_error": 87
+        },
+        "fractions": {
+          "success": 0.44495412844036697,
+          "proposal_miss": 0.0045871559633027525,
+          "count_under": 0.14220183486238533,
+          "count_over": 0.0,
+          "duplicate_selection": 0.009174311926605505,
+          "ranking_selection_error": 0.39908256880733944
+        }
+      },
+      "4": {
+        "num_samples": 74,
+        "counts": {
+          "success": 0,
+          "proposal_miss": 2,
+          "count_under": 72,
+          "count_over": 0,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 0
+        },
+        "fractions": {
+          "success": 0.0,
+          "proposal_miss": 0.02702702702702703,
+          "count_under": 0.972972972972973,
+          "count_over": 0.0,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.0
+        }
+      },
+      "5": {
+        "num_samples": 40,
+        "counts": {
+          "success": 0,
+          "proposal_miss": 2,
+          "count_under": 38,
+          "count_over": 0,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 0
+        },
+        "fractions": {
+          "success": 0.0,
+          "proposal_miss": 0.05,
+          "count_under": 0.95,
+          "count_over": 0.0,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.0
+        }
+      },
+      "6+": {
+        "num_samples": 56,
+        "counts": {
+          "success": 0,
+          "proposal_miss": 16,
+          "count_under": 40,
+          "count_over": 0,
+          "duplicate_selection": 0,
+          "ranking_selection_error": 0
+        },
+        "fractions": {
+          "success": 0.0,
+          "proposal_miss": 0.2857142857142857,
+          "count_under": 0.7142857142857143,
+          "count_over": 0.0,
+          "duplicate_selection": 0.0,
+          "ranking_selection_error": 0.0
+        }
+      }
+    }
+  },
+  "inference_suppression": {
+    "none": {
+      "count_macro_mean_f1": 0.6898408462071378,
+      "official": {
+        "F1_score": 0.5756388276594008,
+        "T_acc": 0.9540422364871151,
+        "N_acc": 0.9233333333333333
+      },
+      "by_count_group": {
+        "0": {
+          "num_samples": 1500,
+          "mean_precision": 0.9233333333333333,
+          "mean_recall": 0.9233333333333333,
+          "mean_f1": 0.9233333333333333,
+          "exact_set_accuracy": 0.9233333333333333,
+          "cardinality_accuracy": 0.9233333333333333,
+          "count_class_accuracy": 0.9233333333333333,
+          "count_class_evaluated": 1500,
+          "micro_precision": 0.0,
+          "micro_recall": 0.0,
+          "micro_f1": 0.0,
+          "total_tp": 0,
+          "total_fp": 134,
+          "total_fn": 0
+        },
+        "1": {
+          "num_samples": 6707,
+          "mean_precision": 0.6501167933999308,
+          "mean_recall": 0.661100342925302,
+          "mean_f1": 0.6534714974404849,
+          "exact_set_accuracy": 0.640972118681974,
+          "cardinality_accuracy": 0.9021917399731624,
+          "count_class_accuracy": 0.9021917399731624,
+          "count_class_evaluated": 6707,
+          "micro_precision": 0.6811059907834102,
+          "micro_recall": 0.661100342925302,
+          "micro_f1": 0.6709540742982523,
+          "total_tp": 4434,
+          "total_fp": 2076,
+          "total_fn": 2273
+        },
+        "2": {
+          "num_samples": 3654,
+          "mean_precision": 0.643951833607006,
+          "mean_recall": 0.6373836891078271,
+          "mean_f1": 0.6387155628534941,
+          "exact_set_accuracy": 0.3615216201423098,
+          "cardinality_accuracy": 0.9504652435686919,
+          "count_class_accuracy": 0.9504652435686919,
+          "count_class_evaluated": 3654,
+          "micro_precision": 0.6482048427497913,
+          "micro_recall": 0.6373836891078271,
+          "micro_f1": 0.6427487236097695,
+          "total_tp": 4658,
+          "total_fp": 2528,
+          "total_fn": 2650
+        },
+        "3+": {
+          "num_samples": 388,
+          "mean_precision": 0.6390034364261159,
+          "mean_recall": 0.5004083473799962,
+          "mean_f1": 0.5438429912012391,
+          "exact_set_accuracy": 0.11855670103092783,
+          "cardinality_accuracy": 0.4793814432989691,
+          "count_class_accuracy": 0.8634020618556701,
+          "count_class_evaluated": 388,
+          "micro_precision": 0.6456043956043956,
+          "micro_recall": 0.4359925788497217,
+          "micro_f1": 0.5204872646733112,
+          "total_tp": 705,
+          "total_fp": 387,
+          "total_fn": 912
+        }
+      }
+    },
+    "nms_0.3": {
+      "count_macro_mean_f1": 0.6982107760879122,
+      "official": {
+        "F1_score": 0.5682912890848233,
+        "T_acc": 0.9540422364871151,
+        "N_acc": 0.9233333333333333
+      },
+      "by_count_group": {
+        "0": {
+          "num_samples": 1500,
+          "mean_precision": 0.9233333333333333,
+          "mean_recall": 0.9233333333333333,
+          "mean_f1": 0.9233333333333333,
+          "exact_set_accuracy": 0.9233333333333333,
+          "cardinality_accuracy": 0.9233333333333333,
+          "count_class_accuracy": 0.9233333333333333,
+          "count_class_evaluated": 1500,
+          "micro_precision": 0.0,
+          "micro_recall": 0.0,
+          "micro_f1": 0.0,
+          "total_tp": 0,
+          "total_fp": 122,
+          "total_fn": 0
+        },
+        "1": {
+          "num_samples": 6707,
+          "mean_precision": 0.6532478505044483,
+          "mean_recall": 0.660354853138512,
+          "mean_f1": 0.6555091695243774,
+          "exact_set_accuracy": 0.6467869390189355,
+          "cardinality_accuracy": 0.9139704786044431,
+          "count_class_accuracy": 0.9021917399731624,
+          "count_class_evaluated": 6707,
+          "micro_precision": 0.69203125,
+          "micro_recall": 0.660354853138512,
+          "micro_f1": 0.6758220798046846,
+          "total_tp": 4429,
+          "total_fp": 1971,
+          "total_fn": 2278
+        },
+        "2": {
+          "num_samples": 3654,
+          "mean_precision": 0.7812899106002554,
+          "mean_recall": 0.6024904214559387,
+          "mean_f1": 0.6617131910235364,
+          "exact_set_accuracy": 0.3286808976464149,
+          "cardinality_accuracy": 0.535303776683087,
+          "count_class_accuracy": 0.9504652435686919,
+          "count_class_evaluated": 3654,
+          "micro_precision": 0.7858290201677672,
+          "micro_recall": 0.6024904214559387,
+          "micro_f1": 0.6820540624273875,
+          "total_tp": 4403,
+          "total_fp": 1200,
+          "total_fn": 2905
+        },
+        "3+": {
+          "num_samples": 388,
+          "mean_precision": 0.7933848797250858,
+          "mean_recall": 0.4554913943444866,
+          "mean_f1": 0.5522874104704014,
+          "exact_set_accuracy": 0.09536082474226804,
+          "cardinality_accuracy": 0.14432989690721648,
+          "count_class_accuracy": 0.8634020618556701,
+          "count_class_evaluated": 388,
+          "micro_precision": 0.8106060606060606,
+          "micro_recall": 0.3970315398886827,
+          "micro_f1": 0.5330012453300125,
+          "total_tp": 642,
+          "total_fp": 150,
+          "total_fn": 975
+        }
+      }
+    },
+    "pre_nms_0.3": {
+      "count_macro_mean_f1": 0.7350084546662915,
+      "official": {
+        "F1_score": 0.6282961874438729,
+        "T_acc": 0.9540422364871151,
+        "N_acc": 0.9233333333333333
+      },
+      "by_count_group": {
+        "0": {
+          "num_samples": 1500,
+          "mean_precision": 0.9233333333333333,
+          "mean_recall": 0.9233333333333333,
+          "mean_f1": 0.9233333333333333,
+          "exact_set_accuracy": 0.9233333333333333,
+          "cardinality_accuracy": 0.9233333333333333,
+          "count_class_accuracy": 0.9233333333333333,
+          "count_class_evaluated": 1500,
+          "micro_precision": 0.0,
+          "micro_recall": 0.0,
+          "micro_f1": 0.0,
+          "total_tp": 0,
+          "total_fp": 134,
+          "total_fn": 0
+        },
+        "1": {
+          "num_samples": 6707,
+          "mean_precision": 0.6504398389742064,
+          "mean_recall": 0.6616967347547339,
+          "mean_f1": 0.6538939416529991,
+          "exact_set_accuracy": 0.640972118681974,
+          "cardinality_accuracy": 0.9021917399731624,
+          "count_class_accuracy": 0.9021917399731624,
+          "count_class_evaluated": 6707,
+          "micro_precision": 0.6818251651559379,
+          "micro_recall": 0.6616967347547339,
+          "micro_f1": 0.6716101694915254,
+          "total_tp": 4438,
+          "total_fp": 2071,
+          "total_fn": 2269
+        },
+        "2": {
+          "num_samples": 3654,
+          "mean_precision": 0.7301131180441525,
+          "mean_recall": 0.7234537493158183,
+          "mean_f1": 0.7248586024448095,
+          "exact_set_accuracy": 0.524904214559387,
+          "cardinality_accuracy": 0.9504652435686919,
+          "count_class_accuracy": 0.9504652435686919,
+          "count_class_evaluated": 3654,
+          "micro_precision": 0.7359409799554566,
+          "micro_recall": 0.7234537493158183,
+          "micro_f1": 0.7296439414849573,
+          "total_tp": 5287,
+          "total_fp": 1897,
+          "total_fn": 2021
+        },
+        "3+": {
+          "num_samples": 388,
+          "mean_precision": 0.7448453608247415,
+          "mean_recall": 0.5876415036853173,
+          "mean_f1": 0.6379479412340242,
+          "exact_set_accuracy": 0.2422680412371134,
+          "cardinality_accuracy": 0.4793814432989691,
+          "count_class_accuracy": 0.8634020618556701,
+          "count_class_evaluated": 388,
+          "micro_precision": 0.7564338235294118,
+          "micro_recall": 0.5089672232529375,
+          "micro_f1": 0.6085027726432533,
+          "total_tp": 823,
+          "total_fp": 265,
+          "total_fn": 794
+        }
+      }
+    },
+    "pre_nms_0.3_thr_0": {
+      "count_macro_mean_f1": 0.665218095369884,
+      "official": {
+        "F1_score": 0.6207853702343048,
+        "T_acc": 0.9540422364871151,
+        "N_acc": 0.9233333333333333
+      },
+      "by_count_group": {
+        "0": {
+          "num_samples": 1500,
+          "mean_precision": 0.9233333333333333,
+          "mean_recall": 0.9233333333333333,
+          "mean_f1": 0.9233333333333333,
+          "exact_set_accuracy": 0.9233333333333333,
+          "cardinality_accuracy": 0.9233333333333333,
+          "count_class_accuracy": 0.9233333333333333,
+          "count_class_evaluated": 1500,
+          "micro_precision": 0.0,
+          "micro_recall": 0.0,
+          "micro_f1": 0.0,
+          "total_tp": 0,
+          "total_fp": 163,
+          "total_fn": 0
+        },
+        "1": {
+          "num_samples": 6707,
+          "mean_precision": 0.6489650565840749,
+          "mean_recall": 0.6621440286268078,
+          "mean_f1": 0.6517953406240738,
+          "exact_set_accuracy": 0.640972118681974,
+          "cardinality_accuracy": 0.9021917399731624,
+          "count_class_accuracy": 0.9021917399731624,
+          "count_class_evaluated": 6707,
+          "micro_precision": 0.5879782867734675,
+          "micro_recall": 0.6621440286268078,
+          "micro_f1": 0.6228611500701262,
+          "total_tp": 4441,
+          "total_fp": 3112,
+          "total_fn": 2266
+        },
+        "2": {
+          "num_samples": 3654,
+          "mean_precision": 0.725387697636253,
+          "mean_recall": 0.7249589490968801,
+          "mean_f1": 0.7198590918718583,
+          "exact_set_accuracy": 0.524904214559387,
+          "cardinality_accuracy": 0.9504652435686919,
+          "count_class_accuracy": 0.9504652435686919,
+          "count_class_evaluated": 3654,
+          "micro_precision": 0.6515002459419577,
+          "micro_recall": 0.7249589490968801,
+          "micro_f1": 0.6862694300518135,
+          "total_tp": 5298,
+          "total_fp": 2834,
+          "total_fn": 2010
+        },
+        "3+": {
+          "num_samples": 388,
+          "mean_precision": 0.2992751996650491,
+          "mean_recall": 0.807300910715859,
+          "mean_f1": 0.36588461565027053,
+          "exact_set_accuracy": 0.005154639175257732,
+          "cardinality_accuracy": 0.01288659793814433,
+          "count_class_accuracy": 0.8634020618556701,
+          "count_class_evaluated": 388,
+          "micro_precision": 0.19645632576935032,
+          "micro_recall": 0.7816944959802102,
+          "micro_f1": 0.31399826108557943,
+          "total_tp": 1264,
+          "total_fp": 5170,
+          "total_fn": 353
+        }
+      }
+    },
+    "pre_nms_0.3_thr_0.1": {
+      "count_macro_mean_f1": 0.7324303919728681,
+      "official": {
+        "F1_score": 0.6241325822516124,
+        "T_acc": 0.9540422364871151,
+        "N_acc": 0.9233333333333333
+      },
+      "by_count_group": {
+        "0": {
+          "num_samples": 1500,
+          "mean_precision": 0.9233333333333333,
+          "mean_recall": 0.9233333333333333,
+          "mean_f1": 0.9233333333333333,
+          "exact_set_accuracy": 0.9233333333333333,
+          "cardinality_accuracy": 0.9233333333333333,
+          "count_class_accuracy": 0.9233333333333333,
+          "count_class_evaluated": 1500,
+          "micro_precision": 0.0,
+          "micro_recall": 0.0,
+          "micro_f1": 0.0,
+          "total_tp": 0,
+          "total_fp": 134,
+          "total_fn": 0
+        },
+        "1": {
+          "num_samples": 6707,
+          "mean_precision": 0.6500621833147555,
+          "mean_recall": 0.6618458327120919,
+          "mean_f1": 0.653419076491985,
+          "exact_set_accuracy": 0.640972118681974,
+          "cardinality_accuracy": 0.9021917399731624,
+          "count_class_accuracy": 0.9021917399731624,
+          "count_class_evaluated": 6707,
+          "micro_precision": 0.6745175505242365,
+          "micro_recall": 0.6618458327120919,
+          "micro_f1": 0.6681216134858519,
+          "total_tp": 4439,
+          "total_fp": 2142,
+          "total_fn": 2268
+        },
+        "2": {
+          "num_samples": 3654,
+          "mean_precision": 0.7287213512480344,
+          "mean_recall": 0.7237274220032841,
+          "mean_f1": 0.7236653421382485,
+          "exact_set_accuracy": 0.524904214559387,
+          "cardinality_accuracy": 0.9504652435686919,
+          "count_class_accuracy": 0.9504652435686919,
+          "count_class_evaluated": 3654,
+          "micro_precision": 0.7287131441168366,
+          "micro_recall": 0.7237274220032841,
+          "micro_f1": 0.7262117259371138,
+          "total_tp": 5289,
+          "total_fp": 1969,
+          "total_fn": 2019
+        },
+        "3+": {
+          "num_samples": 388,
+          "mean_precision": 0.6080595893534749,
+          "mean_recall": 0.7328838830127483,
+          "mean_f1": 0.6293038159279055,
+          "exact_set_accuracy": 0.11082474226804123,
+          "cardinality_accuracy": 0.21649484536082475,
+          "count_class_accuracy": 0.8634020618556701,
+          "count_class_evaluated": 388,
+          "micro_precision": 0.5540674603174603,
+          "micro_recall": 0.6907854050711194,
+          "micro_f1": 0.6149187998898982,
+          "total_tp": 1117,
+          "total_fp": 899,
+          "total_fn": 500
+        }
+      }
+    },
+    "pre_nms_0.3_thr_0.2": {
+      "count_macro_mean_f1": 0.7372570550746982,
+      "official": {
+        "F1_score": 0.625357172014042,
+        "T_acc": 0.9540422364871151,
+        "N_acc": 0.9233333333333333
+      },
+      "by_count_group": {
+        "0": {
+          "num_samples": 1500,
+          "mean_precision": 0.9233333333333333,
+          "mean_recall": 0.9233333333333333,
+          "mean_f1": 0.9233333333333333,
+          "exact_set_accuracy": 0.9233333333333333,
+          "cardinality_accuracy": 0.9233333333333333,
+          "count_class_accuracy": 0.9233333333333333,
+          "count_class_evaluated": 1500,
+          "micro_precision": 0.0,
+          "micro_recall": 0.0,
+          "micro_f1": 0.0,
+          "total_tp": 0,
+          "total_fp": 134,
+          "total_fn": 0
+        },
+        "1": {
+          "num_samples": 6707,
+          "mean_precision": 0.6501732376266447,
+          "mean_recall": 0.6616967347547339,
+          "mean_f1": 0.6535584712489438,
+          "exact_set_accuracy": 0.640972118681974,
+          "cardinality_accuracy": 0.9021917399731624,
+          "count_class_accuracy": 0.9021917399731624,
+          "count_class_evaluated": 6707,
+          "micro_precision": 0.6776607115590166,
+          "micro_recall": 0.6616967347547339,
+          "micro_f1": 0.6695835847917924,
+          "total_tp": 4438,
+          "total_fp": 2111,
+          "total_fn": 2269
+        },
+        "2": {
+          "num_samples": 3654,
+          "mean_precision": 0.7291930565329581,
+          "mean_recall": 0.7235905856595511,
+          "mean_f1": 0.7240732563779024,
+          "exact_set_accuracy": 0.524904214559387,
+          "cardinality_accuracy": 0.9504652435686919,
+          "count_class_accuracy": 0.9504652435686919,
+          "count_class_evaluated": 3654,
+          "micro_precision": 0.7313969571230982,
+          "micro_recall": 0.7235905856595511,
+          "micro_f1": 0.7274728298252855,
+          "total_tp": 5288,
+          "total_fp": 1942,
+          "total_fn": 2020
+        },
+        "3+": {
+          "num_samples": 388,
+          "mean_precision": 0.6533337505934528,
+          "mean_recall": 0.7042603587706676,
+          "mean_f1": 0.6480631593386131,
+          "exact_set_accuracy": 0.14948453608247422,
+          "cardinality_accuracy": 0.29381443298969073,
+          "count_class_accuracy": 0.8634020618556701,
+          "count_class_evaluated": 388,
+          "micro_precision": 0.6160092807424594,
+          "micro_recall": 0.6567717996289425,
+          "micro_f1": 0.6357378030529781,
+          "total_tp": 1062,
+          "total_fp": 662,
+          "total_fn": 555
+        }
+      }
+    },
+    "pre_nms_0.3_thr_0.3": {
+      "count_macro_mean_f1": 0.7389734668423167,
+      "official": {
+        "F1_score": 0.6259286472365091,
+        "T_acc": 0.9540422364871151,
+        "N_acc": 0.9233333333333333
+      },
+      "by_count_group": {
+        "0": {
+          "num_samples": 1500,
+          "mean_precision": 0.9233333333333333,
+          "mean_recall": 0.9233333333333333,
+          "mean_f1": 0.9233333333333333,
+          "exact_set_accuracy": 0.9233333333333333,
+          "cardinality_accuracy": 0.9233333333333333,
+          "count_class_accuracy": 0.9233333333333333,
+          "count_class_evaluated": 1500,
+          "micro_precision": 0.0,
+          "micro_recall": 0.0,
+          "micro_f1": 0.0,
+          "total_tp": 0,
+          "total_fp": 134,
+          "total_fn": 0
+        },
+        "1": {
+          "num_samples": 6707,
+          "mean_precision": 0.6502438816588215,
+          "mean_recall": 0.6616967347547339,
+          "mean_f1": 0.653648285018495,
+          "exact_set_accuracy": 0.640972118681974,
+          "cardinality_accuracy": 0.9021917399731624,
+          "count_class_accuracy": 0.9021917399731624,
+          "count_class_evaluated": 6707,
+          "micro_precision": 0.6792164064891337,
+          "micro_recall": 0.6616967347547339,
+          "micro_f1": 0.6703421191752889,
+          "total_tp": 4438,
+          "total_fp": 2096,
+          "total_fn": 2269
+        },
+        "2": {
+          "num_samples": 3654,
+          "mean_precision": 0.7295320898769174,
+          "mean_recall": 0.7234537493158183,
+          "mean_f1": 0.724359475591003,
+          "exact_set_accuracy": 0.524904214559387,
+          "cardinality_accuracy": 0.9504652435686919,
+          "count_class_accuracy": 0.9504652435686919,
+          "count_class_evaluated": 3654,
+          "micro_precision": 0.7331854111773679,
+          "micro_recall": 0.7234537493158183,
+          "micro_f1": 0.7282870721124044,
+          "total_tp": 5287,
+          "total_fp": 1924,
+          "total_fn": 2021
+        },
+        "3+": {
+          "num_samples": 388,
+          "mean_precision": 0.6839279670787397,
+          "mean_recall": 0.6767333468364392,
+          "mean_f1": 0.6545527734264355,
+          "exact_set_accuracy": 0.16752577319587628,
+          "cardinality_accuracy": 0.3582474226804124,
+          "count_class_accuracy": 0.8634020618556701,
+          "count_class_evaluated": 388,
+          "micro_precision": 0.6666666666666666,
+          "micro_recall": 0.6233766233766234,
+          "micro_f1": 0.6442953020134228,
+          "total_tp": 1008,
+          "total_fp": 504,
+          "total_fn": 609
+        }
+      }
+    },
+    "pre_nms_0.3_thr_0.4": {
+      "count_macro_mean_f1": 0.7383875642017734,
+      "official": {
+        "F1_score": 0.6267450404114622,
+        "T_acc": 0.9540422364871151,
+        "N_acc": 0.9233333333333333
+      },
+      "by_count_group": {
+        "0": {
+          "num_samples": 1500,
+          "mean_precision": 0.9233333333333333,
+          "mean_recall": 0.9233333333333333,
+          "mean_f1": 0.9233333333333333,
+          "exact_set_accuracy": 0.9233333333333333,
+          "cardinality_accuracy": 0.9233333333333333,
+          "count_class_accuracy": 0.9233333333333333,
+          "count_class_evaluated": 1500,
+          "micro_precision": 0.0,
+          "micro_recall": 0.0,
+          "micro_f1": 0.0,
+          "total_tp": 0,
+          "total_fp": 134,
+          "total_fn": 0
+        },
+        "1": {
+          "num_samples": 6707,
+          "mean_precision": 0.6503081357785401,
+          "mean_recall": 0.6616967347547339,
+          "mean_f1": 0.6537306438901785,
+          "exact_set_accuracy": 0.640972118681974,
+          "cardinality_accuracy": 0.9021917399731624,
+          "count_class_accuracy": 0.9021917399731624,
+          "count_class_evaluated": 6707,
+          "micro_precision": 0.680361796719301,
+          "micro_recall": 0.6616967347547339,
+          "micro_f1": 0.6708994708994709,
+          "total_tp": 4438,
+          "total_fp": 2085,
+          "total_fn": 2269
+        },
+        "2": {
+          "num_samples": 3654,
+          "mean_precision": 0.729714538335228,
+          "mean_recall": 0.7234537493158183,
+          "mean_f1": 0.7245145567805668,
+          "exact_set_accuracy": 0.524904214559387,
+          "cardinality_accuracy": 0.9504652435686919,
+          "count_class_accuracy": 0.9504652435686919,
+          "count_class_evaluated": 3654,
+          "micro_precision": 0.7337959750173491,
+          "micro_recall": 0.7234537493158183,
+          "micro_f1": 0.7285881623372149,
+          "total_tp": 5287,
+          "total_fp": 1918,
+          "total_fn": 2021
+        },
+        "3+": {
+          "num_samples": 388,
+          "mean_precision": 0.6994235360859067,
+          "mean_recall": 0.6537599642625412,
+          "mean_f1": 0.6519717228030151,
+          "exact_set_accuracy": 0.19329896907216496,
+          "cardinality_accuracy": 0.4072164948453608,
+          "count_class_accuracy": 0.8634020618556701,
+          "count_class_evaluated": 388,
+          "micro_precision": 0.6903735632183908,
+          "micro_recall": 0.5943104514533086,
+          "micro_f1": 0.6387504154204054,
+          "total_tp": 961,
+          "total_fp": 431,
+          "total_fn": 656
+        }
+      }
+    },
+    "pre_nms_0.3_thr_0.5": {
+      "count_macro_mean_f1": 0.7389770790395848,
+      "official": {
+        "F1_score": 0.6279696301738917,
+        "T_acc": 0.9540422364871151,
+        "N_acc": 0.9233333333333333
+      },
+      "by_count_group": {
+        "0": {
+          "num_samples": 1500,
+          "mean_precision": 0.9233333333333333,
+          "mean_recall": 0.9233333333333333,
+          "mean_f1": 0.9233333333333333,
+          "exact_set_accuracy": 0.9233333333333333,
+          "cardinality_accuracy": 0.9233333333333333,
+          "count_class_accuracy": 0.9233333333333333,
+          "count_class_evaluated": 1500,
+          "micro_precision": 0.0,
+          "micro_recall": 0.0,
+          "micro_f1": 0.0,
+          "total_tp": 0,
+          "total_fp": 134,
+          "total_fn": 0
+        },
+        "1": {
+          "num_samples": 6707,
+          "mean_precision": 0.6503826847572193,
+          "mean_recall": 0.6616967347547339,
+          "mean_f1": 0.6538222326354126,
+          "exact_set_accuracy": 0.640972118681974,
+          "cardinality_accuracy": 0.9021917399731624,
+          "count_class_accuracy": 0.9021917399731624,
+          "count_class_evaluated": 6707,
+          "micro_precision": 0.6811972371450499,
+          "micro_recall": 0.6616967347547339,
+          "micro_f1": 0.6713054000907578,
+          "total_tp": 4438,
+          "total_fp": 2077,
+          "total_fn": 2269
+        },
+        "2": {
+          "num_samples": 3654,
+          "mean_precision": 0.729912424740011,
+          "mean_recall": 0.7234537493158183,
+          "mean_f1": 0.7246852764094146,
+          "exact_set_accuracy": 0.524904214559387,
+          "cardinality_accuracy": 0.9504652435686919,
+          "count_class_accuracy": 0.9504652435686919,
+          "count_class_evaluated": 3654,
+          "micro_precision": 0.7348158443363447,
+          "micro_recall": 0.7234537493158183,
+          "micro_f1": 0.7290905329931738,
+          "total_tp": 5287,
+          "total_fp": 1908,
+          "total_fn": 2021
+        },
+        "3+": {
+          "num_samples": 388,
+          "mean_precision": 0.7183623793159872,
+          "mean_recall": 0.6371689521818383,
+          "mean_f1": 0.6540674737801785,
+          "exact_set_accuracy": 0.23195876288659795,
+          "cardinality_accuracy": 0.45618556701030927,
+          "count_class_accuracy": 0.8634020618556701,
+          "count_class_evaluated": 388,
+          "micro_precision": 0.7195027195027195,
+          "micro_recall": 0.5726654298082869,
+          "micro_f1": 0.6377410468319559,
+          "total_tp": 926,
+          "total_fp": 361,
+          "total_fn": 691
+        }
+      }
+    },
+    "pre_nms_0.3_thr_0.6": {
+      "count_macro_mean_f1": 0.7376930807146694,
+      "official": {
+        "F1_score": 0.6284594660788636,
+        "T_acc": 0.9540422364871151,
+        "N_acc": 0.9233333333333333
+      },
+      "by_count_group": {
+        "0": {
+          "num_samples": 1500,
+          "mean_precision": 0.9233333333333333,
+          "mean_recall": 0.9233333333333333,
+          "mean_f1": 0.9233333333333333,
+          "exact_set_accuracy": 0.9233333333333333,
+          "cardinality_accuracy": 0.9233333333333333,
+          "count_class_accuracy": 0.9233333333333333,
+          "count_class_evaluated": 1500,
+          "micro_precision": 0.0,
+          "micro_recall": 0.0,
+          "micro_f1": 0.0,
+          "total_tp": 0,
+          "total_fp": 134,
+          "total_fn": 0
+        },
+        "1": {
+          "num_samples": 6707,
+          "mean_precision": 0.650402564484867,
+          "mean_recall": 0.6616967347547339,
+          "mean_f1": 0.6538470822949723,
+          "exact_set_accuracy": 0.640972118681974,
+          "cardinality_accuracy": 0.9021917399731624,
+          "count_class_accuracy": 0.9021917399731624,
+          "count_class_evaluated": 6707,
+          "micro_precision": 0.6814064179333641,
+          "micro_recall": 0.6616967347547339,
+          "micro_f1": 0.6714069591527988,
+          "total_tp": 4438,
+          "total_fp": 2075,
+          "total_fn": 2269
+        },
+        "2": {
+          "num_samples": 3654,
+          "mean_precision": 0.7299648786717751,
+          "mean_recall": 0.7234537493158183,
+          "mean_f1": 0.7247308885239921,
+          "exact_set_accuracy": 0.524904214559387,
+          "cardinality_accuracy": 0.9504652435686919,
+          "count_class_accuracy": 0.9504652435686919,
+          "count_class_evaluated": 3654,
+          "micro_precision": 0.735224586288416,
+          "micro_recall": 0.7234537493158183,
+          "micro_f1": 0.7292916752879509,
+          "total_tp": 5287,
+          "total_fp": 1904,
+          "total_fn": 2021
+        },
+        "3+": {
+          "num_samples": 388,
+          "mean_precision": 0.7279005072819501,
+          "mean_recall": 0.6178931678287342,
+          "mean_f1": 0.6488610187063796,
+          "exact_set_accuracy": 0.24742268041237114,
+          "cardinality_accuracy": 0.49226804123711343,
+          "count_class_accuracy": 0.8634020618556701,
+          "count_class_evaluated": 388,
+          "micro_precision": 0.7375415282392026,
+          "micro_recall": 0.549165120593692,
+          "micro_f1": 0.6295639844026941,
+          "total_tp": 888,
+          "total_fp": 316,
+          "total_fn": 729
+        }
+      }
+    },
+    "pre_nms_0.3_thr_0.7": {
+      "count_macro_mean_f1": 0.7368642454472948,
+      "official": {
+        "F1_score": 0.6286227447138542,
+        "T_acc": 0.9540422364871151,
+        "N_acc": 0.9233333333333333
+      },
+      "by_count_group": {
+        "0": {
+          "num_samples": 1500,
+          "mean_precision": 0.9233333333333333,
+          "mean_recall": 0.9233333333333333,
+          "mean_f1": 0.9233333333333333,
+          "exact_set_accuracy": 0.9233333333333333,
+          "cardinality_accuracy": 0.9233333333333333,
+          "count_class_accuracy": 0.9233333333333333,
+          "count_class_evaluated": 1500,
+          "micro_precision": 0.0,
+          "micro_recall": 0.0,
+          "micro_f1": 0.0,
+          "total_tp": 0,
+          "total_fp": 134,
+          "total_fn": 0
+        },
+        "1": {
+          "num_samples": 6707,
+          "mean_precision": 0.6504274141444266,
+          "mean_recall": 0.6616967347547339,
+          "mean_f1": 0.6538790318572633,
+          "exact_set_accuracy": 0.640972118681974,
+          "cardinality_accuracy": 0.9021917399731624,
+          "count_class_accuracy": 0.9021917399731624,
+          "count_class_evaluated": 6707,
+          "micro_precision": 0.6817204301075269,
+          "micro_recall": 0.6616967347547339,
+          "micro_f1": 0.6715593553756526,
+          "total_tp": 4438,
+          "total_fp": 2072,
+          "total_fn": 2269
+        },
+        "2": {
+          "num_samples": 3654,
+          "mean_precision": 0.7299854041233349,
+          "mean_recall": 0.7234537493158183,
+          "mean_f1": 0.724754346182918,
+          "exact_set_accuracy": 0.524904214559387,
+          "cardinality_accuracy": 0.9504652435686919,
+          "count_class_accuracy": 0.9504652435686919,
+          "count_class_evaluated": 3654,
+          "micro_precision": 0.7355314412910406,
+          "micro_recall": 0.7234537493158183,
+          "micro_f1": 0.7294426048565121,
+          "total_tp": 5287,
+          "total_fp": 1901,
+          "total_fn": 2021
+        },
+        "3+": {
+          "num_samples": 388,
+          "mean_precision": 0.7345299459990177,
+          "mean_recall": 0.6067881645845558,
+          "mean_f1": 0.6454902704156641,
+          "exact_set_accuracy": 0.25257731958762886,
+          "cardinality_accuracy": 0.48711340206185566,
+          "count_class_accuracy": 0.8634020618556701,
+          "count_class_evaluated": 388,
+          "micro_precision": 0.7478411053540587,
+          "micro_recall": 0.5355596784168213,
+          "micro_f1": 0.6241441441441441,
+          "total_tp": 866,
+          "total_fp": 292,
+          "total_fn": 751
+        }
+      }
+    },
+    "pre_nms_0.3_thr_0.8": {
+      "count_macro_mean_f1": 0.7358557938743601,
+      "official": {
+        "F1_score": 0.6285411053963589,
+        "T_acc": 0.9540422364871151,
+        "N_acc": 0.9233333333333333
+      },
+      "by_count_group": {
+        "0": {
+          "num_samples": 1500,
+          "mean_precision": 0.9233333333333333,
+          "mean_recall": 0.9233333333333333,
+          "mean_f1": 0.9233333333333333,
+          "exact_set_accuracy": 0.9233333333333333,
+          "cardinality_accuracy": 0.9233333333333333,
+          "count_class_accuracy": 0.9233333333333333,
+          "count_class_evaluated": 1500,
+          "micro_precision": 0.0,
+          "micro_recall": 0.0,
+          "micro_f1": 0.0,
+          "total_tp": 0,
+          "total_fp": 134,
+          "total_fn": 0
+        },
+        "1": {
+          "num_samples": 6707,
+          "mean_precision": 0.6504398389742064,
+          "mean_recall": 0.6616967347547339,
+          "mean_f1": 0.6538939416529991,
+          "exact_set_accuracy": 0.640972118681974,
+          "cardinality_accuracy": 0.9021917399731624,
+          "count_class_accuracy": 0.9021917399731624,
+          "count_class_evaluated": 6707,
+          "micro_precision": 0.6818251651559379,
+          "micro_recall": 0.6616967347547339,
+          "micro_f1": 0.6716101694915254,
+          "total_tp": 4438,
+          "total_fp": 2071,
+          "total_fn": 2269
+        },
+        "2": {
+          "num_samples": 3654,
+          "mean_precision": 0.7300675059295748,
+          "mean_recall": 0.7234537493158183,
+          "mean_f1": 0.7248221127531473,
+          "exact_set_accuracy": 0.524904214559387,
+          "cardinality_accuracy": 0.9504652435686919,
+          "count_class_accuracy": 0.9504652435686919,
+          "count_class_evaluated": 3654,
+          "micro_precision": 0.735838552540014,
+          "micro_recall": 0.7234537493158183,
+          "micro_f1": 0.7295935969088525,
+          "total_tp": 5287,
+          "total_fp": 1898,
+          "total_fn": 2021
+        },
+        "3+": {
+          "num_samples": 388,
+          "mean_precision": 0.7410223367697588,
+          "mean_recall": 0.5953130846816407,
+          "mean_f1": 0.6413737877579604,
+          "exact_set_accuracy": 0.25,
+          "cardinality_accuracy": 0.48195876288659795,
+          "count_class_accuracy": 0.8634020618556701,
+          "count_class_evaluated": 388,
+          "micro_precision": 0.7551569506726458,
+          "micro_recall": 0.520717377860235,
+          "micro_f1": 0.616398243045388,
+          "total_tp": 842,
+          "total_fp": 273,
+          "total_fn": 775
+        }
+      }
+    },
+    "pre_nms_0.3_thr_0.85": {
+      "count_macro_mean_f1": 0.7354078172595975,
+      "official": {
+        "F1_score": 0.6283778267613683,
+        "T_acc": 0.9540422364871151,
+        "N_acc": 0.9233333333333333
+      },
+      "by_count_group": {
+        "0": {
+          "num_samples": 1500,
+          "mean_precision": 0.9233333333333333,
+          "mean_recall": 0.9233333333333333,
+          "mean_f1": 0.9233333333333333,
+          "exact_set_accuracy": 0.9233333333333333,
+          "cardinality_accuracy": 0.9233333333333333,
+          "count_class_accuracy": 0.9233333333333333,
+          "count_class_evaluated": 1500,
+          "micro_precision": 0.0,
+          "micro_recall": 0.0,
+          "micro_f1": 0.0,
+          "total_tp": 0,
+          "total_fp": 134,
+          "total_fn": 0
+        },
+        "1": {
+          "num_samples": 6707,
+          "mean_precision": 0.6504398389742064,
+          "mean_recall": 0.6616967347547339,
+          "mean_f1": 0.6538939416529991,
+          "exact_set_accuracy": 0.640972118681974,
+          "cardinality_accuracy": 0.9021917399731624,
+          "count_class_accuracy": 0.9021917399731624,
+          "count_class_evaluated": 6707,
+          "micro_precision": 0.6818251651559379,
+          "micro_recall": 0.6616967347547339,
+          "micro_f1": 0.6716101694915254,
+          "total_tp": 4438,
+          "total_fp": 2071,
+          "total_fn": 2269
+        },
+        "2": {
+          "num_samples": 3654,
+          "mean_precision": 0.7301131180441525,
+          "mean_recall": 0.7234537493158183,
+          "mean_f1": 0.7248586024448095,
+          "exact_set_accuracy": 0.524904214559387,
+          "cardinality_accuracy": 0.9504652435686919,
+          "count_class_accuracy": 0.9504652435686919,
+          "count_class_evaluated": 3654,
+          "micro_precision": 0.7359409799554566,
+          "micro_recall": 0.7234537493158183,
+          "micro_f1": 0.7296439414849573,
+          "total_tp": 5287,
+          "total_fp": 1897,
+          "total_fn": 2021
+        },
+        "3+": {
+          "num_samples": 388,
+          "mean_precision": 0.7439003436426109,
+          "mean_recall": 0.5904296948755705,
+          "mean_f1": 0.6395453916072478,
+          "exact_set_accuracy": 0.24484536082474226,
+          "cardinality_accuracy": 0.4793814432989691,
+          "count_class_accuracy": 0.8634020618556701,
+          "count_class_evaluated": 388,
+          "micro_precision": 0.7566089334548769,
+          "micro_recall": 0.5132962275819418,
+          "micro_f1": 0.6116433308769345,
+          "total_tp": 830,
+          "total_fp": 267,
+          "total_fn": 787
+        }
+      }
+    },
+    "pre_nms_0.3_thr_0.9": {
+      "count_macro_mean_f1": 0.7350084546662915,
+      "official": {
+        "F1_score": 0.6282961874438729,
+        "T_acc": 0.9540422364871151,
+        "N_acc": 0.9233333333333333
+      },
+      "by_count_group": {
+        "0": {
+          "num_samples": 1500,
+          "mean_precision": 0.9233333333333333,
+          "mean_recall": 0.9233333333333333,
+          "mean_f1": 0.9233333333333333,
+          "exact_set_accuracy": 0.9233333333333333,
+          "cardinality_accuracy": 0.9233333333333333,
+          "count_class_accuracy": 0.9233333333333333,
+          "count_class_evaluated": 1500,
+          "micro_precision": 0.0,
+          "micro_recall": 0.0,
+          "micro_f1": 0.0,
+          "total_tp": 0,
+          "total_fp": 134,
+          "total_fn": 0
+        },
+        "1": {
+          "num_samples": 6707,
+          "mean_precision": 0.6504398389742064,
+          "mean_recall": 0.6616967347547339,
+          "mean_f1": 0.6538939416529991,
+          "exact_set_accuracy": 0.640972118681974,
+          "cardinality_accuracy": 0.9021917399731624,
+          "count_class_accuracy": 0.9021917399731624,
+          "count_class_evaluated": 6707,
+          "micro_precision": 0.6818251651559379,
+          "micro_recall": 0.6616967347547339,
+          "micro_f1": 0.6716101694915254,
+          "total_tp": 4438,
+          "total_fp": 2071,
+          "total_fn": 2269
+        },
+        "2": {
+          "num_samples": 3654,
+          "mean_precision": 0.7301131180441525,
+          "mean_recall": 0.7234537493158183,
+          "mean_f1": 0.7248586024448095,
+          "exact_set_accuracy": 0.524904214559387,
+          "cardinality_accuracy": 0.9504652435686919,
+          "count_class_accuracy": 0.9504652435686919,
+          "count_class_evaluated": 3654,
+          "micro_precision": 0.7359409799554566,
+          "micro_recall": 0.7234537493158183,
+          "micro_f1": 0.7296439414849573,
+          "total_tp": 5287,
+          "total_fp": 1897,
+          "total_fn": 2021
+        },
+        "3+": {
+          "num_samples": 388,
+          "mean_precision": 0.7448453608247415,
+          "mean_recall": 0.5876415036853173,
+          "mean_f1": 0.6379479412340242,
+          "exact_set_accuracy": 0.2422680412371134,
+          "cardinality_accuracy": 0.4793814432989691,
+          "count_class_accuracy": 0.8634020618556701,
+          "count_class_evaluated": 388,
+          "micro_precision": 0.7564338235294118,
+          "micro_recall": 0.5089672232529375,
+          "micro_f1": 0.6085027726432533,
+          "total_tp": 823,
+          "total_fp": 265,
+          "total_fn": 794
+        }
+      }
+    },
+    "pre_nms_0.3_thr_0.95": {
+      "count_macro_mean_f1": 0.7350084546662915,
+      "official": {
+        "F1_score": 0.6282961874438729,
+        "T_acc": 0.9540422364871151,
+        "N_acc": 0.9233333333333333
+      },
+      "by_count_group": {
+        "0": {
+          "num_samples": 1500,
+          "mean_precision": 0.9233333333333333,
+          "mean_recall": 0.9233333333333333,
+          "mean_f1": 0.9233333333333333,
+          "exact_set_accuracy": 0.9233333333333333,
+          "cardinality_accuracy": 0.9233333333333333,
+          "count_class_accuracy": 0.9233333333333333,
+          "count_class_evaluated": 1500,
+          "micro_precision": 0.0,
+          "micro_recall": 0.0,
+          "micro_f1": 0.0,
+          "total_tp": 0,
+          "total_fp": 134,
+          "total_fn": 0
+        },
+        "1": {
+          "num_samples": 6707,
+          "mean_precision": 0.6504398389742064,
+          "mean_recall": 0.6616967347547339,
+          "mean_f1": 0.6538939416529991,
+          "exact_set_accuracy": 0.640972118681974,
+          "cardinality_accuracy": 0.9021917399731624,
+          "count_class_accuracy": 0.9021917399731624,
+          "count_class_evaluated": 6707,
+          "micro_precision": 0.6818251651559379,
+          "micro_recall": 0.6616967347547339,
+          "micro_f1": 0.6716101694915254,
+          "total_tp": 4438,
+          "total_fp": 2071,
+          "total_fn": 2269
+        },
+        "2": {
+          "num_samples": 3654,
+          "mean_precision": 0.7301131180441525,
+          "mean_recall": 0.7234537493158183,
+          "mean_f1": 0.7248586024448095,
+          "exact_set_accuracy": 0.524904214559387,
+          "cardinality_accuracy": 0.9504652435686919,
+          "count_class_accuracy": 0.9504652435686919,
+          "count_class_evaluated": 3654,
+          "micro_precision": 0.7359409799554566,
+          "micro_recall": 0.7234537493158183,
+          "micro_f1": 0.7296439414849573,
+          "total_tp": 5287,
+          "total_fp": 1897,
+          "total_fn": 2021
+        },
+        "3+": {
+          "num_samples": 388,
+          "mean_precision": 0.7448453608247415,
+          "mean_recall": 0.5876415036853173,
+          "mean_f1": 0.6379479412340242,
+          "exact_set_accuracy": 0.2422680412371134,
+          "cardinality_accuracy": 0.4793814432989691,
+          "count_class_accuracy": 0.8634020618556701,
+          "count_class_evaluated": 388,
+          "micro_precision": 0.7564338235294118,
+          "micro_recall": 0.5089672232529375,
+          "micro_f1": 0.6085027726432533,
+          "total_tp": 823,
+          "total_fp": 265,
+          "total_fn": 794
+        }
+      }
+    },
+    "pre_nms_0.3_thr_1": {
+      "count_macro_mean_f1": 0.7350084546662915,
+      "official": {
+        "F1_score": 0.6282961874438729,
+        "T_acc": 0.9540422364871151,
+        "N_acc": 0.9233333333333333
+      },
+      "by_count_group": {
+        "0": {
+          "num_samples": 1500,
+          "mean_precision": 0.9233333333333333,
+          "mean_recall": 0.9233333333333333,
+          "mean_f1": 0.9233333333333333,
+          "exact_set_accuracy": 0.9233333333333333,
+          "cardinality_accuracy": 0.9233333333333333,
+          "count_class_accuracy": 0.9233333333333333,
+          "count_class_evaluated": 1500,
+          "micro_precision": 0.0,
+          "micro_recall": 0.0,
+          "micro_f1": 0.0,
+          "total_tp": 0,
+          "total_fp": 134,
+          "total_fn": 0
+        },
+        "1": {
+          "num_samples": 6707,
+          "mean_precision": 0.6504398389742064,
+          "mean_recall": 0.6616967347547339,
+          "mean_f1": 0.6538939416529991,
+          "exact_set_accuracy": 0.640972118681974,
+          "cardinality_accuracy": 0.9021917399731624,
+          "count_class_accuracy": 0.9021917399731624,
+          "count_class_evaluated": 6707,
+          "micro_precision": 0.6818251651559379,
+          "micro_recall": 0.6616967347547339,
+          "micro_f1": 0.6716101694915254,
+          "total_tp": 4438,
+          "total_fp": 2071,
+          "total_fn": 2269
+        },
+        "2": {
+          "num_samples": 3654,
+          "mean_precision": 0.7301131180441525,
+          "mean_recall": 0.7234537493158183,
+          "mean_f1": 0.7248586024448095,
+          "exact_set_accuracy": 0.524904214559387,
+          "cardinality_accuracy": 0.9504652435686919,
+          "count_class_accuracy": 0.9504652435686919,
+          "count_class_evaluated": 3654,
+          "micro_precision": 0.7359409799554566,
+          "micro_recall": 0.7234537493158183,
+          "micro_f1": 0.7296439414849573,
+          "total_tp": 5287,
+          "total_fp": 1897,
+          "total_fn": 2021
+        },
+        "3+": {
+          "num_samples": 388,
+          "mean_precision": 0.7448453608247415,
+          "mean_recall": 0.5876415036853173,
+          "mean_f1": 0.6379479412340242,
+          "exact_set_accuracy": 0.2422680412371134,
+          "cardinality_accuracy": 0.4793814432989691,
+          "count_class_accuracy": 0.8634020618556701,
+          "count_class_evaluated": 388,
+          "micro_precision": 0.7564338235294118,
+          "micro_recall": 0.5089672232529375,
+          "micro_f1": 0.6085027726432533,
+          "total_tp": 823,
+          "total_fp": 265,
+          "total_fn": 794
+        }
+      }
+    }
+  },
+  "examples": {
+    "count_under": [
+      {
+        "sample_id": "0000125",
+        "image_id": 960,
+        "file_name": "COCO_train2014_000000000960.jpg",
+        "expression": "four people",
+        "group": "4",
+        "category": "count_under",
+        "target_boxes_xyxy": [
+          [
+            5.75,
+            0.0,
+            353.79998779296875,
+            640.0
+          ],
+          [
+            1.440000057220459,
+            253.1199951171875,
+            122.25,
+            629.9299926757812
+          ],
+          [
+            24.600000381469727,
+            62.22999954223633,
+            136.63999938964844,
+            192.52999877929688
+          ],
+          [
+            325.7900085449219,
+            163.52000427246094,
+            427.0,
+            640.0
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            9.966292381286621,
+            54.746761322021484,
+            347.64617919921875,
+            630.6243286132812
+          ],
+          [
+            0.9590657353401184,
+            3.738466739654541,
+            167.57249450683594,
+            480.13140869140625
+          ],
+          [
+            3.079340696334839,
+            84.6634521484375,
+            370.2787780761719,
+            504.62762451171875
+          ]
+        ],
+        "predicted_scores": [
+          0.8757827281951904,
+          0.8673361539840698,
+          0.8714514970779419
+        ],
+        "num_candidates": 53,
+        "num_predictions": 3,
+        "num_targets": 4,
+        "matched_targets": 1,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": true
+      },
+      {
+        "sample_id": "0000170",
+        "image_id": 1271,
+        "file_name": "COCO_train2014_000000001271.jpg",
+        "expression": "all people ",
+        "group": "5",
+        "category": "count_under",
+        "target_boxes_xyxy": [
+          [
+            220.02000427246094,
+            286.3599853515625,
+            389.17999267578125,
+            486.4700012207031
+          ],
+          [
+            436.7200012207031,
+            50.86000061035156,
+            639.0499877929688,
+            482.04998779296875
+          ],
+          [
+            97.38999938964844,
+            64.19000244140625,
+            277.30999755859375,
+            412.9700012207031
+          ],
+          [
+            191.22999572753906,
+            75.87999725341797,
+            268.3399963378906,
+            148.27999877929688
+          ],
+          [
+            251.19000244140625,
+            67.7300033569336,
+            342.1300048828125,
+            203.91000366210938
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            438.9185791015625,
+            53.16630935668945,
+            638.0045166015625,
+            489.2637023925781
+          ],
+          [
+            216.50177001953125,
+            284.0692443847656,
+            380.1136474609375,
+            492.0
+          ],
+          [
+            268.4921875,
+            287.1220397949219,
+            380.12322998046875,
+            489.0079650878906
+          ]
+        ],
+        "predicted_scores": [
+          0.8650199770927429,
+          0.8397971987724304,
+          0.8524917960166931
+        ],
+        "num_candidates": 48,
+        "num_predictions": 3,
+        "num_targets": 5,
+        "matched_targets": 2,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": true
+      },
+      {
+        "sample_id": "0000444",
+        "image_id": 4318,
+        "file_name": "COCO_train2014_000000004318.jpg",
+        "expression": "all zebras",
+        "group": "6+",
+        "category": "count_under",
+        "target_boxes_xyxy": [
+          [
+            72.11000061035156,
+            187.58999633789062,
+            225.00999450683594,
+            336.3999938964844
+          ],
+          [
+            215.24000549316406,
+            180.3699951171875,
+            399.4200134277344,
+            350.0799865722656
+          ],
+          [
+            277.5799865722656,
+            260.55999755859375,
+            397.8999938964844,
+            365.69000244140625
+          ],
+          [
+            0.0,
+            187.1300048828125,
+            50.369998931884766,
+            317.70001220703125
+          ],
+          [
+            160.3300018310547,
+            140.91000366210938,
+            246.64999389648438,
+            218.38999938964844
+          ],
+          [
+            227.3300018310547,
+            10.850000381469727,
+            289.8399963378906,
+            49.11000061035156
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            215.4023895263672,
+            178.7369842529297,
+            393.978515625,
+            344.16302490234375
+          ],
+          [
+            276.0301208496094,
+            257.1753845214844,
+            396.39013671875,
+            366.2246398925781
+          ],
+          [
+            252.94940185546875,
+            237.16464233398438,
+            399.05810546875,
+            361.33538818359375
+          ]
+        ],
+        "predicted_scores": [
+          0.8893724679946899,
+          0.8877551555633545,
+          0.8836433291435242
+        ],
+        "num_candidates": 23,
+        "num_predictions": 3,
+        "num_targets": 6,
+        "matched_targets": 2,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": true
+      },
+      {
+        "sample_id": "0001795",
+        "image_id": 14683,
+        "file_name": "COCO_train2014_000000014683.jpg",
+        "expression": "sheep in the background",
+        "group": "6+",
+        "category": "count_under",
+        "target_boxes_xyxy": [
+          [
+            298.1000061035156,
+            75.26000213623047,
+            336.0400085449219,
+            108.56999969482422
+          ],
+          [
+            375.44000244140625,
+            73.52999877929688,
+            400.5199890136719,
+            112.3499984741211
+          ],
+          [
+            111.4000015258789,
+            48.709999084472656,
+            149.16000366210938,
+            69.37999725341797
+          ],
+          [
+            343.7200012207031,
+            3.609999895095825,
+            358.9800109863281,
+            15.0
+          ],
+          [
+            81.48999786376953,
+            116.93000030517578,
+            136.8800048828125,
+            146.4499969482422
+          ],
+          [
+            245.94000244140625,
+            105.12999725341797,
+            281.5299987792969,
+            123.47000122070312
+          ],
+          [
+            370.6700134277344,
+            7.079999923706055,
+            389.57000732421875,
+            17.920000076293945
+          ]
+        ],
+        "predicted_boxes_xyxy": [],
+        "predicted_scores": [],
+        "num_candidates": 21,
+        "num_predictions": 0,
+        "num_targets": 7,
+        "matched_targets": 0,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": false
+      },
+      {
+        "sample_id": "0002615",
+        "image_id": 21222,
+        "file_name": "COCO_train2014_000000021222.jpg",
+        "expression": "people in the background",
+        "group": "6+",
+        "category": "count_under",
+        "target_boxes_xyxy": [
+          [
+            464.3900146484375,
+            298.7099914550781,
+            492.9200134277344,
+            350.739990234375
+          ],
+          [
+            391.80999755859375,
+            299.3900146484375,
+            414.54998779296875,
+            354.7699890136719
+          ],
+          [
+            399.3900146484375,
+            294.5400085449219,
+            414.8699951171875,
+            354.3599853515625
+          ],
+          [
+            420.19000244140625,
+            291.25,
+            438.6499938964844,
+            355.20001220703125
+          ],
+          [
+            434.739990234375,
+            296.260009765625,
+            448.8999938964844,
+            337.5
+          ],
+          [
+            455.67999267578125,
+            293.4800109863281,
+            463.3299865722656,
+            314.7099914550781
+          ],
+          [
+            411.4200134277344,
+            299.9200134277344,
+            420.92999267578125,
+            344.4700012207031
+          ],
+          [
+            444.3299865722656,
+            292.0299987792969,
+            451.6499938964844,
+            308.1099853515625
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            466.91607666015625,
+            298.0698547363281,
+            488.5689697265625,
+            350.650146484375
+          ],
+          [
+            217.62460327148438,
+            237.4443359375,
+            365.6878662109375,
+            373.7906494140625
+          ],
+          [
+            334.8534240722656,
+            260.3619079589844,
+            413.3165283203125,
+            352.0205383300781
+          ]
+        ],
+        "predicted_scores": [
+          0.027799095958471298,
+          0.031020402908325195,
+          0.05431661754846573
+        ],
+        "num_candidates": 35,
+        "num_predictions": 3,
+        "num_targets": 8,
+        "matched_targets": 1,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": false
+      },
+      {
+        "sample_id": "0003137",
+        "image_id": 25461,
+        "file_name": "COCO_train2014_000000025461.jpg",
+        "expression": "four people foreground",
+        "group": "4",
+        "category": "count_under",
+        "target_boxes_xyxy": [
+          [
+            348.1400146484375,
+            35.939998626708984,
+            476.510009765625,
+            422.0799865722656
+          ],
+          [
+            283.44000244140625,
+            177.6699981689453,
+            384.0899963378906,
+            392.29998779296875
+          ],
+          [
+            113.4800033569336,
+            89.05000305175781,
+            241.27999877929688,
+            434.6099853515625
+          ],
+          [
+            30.670000076293945,
+            83.93000030517578,
+            148.24000549316406,
+            427.45001220703125
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            347.72210693359375,
+            34.1137809753418,
+            469.4207763671875,
+            425.45684814453125
+          ],
+          [
+            112.50213623046875,
+            89.26175689697266,
+            234.3550262451172,
+            438.2876281738281
+          ],
+          [
+            281.67864990234375,
+            175.42872619628906,
+            376.03570556640625,
+            390.10882568359375
+          ]
+        ],
+        "predicted_scores": [
+          0.8751477599143982,
+          0.6767662167549133,
+          0.8153195977210999
+        ],
+        "num_candidates": 47,
+        "num_predictions": 3,
+        "num_targets": 4,
+        "matched_targets": 3,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": false
+      },
+      {
+        "sample_id": "0004123",
+        "image_id": 34491,
+        "file_name": "COCO_train2014_000000034491.jpg",
+        "expression": "all people in back",
+        "group": "4",
+        "category": "count_under",
+        "target_boxes_xyxy": [
+          [
+            30.1299991607666,
+            105.47000122070312,
+            179.72999572753906,
+            390.6700134277344
+          ],
+          [
+            204.30999755859375,
+            199.0,
+            319.32000732421875,
+            362.54998779296875
+          ],
+          [
+            373.3699951171875,
+            197.72999572753906,
+            472.44000244140625,
+            287.4100036621094
+          ],
+          [
+            500.489990234375,
+            130.58999633789062,
+            626.7000122070312,
+            375.44000244140625
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            494.1787414550781,
+            132.7091064453125,
+            617.7161865234375,
+            379.99090576171875
+          ],
+          [
+            201.338134765625,
+            199.265380859375,
+            317.3860778808594,
+            285.83465576171875
+          ],
+          [
+            203.2681427001953,
+            197.74989318847656,
+            317.2571716308594,
+            367.7501220703125
+          ]
+        ],
+        "predicted_scores": [
+          0.7784392833709717,
+          0.42396941781044006,
+          0.5783358216285706
+        ],
+        "num_candidates": 36,
+        "num_predictions": 3,
+        "num_targets": 4,
+        "matched_targets": 2,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": true
+      },
+      {
+        "sample_id": "0004690",
+        "image_id": 40342,
+        "file_name": "COCO_train2014_000000040342.jpg",
+        "expression": "a transparent umbrella and 2 people under it",
+        "group": "3",
+        "category": "count_under",
+        "target_boxes_xyxy": [
+          [
+            51.2599983215332,
+            0.0,
+            384.30999755859375,
+            153.9499969482422
+          ],
+          [
+            231.5500030517578,
+            146.4600067138672,
+            346.6099853515625,
+            587.97998046875
+          ],
+          [
+            115.05999755859375,
+            61.84000015258789,
+            235.8699951171875,
+            570.969970703125
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            99.27989959716797,
+            126.15382385253906,
+            244.18821716308594,
+            584.838623046875
+          ],
+          [
+            109.92015075683594,
+            90.3860092163086,
+            281.318603515625,
+            584.8433227539062
+          ]
+        ],
+        "predicted_scores": [
+          0.675327479839325,
+          0.6847326755523682
+        ],
+        "num_candidates": 44,
+        "num_predictions": 2,
+        "num_targets": 3,
+        "matched_targets": 1,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": true
+      },
+      {
+        "sample_id": "0004922",
+        "image_id": 42222,
+        "file_name": "COCO_train2014_000000042222.jpg",
+        "expression": "all teddy bears ",
+        "group": "6+",
+        "category": "count_under",
+        "target_boxes_xyxy": [
+          [
+            48.22999954223633,
+            64.05999755859375,
+            225.6699981689453,
+            284.5
+          ],
+          [
+            299.75,
+            18.479999542236328,
+            471.0799865722656,
+            213.9199981689453
+          ],
+          [
+            413.20001220703125,
+            202.5500030517578,
+            640.0,
+            428.0
+          ],
+          [
+            377.67999267578125,
+            114.56999969482422,
+            614.3699951171875,
+            282.7200012207031
+          ],
+          [
+            170.6199951171875,
+            17.829999923706055,
+            357.6300048828125,
+            210.6300048828125
+          ],
+          [
+            1.1699999570846558,
+            159.7899932861328,
+            207.42999267578125,
+            401.32000732421875
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            20.532339096069336,
+            119.06956481933594,
+            218.53118896484375,
+            335.14544677734375
+          ],
+          [
+            40.731117248535156,
+            58.153778076171875,
+            227.6300811767578,
+            282.37371826171875
+          ],
+          [
+            40.42271423339844,
+            30.094707489013672,
+            349.9451904296875,
+            285.5553283691406
+          ]
+        ],
+        "predicted_scores": [
+          0.8186706900596619,
+          0.8234041333198547,
+          0.7853087186813354
+        ],
+        "num_candidates": 21,
+        "num_predictions": 3,
+        "num_targets": 6,
+        "matched_targets": 2,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": false
+      },
+      {
+        "sample_id": "0005033",
+        "image_id": 42828,
+        "file_name": "COCO_train2014_000000042828.jpg",
+        "expression": "all oranges",
+        "group": "5",
+        "category": "count_under",
+        "target_boxes_xyxy": [
+          [
+            57.72999954223633,
+            2.4600000381469727,
+            251.7899932861328,
+            132.64999389648438
+          ],
+          [
+            219.13999938964844,
+            68.33000183105469,
+            417.3500061035156,
+            195.1300048828125
+          ],
+          [
+            0.0,
+            67.55000305175781,
+            223.5399932861328,
+            299.69000244140625
+          ],
+          [
+            368.4700012207031,
+            12.899999618530273,
+            508.489990234375,
+            122.81999969482422
+          ],
+          [
+            417.29998779296875,
+            30.709999084472656,
+            640.0,
+            266.5299987792969
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            409.7543640136719,
+            30.036235809326172,
+            640.0,
+            265.5462646484375
+          ],
+          [
+            219.8316650390625,
+            67.03575134277344,
+            423.43365478515625,
+            193.47486877441406
+          ],
+          [
+            213.2920684814453,
+            12.232373237609863,
+            452.8303527832031,
+            195.26260375976562
+          ]
+        ],
+        "predicted_scores": [
+          0.43410351872444153,
+          0.5223632454872131,
+          0.4389476776123047
+        ],
+        "num_candidates": 39,
+        "num_predictions": 3,
+        "num_targets": 5,
+        "matched_targets": 2,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": true
+      }
+    ],
+    "duplicate_selection": [
+      {
+        "sample_id": "0000334",
+        "image_id": 2907,
+        "file_name": "COCO_train2014_000000002907.jpg",
+        "expression": "3 middle front people",
+        "group": "3",
+        "category": "duplicate_selection",
+        "target_boxes_xyxy": [
+          [
+            170.27000427246094,
+            328.7699890136719,
+            299.0899963378906,
+            587.4199829101562
+          ],
+          [
+            41.439998626708984,
+            229.13999938964844,
+            257.2300109863281,
+            569.77001953125
+          ],
+          [
+            257.5400085449219,
+            241.44000244140625,
+            365.5199890136719,
+            423.1000061035156
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            134.9886016845703,
+            239.6018829345703,
+            327.19891357421875,
+            583.7867431640625
+          ],
+          [
+            41.00493621826172,
+            224.17823791503906,
+            349.46380615234375,
+            582.200439453125
+          ],
+          [
+            87.47102355957031,
+            222.56211853027344,
+            316.0133361816406,
+            522.68701171875
+          ]
+        ],
+        "predicted_scores": [
+          0.7163134813308716,
+          0.8369445204734802,
+          0.641322135925293
+        ],
+        "num_candidates": 44,
+        "num_predictions": 3,
+        "num_targets": 3,
+        "matched_targets": 1,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": true
+      },
+      {
+        "sample_id": "0000443",
+        "image_id": 4318,
+        "file_name": "COCO_train2014_000000004318.jpg",
+        "expression": "3 middle horses standing",
+        "group": "3",
+        "category": "duplicate_selection",
+        "target_boxes_xyxy": [
+          [
+            72.11000061035156,
+            187.58999633789062,
+            225.00999450683594,
+            336.3999938964844
+          ],
+          [
+            215.24000549316406,
+            180.3699951171875,
+            399.4200134277344,
+            350.0799865722656
+          ],
+          [
+            160.3300018310547,
+            140.91000366210938,
+            246.64999389648438,
+            218.38999938964844
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            215.4023895263672,
+            178.7369842529297,
+            393.978515625,
+            344.16302490234375
+          ],
+          [
+            69.8381576538086,
+            188.93679809570312,
+            219.99298095703125,
+            336.36322021484375
+          ],
+          [
+            69.65619659423828,
+            173.24884033203125,
+            260.25,
+            332.8511962890625
+          ]
+        ],
+        "predicted_scores": [
+          0.16362959146499634,
+          0.038804467767477036,
+          0.07839038968086243
+        ],
+        "num_candidates": 23,
+        "num_predictions": 3,
+        "num_targets": 3,
+        "matched_targets": 2,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": true
+      },
+      {
+        "sample_id": "0001425",
+        "image_id": 12372,
+        "file_name": "COCO_train2014_000000012372.jpg",
+        "expression": "all  chairs ",
+        "group": "3",
+        "category": "duplicate_selection",
+        "target_boxes_xyxy": [
+          [
+            69.91000366210938,
+            397.6499938964844,
+            269.3699951171875,
+            589.010009765625
+          ],
+          [
+            323.1300048828125,
+            397.489990234375,
+            423.0899963378906,
+            485.82000732421875
+          ],
+          [
+            329.9100036621094,
+            445.79998779296875,
+            424.0,
+            639.6699829101562
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            69.85566711425781,
+            397.70587158203125,
+            268.8143005371094,
+            591.722412109375
+          ],
+          [
+            92.54670715332031,
+            404.4667053222656,
+            265.46826171875,
+            527.1654052734375
+          ],
+          [
+            73.81458282470703,
+            399.78875732421875,
+            227.75537109375,
+            521.768798828125
+          ]
+        ],
+        "predicted_scores": [
+          0.8741170167922974,
+          0.7894854545593262,
+          0.7051158547401428
+        ],
+        "num_candidates": 44,
+        "num_predictions": 3,
+        "num_targets": 3,
+        "matched_targets": 1,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": true
+      },
+      {
+        "sample_id": "0001426",
+        "image_id": 12372,
+        "file_name": "COCO_train2014_000000012372.jpg",
+        "expression": "all three chairs ",
+        "group": "3",
+        "category": "duplicate_selection",
+        "target_boxes_xyxy": [
+          [
+            69.91000366210938,
+            397.6499938964844,
+            269.3699951171875,
+            589.010009765625
+          ],
+          [
+            323.1300048828125,
+            397.489990234375,
+            423.0899963378906,
+            485.82000732421875
+          ],
+          [
+            329.9100036621094,
+            445.79998779296875,
+            424.0,
+            639.6699829101562
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            69.85566711425781,
+            397.70587158203125,
+            268.8143005371094,
+            591.722412109375
+          ],
+          [
+            92.54670715332031,
+            404.4667053222656,
+            265.46826171875,
+            527.1654052734375
+          ],
+          [
+            73.81458282470703,
+            399.78875732421875,
+            227.75537109375,
+            521.768798828125
+          ]
+        ],
+        "predicted_scores": [
+          0.8845322132110596,
+          0.7824742794036865,
+          0.6664873957633972
+        ],
+        "num_candidates": 44,
+        "num_predictions": 3,
+        "num_targets": 3,
+        "matched_targets": 1,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": true
+      },
+      {
+        "sample_id": "0001501",
+        "image_id": 12556,
+        "file_name": "COCO_train2014_000000012556.jpg",
+        "expression": "all cars",
+        "group": "3",
+        "category": "duplicate_selection",
+        "target_boxes_xyxy": [
+          [
+            0.20000000298023224,
+            137.19000244140625,
+            211.27999877929688,
+            435.79998779296875
+          ],
+          [
+            500.92999267578125,
+            136.85000610351562,
+            640.0,
+            337.5299987792969
+          ],
+          [
+            433.2200012207031,
+            90.22000122070312,
+            529.5,
+            152.8300018310547
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            499.2972106933594,
+            131.39120483398438,
+            639.6145629882812,
+            347.1087951660156
+          ],
+          [
+            1.918194055557251,
+            126.07450866699219,
+            211.96546936035156,
+            451.425537109375
+          ],
+          [
+            1.4762400388717651,
+            132.08042907714844,
+            204.15228271484375,
+            346.1195983886719
+          ]
+        ],
+        "predicted_scores": [
+          0.813377857208252,
+          0.8336554765701294,
+          0.820228099822998
+        ],
+        "num_candidates": 45,
+        "num_predictions": 3,
+        "num_targets": 3,
+        "matched_targets": 2,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": true
+      },
+      {
+        "sample_id": "0002019",
+        "image_id": 15744,
+        "file_name": "COCO_train2014_000000015744.jpg",
+        "expression": "three pastry with bacon on it",
+        "group": "3",
+        "category": "duplicate_selection",
+        "target_boxes_xyxy": [
+          [
+            239.6199951171875,
+            227.2100067138672,
+            403.510009765625,
+            427.1000061035156
+          ],
+          [
+            140.17999267578125,
+            259.42999267578125,
+            285.55999755859375,
+            473.67999267578125
+          ],
+          [
+            356.32000732421875,
+            163.0500030517578,
+            521.6500244140625,
+            397.55999755859375
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            236.53846740722656,
+            225.00482177734375,
+            402.864013671875,
+            432.2452087402344
+          ],
+          [
+            134.0096435546875,
+            261.37164306640625,
+            289.669189453125,
+            475.9433898925781
+          ],
+          [
+            165.61215209960938,
+            252.16966247558594,
+            317.226318359375,
+            465.4278564453125
+          ]
+        ],
+        "predicted_scores": [
+          0.6559213995933533,
+          0.6324228644371033,
+          0.5981495380401611
+        ],
+        "num_candidates": 32,
+        "num_predictions": 3,
+        "num_targets": 3,
+        "matched_targets": 2,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": true
+      },
+      {
+        "sample_id": "0002120",
+        "image_id": 16412,
+        "file_name": "COCO_train2014_000000016412.jpg",
+        "expression": "all three people on left",
+        "group": "3",
+        "category": "duplicate_selection",
+        "target_boxes_xyxy": [
+          [
+            129.6699981689453,
+            74.72000122070312,
+            222.3000030517578,
+            344.3500061035156
+          ],
+          [
+            23.18000030517578,
+            100.08999633789062,
+            142.38999938964844,
+            332.9100036621094
+          ],
+          [
+            1.0299999713897705,
+            87.3499984741211,
+            52.720001220703125,
+            338.55999755859375
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            39.27027893066406,
+            96.7952880859375,
+            139.6714324951172,
+            336.385986328125
+          ],
+          [
+            132.5305938720703,
+            73.85225677490234,
+            227.07481384277344,
+            326.051513671875
+          ],
+          [
+            18.841978073120117,
+            84.92999267578125,
+            125.80376434326172,
+            328.4569091796875
+          ]
+        ],
+        "predicted_scores": [
+          0.8501129150390625,
+          0.8328744173049927,
+          0.7463420033454895
+        ],
+        "num_candidates": 34,
+        "num_predictions": 3,
+        "num_targets": 3,
+        "matched_targets": 2,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": true
+      },
+      {
+        "sample_id": "0002121",
+        "image_id": 16412,
+        "file_name": "COCO_train2014_000000016412.jpg",
+        "expression": "three people left side",
+        "group": "3",
+        "category": "duplicate_selection",
+        "target_boxes_xyxy": [
+          [
+            129.6699981689453,
+            74.72000122070312,
+            222.3000030517578,
+            344.3500061035156
+          ],
+          [
+            23.18000030517578,
+            100.08999633789062,
+            142.38999938964844,
+            332.9100036621094
+          ],
+          [
+            1.0299999713897705,
+            87.3499984741211,
+            52.720001220703125,
+            338.55999755859375
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            39.27027893066406,
+            96.7952880859375,
+            139.6714324951172,
+            336.385986328125
+          ],
+          [
+            132.5305938720703,
+            73.85225677490234,
+            227.07481384277344,
+            326.051513671875
+          ],
+          [
+            18.841978073120117,
+            84.92999267578125,
+            125.80376434326172,
+            328.4569091796875
+          ]
+        ],
+        "predicted_scores": [
+          0.8051770925521851,
+          0.8271999359130859,
+          0.6610351800918579
+        ],
+        "num_candidates": 34,
+        "num_predictions": 3,
+        "num_targets": 3,
+        "matched_targets": 2,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": true
+      },
+      {
+        "sample_id": "0002725",
+        "image_id": 22014,
+        "file_name": "COCO_train2014_000000022014.jpg",
+        "expression": "all chairs",
+        "group": "3",
+        "category": "duplicate_selection",
+        "target_boxes_xyxy": [
+          [
+            424.1400146484375,
+            212.58999633789062,
+            531.719970703125,
+            333.6199951171875
+          ],
+          [
+            108.38999938964844,
+            213.75,
+            302.45001220703125,
+            432.5799865722656
+          ],
+          [
+            594.9600219726562,
+            260.9800109863281,
+            638.5499877929688,
+            359.67999267578125
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            118.35166931152344,
+            219.3208770751953,
+            303.1117248535156,
+            418.4791564941406
+          ],
+          [
+            420.91046142578125,
+            213.85433959960938,
+            530.6842651367188,
+            335.4456787109375
+          ],
+          [
+            125.35928344726562,
+            215.44822692871094,
+            298.2054443359375,
+            362.9518127441406
+          ]
+        ],
+        "predicted_scores": [
+          0.8872644305229187,
+          0.8892370462417603,
+          0.9041720628738403
+        ],
+        "num_candidates": 28,
+        "num_predictions": 3,
+        "num_targets": 3,
+        "matched_targets": 2,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": true
+      },
+      {
+        "sample_id": "0002793",
+        "image_id": 22651,
+        "file_name": "COCO_train2014_000000022651.jpg",
+        "expression": "all three glasses ",
+        "group": "3",
+        "category": "duplicate_selection",
+        "target_boxes_xyxy": [
+          [
+            0.0,
+            142.5399932861328,
+            334.2699890136719,
+            480.0
+          ],
+          [
+            350.55999755859375,
+            90.61000061035156,
+            637.47998046875,
+            474.6099853515625
+          ],
+          [
+            184.08999633789062,
+            35.40999984741211,
+            397.5799865722656,
+            300.1400146484375
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            345.0677795410156,
+            94.50381469726562,
+            634.1442260742188,
+            480.0
+          ],
+          [
+            372.3359375,
+            95.26476287841797,
+            638.0956420898438,
+            393.7352600097656
+          ],
+          [
+            92.70265197753906,
+            32.378963470458984,
+            404.10791015625,
+            368.4210205078125
+          ]
+        ],
+        "predicted_scores": [
+          0.921581506729126,
+          0.9096075296401978,
+          0.915979266166687
+        ],
+        "num_candidates": 27,
+        "num_predictions": 3,
+        "num_targets": 3,
+        "matched_targets": 2,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": true
+      }
+    ],
+    "ranking_selection_error": [
+      {
+        "sample_id": "0002018",
+        "image_id": 15744,
+        "file_name": "COCO_train2014_000000015744.jpg",
+        "expression": "three donuts",
+        "group": "3",
+        "category": "ranking_selection_error",
+        "target_boxes_xyxy": [
+          [
+            265.32000732421875,
+            69.81999969482422,
+            416.7699890136719,
+            233.08999633789062
+          ],
+          [
+            167.57000732421875,
+            132.1199951171875,
+            279.2799987792969,
+            244.91000366210938
+          ],
+          [
+            96.88999938964844,
+            163.63999938964844,
+            200.24000549316406,
+            278.8299865722656
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            267.76202392578125,
+            69.87592315673828,
+            418.8486328125,
+            229.6209716796875
+          ],
+          [
+            165.61215209960938,
+            252.16966247558594,
+            317.226318359375,
+            465.4278564453125
+          ],
+          [
+            198.1698760986328,
+            236.95687866210938,
+            330.98046875,
+            460.9231262207031
+          ]
+        ],
+        "predicted_scores": [
+          0.8394296169281006,
+          0.3210705518722534,
+          0.37139827013015747
+        ],
+        "num_candidates": 32,
+        "num_predictions": 3,
+        "num_targets": 3,
+        "matched_targets": 1,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": false
+      },
+      {
+        "sample_id": "0006466",
+        "image_id": 53370,
+        "file_name": "COCO_train2014_000000053370.jpg",
+        "expression": "three bikes",
+        "group": "3",
+        "category": "ranking_selection_error",
+        "target_boxes_xyxy": [
+          [
+            52.619998931884766,
+            100.0199966430664,
+            536.9099731445312,
+            421.0899963378906
+          ],
+          [
+            423.9100036621094,
+            124.04000091552734,
+            606.2000122070312,
+            361.3500061035156
+          ],
+          [
+            521.8800048828125,
+            110.94000244140625,
+            615.719970703125,
+            286.760009765625
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            48.75313186645508,
+            100.13912200927734,
+            538.413818359375,
+            421.2608947753906
+          ],
+          [
+            295.6961364746094,
+            101.43550109863281,
+            577.849853515625,
+            385.1645202636719
+          ],
+          [
+            377.91839599609375,
+            138.36337280273438,
+            574.2767333984375,
+            389.0366516113281
+          ]
+        ],
+        "predicted_scores": [
+          0.9345777034759521,
+          0.9185149669647217,
+          0.9179402589797974
+        ],
+        "num_candidates": 34,
+        "num_predictions": 3,
+        "num_targets": 3,
+        "matched_targets": 2,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": false
+      },
+      {
+        "sample_id": "0009722",
+        "image_id": 79423,
+        "file_name": "COCO_train2014_000000079423.jpg",
+        "expression": "three whole cakes in the foreground",
+        "group": "3",
+        "category": "ranking_selection_error",
+        "target_boxes_xyxy": [
+          [
+            406.8500061035156,
+            42.119998931884766,
+            563.8499755859375,
+            129.24000549316406
+          ],
+          [
+            482.54998779296875,
+            164.49000549316406,
+            640.0,
+            270.8800048828125
+          ],
+          [
+            234.02999877929688,
+            0.0,
+            413.4200134277344,
+            113.91999816894531
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            410.87103271484375,
+            46.94914627075195,
+            560.0531616210938,
+            127.84398651123047
+          ],
+          [
+            0.0,
+            84.87652587890625,
+            215.19338989257812,
+            201.07598876953125
+          ],
+          [
+            0.2576344311237335,
+            85.52439880371094,
+            122.57333374023438,
+            197.76560974121094
+          ]
+        ],
+        "predicted_scores": [
+          0.8130022883415222,
+          0.7356417775154114,
+          0.7899129986763
+        ],
+        "num_candidates": 49,
+        "num_predictions": 3,
+        "num_targets": 3,
+        "matched_targets": 1,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": false
+      },
+      {
+        "sample_id": "0011464",
+        "image_id": 94323,
+        "file_name": "COCO_train2014_000000094323.jpg",
+        "expression": "3 people in back",
+        "group": "3",
+        "category": "ranking_selection_error",
+        "target_boxes_xyxy": [
+          [
+            312.6700134277344,
+            192.72000122070312,
+            352.7699890136719,
+            243.52999877929688
+          ],
+          [
+            2.119999885559082,
+            204.63999938964844,
+            40.310001373291016,
+            235.5
+          ],
+          [
+            128.14999389648438,
+            188.22999572753906,
+            149.5,
+            207.24000549316406
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            121.05088806152344,
+            183.85177612304688,
+            160.3017578125,
+            312.86572265625
+          ],
+          [
+            312.164794921875,
+            195.48699951171875,
+            356.17657470703125,
+            311.5304870605469
+          ],
+          [
+            3.1255955696105957,
+            202.39305114746094,
+            43.573272705078125,
+            306.94195556640625
+          ]
+        ],
+        "predicted_scores": [
+          0.09800641983747482,
+          0.2631581127643585,
+          0.09705230593681335
+        ],
+        "num_candidates": 43,
+        "num_predictions": 3,
+        "num_targets": 3,
+        "matched_targets": 0,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": false
+      },
+      {
+        "sample_id": "0013212",
+        "image_id": 110431,
+        "file_name": "COCO_train2014_000000110431.jpg",
+        "expression": "all  bowls ",
+        "group": "3",
+        "category": "ranking_selection_error",
+        "target_boxes_xyxy": [
+          [
+            20.450000762939453,
+            140.55999755859375,
+            330.3999938964844,
+            399.92999267578125
+          ],
+          [
+            422.70001220703125,
+            76.76000213623047,
+            575.1400146484375,
+            164.32000732421875
+          ],
+          [
+            49.5099983215332,
+            0.0,
+            428.3399963378906,
+            150.6699981689453
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            20.004873275756836,
+            143.6598358154297,
+            330.0138854980469,
+            397.8401794433594
+          ],
+          [
+            55.45124816894531,
+            0.0,
+            428.4512023925781,
+            153.2518310546875
+          ],
+          [
+            242.07180786132812,
+            284.2867431640625,
+            591.2490234375,
+            480.0
+          ]
+        ],
+        "predicted_scores": [
+          0.6263390779495239,
+          0.5601910948753357,
+          0.1484871208667755
+        ],
+        "num_candidates": 47,
+        "num_predictions": 3,
+        "num_targets": 3,
+        "matched_targets": 2,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": false
+      },
+      {
+        "sample_id": "0013213",
+        "image_id": 110431,
+        "file_name": "COCO_train2014_000000110431.jpg",
+        "expression": "all three bowls ",
+        "group": "3",
+        "category": "ranking_selection_error",
+        "target_boxes_xyxy": [
+          [
+            20.450000762939453,
+            140.55999755859375,
+            330.3999938964844,
+            399.92999267578125
+          ],
+          [
+            422.70001220703125,
+            76.76000213623047,
+            575.1400146484375,
+            164.32000732421875
+          ],
+          [
+            49.5099983215332,
+            0.0,
+            428.3399963378906,
+            150.6699981689453
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            20.004873275756836,
+            143.6598358154297,
+            330.0138854980469,
+            397.8401794433594
+          ],
+          [
+            55.45124816894531,
+            0.0,
+            428.4512023925781,
+            153.2518310546875
+          ],
+          [
+            357.18536376953125,
+            131.69642639160156,
+            615.4224853515625,
+            336.3035888671875
+          ]
+        ],
+        "predicted_scores": [
+          0.5444674491882324,
+          0.5044870972633362,
+          0.5993383526802063
+        ],
+        "num_candidates": 47,
+        "num_predictions": 3,
+        "num_targets": 3,
+        "matched_targets": 2,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": false
+      },
+      {
+        "sample_id": "0016685",
+        "image_id": 141346,
+        "file_name": "COCO_train2014_000000141346.jpg",
+        "expression": "all  couches ",
+        "group": "3",
+        "category": "ranking_selection_error",
+        "target_boxes_xyxy": [
+          [
+            217.6300048828125,
+            207.6300048828125,
+            425.1600036621094,
+            281.1000061035156
+          ],
+          [
+            182.52999877929688,
+            213.36000061035156,
+            422.8599853515625,
+            307.2200012207031
+          ],
+          [
+            483.5,
+            214.35000610351562,
+            640.0,
+            427.0
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            190.50015258789062,
+            205.67794799804688,
+            420.14202880859375,
+            306.4551696777344
+          ],
+          [
+            208.70700073242188,
+            204.66253662109375,
+            423.28631591796875,
+            282.38433837890625
+          ],
+          [
+            307.1872253417969,
+            286.0393371582031,
+            583.6884765625,
+            384.8843994140625
+          ]
+        ],
+        "predicted_scores": [
+          0.8258599638938904,
+          0.7652639746665955,
+          0.7648110389709473
+        ],
+        "num_candidates": 27,
+        "num_predictions": 3,
+        "num_targets": 3,
+        "matched_targets": 2,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": false
+      },
+      {
+        "sample_id": "0017331",
+        "image_id": 146626,
+        "file_name": "COCO_train2014_000000146626.jpg",
+        "expression": "three players in front",
+        "group": "3",
+        "category": "ranking_selection_error",
+        "target_boxes_xyxy": [
+          [
+            281.7200012207031,
+            202.35000610351562,
+            449.6600036621094,
+            414.7200012207031
+          ],
+          [
+            0.0,
+            238.52999877929688,
+            89.55999755859375,
+            439.69000244140625
+          ],
+          [
+            62.560001373291016,
+            262.8599853515625,
+            206.02000427246094,
+            430.04998779296875
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            281.1761474609375,
+            201.38775634765625,
+            446.4786376953125,
+            416.01226806640625
+          ],
+          [
+            61.91619873046875,
+            260.7881164550781,
+            202.69920349121094,
+            428.01190185546875
+          ],
+          [
+            17.422204971313477,
+            249.98631286621094,
+            290.2701110839844,
+            433.4136962890625
+          ]
+        ],
+        "predicted_scores": [
+          0.9040845036506653,
+          0.8472762703895569,
+          0.7902485728263855
+        ],
+        "num_candidates": 18,
+        "num_predictions": 3,
+        "num_targets": 3,
+        "matched_targets": 2,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": false
+      },
+      {
+        "sample_id": "0018482",
+        "image_id": 156823,
+        "file_name": "COCO_train2014_000000156823.jpg",
+        "expression": "all three sheeps",
+        "group": "3",
+        "category": "ranking_selection_error",
+        "target_boxes_xyxy": [
+          [
+            192.9499969482422,
+            378.7300109863281,
+            322.9599914550781,
+            551.3800048828125
+          ],
+          [
+            248.5800018310547,
+            291.9800109863281,
+            369.44000244140625,
+            489.75
+          ],
+          [
+            81.66999816894531,
+            406.2699890136719,
+            194.47999572753906,
+            563.3599853515625
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            190.49386596679688,
+            378.533447265625,
+            321.39739990234375,
+            554.3853759765625
+          ],
+          [
+            76.8642807006836,
+            405.35986328125,
+            194.41323852539062,
+            565.1409912109375
+          ],
+          [
+            18.481216430664062,
+            222.04002380371094,
+            199.75628662109375,
+            491.4660339355469
+          ]
+        ],
+        "predicted_scores": [
+          0.891722559928894,
+          0.9233317971229553,
+          0.8464416861534119
+        ],
+        "num_candidates": 20,
+        "num_predictions": 3,
+        "num_targets": 3,
+        "matched_targets": 2,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": false
+      },
+      {
+        "sample_id": "0020607",
+        "image_id": 176085,
+        "file_name": "COCO_train2014_000000176085.jpg",
+        "expression": "all oranges on table",
+        "group": "3",
+        "category": "ranking_selection_error",
+        "target_boxes_xyxy": [
+          [
+            42.91999816894531,
+            54.61000061035156,
+            349.1400146484375,
+            381.0299987792969
+          ],
+          [
+            0.0,
+            0.75,
+            638.5599975585938,
+            473.20001220703125
+          ],
+          [
+            273.75,
+            108.12999725341797,
+            440.0,
+            199.3800048828125
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            340.5382995605469,
+            64.8349380493164,
+            486.17840576171875,
+            169.91506958007812
+          ],
+          [
+            133.79408264160156,
+            271.24078369140625,
+            290.0708312988281,
+            378.5592041015625
+          ],
+          [
+            310.4100036621094,
+            72.4397201538086,
+            476.08154296875,
+            180.46029663085938
+          ]
+        ],
+        "predicted_scores": [
+          0.5198239088058472,
+          0.2652082145214081,
+          0.46394777297973633
+        ],
+        "num_candidates": 38,
+        "num_predictions": 3,
+        "num_targets": 3,
+        "matched_targets": 0,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": false
+      }
+    ],
+    "proposal_miss": [
+      {
+        "sample_id": "0002613",
+        "image_id": 21222,
+        "file_name": "COCO_train2014_000000021222.jpg",
+        "expression": "old style cars",
+        "group": "6+",
+        "category": "proposal_miss",
+        "target_boxes_xyxy": [
+          [
+            484.3299865722656,
+            187.72999572753906,
+            612.0,
+            412.4800109863281
+          ],
+          [
+            2.7799999713897705,
+            180.41000366210938,
+            308.0799865722656,
+            446.8599853515625
+          ],
+          [
+            229.91000366210938,
+            238.47000122070312,
+            368.8800048828125,
+            374.510009765625
+          ],
+          [
+            356.0199890136719,
+            260.7200012207031,
+            414.6400146484375,
+            306.2799987792969
+          ],
+          [
+            291.1199951171875,
+            237.1300048828125,
+            393.5799865722656,
+            355.0199890136719
+          ],
+          [
+            1.5099999904632568,
+            250.83999633789062,
+            190.39999389648438,
+            604.4400024414062
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            0.0,
+            193.79864501953125,
+            314.5000915527344,
+            444.5938720703125
+          ],
+          [
+            217.62460327148438,
+            237.4443359375,
+            365.6878662109375,
+            373.7906494140625
+          ],
+          [
+            2.784552812576294,
+            221.47459411621094,
+            246.98794555664062,
+            519.4279174804688
+          ]
+        ],
+        "predicted_scores": [
+          0.28155526518821716,
+          0.22795645892620087,
+          0.25307005643844604
+        ],
+        "num_candidates": 35,
+        "num_predictions": 3,
+        "num_targets": 6,
+        "matched_targets": 3,
+        "full_proposal_coverage": false,
+        "duplicate_selected_target": false
+      },
+      {
+        "sample_id": "0002614",
+        "image_id": 21222,
+        "file_name": "COCO_train2014_000000021222.jpg",
+        "expression": "buses",
+        "group": "6+",
+        "category": "proposal_miss",
+        "target_boxes_xyxy": [
+          [
+            484.3299865722656,
+            187.72999572753906,
+            612.0,
+            412.4800109863281
+          ],
+          [
+            2.7799999713897705,
+            180.41000366210938,
+            308.0799865722656,
+            446.8599853515625
+          ],
+          [
+            229.91000366210938,
+            238.47000122070312,
+            368.8800048828125,
+            374.510009765625
+          ],
+          [
+            356.0199890136719,
+            260.7200012207031,
+            414.6400146484375,
+            306.2799987792969
+          ],
+          [
+            291.1199951171875,
+            237.1300048828125,
+            393.5799865722656,
+            355.0199890136719
+          ],
+          [
+            1.5099999904632568,
+            250.83999633789062,
+            190.39999389648438,
+            604.4400024414062
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            0.0,
+            193.79864501953125,
+            314.5000915527344,
+            444.5938720703125
+          ],
+          [
+            217.62460327148438,
+            237.4443359375,
+            365.6878662109375,
+            373.7906494140625
+          ],
+          [
+            246.27272033691406,
+            238.63470458984375,
+            378.3497619628906,
+            358.83026123046875
+          ]
+        ],
+        "predicted_scores": [
+          0.749460756778717,
+          0.6777885556221008,
+          0.705197274684906
+        ],
+        "num_candidates": 35,
+        "num_predictions": 3,
+        "num_targets": 6,
+        "matched_targets": 3,
+        "full_proposal_coverage": false,
+        "duplicate_selected_target": true
+      },
+      {
+        "sample_id": "0003906",
+        "image_id": 32893,
+        "file_name": "COCO_train2014_000000032893.jpg",
+        "expression": "all green",
+        "group": "6+",
+        "category": "proposal_miss",
+        "target_boxes_xyxy": [
+          [
+            416.75,
+            120.8499984741211,
+            640.0,
+            419.010009765625
+          ],
+          [
+            202.16000366210938,
+            173.92999267578125,
+            396.4200134277344,
+            330.9200134277344
+          ],
+          [
+            46.310001373291016,
+            146.82000732421875,
+            197.64999389648438,
+            327.5299987792969
+          ],
+          [
+            318.54998779296875,
+            90.11000061035156,
+            437.3500061035156,
+            140.89999389648438
+          ],
+          [
+            264.3399963378906,
+            110.48999786376953,
+            400.95001220703125,
+            175.6300048828125
+          ],
+          [
+            193.0800018310547,
+            116.93000030517578,
+            272.69000244140625,
+            206.4499969482422
+          ],
+          [
+            245.38999938964844,
+            93.70999908447266,
+            322.8599853515625,
+            138.77999877929688
+          ],
+          [
+            320.1400146484375,
+            150.1300048828125,
+            419.69000244140625,
+            239.25999450683594
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            198.5474853515625,
+            176.3515167236328,
+            397.0247802734375,
+            316.8485107421875
+          ],
+          [
+            189.9805450439453,
+            102.24163055419922,
+            438.6123352050781,
+            304.2583923339844
+          ],
+          [
+            191.42129516601562,
+            109.01453399658203,
+            397.8470153808594,
+            276.4854736328125
+          ]
+        ],
+        "predicted_scores": [
+          0.8604885935783386,
+          0.7969692349433899,
+          0.8454432487487793
+        ],
+        "num_candidates": 43,
+        "num_predictions": 3,
+        "num_targets": 8,
+        "matched_targets": 1,
+        "full_proposal_coverage": false,
+        "duplicate_selected_target": false
+      },
+      {
+        "sample_id": "0003907",
+        "image_id": 32893,
+        "file_name": "COCO_train2014_000000032893.jpg",
+        "expression": "all borccolis",
+        "group": "6+",
+        "category": "proposal_miss",
+        "target_boxes_xyxy": [
+          [
+            416.75,
+            120.8499984741211,
+            640.0,
+            419.010009765625
+          ],
+          [
+            202.16000366210938,
+            173.92999267578125,
+            396.4200134277344,
+            330.9200134277344
+          ],
+          [
+            46.310001373291016,
+            146.82000732421875,
+            197.64999389648438,
+            327.5299987792969
+          ],
+          [
+            318.54998779296875,
+            90.11000061035156,
+            437.3500061035156,
+            140.89999389648438
+          ],
+          [
+            264.3399963378906,
+            110.48999786376953,
+            400.95001220703125,
+            175.6300048828125
+          ],
+          [
+            193.0800018310547,
+            116.93000030517578,
+            272.69000244140625,
+            206.4499969482422
+          ],
+          [
+            245.38999938964844,
+            93.70999908447266,
+            322.8599853515625,
+            138.77999877929688
+          ],
+          [
+            320.1400146484375,
+            150.1300048828125,
+            419.69000244140625,
+            239.25999450683594
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            198.5474853515625,
+            176.3515167236328,
+            397.0247802734375,
+            316.8485107421875
+          ],
+          [
+            116.80297088623047,
+            322.1234436035156,
+            378.8067932128906,
+            473.4765930175781
+          ],
+          [
+            191.42129516601562,
+            109.01453399658203,
+            397.8470153808594,
+            276.4854736328125
+          ]
+        ],
+        "predicted_scores": [
+          0.7727899551391602,
+          0.7812946438789368,
+          0.7097463011741638
+        ],
+        "num_candidates": 43,
+        "num_predictions": 3,
+        "num_targets": 8,
+        "matched_targets": 1,
+        "full_proposal_coverage": false,
+        "duplicate_selected_target": false
+      },
+      {
+        "sample_id": "0012124",
+        "image_id": 100435,
+        "file_name": "COCO_train2014_000000100435.jpg",
+        "expression": "all donuts",
+        "group": "6+",
+        "category": "proposal_miss",
+        "target_boxes_xyxy": [
+          [
+            84.43000030517578,
+            286.7099914550781,
+            229.86000061035156,
+            460.25
+          ],
+          [
+            114.63999938964844,
+            387.1400146484375,
+            291.1300048828125,
+            574.0599975585938
+          ],
+          [
+            310.69000244140625,
+            360.04998779296875,
+            464.239990234375,
+            535.469970703125
+          ],
+          [
+            275.8900146484375,
+            291.3699951171875,
+            402.1199951171875,
+            433.9599914550781
+          ],
+          [
+            205.19000244140625,
+            299.0799865722656,
+            283.75,
+            437.8599853515625
+          ],
+          [
+            232.07000732421875,
+            443.239990234375,
+            374.7699890136719,
+            610.4500122070312
+          ],
+          [
+            46.560001373291016,
+            453.8699951171875,
+            192.99000549316406,
+            587.9199829101562
+          ],
+          [
+            30.690000534057617,
+            305.6199951171875,
+            109.44999694824219,
+            448.0899963378906
+          ],
+          [
+            148.9199981689453,
+            217.47999572753906,
+            274.7799987792969,
+            314.0899963378906
+          ],
+          [
+            311.2900085449219,
+            327.8999938964844,
+            369.6499938964844,
+            378.4100036621094
+          ],
+          [
+            272.2699890136719,
+            242.38999938964844,
+            334.3800048828125,
+            296.70001220703125
+          ],
+          [
+            245.91000366210938,
+            271.54998779296875,
+            312.260009765625,
+            338.3800048828125
+          ],
+          [
+            84.0,
+            241.0,
+            408.0,
+            308.0
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            116.74209594726562,
+            390.2215576171875,
+            292.4085388183594,
+            567.3723754882812
+          ],
+          [
+            87.37403869628906,
+            286.3984069824219,
+            226.47845458984375,
+            453.451171875
+          ],
+          [
+            146.67935180664062,
+            220.1706085205078,
+            271.18939208984375,
+            313.6639404296875
+          ]
+        ],
+        "predicted_scores": [
+          0.917354941368103,
+          0.911666989326477,
+          0.8561563491821289
+        ],
+        "num_candidates": 22,
+        "num_predictions": 3,
+        "num_targets": 13,
+        "matched_targets": 3,
+        "full_proposal_coverage": false,
+        "duplicate_selected_target": false
+      },
+      {
+        "sample_id": "0020886",
+        "image_id": 178510,
+        "file_name": "COCO_train2014_000000178510.jpg",
+        "expression": "all broccoli",
+        "group": "5",
+        "category": "proposal_miss",
+        "target_boxes_xyxy": [
+          [
+            156.58999633789062,
+            87.05999755859375,
+            531.5499877929688,
+            325.5400085449219
+          ],
+          [
+            39.970001220703125,
+            171.61000061035156,
+            188.24000549316406,
+            308.5799865722656
+          ],
+          [
+            320.3500061035156,
+            474.20001220703125,
+            586.3200073242188,
+            612.0
+          ],
+          [
+            175.4199981689453,
+            316.4700012207031,
+            343.45001220703125,
+            557.2100219726562
+          ],
+          [
+            67.36000061035156,
+            13.300000190734863,
+            187.4499969482422,
+            110.30000305175781
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            162.03330993652344,
+            92.18281555175781,
+            413.2467346191406,
+            314.03216552734375
+          ],
+          [
+            183.52536010742188,
+            141.25929260253906,
+            411.64459228515625,
+            316.9757080078125
+          ],
+          [
+            286.4501647949219,
+            122.96385192871094,
+            450.2447814941406,
+            310.40863037109375
+          ]
+        ],
+        "predicted_scores": [
+          0.7443060278892517,
+          0.7416068315505981,
+          0.7055158615112305
+        ],
+        "num_candidates": 56,
+        "num_predictions": 3,
+        "num_targets": 5,
+        "matched_targets": 1,
+        "full_proposal_coverage": false,
+        "duplicate_selected_target": false
+      },
+      {
+        "sample_id": "0035498",
+        "image_id": 304093,
+        "file_name": "COCO_train2014_000000304093.jpg",
+        "expression": "all cups ",
+        "group": "4",
+        "category": "proposal_miss",
+        "target_boxes_xyxy": [
+          [
+            382.8900146484375,
+            116.69000244140625,
+            500.80999755859375,
+            312.7300109863281
+          ],
+          [
+            190.74000549316406,
+            53.45000076293945,
+            326.5799865722656,
+            231.8300018310547
+          ],
+          [
+            4.119999885559082,
+            13.649999618530273,
+            90.56999969482422,
+            94.61000061035156
+          ],
+          [
+            499.5199890136719,
+            215.6999969482422,
+            593.780029296875,
+            302.510009765625
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            385.4089660644531,
+            119.28233337402344,
+            504.2859802246094,
+            312.9426574707031
+          ],
+          [
+            193.96437072753906,
+            53.75718688964844,
+            323.9406433105469,
+            234.0740509033203
+          ],
+          [
+            496.45458984375,
+            216.8645782470703,
+            592.140380859375,
+            302.5704345703125
+          ]
+        ],
+        "predicted_scores": [
+          0.691217839717865,
+          0.8104797601699829,
+          0.4210774898529053
+        ],
+        "num_candidates": 45,
+        "num_predictions": 3,
+        "num_targets": 4,
+        "matched_targets": 3,
+        "full_proposal_coverage": false,
+        "duplicate_selected_target": false
+      },
+      {
+        "sample_id": "0040822",
+        "image_id": 347885,
+        "file_name": "COCO_train2014_000000347885.jpg",
+        "expression": "yellow taxis",
+        "group": "5",
+        "category": "proposal_miss",
+        "target_boxes_xyxy": [
+          [
+            408.7699890136719,
+            116.7699966430664,
+            569.969970703125,
+            247.27000427246094
+          ],
+          [
+            15.350000381469727,
+            111.55000305175781,
+            183.27000427246094,
+            223.82000732421875
+          ],
+          [
+            329.4100036621094,
+            124.62000274658203,
+            400.1300048828125,
+            199.9499969482422
+          ],
+          [
+            0.0,
+            128.10000610351562,
+            640.0,
+            203.10000610351562
+          ],
+          [
+            424.32000732421875,
+            124.61000061035156,
+            470.6600036621094,
+            146.80999755859375
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            63.6573600769043,
+            170.8103790283203,
+            410.07073974609375,
+            417.38214111328125
+          ],
+          [
+            410.58251953125,
+            143.8724365234375,
+            568.900390625,
+            245.49819946289062
+          ],
+          [
+            18.497690200805664,
+            115.10838317871094,
+            183.80422973632812,
+            219.81976318359375
+          ]
+        ],
+        "predicted_scores": [
+          0.2809087038040161,
+          0.8027253150939941,
+          0.9441000819206238
+        ],
+        "num_candidates": 36,
+        "num_predictions": 3,
+        "num_targets": 5,
+        "matched_targets": 2,
+        "full_proposal_coverage": false,
+        "duplicate_selected_target": false
+      },
+      {
+        "sample_id": "0043032",
+        "image_id": 366353,
+        "file_name": "COCO_train2014_000000366353.jpg",
+        "expression": "all broccoli in bowls",
+        "group": "6+",
+        "category": "proposal_miss",
+        "target_boxes_xyxy": [
+          [
+            302.29998779296875,
+            407.1300048828125,
+            371.25,
+            482.9700012207031
+          ],
+          [
+            235.57000732421875,
+            235.55999755859375,
+            307.70001220703125,
+            300.69000244140625
+          ],
+          [
+            210.89999389648438,
+            487.8299865722656,
+            254.08999633789062,
+            531.7000122070312
+          ],
+          [
+            205.97999572753906,
+            446.3399963378906,
+            241.75,
+            479.8500061035156
+          ],
+          [
+            306.010009765625,
+            443.7799987792969,
+            404.75,
+            575.8200073242188
+          ],
+          [
+            229.8000030517578,
+            279.07000732421875,
+            296.2099914550781,
+            328.2900085449219
+          ],
+          [
+            261.44000244140625,
+            126.70999908447266,
+            348.3800048828125,
+            202.0399932861328
+          ],
+          [
+            224.27999877929688,
+            417.3399963378906,
+            271.07000732421875,
+            456.8299865722656
+          ],
+          [
+            163.91000366210938,
+            134.89999389648438,
+            234.82000732421875,
+            237.67999267578125
+          ],
+          [
+            191.42999267578125,
+            518.3499755859375,
+            307.1499938964844,
+            599.7100219726562
+          ],
+          [
+            290.5400085449219,
+            399.7300109863281,
+            316.6700134277344,
+            474.4800109863281
+          ],
+          [
+            322.2099914550781,
+            466.17999267578125,
+            356.3399963378906,
+            490.42999267578125
+          ],
+          [
+            203.0,
+            171.0,
+            312.0,
+            272.0
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            168.35214233398438,
+            123.33172607421875,
+            346.1103515625,
+            321.1332702636719
+          ],
+          [
+            9.877880096435547,
+            0.9888671636581421,
+            272.78961181640625,
+            87.60770416259766
+          ],
+          [
+            193.69775390625,
+            401.8583068847656,
+            404.5322265625,
+            597.231689453125
+          ]
+        ],
+        "predicted_scores": [
+          0.5294329524040222,
+          0.4517812430858612,
+          0.45832985639572144
+        ],
+        "num_candidates": 55,
+        "num_predictions": 3,
+        "num_targets": 13,
+        "matched_targets": 0,
+        "full_proposal_coverage": false,
+        "duplicate_selected_target": false
+      },
+      {
+        "sample_id": "0044263",
+        "image_id": 377589,
+        "file_name": "COCO_train2014_000000377589.jpg",
+        "expression": "all people ",
+        "group": "6+",
+        "category": "proposal_miss",
+        "target_boxes_xyxy": [
+          [
+            120.51000213623047,
+            42.130001068115234,
+            396.3500061035156,
+            214.6199951171875
+          ],
+          [
+            1.690000057220459,
+            1.5399999618530273,
+            500.0,
+            358.8500061035156
+          ],
+          [
+            219.3699951171875,
+            83.8499984741211,
+            289.3999938964844,
+            111.97000122070312
+          ],
+          [
+            278.92999267578125,
+            49.11000061035156,
+            323.1499938964844,
+            98.86000061035156
+          ],
+          [
+            453.32000732421875,
+            47.47999954223633,
+            472.3900146484375,
+            73.41999816894531
+          ],
+          [
+            296.0400085449219,
+            48.81999969482422,
+            318.1199951171875,
+            79.13999938964844
+          ],
+          [
+            444.67999267578125,
+            52.060001373291016,
+            477.7699890136719,
+            87.76000213623047
+          ],
+          [
+            488.4800109863281,
+            50.25,
+            499.8599853515625,
+            75.9000015258789
+          ],
+          [
+            164.3300018310547,
+            40.220001220703125,
+            239.17999267578125,
+            126.43000030517578
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            0.0,
+            0.0,
+            487.4090270996094,
+            373.72174072265625
+          ],
+          [
+            102.04429626464844,
+            34.2979850769043,
+            467.37408447265625,
+            293.8269958496094
+          ],
+          [
+            0.0,
+            0.0,
+            281.61834716796875,
+            375.0
+          ]
+        ],
+        "predicted_scores": [
+          0.8599541783332825,
+          0.83137047290802,
+          0.813615620136261
+        ],
+        "num_candidates": 47,
+        "num_predictions": 3,
+        "num_targets": 9,
+        "matched_targets": 2,
+        "full_proposal_coverage": false,
+        "duplicate_selected_target": true
+      }
+    ],
+    "success": [
+      {
+        "sample_id": "0002794",
+        "image_id": 22651,
+        "file_name": "COCO_train2014_000000022651.jpg",
+        "expression": "all  glasses ",
+        "group": "3",
+        "category": "success",
+        "target_boxes_xyxy": [
+          [
+            0.0,
+            142.5399932861328,
+            334.2699890136719,
+            480.0
+          ],
+          [
+            350.55999755859375,
+            90.61000061035156,
+            637.47998046875,
+            474.6099853515625
+          ],
+          [
+            184.08999633789062,
+            35.40999984741211,
+            397.5799865722656,
+            300.1400146484375
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            345.0677795410156,
+            94.50381469726562,
+            634.1442260742188,
+            480.0
+          ],
+          [
+            2.389591693878174,
+            143.77597045898438,
+            339.52410888671875,
+            471.8240661621094
+          ],
+          [
+            92.70265197753906,
+            32.378963470458984,
+            404.10791015625,
+            368.4210205078125
+          ]
+        ],
+        "predicted_scores": [
+          0.8492662906646729,
+          0.8606017231941223,
+          0.8501613140106201
+        ],
+        "num_candidates": 27,
+        "num_predictions": 3,
+        "num_targets": 3,
+        "matched_targets": 3,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": false
+      },
+      {
+        "sample_id": "0007968",
+        "image_id": 64816,
+        "file_name": "COCO_train2014_000000064816.jpg",
+        "expression": "two people and the horse",
+        "group": "3",
+        "category": "success",
+        "target_boxes_xyxy": [
+          [
+            314.2799987792969,
+            62.18000030517578,
+            438.4599914550781,
+            383.1499938964844
+          ],
+          [
+            406.94000244140625,
+            96.56999969482422,
+            555.9600219726562,
+            422.32000732421875
+          ],
+          [
+            168.08999633789062,
+            105.88999938964844,
+            321.0199890136719,
+            421.260009765625
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            167.38360595703125,
+            105.88640594482422,
+            319.4220275878906,
+            416.65484619140625
+          ],
+          [
+            313.1094970703125,
+            60.65326690673828,
+            439.5176696777344,
+            385.5617370605469
+          ],
+          [
+            408.51416015625,
+            95.81044006347656,
+            554.4215698242188,
+            420.85955810546875
+          ]
+        ],
+        "predicted_scores": [
+          0.65262371301651,
+          0.6003857851028442,
+          0.9321730136871338
+        ],
+        "num_candidates": 12,
+        "num_predictions": 3,
+        "num_targets": 3,
+        "matched_targets": 3,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": false
+      },
+      {
+        "sample_id": "0008830",
+        "image_id": 72731,
+        "file_name": "COCO_train2014_000000072731.jpg",
+        "expression": "three men standing",
+        "group": "3",
+        "category": "success",
+        "target_boxes_xyxy": [
+          [
+            268.8900146484375,
+            70.05999755859375,
+            392.5799865722656,
+            579.1900024414062
+          ],
+          [
+            184.5,
+            81.87000274658203,
+            301.260009765625,
+            553.22998046875
+          ],
+          [
+            60.27000045776367,
+            73.11000061035156,
+            192.2899932861328,
+            556.7000122070312
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            178.50408935546875,
+            82.40179443359375,
+            293.19903564453125,
+            551.6168823242188
+          ],
+          [
+            59.09929275512695,
+            71.04175567626953,
+            195.6475830078125,
+            550.4705200195312
+          ],
+          [
+            277.9599304199219,
+            73.22124481201172,
+            388.67755126953125,
+            448.7838439941406
+          ]
+        ],
+        "predicted_scores": [
+          0.9063630700111389,
+          0.8615710139274597,
+          0.8511428833007812
+        ],
+        "num_candidates": 20,
+        "num_predictions": 3,
+        "num_targets": 3,
+        "matched_targets": 3,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": false
+      },
+      {
+        "sample_id": "0009874",
+        "image_id": 80599,
+        "file_name": "COCO_train2014_000000080599.jpg",
+        "expression": "all three pizzas",
+        "group": "3",
+        "category": "success",
+        "target_boxes_xyxy": [
+          [
+            252.9499969482422,
+            248.13999938964844,
+            557.8400268554688,
+            393.3800048828125
+          ],
+          [
+            9.640000343322754,
+            154.72000122070312,
+            234.24000549316406,
+            235.69000244140625
+          ],
+          [
+            367.4100036621094,
+            118.30000305175781,
+            513.5999755859375,
+            180.82000732421875
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            253.08245849609375,
+            247.9651641845703,
+            555.4793701171875,
+            389.7548522949219
+          ],
+          [
+            4.682053565979004,
+            155.5971221923828,
+            243.21092224121094,
+            237.0928955078125
+          ],
+          [
+            364.2376708984375,
+            118.51897430419922,
+            511.2137451171875,
+            179.20855712890625
+          ]
+        ],
+        "predicted_scores": [
+          0.8791157007217407,
+          0.7619256377220154,
+          0.5190305709838867
+        ],
+        "num_candidates": 37,
+        "num_predictions": 3,
+        "num_targets": 3,
+        "matched_targets": 3,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": false
+      },
+      {
+        "sample_id": "0011386",
+        "image_id": 93487,
+        "file_name": "COCO_train2014_000000093487.jpg",
+        "expression": "three donuts on right",
+        "group": "3",
+        "category": "success",
+        "target_boxes_xyxy": [
+          [
+            272.30999755859375,
+            270.92999267578125,
+            517.1099853515625,
+            466.2200012207031
+          ],
+          [
+            398.04998779296875,
+            186.55999755859375,
+            558.3599853515625,
+            295.94000244140625
+          ],
+          [
+            210.13999938964844,
+            180.4199981689453,
+            388.2099914550781,
+            323.2900085449219
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            215.0570068359375,
+            176.3350830078125,
+            388.5279846191406,
+            317.472412109375
+          ],
+          [
+            272.2415466308594,
+            272.9593505859375,
+            518.7684326171875,
+            471.00311279296875
+          ],
+          [
+            385.8270568847656,
+            145.54330444335938,
+            571.9529418945312,
+            275.9716796875
+          ]
+        ],
+        "predicted_scores": [
+          0.3585243821144104,
+          0.5707854628562927,
+          0.23524555563926697
+        ],
+        "num_candidates": 18,
+        "num_predictions": 3,
+        "num_targets": 3,
+        "matched_targets": 3,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": false
+      },
+      {
+        "sample_id": "0011615",
+        "image_id": 95814,
+        "file_name": "COCO_train2014_000000095814.jpg",
+        "expression": "three zebras",
+        "group": "3",
+        "category": "success",
+        "target_boxes_xyxy": [
+          [
+            180.8800048828125,
+            125.20999908447266,
+            450.8999938964844,
+            343.8399963378906
+          ],
+          [
+            114.62999725341797,
+            145.4199981689453,
+            290.4700012207031,
+            322.989990234375
+          ],
+          [
+            0.0,
+            143.5,
+            164.16000366210938,
+            336.30999755859375
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            179.96127319335938,
+            137.85189819335938,
+            446.8304443359375,
+            337.9481201171875
+          ],
+          [
+            0.0,
+            141.2408905029297,
+            166.74029541015625,
+            341.15911865234375
+          ],
+          [
+            19.919713973999023,
+            139.2709197998047,
+            282.9696044921875,
+            334.4291076660156
+          ]
+        ],
+        "predicted_scores": [
+          0.8592416644096375,
+          0.8149537444114685,
+          0.7723497748374939
+        ],
+        "num_candidates": 30,
+        "num_predictions": 3,
+        "num_targets": 3,
+        "matched_targets": 3,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": false
+      },
+      {
+        "sample_id": "0011616",
+        "image_id": 95814,
+        "file_name": "COCO_train2014_000000095814.jpg",
+        "expression": "three front zebras",
+        "group": "3",
+        "category": "success",
+        "target_boxes_xyxy": [
+          [
+            180.8800048828125,
+            125.20999908447266,
+            450.8999938964844,
+            343.8399963378906
+          ],
+          [
+            114.62999725341797,
+            145.4199981689453,
+            290.4700012207031,
+            322.989990234375
+          ],
+          [
+            0.0,
+            143.5,
+            164.16000366210938,
+            336.30999755859375
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            179.96127319335938,
+            137.85189819335938,
+            446.8304443359375,
+            337.9481201171875
+          ],
+          [
+            0.0,
+            141.2408905029297,
+            166.74029541015625,
+            341.15911865234375
+          ],
+          [
+            19.919713973999023,
+            139.2709197998047,
+            282.9696044921875,
+            334.4291076660156
+          ]
+        ],
+        "predicted_scores": [
+          0.8389724493026733,
+          0.688743531703949,
+          0.6892203092575073
+        ],
+        "num_candidates": 30,
+        "num_predictions": 3,
+        "num_targets": 3,
+        "matched_targets": 3,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": false
+      },
+      {
+        "sample_id": "0011617",
+        "image_id": 95814,
+        "file_name": "COCO_train2014_000000095814.jpg",
+        "expression": "three zebras in front",
+        "group": "3",
+        "category": "success",
+        "target_boxes_xyxy": [
+          [
+            180.8800048828125,
+            125.20999908447266,
+            450.8999938964844,
+            343.8399963378906
+          ],
+          [
+            114.62999725341797,
+            145.4199981689453,
+            290.4700012207031,
+            322.989990234375
+          ],
+          [
+            0.0,
+            143.5,
+            164.16000366210938,
+            336.30999755859375
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            179.96127319335938,
+            137.85189819335938,
+            446.8304443359375,
+            337.9481201171875
+          ],
+          [
+            0.0,
+            141.2408905029297,
+            166.74029541015625,
+            341.15911865234375
+          ],
+          [
+            19.919713973999023,
+            139.2709197998047,
+            282.9696044921875,
+            334.4291076660156
+          ]
+        ],
+        "predicted_scores": [
+          0.8523073196411133,
+          0.7755223512649536,
+          0.7247803211212158
+        ],
+        "num_candidates": 30,
+        "num_predictions": 3,
+        "num_targets": 3,
+        "matched_targets": 3,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": false
+      },
+      {
+        "sample_id": "0014402",
+        "image_id": 121954,
+        "file_name": "COCO_train2014_000000121954.jpg",
+        "expression": "three players",
+        "group": "3",
+        "category": "success",
+        "target_boxes_xyxy": [
+          [
+            72.0999984741211,
+            174.94000244140625,
+            213.9499969482422,
+            439.7099914550781
+          ],
+          [
+            120.87000274658203,
+            254.57000732421875,
+            294.4700012207031,
+            448.6600036621094
+          ],
+          [
+            386.2699890136719,
+            129.30999755859375,
+            537.3699951171875,
+            441.260009765625
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            386.659912109375,
+            129.60772705078125,
+            537.4921264648438,
+            444.06103515625
+          ],
+          [
+            124.10447692871094,
+            254.0640869140625,
+            290.61285400390625,
+            445.51593017578125
+          ],
+          [
+            78.57672882080078,
+            175.8608856201172,
+            210.01524353027344,
+            432.6553955078125
+          ]
+        ],
+        "predicted_scores": [
+          0.9639726877212524,
+          0.8560578227043152,
+          0.849687933921814
+        ],
+        "num_candidates": 31,
+        "num_predictions": 3,
+        "num_targets": 3,
+        "matched_targets": 3,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": false
+      },
+      {
+        "sample_id": "0015410",
+        "image_id": 129610,
+        "file_name": "COCO_train2014_000000129610.jpg",
+        "expression": "all three cows ",
+        "group": "3",
+        "category": "success",
+        "target_boxes_xyxy": [
+          [
+            332.3900146484375,
+            125.94000244140625,
+            519.22998046875,
+            474.8399963378906
+          ],
+          [
+            142.58999633789062,
+            93.7699966430664,
+            238.38999938964844,
+            348.75
+          ],
+          [
+            0.3700000047683716,
+            108.8499984741211,
+            105.93000030517578,
+            306.3500061035156
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            0.17907920479774475,
+            111.13970184326172,
+            106.2374267578125,
+            307.36029052734375
+          ],
+          [
+            141.6189727783203,
+            98.09208679199219,
+            247.12399291992188,
+            354.30792236328125
+          ],
+          [
+            335.19903564453125,
+            118.72469329833984,
+            520.93603515625,
+            478.5753173828125
+          ]
+        ],
+        "predicted_scores": [
+          0.5402666330337524,
+          0.8848921656608582,
+          0.929964005947113
+        ],
+        "num_candidates": 46,
+        "num_predictions": 3,
+        "num_targets": 3,
+        "matched_targets": 3,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": false
+      }
+    ],
+    "count_over": [
+      {
+        "sample_id": "0008829",
+        "image_id": 72731,
+        "file_name": "COCO_train2014_000000072731.jpg",
+        "expression": "three people",
+        "group": "3",
+        "category": "count_over",
+        "target_boxes_xyxy": [
+          [
+            268.8900146484375,
+            70.05999755859375,
+            392.5799865722656,
+            579.1900024414062
+          ],
+          [
+            184.5,
+            81.87000274658203,
+            301.260009765625,
+            553.22998046875
+          ],
+          [
+            60.27000045776367,
+            73.11000061035156,
+            192.2899932861328,
+            556.7000122070312
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            178.50408935546875,
+            82.40179443359375,
+            293.19903564453125,
+            551.6168823242188
+          ],
+          [
+            59.09929275512695,
+            71.04175567626953,
+            195.6475830078125,
+            550.4705200195312
+          ],
+          [
+            264.34136962890625,
+            71.9646224975586,
+            394.68359375,
+            574.0166625976562
+          ],
+          [
+            277.9599304199219,
+            73.22124481201172,
+            388.67755126953125,
+            448.7838439941406
+          ],
+          [
+            180.8062744140625,
+            80.51034545898438,
+            294.4311828613281,
+            365.6408386230469
+          ]
+        ],
+        "predicted_scores": [
+          0.9599263072013855,
+          0.9336216449737549,
+          0.9410088062286377,
+          0.9385660886764526,
+          0.9360164999961853
+        ],
+        "num_candidates": 20,
+        "num_predictions": 5,
+        "num_targets": 3,
+        "matched_targets": 3,
+        "full_proposal_coverage": true,
+        "duplicate_selected_target": true
+      }
+    ]
+  },
+  "qualitative_examples": {
+    "single_target_failure": [
+      {
+        "sample_id": "0000116",
+        "image_id": 960,
+        "file_name": "COCO_train2014_000000000960.jpg",
+        "expression": "right most gray suit",
+        "category": "single_target_failure",
+        "num_targets": 1,
+        "num_predictions": 0,
+        "matched_targets": 0,
+        "target_boxes_xyxy": [
+          [
+            325.7900085449219,
+            163.52000427246094,
+            427.0,
+            640.0
+          ]
+        ],
+        "predicted_boxes_xyxy": [],
+        "predicted_scores": []
+      },
+      {
+        "sample_id": "0000118",
+        "image_id": 960,
+        "file_name": "COCO_train2014_000000000960.jpg",
+        "expression": "figure on right cut off",
+        "category": "single_target_failure",
+        "num_targets": 1,
+        "num_predictions": 1,
+        "matched_targets": 0,
+        "target_boxes_xyxy": [
+          [
+            325.7900085449219,
+            163.52000427246094,
+            427.0,
+            640.0
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            244.75753784179688,
+            213.41127014160156,
+            401.0799560546875,
+            474.094970703125
+          ]
+        ],
+        "predicted_scores": [
+          0.5750457644462585
+        ]
+      }
+    ],
+    "single_target_success": [
+      {
+        "sample_id": "0000117",
+        "image_id": 960,
+        "file_name": "COCO_train2014_000000000960.jpg",
+        "expression": "side view of person on the far right",
+        "category": "single_target_success",
+        "num_targets": 1,
+        "num_predictions": 1,
+        "matched_targets": 1,
+        "target_boxes_xyxy": [
+          [
+            325.7900085449219,
+            163.52000427246094,
+            427.0,
+            640.0
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            300.2536926269531,
+            158.4277801513672,
+            426.1800537109375,
+            635.8340454101562
+          ]
+        ],
+        "predicted_scores": [
+          0.3964850902557373
+        ]
+      },
+      {
+        "sample_id": "0000121",
+        "image_id": 960,
+        "file_name": "COCO_train2014_000000000960.jpg",
+        "expression": "white part to left bottom",
+        "category": "single_target_success",
+        "num_targets": 1,
+        "num_predictions": 1,
+        "matched_targets": 1,
+        "target_boxes_xyxy": [
+          [
+            1.440000057220459,
+            253.1199951171875,
+            122.25,
+            629.9299926757812
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            1.503883957862854,
+            189.52577209472656,
+            170.89736938476562,
+            631.9588012695312
+          ]
+        ],
+        "predicted_scores": [
+          0.5520508289337158
+        ]
+      }
+    ],
+    "multi_target_failure": [
+      {
+        "sample_id": "0000125",
+        "image_id": 960,
+        "file_name": "COCO_train2014_000000000960.jpg",
+        "expression": "four people",
+        "category": "multi_target_failure",
+        "num_targets": 4,
+        "num_predictions": 3,
+        "matched_targets": 1,
+        "target_boxes_xyxy": [
+          [
+            5.75,
+            0.0,
+            353.79998779296875,
+            640.0
+          ],
+          [
+            1.440000057220459,
+            253.1199951171875,
+            122.25,
+            629.9299926757812
+          ],
+          [
+            24.600000381469727,
+            62.22999954223633,
+            136.63999938964844,
+            192.52999877929688
+          ],
+          [
+            325.7900085449219,
+            163.52000427246094,
+            427.0,
+            640.0
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            9.966292381286621,
+            54.746761322021484,
+            347.64617919921875,
+            630.6243286132812
+          ],
+          [
+            0.9590657353401184,
+            3.738466739654541,
+            167.57249450683594,
+            480.13140869140625
+          ],
+          [
+            3.079340696334839,
+            84.6634521484375,
+            370.2787780761719,
+            504.62762451171875
+          ]
+        ],
+        "predicted_scores": [
+          0.8757827281951904,
+          0.8673361539840698,
+          0.8714514970779419
+        ]
+      },
+      {
+        "sample_id": "0000170",
+        "image_id": 1271,
+        "file_name": "COCO_train2014_000000001271.jpg",
+        "expression": "all people ",
+        "category": "multi_target_failure",
+        "num_targets": 5,
+        "num_predictions": 3,
+        "matched_targets": 2,
+        "target_boxes_xyxy": [
+          [
+            220.02000427246094,
+            286.3599853515625,
+            389.17999267578125,
+            486.4700012207031
+          ],
+          [
+            436.7200012207031,
+            50.86000061035156,
+            639.0499877929688,
+            482.04998779296875
+          ],
+          [
+            97.38999938964844,
+            64.19000244140625,
+            277.30999755859375,
+            412.9700012207031
+          ],
+          [
+            191.22999572753906,
+            75.87999725341797,
+            268.3399963378906,
+            148.27999877929688
+          ],
+          [
+            251.19000244140625,
+            67.7300033569336,
+            342.1300048828125,
+            203.91000366210938
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            438.9185791015625,
+            53.16630935668945,
+            638.0045166015625,
+            489.2637023925781
+          ],
+          [
+            216.50177001953125,
+            284.0692443847656,
+            380.1136474609375,
+            492.0
+          ],
+          [
+            268.4921875,
+            287.1220397949219,
+            380.12322998046875,
+            489.0079650878906
+          ]
+        ],
+        "predicted_scores": [
+          0.8650199770927429,
+          0.8397971987724304,
+          0.8524917960166931
+        ]
+      }
+    ],
+    "no_target_success": [
+      {
+        "sample_id": "0000126",
+        "image_id": 960,
+        "file_name": "COCO_train2014_000000000960.jpg",
+        "expression": "cow",
+        "category": "no_target_success",
+        "num_targets": 0,
+        "num_predictions": 0,
+        "matched_targets": 0,
+        "target_boxes_xyxy": [],
+        "predicted_boxes_xyxy": [],
+        "predicted_scores": []
+      },
+      {
+        "sample_id": "0000127",
+        "image_id": 960,
+        "file_name": "COCO_train2014_000000000960.jpg",
+        "expression": "figure on right sheep off",
+        "category": "no_target_success",
+        "num_targets": 0,
+        "num_predictions": 0,
+        "matched_targets": 0,
+        "target_boxes_xyxy": [],
+        "predicted_boxes_xyxy": [],
+        "predicted_scores": []
+      }
+    ],
+    "two_target_failure": [
+      {
+        "sample_id": "0000128",
+        "image_id": 960,
+        "file_name": "COCO_train2014_000000000960.jpg",
+        "expression": "figure on right cut off and white stuff to the very left towards bottom",
+        "category": "two_target_failure",
+        "num_targets": 2,
+        "num_predictions": 2,
+        "matched_targets": 1,
+        "target_boxes_xyxy": [
+          [
+            325.7900085449219,
+            163.52000427246094,
+            427.0,
+            640.0
+          ],
+          [
+            1.440000057220459,
+            253.1199951171875,
+            122.25,
+            629.9299926757812
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            0.0,
+            21.631240844726562,
+            142.9476318359375,
+            610.8958740234375
+          ],
+          [
+            1.503883957862854,
+            189.52577209472656,
+            170.89736938476562,
+            631.9588012695312
+          ]
+        ],
+        "predicted_scores": [
+          0.4223305583000183,
+          0.5164382457733154
+        ]
+      },
+      {
+        "sample_id": "0000129",
+        "image_id": 960,
+        "file_name": "COCO_train2014_000000000960.jpg",
+        "expression": "side view of person on the far right and white stuff to the very left towards bottom",
+        "category": "two_target_failure",
+        "num_targets": 2,
+        "num_predictions": 2,
+        "matched_targets": 1,
+        "target_boxes_xyxy": [
+          [
+            325.7900085449219,
+            163.52000427246094,
+            427.0,
+            640.0
+          ],
+          [
+            1.440000057220459,
+            253.1199951171875,
+            122.25,
+            629.9299926757812
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            0.09436891227960587,
+            153.0922088623047,
+            125.07000732421875,
+            633.6967163085938
+          ],
+          [
+            1.503883957862854,
+            189.52577209472656,
+            170.89736938476562,
+            631.9588012695312
+          ]
+        ],
+        "predicted_scores": [
+          0.4547070860862732,
+          0.45412981510162354
+        ]
+      }
+    ],
+    "two_target_success": [
+      {
+        "sample_id": "0000165",
+        "image_id": 1271,
+        "file_name": "COCO_train2014_000000001271.jpg",
+        "expression": "wife beaters beer and bald man",
+        "category": "two_target_success",
+        "num_targets": 2,
+        "num_predictions": 2,
+        "matched_targets": 2,
+        "target_boxes_xyxy": [
+          [
+            436.7200012207031,
+            50.86000061035156,
+            639.0499877929688,
+            482.04998779296875
+          ],
+          [
+            97.38999938964844,
+            64.19000244140625,
+            277.30999755859375,
+            412.9700012207031
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            97.65293884277344,
+            67.95481872558594,
+            272.1932067871094,
+            407.7477111816406
+          ],
+          [
+            438.9185791015625,
+            53.16630935668945,
+            638.0045166015625,
+            489.2637023925781
+          ]
+        ],
+        "predicted_scores": [
+          0.7121468782424927,
+          0.9109683036804199
+        ]
+      },
+      {
+        "sample_id": "0000166",
+        "image_id": 1271,
+        "file_name": "COCO_train2014_000000001271.jpg",
+        "expression": "man standing left and standing man on right side with bottle",
+        "category": "two_target_success",
+        "num_targets": 2,
+        "num_predictions": 2,
+        "matched_targets": 2,
+        "target_boxes_xyxy": [
+          [
+            436.7200012207031,
+            50.86000061035156,
+            639.0499877929688,
+            482.04998779296875
+          ],
+          [
+            97.38999938964844,
+            64.19000244140625,
+            277.30999755859375,
+            412.9700012207031
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            97.65293884277344,
+            67.95481872558594,
+            272.1932067871094,
+            407.7477111816406
+          ],
+          [
+            438.9185791015625,
+            53.16630935668945,
+            638.0045166015625,
+            489.2637023925781
+          ]
+        ],
+        "predicted_scores": [
+          0.8365310430526733,
+          0.9444319605827332
+        ]
+      }
+    ],
+    "no_target_failure": [
+      {
+        "sample_id": "0000578",
+        "image_id": 5326,
+        "file_name": "COCO_train2014_000000005326.jpg",
+        "expression": "dog with person",
+        "category": "no_target_failure",
+        "num_targets": 0,
+        "num_predictions": 1,
+        "matched_targets": 0,
+        "target_boxes_xyxy": [],
+        "predicted_boxes_xyxy": [
+          [
+            164.53048706054688,
+            11.499774932861328,
+            638.7715454101562,
+            353.6002502441406
+          ]
+        ],
+        "predicted_scores": [
+          0.4017082452774048
+        ]
+      },
+      {
+        "sample_id": "0001179",
+        "image_id": 10094,
+        "file_name": "COCO_train2014_000000010094.jpg",
+        "expression": "front gir",
+        "category": "no_target_failure",
+        "num_targets": 0,
+        "num_predictions": 1,
+        "matched_targets": 0,
+        "target_boxes_xyxy": [],
+        "predicted_boxes_xyxy": [
+          [
+            199.5207977294922,
+            105.90811157226562,
+            484.85418701171875,
+            497.21685791015625
+          ]
+        ],
+        "predicted_scores": [
+          0.5381556153297424
+        ]
+      }
+    ],
+    "multi_target_success": [
+      {
+        "sample_id": "0002794",
+        "image_id": 22651,
+        "file_name": "COCO_train2014_000000022651.jpg",
+        "expression": "all  glasses ",
+        "category": "multi_target_success",
+        "num_targets": 3,
+        "num_predictions": 3,
+        "matched_targets": 3,
+        "target_boxes_xyxy": [
+          [
+            0.0,
+            142.5399932861328,
+            334.2699890136719,
+            480.0
+          ],
+          [
+            350.55999755859375,
+            90.61000061035156,
+            637.47998046875,
+            474.6099853515625
+          ],
+          [
+            184.08999633789062,
+            35.40999984741211,
+            397.5799865722656,
+            300.1400146484375
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            345.0677795410156,
+            94.50381469726562,
+            634.1442260742188,
+            480.0
+          ],
+          [
+            2.389591693878174,
+            143.77597045898438,
+            339.52410888671875,
+            471.8240661621094
+          ],
+          [
+            92.70265197753906,
+            32.378963470458984,
+            404.10791015625,
+            368.4210205078125
+          ]
+        ],
+        "predicted_scores": [
+          0.8492662906646729,
+          0.8606017231941223,
+          0.8501613140106201
+        ]
+      },
+      {
+        "sample_id": "0007968",
+        "image_id": 64816,
+        "file_name": "COCO_train2014_000000064816.jpg",
+        "expression": "two people and the horse",
+        "category": "multi_target_success",
+        "num_targets": 3,
+        "num_predictions": 3,
+        "matched_targets": 3,
+        "target_boxes_xyxy": [
+          [
+            314.2799987792969,
+            62.18000030517578,
+            438.4599914550781,
+            383.1499938964844
+          ],
+          [
+            406.94000244140625,
+            96.56999969482422,
+            555.9600219726562,
+            422.32000732421875
+          ],
+          [
+            168.08999633789062,
+            105.88999938964844,
+            321.0199890136719,
+            421.260009765625
+          ]
+        ],
+        "predicted_boxes_xyxy": [
+          [
+            167.38360595703125,
+            105.88640594482422,
+            319.4220275878906,
+            416.65484619140625
+          ],
+          [
+            313.1094970703125,
+            60.65326690673828,
+            439.5176696777344,
+            385.5617370605469
+          ],
+          [
+            408.51416015625,
+            95.81044006347656,
+            554.4215698242188,
+            420.85955810546875
+          ]
+        ],
+        "predicted_scores": [
+          0.65262371301651,
+          0.6003857851028442,
+          0.9321730136871338
+        ]
+      }
+    ]
+  }
+}

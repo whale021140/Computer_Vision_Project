@@ -1,0 +1,9 @@
+Stage 6.1 Development Selection
+================================
+Policy: cardinality-gated
+Selected epoch: 37
+Calibrated count-macro mean F1: 0.651720
+Calibrated F1_score: 0.513511
+T_acc: 0.960834
+N_acc: 0.919333
+Calibration boundary flags: none

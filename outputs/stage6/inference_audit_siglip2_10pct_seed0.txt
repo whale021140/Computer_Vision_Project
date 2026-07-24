@@ -1,0 +1,8 @@
+Stage 6.1 Development-Only Inference Audit
+==========================================
+policy | threshold | count-macro mean F1 | F1_score | T_acc | N_acc
+--- | ---: | ---: | ---: | ---: | ---:
+C2_baseline | 0.850 | 0.663739 | 0.534166 | 0.963438 | 0.919333
+C3_membership_only | 0.300 | 0.566854 | 0.223528 | 0.820728 | 0.958000
+C4a_no_bias_best_threshold | 0.850 | 0.653312 | 0.538248 | 0.986324 | 0.864000
+C4b_fully_neutral | 0.500 | 0.646757 | 0.536615 | 0.986324 | 0.864000

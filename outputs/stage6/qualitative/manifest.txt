@@ -1,0 +1,19 @@
+Stage 6 Calibrated Qualitative Examples
+=======================================
+Ground truth: red solid; prediction: blue dashed.
+enhanced_multi_target_failure: outputs/stage6/qualitative/enhanced_multi_target_failure_01.png | four people
+enhanced_multi_target_success: outputs/stage6/qualitative/enhanced_multi_target_success_01.png | 3 middle front people
+enhanced_no_target_failure: outputs/stage6/qualitative/enhanced_no_target_failure_01.png | dog with person
+enhanced_no_target_success: outputs/stage6/qualitative/enhanced_no_target_success_01.png | cow
+enhanced_single_target_failure: outputs/stage6/qualitative/enhanced_single_target_failure_01.png | right most gray suit
+enhanced_single_target_success: outputs/stage6/qualitative/enhanced_single_target_success_01.png | side view of person on the far right
+enhanced_two_target_failure: outputs/stage6/qualitative/enhanced_two_target_failure_01.png | figure on right cut off and white stuff to the very left towards bottom
+enhanced_two_target_success: outputs/stage6/qualitative/enhanced_two_target_success_01.png | side view of person on the far right and white stuff to the very left towards bottom
+multi_target_failure: outputs/stage6/qualitative/multi_target_failure_01.png | four people
+multi_target_success: outputs/stage6/qualitative/multi_target_success_01.png | all  glasses 
+no_target_failure: outputs/stage6/qualitative/no_target_failure_01.png | dog with person
+no_target_success: outputs/stage6/qualitative/no_target_success_01.png | cow
+single_target_failure: outputs/stage6/qualitative/single_target_failure_01.png | right most gray suit
+single_target_success: outputs/stage6/qualitative/single_target_success_01.png | side view of person on the far right
+two_target_failure: outputs/stage6/qualitative/two_target_failure_01.png | figure on right cut off and white stuff to the very left towards bottom
+two_target_success: outputs/stage6/qualitative/two_target_success_01.png | wife beaters beer and bald man

@@ -1,0 +1,155 @@
+Frozen Representation Baseline GREC Evaluation
+==============================================
+Feature file: cache/features/stage5/siglip2_detector_testB.pt
+Checkpoint: checkpoints/stage6/confirmation/flat_lambda1_seed1/selected.pt
+Representation: {'name': 'siglip2', 'model_ids': {'siglip2': 'google/siglip2-base-patch16-224'}, 'candidate_feature_dim': 768, 'text_feature_dim': 768, 'component_normalization': {'siglip2_image': 'l2', 'siglip2_text': 'l2'}, 'fusion': 'none', 'similarity_source': 'normalized SigLIP 2 image/text embeddings', 'encoder_parameters': {'siglip2': {'total': 375187970, 'trainable': 0}}}
+Device: cuda
+Selection policy: cardinality-threshold
+Pre-selection NMS threshold: None
+Membership threshold: 0.9
+Count logit bias: [5.5, 0.0, 0.0, 10.0]
+Overlap metric: giou
+Match threshold: 0.5
+Prediction score threshold: None
+
+[released GREC metrics]
+F1_score: 0.417730
+T_acc: 0.915803
+N_acc: 0.714102
+
+[diagnostics]
+num_samples: 16063
+mean_precision: 0.549316
+mean_recall: 0.538525
+mean_f1: 0.538330
+exact_set_accuracy: 0.417730
+cardinality_accuracy: 0.744008
+count_class_accuracy: 0.783664
+count_class_evaluated: 16063
+micro_precision: 0.480383
+micro_recall: 0.432899
+micro_f1: 0.455406
+total_tp: 9232
+total_fp: 9986
+total_fn: 12094
+no_target_total: 4673
+no_target_accuracy: 0.714102
+false_grounding_rate: 0.285898
+single_target_total: 5646
+single_target_localization_accuracy: 0.439249
+single_target_exact_accuracy: 0.403826
+multi_target_total: 5744
+multi_target_mean_f1: 0.506418
+multi_target_exact_accuracy: 0.190286
+
+[no-target]
+num_samples: 4673
+mean_precision: 0.714102
+mean_recall: 0.714102
+mean_f1: 0.714102
+exact_set_accuracy: 0.714102
+cardinality_accuracy: 0.714102
+count_class_accuracy: 0.714102
+count_class_evaluated: 4673
+micro_precision: 0.000000
+micro_recall: 0.000000
+micro_f1: 0.000000
+total_tp: 0
+total_fp: 1563
+total_fn: 0
+
+[single-target]
+num_samples: 5646
+mean_precision: 0.419412
+mean_recall: 0.439249
+mean_f1: 0.425316
+exact_set_accuracy: 0.403826
+cardinality_accuracy: 0.783209
+count_class_accuracy: 0.783209
+count_class_evaluated: 5646
+micro_precision: 0.465465
+micro_recall: 0.439249
+micro_f1: 0.451977
+total_tp: 2480
+total_fp: 2848
+total_fn: 3166
+
+[multi-target]
+num_samples: 5744
+mean_precision: 0.542943
+mean_recall: 0.493268
+mean_f1: 0.506418
+exact_set_accuracy: 0.190286
+cardinality_accuracy: 0.729805
+count_class_accuracy: 0.840703
+count_class_evaluated: 5744
+micro_precision: 0.547741
+micro_recall: 0.430612
+micro_f1: 0.482165
+total_tp: 6752
+total_fp: 5575
+total_fn: 8928
+
+[target-count 0]
+num_samples: 4673
+mean_precision: 0.714102
+mean_recall: 0.714102
+mean_f1: 0.714102
+exact_set_accuracy: 0.714102
+cardinality_accuracy: 0.714102
+count_class_accuracy: 0.714102
+count_class_evaluated: 4673
+micro_precision: 0.000000
+micro_recall: 0.000000
+micro_f1: 0.000000
+total_tp: 0
+total_fp: 1563
+total_fn: 0
+
+[target-count 1]
+num_samples: 5646
+mean_precision: 0.419412
+mean_recall: 0.439249
+mean_f1: 0.425316
+exact_set_accuracy: 0.403826
+cardinality_accuracy: 0.783209
+count_class_accuracy: 0.783209
+count_class_evaluated: 5646
+micro_precision: 0.465465
+micro_recall: 0.439249
+micro_f1: 0.451977
+total_tp: 2480
+total_fp: 2848
+total_fn: 3166
+
+[target-count 2]
+num_samples: 3957
+mean_precision: 0.546921
+mean_recall: 0.548522
+mean_f1: 0.545573
+exact_set_accuracy: 0.251453
+cardinality_accuracy: 0.915087
+count_class_accuracy: 0.914582
+count_class_evaluated: 3957
+micro_precision: 0.555826
+micro_recall: 0.548522
+micro_f1: 0.552150
+total_tp: 4341
+total_fp: 3469
+total_fn: 3573
+
+[target-count 3+]
+num_samples: 1787
+mean_precision: 0.534135
+mean_recall: 0.370919
+mean_f1: 0.419715
+exact_set_accuracy: 0.054841
+cardinality_accuracy: 0.319530
+count_class_accuracy: 0.677112
+count_class_evaluated: 1787
+micro_precision: 0.533761
+micro_recall: 0.310456
+micro_f1: 0.392575
+total_tp: 2411
+total_fp: 2106
+total_fn: 5355

@@ -1,0 +1,32 @@
+CLIP baseline training summary
+==============================
+Feature file: cache/features/stage5_6/siglip2_detector_feature_union.pt
+Training split file: splits/stage5_6/train_10pct_seed1.json
+Validation feature file: none
+Validation split file: cache-native
+Dataset size: 20934
+Representation: {'name': 'siglip2', 'model_ids': {'siglip2': 'google/siglip2-base-patch16-224'}, 'candidate_feature_dim': 768, 'text_feature_dim': 768, 'component_normalization': {'siglip2_image': 'l2', 'siglip2_text': 'l2'}, 'fusion': 'none', 'similarity_source': 'normalized SigLIP 2 image/text embeddings', 'encoder_parameters': {'siglip2': {'total': 375187970, 'trainable': 0}}}
+Candidate feature dimension: 768
+Text feature dimension: 768
+Trainable head parameters: 726790
+Epochs: 40
+Batch size: 16
+Hidden dimension: 256
+Dropout: 0.1
+Pooling: mean_max_stats
+Hierarchical cardinality: True
+Membership only: False
+Use box coordinates: True
+Use explicit similarity: True
+Label policy: cached
+Count weight policy: effective-number
+Resolved count weights: [0.340171258896768, 0.08457400029845451, 0.12029028508418953, 3.454964455720588]
+Learning-rate schedule: cosine
+Learning rate: 0.0001
+Weight decay: 0.0001
+Lambda cardinality: 0.1
+Checkpoint selection: training total loss
+Best selection loss: 0.105836
+Best checkpoint: checkpoints/stage6/confirmation/hierarchical_lambda010_seed1/best.pt
+Last checkpoint: checkpoints/stage6/confirmation/hierarchical_lambda010_seed1/last.pt
+Count class weights: None

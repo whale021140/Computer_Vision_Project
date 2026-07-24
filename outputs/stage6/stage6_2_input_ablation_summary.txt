@@ -1,0 +1,8 @@
+Stage 6.2 Compact Input Ablations
+=================================
+variant | epoch | macro F1 | official F1 | delta macro | delta F1
+--- | ---: | ---: | ---: | ---: | ---:
+full_input | 19 | 0.689841 | 0.575639 | +0.000000 | +0.000000
+no_box_coordinates | 17 | 0.652874 | 0.494000 | -0.036967 | -0.081639
+no_explicit_similarity | 32 | 0.642896 | 0.488938 | -0.046944 | -0.086701
+Status: development-only result; Stage 6 test remains locked.

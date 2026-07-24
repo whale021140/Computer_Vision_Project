@@ -1,0 +1,15 @@
+Stage 6.3 Multi-Target Failure Diagnosis
+========================================
+group | n | success | proposal miss | count under | count over | duplicate | ranking
+--- | ---: | ---: | ---: | ---: | ---: | ---: | ---:
+3 | 218 | 44 | 1 | 17 | 2 | 87 | 67
+4 | 74 | 0 | 2 | 70 | 1 | 1 | 0
+5 | 40 | 0 | 2 | 38 | 0 | 0 | 0
+6+ | 56 | 0 | 16 | 40 | 0 | 0 | 0
+
+policy | macro F1 | official F1
+--- | ---: | ---:
+none | 0.691745 | 0.579476
+nms_0.3 | 0.699299 | 0.573435
+pre_nms_0.3 | 0.734911 | 0.631562
+pre_nms_0.3_thr_0.5 | 0.741327 | 0.631317

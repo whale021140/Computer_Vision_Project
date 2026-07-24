@@ -1,0 +1,49 @@
+{
+  "stage": "6.4 local counterfactual-data compatibility gate",
+  "searched_root": "/home/whale/488/Final_Project/data",
+  "num_local_files_scanned": 82804,
+  "datasets": {
+    "C-RefCOCO": {
+      "locally_available": false,
+      "matched_files": [],
+      "required_for_direct_evaluation": [
+        "counterfactual expression annotations",
+        "image identifiers resolvable to the local COCO image root",
+        "target/no-target definition or paired original expression"
+      ],
+      "decision": "not locally available; external download/new adapter is outside the locked 15-hour Stage 6 scope"
+    },
+    "C-RefCOCO+": {
+      "locally_available": false,
+      "matched_files": [],
+      "required_for_direct_evaluation": [
+        "counterfactual expression annotations",
+        "image identifiers resolvable to the local COCO image root",
+        "target/no-target definition or paired original expression"
+      ],
+      "decision": "not locally available; external download/new adapter is outside the locked 15-hour Stage 6 scope"
+    },
+    "C-RefCOCOg": {
+      "locally_available": false,
+      "matched_files": [],
+      "required_for_direct_evaluation": [
+        "counterfactual expression annotations",
+        "image identifiers resolvable to the local COCO image root",
+        "target/no-target definition or paired original expression"
+      ],
+      "decision": "not locally available; external download/new adapter is outside the locked 15-hour Stage 6 scope"
+    },
+    "FineCops-Ref": {
+      "locally_available": false,
+      "matched_files": [],
+      "required_for_direct_evaluation": [
+        "counterfactual expression annotations",
+        "image identifiers resolvable to the local COCO image root",
+        "target/no-target definition or paired original expression"
+      ],
+      "decision": "not locally available; external download/new adapter is outside the locked 15-hour Stage 6 scope"
+    }
+  },
+  "coco_images_locally_available": true,
+  "conclusion": "No counterfactual evaluation is run for a dataset whose annotations are absent. This is an availability result, not evidence that the dataset format is intrinsically incompatible."
+}

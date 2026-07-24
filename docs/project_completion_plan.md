@@ -56,7 +56,7 @@ uses ground-truth instance boxes and does not yet use the released GREC metric.
 | 5. Few-shot experiment grid | Complete | 1%/5%/10%, multiple seeds, locked full-test comparison |
 | 5.5. Post-hoc enhanced system | Complete | Shadow-dev repair study with hierarchical cardinality and calibrated 10% models |
 | 5.6. Final unified protocol retraining | Complete | Complete-train, image-disjoint all-count dev; fresh grid plus audited wide dev-only calibration |
-| 6. Ablations and reliability | Not started | Cardinality, spatial-feature, and counterfactual analyses |
+| 6. Ablations and reliability | In progress | Baseline frozen; cardinality, spatial-feature, and counterfactual analyses |
 | 7. Final report and reproducibility | Not started | Final figures, tables, documentation, and reproducible commands |
 
 ## 4. Stage 0: Repository Hardening
@@ -346,19 +346,30 @@ then a manifest locks a small confirmation set before one test gate.
 Core work:
 
 - cardinality ablations: membership-only, flat versus hierarchical, count
-  gating, calibration removal, and
-  `lambda_cardinality={0,0.25,0.5,1,2}`;
-- development calibration stability through image-level bootstrap, disjoint
-  dev-subset sensitivity, and lower-degree-of-freedom calibration controls;
-- normalized-coordinate and explicit-similarity input ablations;
-- parameter-matched three-representation comparison using a fixed,
-  training-pool-only common projection;
-- exact 3/4/5/6+ reporting and mutually exclusive proposal-miss,
+  gating, inference calibration controls, and a development-only adaptive
+  positive-weight search. The completed search tests
+  `lambda_cardinality={0.05,0.10,0.125,0.25,0.5,1,2}`, brackets the seed-0
+  optimum at `0.10`, and confirms four core families across three seeds;
+- completed seed-0 normalized-coordinate and explicit-similarity input
+  ablations;
+- completed exact 3/4/5/6+ reporting and mutually exclusive proposal-miss,
   count-error, duplicate-selection, ranking-error diagnosis;
-- proposal cap/NMS and inference duplicate-suppression development studies;
-- frozen-model C-RefCOCO/C-RefCOCO+/C-RefCOCOg reliability evaluation,
-  with FineCops-Ref optional;
-- final Stage 5.6 v2 CLIP versus SigLIP 2 qualitative analysis.
+- completed cached proposal-cap and inference duplicate-suppression studies,
+  including a cross-seed pre-selection NMS repair;
+- completed local availability and format-compatibility audit for
+  C-RefCOCO/C-RefCOCO+/C-RefCOCOg, followed by frozen-model evaluation only
+  when the data are already locally usable;
+- completed original-versus-repaired calibrated qualitative analysis;
+- a single hash-locked test gate with 18 new evaluations and three reused
+  Stage 5.6 baseline cells.
+
+The 2026-07-24 hard 15-hour Stage 6 revision moves the parameter-matched PCA
+grid, 150/200-proposal regeneration, detector-NMS grid, FineCops-Ref, and
+RegionCLIP to future work. The larger bootstrap/subset calibration-stability
+study and CLIP-versus-SigLIP qualitative grid also move to future work; the
+compact stage instead retains boundary audits and the final SigLIP
+original-versus-repaired comparison. This scope reduction was locked before
+opening the Stage 6 test gate and was not chosen from new testA/testB results.
 
 The full experiment matrix, stopping rules, and acceptance checklist are in
 `docs/stage6_ablations_and_reliability.md`.
@@ -572,3 +583,65 @@ the relevant acceptance checks pass.
   confirmation, and prioritizes cardinality, input/parameter matching, exact
   3/4/5/6+ failure decomposition, proposal sensitivity, counterfactual
   reliability, and final qualitative analysis.
+- 2026-07-24: Completed the Stage 6.1 SigLIP 2 10% seed-0 mechanism pilots.
+  A true membership-only control reaches `0.594546` development count-macro
+  F1, flat cardinality reaches `0.653955`, and the accepted hierarchical
+  lambda-1 baseline reaches `0.663739`. The initial positive-lambda sweep put
+  `0.25` on the lower search boundary, so a development-only adaptive
+  extension tested `0.10`, `0.125`, and `0.05`. Lambda `0.10` is now bracketed
+  by worse neighbors (`0.05 < 0.10 > 0.125`) and reaches `0.689841` macro F1
+  and `0.575639` official F1 without calibration-boundary saturation. No
+  Stage 6 test metric was accessed during this selection.
+- 2026-07-24: Applied a hard 15-hour remaining Stage 6 budget before opening
+  the new test gate. The compact scope retains core cardinality confirmation,
+  seed-0 coordinate/similarity ablations, exact-count failure attribution,
+  cached cap/duplicate diagnostics, one locked final test gate, qualitative
+  results, and documentation. The PCA parameter-matching grid, 150/200
+  proposal regeneration, detector-NMS grid, FineCops-Ref, and RegionCLIP move
+  to explicit future work.
+- 2026-07-24: Completed the cached development proposal-cap audit. Cap 100
+  improves expression-weighted target recall from `0.994754` to `0.995714`
+  and full coverage from `0.993395` to `0.994697` over cap 50, with only
+  39.974 average candidates. Exact 3/4/5/6+ recall is unchanged between caps;
+  6+ full coverage is `0.714286` without any cap-100 saturation, identifying
+  detector misses rather than the cap as the main bottleneck.
+- 2026-07-24: Audited 82,804 local data files for the proposal-conditional
+  counterfactual datasets. COCO images are present, but C-RefCOCO,
+  C-RefCOCO+, C-RefCOCOg, and FineCops-Ref annotations are absent. The compact
+  protocol records this as a local-availability limitation and does not claim
+  intrinsic format incompatibility.
+- 2026-07-24: Completed the Stage 6.1 three-seed development confirmation.
+  Membership-only, flat lambda-1, hierarchical lambda-1, and hierarchical
+  lambda-0.10 reach count-macro F1 `0.595243 +/- 0.000610`,
+  `0.651579 +/- 0.002449`, `0.656478 +/- 0.006299`, and
+  `0.689156 +/- 0.002991`, respectively. Lambda `0.10` improves mean
+  count-macro F1 by `0.032678` and official F1 by `0.061964` over lambda `1`
+  without calibration-boundary saturation. This confirms the pilot result
+  across seeds before any Stage 6 test access.
+- 2026-07-24: Completed the compact Stage 6.2 seed-0 input ablations. Removing
+  normalized box coordinates reduces development count-macro F1 from
+  `0.689841` to `0.652874` and official F1 from `0.575639` to `0.494000`.
+  Removing only the explicit image-text similarity reduces them to
+  `0.642896` and `0.488938`. Neither calibration hits a search boundary.
+  These results attribute independent value to both conventional inputs
+  without claiming either feature as a novel method.
+- 2026-07-24: Completed exact 3/4/5/6+ failure attribution and discovered that
+  post-selection NMS cannot replace duplicate high-scoring regions. A
+  development-only, fully bracketed search locks pre-selection NMS IoU `0.3`
+  and a recalibrated 3+ membership threshold of `0.5`. Across seeds 0/1/2,
+  count-macro F1 improves from `0.689841/0.691745/0.685881` to
+  `0.738977/0.741327/0.734344`, while official F1 improves from
+  `0.575639/0.579476/0.567801` to `0.627970/0.631317/0.620785`.
+  Seed-0 exact 3/4/5/6+ successes change from `46/0/0/0` to `83/8/1/1`.
+  This fixes most duplicate-selection failures but leaves sparse high-count
+  supervision as an explicit limitation.
+- 2026-07-24: Closed the single Stage 6 test gate after hashing nine new cells,
+  three reused Stage 5.6 baseline cells, and eight development prerequisites.
+  The final hierarchical lambda-0.10 plus pre-NMS recipe reaches official F1
+  `0.538958 +/- 0.003632` on testA and `0.492104 +/- 0.003303` on testB,
+  improving over the frozen Stage 5.6 lambda-1 baseline by `0.076458` and
+  `0.074104`. Mean set F1 improves by `0.059752` and `0.060439`.
+  Test results triggered no retraining, recalibration, or inference changes.
+- 2026-07-24: Rendered 16 calibrated original/enhanced qualitative examples
+  and synchronized the root README, documentation index, Stage 6 protocol,
+  Chinese complete guide, and Stage 6 final report.

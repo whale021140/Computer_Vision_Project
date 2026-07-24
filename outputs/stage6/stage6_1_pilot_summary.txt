@@ -1,0 +1,21 @@
+Stage 6.1 Development-Only Pilot Summary
+========================================
+name | epoch | macro F1 | F1_score | T_acc | N_acc
+--- | ---: | ---: | ---: | ---: | ---:
+C0_membership_only_lambda0 | 18 | 0.594546 | 0.264430 | 0.847986 | 0.933333
+C1_flat_lambda1 | 37 | 0.653955 | 0.516042 | 0.956182 | 0.923333
+hierarchical_lambda005 | 23 | 0.682540 | 0.573271 | 0.948739 | 0.913333
+hierarchical_lambda010 | 19 | 0.689841 | 0.575639 | 0.954042 | 0.923333
+hierarchical_lambda0125 | 33 | 0.685054 | 0.574169 | 0.956275 | 0.919333
+hierarchical_lambda025 | 30 | 0.676433 | 0.563311 | 0.968927 | 0.914667
+hierarchical_lambda050 | 33 | 0.672825 | 0.555392 | 0.963438 | 0.918000
+hierarchical_lambda200 | 33 | 0.648322 | 0.492285 | 0.957764 | 0.924000
+C2_hierarchical_lambda1 | - | 0.663739 | 0.534166 | 0.963438 | 0.919333
+C3_baseline_checkpoint_membership_only | - | 0.566854 | 0.223528 | 0.820728 | 0.958000
+C4a_no_bias_best_threshold | - | 0.653312 | 0.538248 | 0.986324 | 0.864000
+C4b_fully_neutral | - | 0.646757 | 0.536615 | 0.986324 | 0.864000
+
+Best positive lambda on dev: 0.1
+Positive-lambda search bracketed: True
+Draft confirmation set: C0_membership_only_lambda0, C1_flat_lambda1, C2_hierarchical_lambda1, hierarchical_lambda0.1
+Status: stop for decision-gate review before test or confirmation.

@@ -1,0 +1,13 @@
+Stage 6 Compact Final Test Summary
+==================================
+family | split | F1 | mean set F1 | T_acc | N_acc
+--- | --- | ---: | ---: | ---: | ---:
+membership_only | testA | 0.302222 +/- 0.002194 | 0.560354 +/- 0.002031 | 0.864832 | 0.754496
+membership_only | testB | 0.289174 +/- 0.005675 | 0.484630 +/- 0.003812 | 0.791659 | 0.736215
+flat_lambda1 | testA | 0.459861 +/- 0.008018 | 0.612072 +/- 0.005686 | 0.947035 | 0.680456
+flat_lambda1 | testB | 0.417232 +/- 0.003451 | 0.534824 +/- 0.005173 | 0.920866 | 0.693131
+hierarchical_lambda010 | testA | 0.538958 +/- 0.003632 | 0.675960 +/- 0.002539 | 0.946086 | 0.686751
+hierarchical_lambda010 | testB | 0.492104 +/- 0.003303 | 0.596511 +/- 0.003570 | 0.903044 | 0.692132
+hierarchical_lambda1_stage5_6_baseline | testA | 0.462500 +/- 0.010730 | 0.616207 +/- 0.007853 | 0.941025 | 0.688474
+hierarchical_lambda1_stage5_6_baseline | testB | 0.418000 +/- 0.004351 | 0.536072 +/- 0.003176 | 0.904009 | 0.703545
+Status: final test gate complete; no post-test model changes.

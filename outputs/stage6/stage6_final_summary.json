@@ -1,0 +1,359 @@
+{
+  "stage": "6 compact final test",
+  "lock_manifest": "outputs/stage6/final_test_lock.json",
+  "families": {
+    "membership_only": {
+      "testA": {
+        "aggregate": {
+          "F1_score": {
+            "mean": 0.3022222222222222,
+            "sample_sd": 0.002193897721100065
+          },
+          "T_acc": {
+            "mean": 0.8648318872017353,
+            "sample_sd": 0.006058162780885662
+          },
+          "N_acc": {
+            "mean": 0.7544964028776978,
+            "sample_sd": 0.007533991043217639
+          },
+          "mean_set_f1": {
+            "mean": 0.5603543906034417,
+            "sample_sd": 0.0020310706245093213
+          },
+          "by_count_group_mean_f1": {
+            "0": {
+              "mean": 0.7544964028776978,
+              "sample_sd": 0.007533991043217639
+            },
+            "1": {
+              "mean": 0.4890341494915832,
+              "sample_sd": 0.002341397276039118
+            },
+            "2": {
+              "mean": 0.5515895593325355,
+              "sample_sd": 0.0032772551000980546
+            },
+            "3+": {
+              "mean": 0.4258194316439868,
+              "sample_sd": 0.007374683867238046
+            }
+          }
+        },
+        "per_seed_files": [
+          "outputs/stage6/final_test/membership_only_seed0/evaluation_testA.json",
+          "outputs/stage6/final_test/membership_only_seed1/evaluation_testA.json",
+          "outputs/stage6/final_test/membership_only_seed2/evaluation_testA.json"
+        ]
+      },
+      "testB": {
+        "aggregate": {
+          "F1_score": {
+            "mean": 0.28917387785594223,
+            "sample_sd": 0.005675445816189921
+          },
+          "T_acc": {
+            "mean": 0.7916593503072871,
+            "sample_sd": 0.011983794659229436
+          },
+          "N_acc": {
+            "mean": 0.7362151366003281,
+            "sample_sd": 0.011999648062975925
+          },
+          "mean_set_f1": {
+            "mean": 0.4846295118845197,
+            "sample_sd": 0.003812040688870306
+          },
+          "by_count_group_mean_f1": {
+            "0": {
+              "mean": 0.7362151366003281,
+              "sample_sd": 0.011999648062975925
+            },
+            "1": {
+              "mean": 0.3500497287265226,
+              "sample_sd": 0.010047032193363484
+            },
+            "2": {
+              "mean": 0.4332629658249132,
+              "sample_sd": 0.009051466445744555
+            },
+            "3+": {
+              "mean": 0.3656788986617513,
+              "sample_sd": 0.016949505361128377
+            }
+          }
+        },
+        "per_seed_files": [
+          "outputs/stage6/final_test/membership_only_seed0/evaluation_testB.json",
+          "outputs/stage6/final_test/membership_only_seed1/evaluation_testB.json",
+          "outputs/stage6/final_test/membership_only_seed2/evaluation_testB.json"
+        ]
+      }
+    },
+    "flat_lambda1": {
+      "testA": {
+        "aggregate": {
+          "F1_score": {
+            "mean": 0.4598611111111111,
+            "sample_sd": 0.00801818363520506
+          },
+          "T_acc": {
+            "mean": 0.9470354302241504,
+            "sample_sd": 0.008033404969494874
+          },
+          "N_acc": {
+            "mean": 0.6804556354916067,
+            "sample_sd": 0.014838697213178357
+          },
+          "mean_set_f1": {
+            "mean": 0.6120724963011998,
+            "sample_sd": 0.0056864597361652525
+          },
+          "by_count_group_mean_f1": {
+            "0": {
+              "mean": 0.6804556354916067,
+              "sample_sd": 0.014838697213178357
+            },
+            "1": {
+              "mean": 0.600660995624658,
+              "sample_sd": 0.020632834285083897
+            },
+            "2": {
+              "mean": 0.6437972315750093,
+              "sample_sd": 0.009419222147840649
+            },
+            "3+": {
+              "mean": 0.4652361297581523,
+              "sample_sd": 0.006105499841597609
+            }
+          }
+        },
+        "per_seed_files": [
+          "outputs/stage6/final_test/flat_lambda1_seed0/evaluation_testA.json",
+          "outputs/stage6/final_test/flat_lambda1_seed1/evaluation_testA.json",
+          "outputs/stage6/final_test/flat_lambda1_seed2/evaluation_testA.json"
+        ]
+      },
+      "testB": {
+        "aggregate": {
+          "F1_score": {
+            "mean": 0.4172321484156135,
+            "sample_sd": 0.003451076773089756
+          },
+          "T_acc": {
+            "mean": 0.9208662569505414,
+            "sample_sd": 0.004519876051156318
+          },
+          "N_acc": {
+            "mean": 0.6931307511234753,
+            "sample_sd": 0.01818204548508675
+          },
+          "mean_set_f1": {
+            "mean": 0.5348241566951182,
+            "sample_sd": 0.005173000311263123
+          },
+          "by_count_group_mean_f1": {
+            "0": {
+              "mean": 0.6931307511234753,
+              "sample_sd": 0.01818204548508675
+            },
+            "1": {
+              "mean": 0.4357263746211676,
+              "sample_sd": 0.010289724790484166
+            },
+            "2": {
+              "mean": 0.5439137393648391,
+              "sample_sd": 0.00925638347093871
+            },
+            "3+": {
+              "mean": 0.41382353173804326,
+              "sample_sd": 0.0051277882133082455
+            }
+          }
+        },
+        "per_seed_files": [
+          "outputs/stage6/final_test/flat_lambda1_seed0/evaluation_testB.json",
+          "outputs/stage6/final_test/flat_lambda1_seed1/evaluation_testB.json",
+          "outputs/stage6/final_test/flat_lambda1_seed2/evaluation_testB.json"
+        ]
+      }
+    },
+    "hierarchical_lambda010": {
+      "testA": {
+        "aggregate": {
+          "F1_score": {
+            "mean": 0.5389583333333333,
+            "sample_sd": 0.003632415786283915
+          },
+          "T_acc": {
+            "mean": 0.946086406362979,
+            "sample_sd": 0.007852912307423448
+          },
+          "N_acc": {
+            "mean": 0.6867505995203838,
+            "sample_sd": 0.020924383314248174
+          },
+          "mean_set_f1": {
+            "mean": 0.6759597027110105,
+            "sample_sd": 0.0025386547146994745
+          },
+          "by_count_group_mean_f1": {
+            "0": {
+              "mean": 0.6867505995203838,
+              "sample_sd": 0.020924383314248174
+            },
+            "1": {
+              "mean": 0.6838506750793365,
+              "sample_sd": 0.0006856285828281614
+            },
+            "2": {
+              "mean": 0.7265103415103411,
+              "sample_sd": 0.009377324615469118
+            },
+            "3+": {
+              "mean": 0.5395315206801603,
+              "sample_sd": 0.010474013683492343
+            }
+          }
+        },
+        "per_seed_files": [
+          "outputs/stage6/final_test/hierarchical_lambda010_seed0/evaluation_testA.json",
+          "outputs/stage6/final_test/hierarchical_lambda010_seed1/evaluation_testA.json",
+          "outputs/stage6/final_test/hierarchical_lambda010_seed2/evaluation_testA.json"
+        ]
+      },
+      "testB": {
+        "aggregate": {
+          "F1_score": {
+            "mean": 0.49210400713855856,
+            "sample_sd": 0.003302639021698944
+          },
+          "T_acc": {
+            "mean": 0.9030436055019022,
+            "sample_sd": 0.012204108523294736
+          },
+          "N_acc": {
+            "mean": 0.692132106426992,
+            "sample_sd": 0.02222393739518216
+          },
+          "mean_set_f1": {
+            "mean": 0.5965110960935079,
+            "sample_sd": 0.0035704015152774526
+          },
+          "by_count_group_mean_f1": {
+            "0": {
+              "mean": 0.692132106426992,
+              "sample_sd": 0.02222393739518216
+            },
+            "1": {
+              "mean": 0.5263031185631253,
+              "sample_sd": 0.010837135138107147
+            },
+            "2": {
+              "mean": 0.6290307311535517,
+              "sample_sd": 0.01252568075436069
+            },
+            "3+": {
+              "mean": 0.49627442229137164,
+              "sample_sd": 0.006976696897179277
+            }
+          }
+        },
+        "per_seed_files": [
+          "outputs/stage6/final_test/hierarchical_lambda010_seed0/evaluation_testB.json",
+          "outputs/stage6/final_test/hierarchical_lambda010_seed1/evaluation_testB.json",
+          "outputs/stage6/final_test/hierarchical_lambda010_seed2/evaluation_testB.json"
+        ]
+      }
+    },
+    "hierarchical_lambda1_stage5_6_baseline": {
+      "testA": {
+        "aggregate": {
+          "F1_score": {
+            "mean": 0.4625,
+            "sample_sd": 0.01072954590753701
+          },
+          "T_acc": {
+            "mean": 0.9410249457700651,
+            "sample_sd": 0.02409087037636067
+          },
+          "N_acc": {
+            "mean": 0.6884742206235012,
+            "sample_sd": 0.04344345098645847
+          },
+          "mean_set_f1": {
+            "mean": 0.616207371560421,
+            "sample_sd": 0.007852722913267766
+          },
+          "by_count_group_mean_f1": {
+            "0": {
+              "mean": 0.6884742206235012,
+              "sample_sd": 0.04344345098645847
+            },
+            "1": {
+              "mean": 0.6057029650911672,
+              "sample_sd": 0.02689268546272273
+            },
+            "2": {
+              "mean": 0.6426938699160935,
+              "sample_sd": 0.011258802823688381
+            },
+            "3+": {
+              "mean": 0.47229781308493496,
+              "sample_sd": 0.003165949667288193
+            }
+          }
+        },
+        "per_seed_files": [
+          "outputs/stage5_6/cells/siglip2_10pct_seed0_hierarchical/evaluation_testA.json",
+          "outputs/stage5_6/cells/siglip2_10pct_seed1_hierarchical/evaluation_testA.json",
+          "outputs/stage5_6/cells/siglip2_10pct_seed2_hierarchical/evaluation_testA.json"
+        ]
+      },
+      "testB": {
+        "aggregate": {
+          "F1_score": {
+            "mean": 0.41799995849675237,
+            "sample_sd": 0.0043513141744650815
+          },
+          "T_acc": {
+            "mean": 0.9040093649400058,
+            "sample_sd": 0.020228684494022146
+          },
+          "N_acc": {
+            "mean": 0.7035451886725158,
+            "sample_sd": 0.03748910062425903
+          },
+          "mean_set_f1": {
+            "mean": 0.5360723026559945,
+            "sample_sd": 0.0031761152752085337
+          },
+          "by_count_group_mean_f1": {
+            "0": {
+              "mean": 0.7035451886725158,
+              "sample_sd": 0.03748910062425903
+            },
+            "1": {
+              "mean": 0.4344767190144449,
+              "sample_sd": 0.02643771086015415
+            },
+            "2": {
+              "mean": 0.5389211804678075,
+              "sample_sd": 0.01093121500070413
+            },
+            "3+": {
+              "mean": 0.41281257091767454,
+              "sample_sd": 0.013156299354553225
+            }
+          }
+        },
+        "per_seed_files": [
+          "outputs/stage5_6/cells/siglip2_10pct_seed0_hierarchical/evaluation_testB.json",
+          "outputs/stage5_6/cells/siglip2_10pct_seed1_hierarchical/evaluation_testB.json",
+          "outputs/stage5_6/cells/siglip2_10pct_seed2_hierarchical/evaluation_testB.json"
+        ]
+      }
+    }
+  },
+  "status": "complete; locked test results must not trigger model changes"
+}

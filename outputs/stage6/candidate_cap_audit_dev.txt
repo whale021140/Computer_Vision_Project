@@ -1,0 +1,6 @@
+Stage 6.3 Cached Proposal-Cap Audit
+===================================
+cap | target recall | unique recall | full coverage | avg candidates | at cap
+---: | ---: | ---: | ---: | ---: | ---:
+50 | 0.994754 | 0.989732 | 0.993395 | 36.891 | 0.272757
+100 | 0.995714 | 0.990725 | 0.994697 | 39.974 | 0.005551

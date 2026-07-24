@@ -1,0 +1,212 @@
+{
+  "stage": "6 compact final test gate",
+  "scope_revision": "15-hour compact protocol locked before new Stage 6 test access",
+  "development_prerequisites": [
+    {
+      "path": "outputs/stage6/stage6_1_three_seed_confirmation.json",
+      "sha256": "36503df71abbdd89cb9cb93a2bd7106cb4b6acb850bbcbff628b0ce54a47d8e6"
+    },
+    {
+      "path": "outputs/stage6/stage6_2_input_ablation_summary.json",
+      "sha256": "23e5d94519a8008e50ef5bed4f103310ce248715da344d3d38e72f0dd986a300"
+    },
+    {
+      "path": "outputs/stage6/candidate_cap_audit_dev.json",
+      "sha256": "a71699caf666b78c9a118266d45cabbb44f5a4cd54d004e45320969d56bf283a"
+    },
+    {
+      "path": "outputs/stage6/multitarget_failure_diagnosis_dev.json",
+      "sha256": "05cfb50887ee5bc66709103dd653ae223071b68715fb8f396d4c01246845db49"
+    },
+    {
+      "path": "outputs/stage6/pre_nms_threshold_sweep_seed0.json",
+      "sha256": "e4ff0b92d2d10cfb3de3f968ec26cf0a7f2bbcf77000850252fbc46a1514ee82"
+    },
+    {
+      "path": "outputs/stage6/pre_nms_threshold_confirmation_seed1.json",
+      "sha256": "6d8a38d4fac3c017e05d01156cd2bcea7c8c8e77d409abeb118c90491ac06038"
+    },
+    {
+      "path": "outputs/stage6/pre_nms_threshold_confirmation_seed2.json",
+      "sha256": "7f7f5e5c522f2db55f15441299033a2760f55c956b626bc95bf0d1b0f6f98f51"
+    },
+    {
+      "path": "outputs/stage6/counterfactual_local_audit.json",
+      "sha256": "5d689ecfda650cde5508f2fa8a10d73c83c6b4d04e4fcec0aab0a783e51a61b6"
+    }
+  ],
+  "new_test_cells": [
+    {
+      "family": "membership_only",
+      "seed": 0,
+      "selection_policy": "membership-only",
+      "pre_nms_threshold": null,
+      "checkpoint": "checkpoints/stage6/pilots/membership_only_lambda0/selected.pt",
+      "checkpoint_sha256": "fb9dd08b12a507e6a5b4dedbbf4ddb0188eb5b7de83b6a58d430891be156e00e",
+      "calibration_json": "outputs/stage6/pilots/membership_only_lambda0/calibration_dev.json",
+      "calibration_sha256": "18c19336d14aeb3a60f6ea1dcc879e41a2d4130a91afa1b2e86529960852cde7",
+      "membership_threshold": 0.4,
+      "count_logit_bias": null
+    },
+    {
+      "family": "membership_only",
+      "seed": 1,
+      "selection_policy": "membership-only",
+      "pre_nms_threshold": null,
+      "checkpoint": "checkpoints/stage6/confirmation/membership_only_seed1/selected.pt",
+      "checkpoint_sha256": "932eda00bb3caa3056049de752fd131f193a0fa9ebfb8d580fabb58cba9762a6",
+      "calibration_json": "outputs/stage6/confirmation/membership_only_seed1/calibration_dev.json",
+      "calibration_sha256": "e5bd8ac6d432a30de284464786275c6d3a677671dd7a1a7212f3837378bea3f3",
+      "membership_threshold": 0.4,
+      "count_logit_bias": null
+    },
+    {
+      "family": "membership_only",
+      "seed": 2,
+      "selection_policy": "membership-only",
+      "pre_nms_threshold": null,
+      "checkpoint": "checkpoints/stage6/confirmation/membership_only_seed2/selected.pt",
+      "checkpoint_sha256": "eab8bc38194888b4de1b3b13af4bbc265db995d525388a417fbd8638742d4a7f",
+      "calibration_json": "outputs/stage6/confirmation/membership_only_seed2/calibration_dev.json",
+      "calibration_sha256": "efeca53c2b6c6152e43d796703110648cf20ca905a1bb7eed1de089b5a7c085d",
+      "membership_threshold": 0.4,
+      "count_logit_bias": null
+    },
+    {
+      "family": "flat_lambda1",
+      "seed": 0,
+      "selection_policy": "cardinality-threshold",
+      "pre_nms_threshold": null,
+      "checkpoint": "checkpoints/stage6/pilots/flat_lambda1/selected.pt",
+      "checkpoint_sha256": "037a98a0a2a774e6912f63039281f6849dfc7c71bb86262a50a4c50232316d80",
+      "calibration_json": "outputs/stage6/pilots/flat_lambda1/calibration_dev.json",
+      "calibration_sha256": "2230f56694b07f2e6dde484807552094920ca288816d37d5d685a2cb2ab4c443",
+      "membership_threshold": 0.85,
+      "count_logit_bias": [
+        4.5,
+        0.0,
+        0.0,
+        6.0
+      ]
+    },
+    {
+      "family": "flat_lambda1",
+      "seed": 1,
+      "selection_policy": "cardinality-threshold",
+      "pre_nms_threshold": null,
+      "checkpoint": "checkpoints/stage6/confirmation/flat_lambda1_seed1/selected.pt",
+      "checkpoint_sha256": "7026917b44db8b1d76e85dfcaae7b7c36e0aa38f2579d139c70b95ee82c68bc3",
+      "calibration_json": "outputs/stage6/confirmation/flat_lambda1_seed1/calibration_dev.json",
+      "calibration_sha256": "95619cfc711592f3edadd74f4d7e054374634d8e4cd75aa90281b4315c08ffc9",
+      "membership_threshold": 0.9,
+      "count_logit_bias": [
+        5.5,
+        0.0,
+        0.0,
+        10.0
+      ]
+    },
+    {
+      "family": "flat_lambda1",
+      "seed": 2,
+      "selection_policy": "cardinality-threshold",
+      "pre_nms_threshold": null,
+      "checkpoint": "checkpoints/stage6/confirmation/flat_lambda1_seed2/selected.pt",
+      "checkpoint_sha256": "d2596dc1e53cde1f9d8c805e597543746fd899f441d0b612829f152c12f8714d",
+      "calibration_json": "outputs/stage6/confirmation/flat_lambda1_seed2/calibration_dev.json",
+      "calibration_sha256": "b73e63ab6d417aa6361eeb42d5ceca1e39b7bf9fc347d492fac71e39d6f2f75d",
+      "membership_threshold": 0.925,
+      "count_logit_bias": [
+        4.5,
+        0.0,
+        0.0,
+        7.0
+      ]
+    },
+    {
+      "family": "hierarchical_lambda010",
+      "seed": 0,
+      "selection_policy": "cardinality-threshold",
+      "pre_nms_threshold": 0.3,
+      "checkpoint": "checkpoints/stage6/pilots/hierarchical_lambda010/selected.pt",
+      "checkpoint_sha256": "09fa0936699612ef4f0a823956d49644b54b81ac1a4affb0a4c06c503e6b23b4",
+      "calibration_json": "outputs/stage6/pilots/hierarchical_lambda010/calibration_prenms_dev.json",
+      "calibration_sha256": "33aa16a195aeb717035352a539ced8d1b9f3cbf49ea9a6fa5d0186ef88efadd9",
+      "membership_threshold": 0.5,
+      "count_logit_bias": [
+        3.0,
+        0.0,
+        0.0,
+        3.5
+      ]
+    },
+    {
+      "family": "hierarchical_lambda010",
+      "seed": 1,
+      "selection_policy": "cardinality-threshold",
+      "pre_nms_threshold": 0.3,
+      "checkpoint": "checkpoints/stage6/confirmation/hierarchical_lambda010_seed1/selected.pt",
+      "checkpoint_sha256": "84451b5ef2d8192183d4aef0ce6bb30ce9fc593d49b6c063428d42bd86b284ae",
+      "calibration_json": "outputs/stage6/confirmation/hierarchical_lambda010_seed1/calibration_prenms_dev.json",
+      "calibration_sha256": "0ea6e42916f4a6a05d6903fc1f9d7999c6af0af1411b88008aa43c929804e241",
+      "membership_threshold": 0.5,
+      "count_logit_bias": [
+        4.5,
+        0.0,
+        0.0,
+        7.5
+      ]
+    },
+    {
+      "family": "hierarchical_lambda010",
+      "seed": 2,
+      "selection_policy": "cardinality-threshold",
+      "pre_nms_threshold": 0.3,
+      "checkpoint": "checkpoints/stage6/confirmation/hierarchical_lambda010_seed2/selected.pt",
+      "checkpoint_sha256": "d499b858ad81ec76546eaae545409ecc2ec1feb09874a4d6361ce989b4549696",
+      "calibration_json": "outputs/stage6/confirmation/hierarchical_lambda010_seed2/calibration_prenms_dev.json",
+      "calibration_sha256": "ee2d9f0a84a8574b41654dafcc18f58e9e15e7a4885754ad0e597c3876f3b0e5",
+      "membership_threshold": 0.5,
+      "count_logit_bias": [
+        3.5,
+        0.0,
+        0.0,
+        7.0
+      ]
+    }
+  ],
+  "reused_stage5_6_baseline_cells": [
+    {
+      "family": "hierarchical_lambda1_stage5_6_baseline",
+      "seed": 0,
+      "checkpoint": "checkpoints/stage5_6/siglip2_10pct_seed0_hierarchical/selected.pt",
+      "checkpoint_sha256": "ab4ec929f59ddabb235b3c4fa1991949d1797a089cb415313aa5e6d90c7c4e00",
+      "calibration_json": "outputs/stage5_6/cells/siglip2_10pct_seed0_hierarchical/calibration_dev.json",
+      "calibration_sha256": "dc31287509c9c6291f74858c027bb5c0d5300c02405048f50294ea8a520352dc",
+      "test_results_reused": true
+    },
+    {
+      "family": "hierarchical_lambda1_stage5_6_baseline",
+      "seed": 1,
+      "checkpoint": "checkpoints/stage5_6/siglip2_10pct_seed1_hierarchical/selected.pt",
+      "checkpoint_sha256": "db77f3afb74eb459f4502c2facbc0439e1562bb5c01acb66e16d5c03858dff1a",
+      "calibration_json": "outputs/stage5_6/cells/siglip2_10pct_seed1_hierarchical/calibration_dev.json",
+      "calibration_sha256": "031f7c084625b7c9b2c0b9574b525760f1bbc72ec9eb84e55f0f25500dda6d1a",
+      "test_results_reused": true
+    },
+    {
+      "family": "hierarchical_lambda1_stage5_6_baseline",
+      "seed": 2,
+      "checkpoint": "checkpoints/stage5_6/siglip2_10pct_seed2_hierarchical/selected.pt",
+      "checkpoint_sha256": "6fa96e14b8d4e2d313720c814729ef7405c2597afa4ca0c8830bc735ae74f8ad",
+      "calibration_json": "outputs/stage5_6/cells/siglip2_10pct_seed2_hierarchical/calibration_dev.json",
+      "calibration_sha256": "0e26f560f0ed0aea48dcd59c3a04870ef3184528d46cd3ee341c9d92de0498e6",
+      "test_results_reused": true
+    }
+  ],
+  "test_splits": [
+    "testA",
+    "testB"
+  ],
+  "test_access_rule": "Run every locked new cell once; results cannot trigger retraining, recalibration, or structural changes."
+}

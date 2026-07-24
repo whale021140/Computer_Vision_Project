@@ -17,6 +17,9 @@ class ClipCandidateBaseline(nn.Module):
         num_count_classes: int = 4,
         pooling: str = "mean",
         hierarchical_cardinality: bool = False,
+        membership_only: bool = False,
+        use_box_coordinates: bool = True,
+        use_explicit_similarity: bool = True,
     ):
         super().__init__()
 
@@ -24,13 +27,23 @@ class ClipCandidateBaseline(nn.Module):
             raise ValueError("pooling must be 'mean' or 'mean_max_stats'.")
         self.pooling = pooling
         self.hierarchical_cardinality = bool(hierarchical_cardinality)
+        self.membership_only = bool(membership_only)
+        self.use_box_coordinates = bool(use_box_coordinates)
+        self.use_explicit_similarity = bool(use_explicit_similarity)
+        if self.membership_only and self.hierarchical_cardinality:
+            raise ValueError(
+                "membership_only and hierarchical_cardinality are mutually exclusive."
+            )
 
         self.candidate_feature_dim = int(candidate_feature_dim or feature_dim)
         self.text_feature_dim = int(text_feature_dim or feature_dim)
         # Backward-compatible alias for legacy CLIP-only code.
         self.feature_dim = self.candidate_feature_dim
         self.input_dim = (
-            self.candidate_feature_dim + self.text_feature_dim + 1 + 4
+            self.candidate_feature_dim
+            + self.text_feature_dim
+            + int(self.use_explicit_similarity)
+            + 4 * int(self.use_box_coordinates)
         )
 
         self.candidate_mlp = nn.Sequential(
@@ -45,7 +58,11 @@ class ClipCandidateBaseline(nn.Module):
         self.membership_head = nn.Linear(hidden_dim, 1)
 
         pooled_dim = hidden_dim if pooling == "mean" else hidden_dim * 2 + 4
-        if self.hierarchical_cardinality:
+        if self.membership_only:
+            self.presence_head = None
+            self.positive_count_head = None
+            self.count_head = None
+        elif self.hierarchical_cardinality:
             self.presence_head = nn.Sequential(
                 nn.Linear(pooled_dim, hidden_dim),
                 nn.ReLU(),
@@ -89,15 +106,12 @@ class ClipCandidateBaseline(nn.Module):
         text_repeated = text_feature.unsqueeze(0).expand(n, -1)
         sim = candidate_text_similarity.view(n, 1)
 
-        return torch.cat(
-            [
-                candidate_features,
-                text_repeated,
-                sim,
-                candidate_boxes_norm,
-            ],
-            dim=1,
-        )
+        components = [candidate_features, text_repeated]
+        if self.use_explicit_similarity:
+            components.append(sim)
+        if self.use_box_coordinates:
+            components.append(candidate_boxes_norm)
+        return torch.cat(components, dim=1)
 
     def forward(self, batch: Dict[str, List[torch.Tensor]]) -> Dict[str, object]:
         device = next(self.parameters()).device
@@ -152,7 +166,13 @@ class ClipCandidateBaseline(nn.Module):
                 )
 
         pooled_features = torch.stack(pooled_features, dim=0)
-        if self.hierarchical_cardinality:
+        if self.membership_only:
+            presence_logits = None
+            positive_count_logits = None
+            count_logits = torch.zeros(
+                (batch_size, 4), dtype=pooled_features.dtype, device=device
+            )
+        elif self.hierarchical_cardinality:
             presence_logits = self.presence_head(pooled_features)
             positive_count_logits = self.positive_count_head(pooled_features)
             presence_log_probs = torch.log_softmax(presence_logits, dim=1)

@@ -1,0 +1,233 @@
+{
+  "stage": "6.3 cached proposal-cap audit",
+  "scope": "locked development split; no detector rerun",
+  "candidate_file": "cache/candidates_detector/fasterrcnn_stage5_6_feature_union.jsonl",
+  "split_file": "splits/stage5_6/dev.json",
+  "iou_threshold": 0.5,
+  "caps": [
+    50,
+    100
+  ],
+  "results": {
+    "50": {
+      "overall": {
+        "samples": 12249,
+        "targets": 15632,
+        "matched_targets": 15550,
+        "targeted_samples": 10749,
+        "full_coverage_samples": 10678,
+        "candidate_sum": 451875,
+        "at_cap_samples": 3341,
+        "target_recall": 0.9947543500511771,
+        "full_target_coverage": 0.9933947343938971,
+        "average_candidates": 36.89076659319128,
+        "at_cap_fraction": 0.27275695975181646
+      },
+      "unique_target_recall": 0.9897316992381583,
+      "unique_targets": 3019,
+      "by_exact_count": {
+        "0": {
+          "samples": 1500,
+          "targets": 0,
+          "matched_targets": 0,
+          "targeted_samples": 0,
+          "full_coverage_samples": 0,
+          "candidate_sum": 54802,
+          "at_cap_samples": 400,
+          "target_recall": null,
+          "full_target_coverage": null,
+          "average_candidates": 36.534666666666666,
+          "at_cap_fraction": 0.26666666666666666
+        },
+        "1": {
+          "samples": 6707,
+          "targets": 6707,
+          "matched_targets": 6683,
+          "targeted_samples": 6707,
+          "full_coverage_samples": 6683,
+          "candidate_sum": 250259,
+          "at_cap_samples": 1866,
+          "target_recall": 0.9964216490234084,
+          "full_target_coverage": 0.9964216490234084,
+          "average_candidates": 37.313105710451765,
+          "at_cap_fraction": 0.27821678842999853
+        },
+        "2": {
+          "samples": 3654,
+          "targets": 7308,
+          "matched_targets": 7281,
+          "targeted_samples": 3654,
+          "full_coverage_samples": 3628,
+          "candidate_sum": 132244,
+          "at_cap_samples": 979,
+          "target_recall": 0.9963054187192119,
+          "full_target_coverage": 0.9928845101258894,
+          "average_candidates": 36.191570881226056,
+          "at_cap_fraction": 0.26792556102900933
+        },
+        "3": {
+          "samples": 218,
+          "targets": 654,
+          "matched_targets": 653,
+          "targeted_samples": 218,
+          "full_coverage_samples": 217,
+          "candidate_sum": 7883,
+          "at_cap_samples": 49,
+          "target_recall": 0.9984709480122325,
+          "full_target_coverage": 0.9954128440366973,
+          "average_candidates": 36.1605504587156,
+          "at_cap_fraction": 0.22477064220183487
+        },
+        "4": {
+          "samples": 74,
+          "targets": 296,
+          "matched_targets": 294,
+          "targeted_samples": 74,
+          "full_coverage_samples": 72,
+          "candidate_sum": 2894,
+          "at_cap_samples": 19,
+          "target_recall": 0.9932432432432432,
+          "full_target_coverage": 0.972972972972973,
+          "average_candidates": 39.108108108108105,
+          "at_cap_fraction": 0.25675675675675674
+        },
+        "5": {
+          "samples": 40,
+          "targets": 200,
+          "matched_targets": 198,
+          "targeted_samples": 40,
+          "full_coverage_samples": 38,
+          "candidate_sum": 1496,
+          "at_cap_samples": 9,
+          "target_recall": 0.99,
+          "full_target_coverage": 0.95,
+          "average_candidates": 37.4,
+          "at_cap_fraction": 0.225
+        },
+        "6+": {
+          "samples": 56,
+          "targets": 467,
+          "matched_targets": 441,
+          "targeted_samples": 56,
+          "full_coverage_samples": 40,
+          "candidate_sum": 2297,
+          "at_cap_samples": 19,
+          "target_recall": 0.9443254817987152,
+          "full_target_coverage": 0.7142857142857143,
+          "average_candidates": 41.017857142857146,
+          "at_cap_fraction": 0.3392857142857143
+        }
+      }
+    },
+    "100": {
+      "overall": {
+        "samples": 12249,
+        "targets": 15632,
+        "matched_targets": 15565,
+        "targeted_samples": 10749,
+        "full_coverage_samples": 10692,
+        "candidate_sum": 489647,
+        "at_cap_samples": 68,
+        "target_recall": 0.9957139201637666,
+        "full_target_coverage": 0.9946971811331287,
+        "average_candidates": 39.97444689362397,
+        "at_cap_fraction": 0.005551473589680791
+      },
+      "unique_target_recall": 0.9907254057634979,
+      "unique_targets": 3019,
+      "by_exact_count": {
+        "0": {
+          "samples": 1500,
+          "targets": 0,
+          "matched_targets": 0,
+          "targeted_samples": 0,
+          "full_coverage_samples": 0,
+          "candidate_sum": 59293,
+          "at_cap_samples": 8,
+          "target_recall": null,
+          "full_target_coverage": null,
+          "average_candidates": 39.528666666666666,
+          "at_cap_fraction": 0.005333333333333333
+        },
+        "1": {
+          "samples": 6707,
+          "targets": 6707,
+          "matched_targets": 6689,
+          "targeted_samples": 6707,
+          "full_coverage_samples": 6689,
+          "candidate_sum": 271143,
+          "at_cap_samples": 36,
+          "target_recall": 0.9973162367675563,
+          "full_target_coverage": 0.9973162367675563,
+          "average_candidates": 40.42686745191591,
+          "at_cap_fraction": 0.005367526464887431
+        },
+        "2": {
+          "samples": 3654,
+          "targets": 7308,
+          "matched_targets": 7290,
+          "targeted_samples": 3654,
+          "full_coverage_samples": 3636,
+          "candidate_sum": 143747,
+          "at_cap_samples": 22,
+          "target_recall": 0.9975369458128078,
+          "full_target_coverage": 0.9950738916256158,
+          "average_candidates": 39.33962780514505,
+          "at_cap_fraction": 0.0060207991242474
+        },
+        "3": {
+          "samples": 218,
+          "targets": 654,
+          "matched_targets": 653,
+          "targeted_samples": 218,
+          "full_coverage_samples": 217,
+          "candidate_sum": 8425,
+          "at_cap_samples": 2,
+          "target_recall": 0.9984709480122325,
+          "full_target_coverage": 0.9954128440366973,
+          "average_candidates": 38.64678899082569,
+          "at_cap_fraction": 0.009174311926605505
+        },
+        "4": {
+          "samples": 74,
+          "targets": 296,
+          "matched_targets": 294,
+          "targeted_samples": 74,
+          "full_coverage_samples": 72,
+          "candidate_sum": 3071,
+          "at_cap_samples": 0,
+          "target_recall": 0.9932432432432432,
+          "full_target_coverage": 0.972972972972973,
+          "average_candidates": 41.5,
+          "at_cap_fraction": 0.0
+        },
+        "5": {
+          "samples": 40,
+          "targets": 200,
+          "matched_targets": 198,
+          "targeted_samples": 40,
+          "full_coverage_samples": 38,
+          "candidate_sum": 1612,
+          "at_cap_samples": 0,
+          "target_recall": 0.99,
+          "full_target_coverage": 0.95,
+          "average_candidates": 40.3,
+          "at_cap_fraction": 0.0
+        },
+        "6+": {
+          "samples": 56,
+          "targets": 467,
+          "matched_targets": 441,
+          "targeted_samples": 56,
+          "full_coverage_samples": 40,
+          "candidate_sum": 2356,
+          "at_cap_samples": 0,
+          "target_recall": 0.9443254817987152,
+          "full_target_coverage": 0.7142857142857143,
+          "average_candidates": 42.07142857142857,
+          "at_cap_fraction": 0.0
+        }
+      }
+    }
+  }
+}

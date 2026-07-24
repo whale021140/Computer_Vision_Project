@@ -64,6 +64,27 @@ def parse_args():
     )
     parser.add_argument("--hierarchical-cardinality", action="store_true")
     parser.add_argument(
+        "--membership-only",
+        action="store_true",
+        help=(
+            "Remove the cardinality heads. This requires "
+            "--lambda-cardinality 0 and is used only for the Stage 6 ablation."
+        ),
+    )
+    parser.add_argument(
+        "--disable-box-coordinates",
+        action="store_true",
+        help="Remove the four normalized box coordinates from each candidate input.",
+    )
+    parser.add_argument(
+        "--disable-explicit-similarity",
+        action="store_true",
+        help=(
+            "Remove the explicit candidate-text similarity scalar while retaining "
+            "the underlying frozen image and text features."
+        ),
+    )
+    parser.add_argument(
         "--label-policy", choices=["cached", "one-to-one"], default="cached"
     )
     parser.add_argument(
@@ -302,6 +323,12 @@ def save_checkpoint(
 
 def main():
     args = parse_args()
+    if args.membership_only and args.lambda_cardinality != 0.0:
+        raise ValueError("--membership-only requires --lambda-cardinality 0")
+    if args.membership_only and args.hierarchical_cardinality:
+        raise ValueError(
+            "--membership-only and --hierarchical-cardinality are mutually exclusive"
+        )
     set_seed(args.seed)
 
     Path(args.output_dir).mkdir(parents=True, exist_ok=True)
@@ -367,6 +394,9 @@ def main():
         dropout=args.dropout,
         pooling=args.pooling,
         hierarchical_cardinality=args.hierarchical_cardinality,
+        membership_only=args.membership_only,
+        use_box_coordinates=not args.disable_box_coordinates,
+        use_explicit_similarity=not args.disable_explicit_similarity,
     ).to(device)
     trainable_parameter_count = sum(
         parameter.numel()
@@ -550,6 +580,12 @@ def main():
         f.write(f"Dropout: {args.dropout}\n")
         f.write(f"Pooling: {args.pooling}\n")
         f.write(f"Hierarchical cardinality: {args.hierarchical_cardinality}\n")
+        f.write(f"Membership only: {args.membership_only}\n")
+        f.write(f"Use box coordinates: {not args.disable_box_coordinates}\n")
+        f.write(
+            "Use explicit similarity: "
+            f"{not args.disable_explicit_similarity}\n"
+        )
         f.write(f"Label policy: {args.label_policy}\n")
         f.write(f"Count weight policy: {args.count_weight_policy}\n")
         f.write(f"Resolved count weights: {resolved_count_weights}\n")

@@ -184,6 +184,43 @@ all six split/fraction comparisons; the simple CLIP+DINOv2 concatenation trails
 CLIP in all six. Full metrics and paired differences are in
 [`outputs/stage5_6/test_summary.txt`](outputs/stage5_6/test_summary.txt).
 
+## Stage 6 Final Mechanism and Reliability Result
+
+Stage 6 freezes the Stage 5.6 data and representation choice, then isolates
+the lightweight head's mechanisms on development data before opening one
+hash-locked test gate. The accepted inference recipe is:
+
+```text
+SigLIP 2, 10% supervision, hierarchical cardinality
+lambda_cardinality = 0.10
+pre-selection class-agnostic NMS IoU = 0.30
+3+ membership threshold = 0.50
+```
+
+Values are mean ± sample standard deviation over three seeds:
+
+| Family | testA F1 | testB F1 | testA mean set F1 | testB mean set F1 |
+|---|---:|---:|---:|---:|
+| Membership only | 0.3022 ± 0.0022 | 0.2892 ± 0.0057 | 0.5604 ± 0.0020 | 0.4846 ± 0.0038 |
+| Flat cardinality, λ=1 | 0.4599 ± 0.0080 | 0.4172 ± 0.0035 | 0.6121 ± 0.0057 | 0.5348 ± 0.0052 |
+| Stage 5.6 hierarchical, λ=1 | 0.4625 ± 0.0107 | 0.4180 ± 0.0044 | 0.6162 ± 0.0079 | 0.5361 ± 0.0032 |
+| **Stage 6 hierarchical, λ=0.10 + pre-NMS** | **0.5390 ± 0.0036** | **0.4921 ± 0.0033** | **0.6760 ± 0.0025** | **0.5965 ± 0.0036** |
+
+The final recipe improves official F1 over the frozen Stage 5.6 baseline by
+`+0.0765` on testA and `+0.0741` on testB. The development-only input
+ablations show that removing box coordinates reduces macro F1 by `0.0370`,
+while removing explicit image-text similarity reduces it by `0.0469`.
+Pre-selection NMS resolves most duplicate high-scoring proposals: seed-0
+exact successes for 3/4/5/6+ targets change from `46/0/0/0` to `83/8/1/1`.
+High-count grounding remains difficult because 4/5/6+ supervision is sparse
+and 6+ proposal full coverage is only `0.7143`.
+
+The Stage 6 test gate was opened once after all checkpoints, calibrations, NMS
+and threshold choices were hashed. Test results did not trigger any further
+model or inference change. Full results are in
+[`outputs/stage6/stage6_final_summary.txt`](outputs/stage6/stage6_final_summary.txt)
+and [`docs/stage6_final_report_zh.md`](docs/stage6_final_report_zh.md).
+
 ## Stage 5 Historical Locked Test Result
 
 The main result uses the pre-declared fixed epoch-20 checkpoint. Values are
@@ -262,7 +299,9 @@ official GREC results.
 - [`docs/stage5_6_final_protocol_retraining.md`](docs/stage5_6_final_protocol_retraining.md):
   final unified data, selection, training, and test protocol.
 - [`docs/stage6_ablations_and_reliability.md`](docs/stage6_ablations_and_reliability.md):
-  redesigned dev-first mechanism ablations, 3+ diagnosis, parameter matching,
-  counterfactual reliability, and one-time test gate.
+  completed dev-first mechanism ablations, exact-count diagnosis, compact
+  reliability audit, and one-time test gate.
+- [`docs/stage6_final_report_zh.md`](docs/stage6_final_report_zh.md): concise
+  Chinese Stage 6 final report, accepted results, and limitations.
 - [`docs/488proposal.pdf`](docs/488proposal.pdf): original project proposal
   when present in the local checkout.

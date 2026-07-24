@@ -2,7 +2,7 @@
 
 - `complete_experiment_guide_zh.md`: complete Chinese-language explanation of
   the task, terminology, architecture, data protocol, all work through Stage
-  5.6, final results, supported and unsupported hypotheses, limitations, and
+  6, final results, supported and unsupported hypotheses, limitations, and
   remaining proposal commitments. This is the recommended entry point for
   readers without a computer-vision background.
 - `488proposal.pdf`: original project proposal.
@@ -27,9 +27,11 @@
 - `stage5_6_final_protocol_retraining.md`: final unified whole-image
   development split, locked selection protocol, complete retraining grid, and
   corrected wide calibration, final test gate, and accepted results.
-- `stage6_ablations_and_reliability.md`: redesigned dev-first ablation,
-  parameter-matching, 3+ diagnosis, counterfactual reliability, and one-time
-  test-gate plan.
+- `stage6_ablations_and_reliability.md`: completed dev-first ablations,
+  exact-count failure diagnosis, proposal and counterfactual audits,
+  pre-selection NMS repair, and one-time test gate.
+- `stage6_final_report_zh.md`: concise Chinese final report for Stage 6,
+  including the accepted three-seed test result and remaining limitations.
 
 The completion plan is the source of truth for work after Milestone 2. Update
 its stage table, checklists, and progress log whenever a stage is accepted.

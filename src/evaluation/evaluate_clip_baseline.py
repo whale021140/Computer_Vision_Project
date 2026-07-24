@@ -7,6 +7,7 @@ from typing import Any, Dict, List, Set
 
 import torch
 from torch.utils.data import DataLoader
+from torchvision.ops import nms
 from tqdm import tqdm
 
 from src.data.feature_dataset import ClipFeatureDataset, clip_feature_collate_fn
@@ -42,7 +43,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--num-examples", type=int, default=20)
     parser.add_argument(
         "--selection-policy",
-        choices=["cardinality-threshold", "legacy-topk"],
+        choices=["cardinality-threshold", "legacy-topk", "membership-only"],
         default="cardinality-threshold",
     )
     parser.add_argument(
@@ -63,6 +64,15 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--overlap-metric", choices=["iou", "giou"], default="iou")
     parser.add_argument("--prediction-score-threshold", type=float, default=None)
     parser.add_argument("--image-f1-threshold", type=float, default=1.0)
+    parser.add_argument(
+        "--pre-nms-threshold",
+        type=float,
+        default=None,
+        help=(
+            "Optional class-agnostic IoU threshold applied to the full ranked "
+            "candidate pool before cardinality selection."
+        ),
+    )
     parser.add_argument(
         "--count-logit-bias",
         type=float,
@@ -141,9 +151,19 @@ def load_model(
         hierarchical_cardinality = bool(
             ckpt_args.get("hierarchical_cardinality", False)
         )
+        membership_only = bool(ckpt_args.get("membership_only", False))
+        use_box_coordinates = not bool(
+            ckpt_args.get("disable_box_coordinates", False)
+        )
+        use_explicit_similarity = not bool(
+            ckpt_args.get("disable_explicit_similarity", False)
+        )
     else:
         pooling = "mean"
         hierarchical_cardinality = False
+        membership_only = False
+        use_box_coordinates = True
+        use_explicit_similarity = True
     candidate_feature_dim = int(
         ckpt.get("candidate_feature_dim", ckpt.get("feature_dim", candidate_feature_dim))
     )
@@ -158,6 +178,9 @@ def load_model(
         dropout=dropout,
         pooling=pooling,
         hierarchical_cardinality=hierarchical_cardinality,
+        membership_only=membership_only,
+        use_box_coordinates=use_box_coordinates,
+        use_explicit_similarity=use_explicit_similarity,
     )
     model.load_state_dict(ckpt.get("model_state_dict", ckpt))
     model.to(device)
@@ -192,6 +215,16 @@ def select_prediction_indices(
             pred_count_class,
             membership_threshold=membership_threshold,
         )
+    if selection_policy == "membership-only":
+        probabilities = torch.sigmoid(membership_logits.detach().cpu())
+        return {
+            int(index)
+            for index in torch.nonzero(
+                probabilities >= membership_threshold, as_tuple=False
+            )
+            .flatten()
+            .tolist()
+        }
     raise ValueError(f"Unknown selection policy: {selection_policy!r}")
 
 
@@ -233,13 +266,6 @@ def evaluate(args: argparse.Namespace) -> Dict[str, Any]:
             target_type = metadata.get("target_type", "unknown")
             pred_count_class = int(pred_count_classes[i].item())
             true_count_class = int(true_count_classes[i].item())
-            pred_indices = select_prediction_indices(
-                membership_logits,
-                pred_count_class,
-                selection_policy=args.selection_policy,
-                membership_threshold=args.membership_threshold,
-            )
-
             width = int(metadata["width"])
             height = int(metadata["height"])
             candidate_boxes = normalized_boxes_to_xyxy(
@@ -247,13 +273,42 @@ def evaluate(args: argparse.Namespace) -> Dict[str, Any]:
                 width=width,
                 height=height,
             )
+            logits_cpu = membership_logits.detach().cpu().float()
+            probabilities = torch.sigmoid(logits_cpu)
+            if args.pre_nms_threshold is None:
+                pred_indices = select_prediction_indices(
+                    logits_cpu,
+                    pred_count_class,
+                    selection_policy=args.selection_policy,
+                    membership_threshold=args.membership_threshold,
+                )
+            else:
+                if not 0.0 <= args.pre_nms_threshold <= 1.0:
+                    raise ValueError("--pre-nms-threshold must be in [0, 1]")
+                available = [
+                    int(index)
+                    for index in nms(
+                        candidate_boxes.float(),
+                        probabilities.float(),
+                        float(args.pre_nms_threshold),
+                    ).tolist()
+                ]
+                relative = select_prediction_indices(
+                    logits_cpu[available],
+                    pred_count_class,
+                    selection_policy=args.selection_policy,
+                    membership_threshold=args.membership_threshold,
+                )
+                pred_indices = {available[index] for index in relative}
+            if args.selection_policy == "membership-only":
+                pred_count_class = min(len(pred_indices), 3)
+
             sorted_indices = sorted(pred_indices)
             predicted_boxes = (
                 candidate_boxes[sorted_indices]
                 if sorted_indices
                 else torch.empty((0, 4), dtype=torch.float32)
             )
-            probabilities = torch.sigmoid(membership_logits.detach().cpu())
             predicted_scores = (
                 probabilities[sorted_indices]
                 if sorted_indices
@@ -317,6 +372,7 @@ def evaluate(args: argparse.Namespace) -> Dict[str, Any]:
         "device": str(device),
         "batch_size": args.batch_size,
         "selection_policy": args.selection_policy,
+        "pre_nms_threshold": args.pre_nms_threshold,
         "membership_threshold": args.membership_threshold,
         "count_logit_bias": [float(value) for value in args.count_logit_bias],
         **metrics,
@@ -350,6 +406,7 @@ def write_text_summary(result: Dict[str, Any], output_txt: str) -> None:
         f"Representation: {result.get('representation', result['clip_model'])}",
         f"Device: {result['device']}",
         f"Selection policy: {result['selection_policy']}",
+        f"Pre-selection NMS threshold: {result.get('pre_nms_threshold')}",
         f"Membership threshold: {result['membership_threshold']}",
         f"Count logit bias: {result.get('count_logit_bias', [0.0] * 4)}",
         f"Overlap metric: {config['overlap_metric']}",

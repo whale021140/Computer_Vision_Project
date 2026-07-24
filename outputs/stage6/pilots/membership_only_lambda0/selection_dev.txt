@@ -1,0 +1,9 @@
+Stage 6.1 Development Selection
+================================
+Policy: membership-only
+Selected epoch: 18
+Calibrated count-macro mean F1: 0.594546
+Calibrated F1_score: 0.264430
+T_acc: 0.847986
+N_acc: 0.933333
+Calibration boundary flags: none
