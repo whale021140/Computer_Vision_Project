@@ -1,0 +1,154 @@
+Frozen Representation Baseline GREC Evaluation
+==============================================
+Feature file: cache/features/stage5/clip_dinov2_detector_testA.pt
+Checkpoint: checkpoints/stage5_6/clip_dinov2_10pct_seed2_hierarchical/selected.pt
+Representation: {'name': 'clip_dinov2', 'model_ids': {'clip': 'ViT-B/32', 'dinov2': 'facebook/dinov2-base'}, 'candidate_feature_dim': 1280, 'text_feature_dim': 512, 'component_normalization': {'clip_image': 'l2', 'clip_text': 'l2', 'dinov2_cls': 'l2'}, 'fusion': 'concatenate normalized CLIP image and DINOv2 CLS features', 'similarity_source': 'normalized CLIP image/text subspace', 'encoder_parameters': {'clip': {'total': 151277313, 'trainable': 0}, 'dinov2': {'total': 86580480, 'trainable': 0}}}
+Device: cuda
+Selection policy: cardinality-threshold
+Membership threshold: 0.9
+Count logit bias: [8.5, 0.0, 0.0, 15.5]
+Overlap metric: giou
+Match threshold: 0.5
+Prediction score threshold: None
+
+[released GREC metrics]
+F1_score: 0.349687
+T_acc: 0.909775
+N_acc: 0.624101
+
+[diagnostics]
+num_samples: 19200
+mean_precision: 0.521887
+mean_recall: 0.520267
+mean_f1: 0.513317
+exact_set_accuracy: 0.349687
+cardinality_accuracy: 0.679740
+count_class_accuracy: 0.730938
+count_class_evaluated: 19200
+micro_precision: 0.494607
+micro_recall: 0.466441
+micro_f1: 0.480111
+total_tp: 13802
+total_fp: 14103
+total_fn: 15788
+no_target_total: 4448
+no_target_accuracy: 0.624101
+false_grounding_rate: 0.375899
+single_target_total: 5917
+single_target_localization_accuracy: 0.422849
+single_target_exact_accuracy: 0.353220
+multi_target_total: 8835
+multi_target_mean_f1: 0.538882
+multi_target_exact_accuracy: 0.209168
+
+[no-target]
+num_samples: 4448
+mean_precision: 0.624101
+mean_recall: 0.624101
+mean_f1: 0.624101
+exact_set_accuracy: 0.624101
+cardinality_accuracy: 0.624101
+count_class_accuracy: 0.624101
+count_class_evaluated: 4448
+micro_precision: 0.000000
+micro_recall: 0.000000
+micro_f1: 0.000000
+total_tp: 0
+total_fp: 2373
+total_fn: 0
+
+[single-target]
+num_samples: 5917
+mean_precision: 0.380260
+mean_recall: 0.422849
+mean_f1: 0.391865
+exact_set_accuracy: 0.353220
+cardinality_accuracy: 0.741254
+count_class_accuracy: 0.741254
+count_class_evaluated: 5917
+micro_precision: 0.422849
+micro_recall: 0.422849
+micro_f1: 0.422849
+total_tp: 2502
+total_fp: 3415
+total_fn: 3415
+
+[multi-target]
+num_samples: 8835
+mean_precision: 0.565278
+mean_recall: 0.533234
+mean_f1: 0.538882
+exact_set_accuracy: 0.209168
+cardinality_accuracy: 0.666553
+count_class_accuracy: 0.777816
+count_class_evaluated: 8835
+micro_precision: 0.576090
+micro_recall: 0.477337
+micro_f1: 0.522085
+total_tp: 11300
+total_fp: 8315
+total_fn: 12373
+
+[target-count 0]
+num_samples: 4448
+mean_precision: 0.624101
+mean_recall: 0.624101
+mean_f1: 0.624101
+exact_set_accuracy: 0.624101
+cardinality_accuracy: 0.624101
+count_class_accuracy: 0.624101
+count_class_evaluated: 4448
+micro_precision: 0.000000
+micro_recall: 0.000000
+micro_f1: 0.000000
+total_tp: 0
+total_fp: 2373
+total_fn: 0
+
+[target-count 1]
+num_samples: 5917
+mean_precision: 0.380260
+mean_recall: 0.422849
+mean_f1: 0.391865
+exact_set_accuracy: 0.353220
+cardinality_accuracy: 0.741254
+count_class_accuracy: 0.741254
+count_class_evaluated: 5917
+micro_precision: 0.422849
+micro_recall: 0.422849
+micro_f1: 0.422849
+total_tp: 2502
+total_fp: 3415
+total_fn: 3415
+
+[target-count 2]
+num_samples: 5940
+mean_precision: 0.577076
+mean_recall: 0.587121
+mean_f1: 0.576313
+exact_set_accuracy: 0.273569
+cardinality_accuracy: 0.765320
+count_class_accuracy: 0.765320
+count_class_evaluated: 5940
+micro_precision: 0.599433
+micro_recall: 0.587121
+micro_f1: 0.593213
+total_tp: 6975
+total_fp: 4661
+total_fn: 4905
+
+[target-count 3+]
+num_samples: 2895
+mean_precision: 0.541071
+mean_recall: 0.422668
+mean_f1: 0.462080
+exact_set_accuracy: 0.077029
+cardinality_accuracy: 0.463903
+count_class_accuracy: 0.803454
+count_class_evaluated: 2895
+micro_precision: 0.542048
+micro_recall: 0.366743
+micro_f1: 0.437487
+total_tp: 4325
+total_fp: 3654
+total_fn: 7468

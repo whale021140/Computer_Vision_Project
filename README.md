@@ -33,11 +33,15 @@ in the current gRefCOCO val, so fixed epoch-20 `last.pt` is the pre-declared
 primary policy and historical val-loss `best.pt` is reported as a complete
 sensitivity. Under the primary policy, SigLIP 2 is strongest at 5% and 10% and
 all representations improve monotonically with supervision on both test splits.
-Stage 5.5 is also complete as a transparently post-hoc repair study. A locked
-shadow-dev pilot selected hierarchical cardinality prediction with richer
-candidate pooling; nine final 10% models and 36 external evaluations show
-consistent gains over the Stage 5 aggregate means while preserving Stage 5 as
-the primary untouched-test experiment.
+Stage 5.5 is complete as a historical enhanced-system study. Stage 5.6 is the
+completed final main experiment. It uses the complete official train partition,
+a locked whole-image development split containing all `0/1/2/3+` groups, exact
+nested few-shot budgets for three seeds, development-only
+recipe/checkpoint/calibration choices, and 54 full testA/testB evaluations.
+Its corrected `v2_wide` calibration covers class-0 bias `[-1,16]`, class-3
+bias `[0,32]`, and the complete membership-threshold domain `[0,1]`.
+All 31 unique pilot/final calibrations passed the boundary audit before the
+corrected test pass.
 
 ## Environment
 
@@ -146,7 +150,41 @@ optimization schedule, validation checkpoint selection, and GIoU evaluator.
 These are development-set results; the multi-fraction, multi-seed Stage 5 grid
 is reported below.
 
-## Stage 5 Locked Test Result
+## Stage 5.6 Final Unified Result
+
+The new development split contains 12,249 expressions from 854 images, with
+`0/1/2/3+` counts `1500/6707/3654/388`. Its images are absent from every new
+training split. Selection uses count-macro mean F1, so each count group receives
+equal decision weight.
+
+Every seed has the same count-stratified supervision budget:
+
+| Fraction | 0 | 1 | 2 | 3+ | Total |
+|---|---:|---:|---:|---:|---:|
+| 1% | 191 | 1,206 | 679 | 17 | 2,093 |
+| 5% | 957 | 6,031 | 3,392 | 87 | 10,467 |
+| 10% | 1,914 | 12,062 | 6,785 | 173 | 20,934 |
+
+The complete locked protocol and resumable commands are in
+[`docs/stage5_6_final_protocol_retraining.md`](docs/stage5_6_final_protocol_retraining.md).
+The final corrected result uses the `v2_wide` development-only calibration.
+Values below are F1 mean ± sample standard deviation over three paired seeds:
+
+| Split | Representation | 1% | 5% | 10% |
+|---|---|---:|---:|---:|
+| testA | CLIP | 0.2496 ± 0.0185 | 0.3268 ± 0.0048 | 0.3605 ± 0.0028 |
+| testA | CLIP+DINOv2 | 0.2402 ± 0.0097 | 0.2911 ± 0.0223 | 0.3438 ± 0.0103 |
+| testA | SigLIP 2 | **0.2769 ± 0.0295** | **0.4151 ± 0.0122** | **0.4625 ± 0.0107** |
+| testB | CLIP | 0.2656 ± 0.0125 | 0.3039 ± 0.0072 | 0.3430 ± 0.0041 |
+| testB | CLIP+DINOv2 | 0.2528 ± 0.0145 | 0.2839 ± 0.0109 | 0.3288 ± 0.0065 |
+| testB | SigLIP 2 | **0.2749 ± 0.0108** | **0.3722 ± 0.0058** | **0.4180 ± 0.0044** |
+
+All F1 and mean-F1 supervision curves are monotonic. SigLIP 2 is strongest in
+all six split/fraction comparisons; the simple CLIP+DINOv2 concatenation trails
+CLIP in all six. Full metrics and paired differences are in
+[`outputs/stage5_6/test_summary.txt`](outputs/stage5_6/test_summary.txt).
+
+## Stage 5 Historical Locked Test Result
 
 The main result uses the pre-declared fixed epoch-20 checkpoint. Values are
 mean ± sample standard deviation over three paired data/training seeds.
@@ -165,7 +203,7 @@ and `+0.0675 ± 0.0117` on testB. Complete `T_acc`, `N_acc`, mean-F1,
 target-count breakdowns, and the full historical-checkpoint sensitivity are in
 [`outputs/stage5/test_grid_summary.txt`](outputs/stage5/test_grid_summary.txt).
 
-## Stage 5.5 Post-Hoc Enhanced Result
+## Stage 5.5 Historical Enhanced Result
 
 The enhanced recipe was selected and calibrated only on a locked, image-level
 shadow-dev split containing all four target-count groups. Values are mean ±
@@ -202,6 +240,9 @@ official GREC results.
 
 ## Documentation
 
+- [`docs/complete_experiment_guide_zh.md`](docs/complete_experiment_guide_zh.md):
+  complete Chinese explanation of the experiment, final results, limitations,
+  and proposal coverage.
 - [`docs/project_completion_plan.md`](docs/project_completion_plan.md): staged
   implementation and experiment plan.
 - [`docs/milestone2_handoff_after_qualitative_visualization.md`](docs/milestone2_handoff_after_qualitative_visualization.md): detailed Milestone 2 handoff.
@@ -218,5 +259,10 @@ official GREC results.
   protocol, multi-seed split manifest, compute plan, and run contract.
 - [`docs/stage5_5_enhanced_system.md`](docs/stage5_5_enhanced_system.md): locked
   post-hoc repair protocol, shadow-dev pilot, and enhanced multi-seed results.
+- [`docs/stage5_6_final_protocol_retraining.md`](docs/stage5_6_final_protocol_retraining.md):
+  final unified data, selection, training, and test protocol.
+- [`docs/stage6_ablations_and_reliability.md`](docs/stage6_ablations_and_reliability.md):
+  redesigned dev-first mechanism ablations, 3+ diagnosis, parameter matching,
+  counterfactual reliability, and one-time test gate.
 - [`docs/488proposal.pdf`](docs/488proposal.pdf): original project proposal
   when present in the local checkout.

@@ -66,6 +66,16 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Reuse validated per-image feature shards from an interrupted run.",
     )
+    parser.add_argument(
+        "--reuse-shard-dir",
+        action="append",
+        default=[],
+        help=(
+            "Optional validated shard directory from an earlier compatible "
+            "feature bank. May be repeated; output shards still go beside the "
+            "new output file."
+        ),
+    )
     parser.add_argument("--max-samples", type=int, default=None)
     return parser.parse_args()
 
@@ -107,6 +117,7 @@ def extract_features(
     storage_dtype: torch.dtype,
     shard_dir: Path | None = None,
     resume: bool = False,
+    reuse_shard_dirs: Sequence[Path] = (),
 ) -> tuple[Dict[str, Dict[str, Any]], int, int]:
     if text_batch_size <= 0:
         raise ValueError("text_batch_size must be positive.")
@@ -121,8 +132,16 @@ def extract_features(
         expected_boxes = spec["candidate_boxes_norm"].float()
         shard_path = shard_dir / f"{image_key}.pt" if shard_dir else None
         features = None
-        if resume and shard_path is not None and shard_path.exists():
-            shard = torch.load(shard_path, map_location="cpu")
+        reusable_paths = []
+        if resume and shard_path is not None:
+            reusable_paths.append(shard_path)
+        reusable_paths.extend(
+            directory / f"{image_key}.pt" for directory in reuse_shard_dirs
+        )
+        for reusable_path in reusable_paths:
+            if not reusable_path.exists():
+                continue
+            shard = torch.load(reusable_path, map_location="cpu")
             if (
                 shard.get("candidate_feature_dim")
                 != encoder.candidate_feature_dim
@@ -131,10 +150,11 @@ def extract_features(
             ):
                 raise ValueError(
                     f"Resume shard does not match image {image_key}; remove "
-                    f"{shard_path} or restart without --resume."
+                    f"{reusable_path} or use a compatible shard source."
                 )
             features = shard["candidate_features"]
             resumed_images += 1
+            break
 
         if features is None:
             image_path = image_root / spec["file_name"]
@@ -234,6 +254,7 @@ def main() -> None:
             storage_dtype=storage_dtype,
             shard_dir=output_file.with_suffix(output_file.suffix + ".parts"),
             resume=args.resume,
+            reuse_shard_dirs=tuple(Path(path) for path in args.reuse_shard_dir),
         )
     elapsed = time.time() - start
     representation = encoder.metadata()
@@ -269,6 +290,7 @@ def main() -> None:
         **input_stats,
         "encoded_candidate_regions": encoded_regions,
         "resumed_images": resumed_images,
+        "reuse_shard_dirs": list(args.reuse_shard_dir),
         "elapsed_seconds": elapsed,
     }
     stats_file.write_text(json.dumps(stats, indent=2) + "\n", encoding="utf-8")

@@ -1,0 +1,34 @@
+{
+  "proposal_config": {
+    "score_threshold": 0.05,
+    "nms_threshold": 0.7,
+    "max_proposals": 100,
+    "detector_output_limit": 300,
+    "min_box_size": 1.0,
+    "inference_precision": "float16",
+    "detector_id": "torchvision/fasterrcnn_resnet50_fpn_v2:coco_v1"
+  },
+  "requested_images": 16290,
+  "cached_images": 19830,
+  "average_proposals_per_image": 38.13242561775088,
+  "min_proposals_per_image": 1,
+  "max_proposals_per_image": 100,
+  "fallback_counts": {
+    "none": 19830
+  },
+  "elapsed_seconds_this_run": 0.07903861999511719,
+  "device": "cuda",
+  "split_files": [
+    "splits/stage5_6/feature_union.json"
+  ],
+  "split_sha256": {
+    "splits/stage5_6/feature_union.json": "10fe53d331a1c5914293da576d9dc10462d5f45c1dd053d852a5260327caea69"
+  },
+  "output_file": "cache/proposals/fasterrcnn_r50_fpn_v2_all_seed0_fp16.jsonl",
+  "seed": 0,
+  "environment": {
+    "torch": "2.12.0+cu130",
+    "torchvision": "0.27.0+cu130"
+  },
+  "command": "/home/whale/488/Final_Project/src/proposals/generate_fasterrcnn_proposals.py --split-files splits/stage5_6/feature_union.json --instances-json data/grefcoco/annotations/instances.json --image-root data/coco/train2014 --output-file cache/proposals/fasterrcnn_r50_fpn_v2_all_seed0_fp16.jsonl --stats-file outputs/stage5_6/proposal_generation_stats.json --batch-size 1 --num-workers 2 --device cuda --amp --resume"
+}

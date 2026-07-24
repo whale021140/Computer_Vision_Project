@@ -1,0 +1,44 @@
+{
+  "cache_format": "frozen_representation_v1",
+  "representation": {
+    "name": "clip",
+    "model_ids": {
+      "clip": "ViT-B/32"
+    },
+    "candidate_feature_dim": 512,
+    "text_feature_dim": 512,
+    "component_normalization": {
+      "clip_image": "l2",
+      "clip_text": "l2"
+    },
+    "fusion": "none",
+    "encoder_parameters": {
+      "clip": {
+        "total": 151277313,
+        "trainable": 0
+      }
+    }
+  },
+  "device": "cuda",
+  "amp": true,
+  "storage_dtype": "float16",
+  "candidate_file": "cache/candidates_detector/fasterrcnn_stage5_6_feature_union.jsonl",
+  "candidate_file_sha256": "6a9aed8cb721ffa260950a876373a82881fe1cb39896b3801cf1f00e9c34e9db",
+  "output_file": "cache/features/stage5_6/clip_detector_feature_union.pt",
+  "num_samples": 68639,
+  "num_unique_images": 16290,
+  "candidate_references": 2651998,
+  "unique_candidate_regions": 618556,
+  "region_reuse_factor": 4.287401625721842,
+  "target_type_counts": {
+    "multi-target": 22767,
+    "no-target": 6619,
+    "single-target": 39253
+  },
+  "encoded_candidate_regions": 618556,
+  "resumed_images": 15605,
+  "reuse_shard_dirs": [
+    "cache/features/stage5/clip_detector_train_union_seed0-2.pt.parts"
+  ],
+  "elapsed_seconds": 133.82710719108582
+}

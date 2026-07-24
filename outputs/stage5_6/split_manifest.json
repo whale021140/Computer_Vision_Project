@@ -1,0 +1,339 @@
+{
+  "stage": "5.6",
+  "protocol": "whole-image balanced development split from complete official train; development images removed before exact count-stratified nested few-shot sampling",
+  "grefs": "data/grefcoco/annotations/grefs(unc).json",
+  "grefs_sha256": "cc37c5ff95373c78a6a3f98b4c7bc67fde387ea8514752a1392db64223eb3366",
+  "source": {
+    "expressions": 209344,
+    "unique_refs": 78930,
+    "unique_images": 16994,
+    "by_target_type": {
+      "no-target": 19140,
+      "single-target": 120624,
+      "multi-target": 69580
+    },
+    "by_count_group": {
+      "0": 19140,
+      "1": 120624,
+      "2": 67848,
+      "3+": 1732
+    }
+  },
+  "dev_seed": 56,
+  "dev": {
+    "path": "splits/stage5_6/dev.json",
+    "sha256": "35b42a828e049cbbcc121a18f0ab136779cc22e1d1a0e816c292829603aaa73c",
+    "requested_minimum_by_count_group": {
+      "0": 1500,
+      "1": 1500,
+      "2": 1500,
+      "3+": 300
+    },
+    "expressions": 12249,
+    "unique_refs": 4913,
+    "unique_images": 854,
+    "by_target_type": {
+      "no-target": 1500,
+      "single-target": 6707,
+      "multi-target": 4042
+    },
+    "by_count_group": {
+      "0": 1500,
+      "1": 6707,
+      "2": 3654,
+      "3+": 388
+    }
+  },
+  "remaining_pool": {
+    "expressions": 197095,
+    "unique_refs": 74017,
+    "unique_images": 16140,
+    "by_target_type": {
+      "no-target": 17640,
+      "single-target": 113917,
+      "multi-target": 65538
+    },
+    "by_count_group": {
+      "0": 17640,
+      "1": 113917,
+      "2": 64194,
+      "3+": 1344
+    }
+  },
+  "splits": [
+    {
+      "seed": 0,
+      "percentage": 1,
+      "path": "splits/stage5_6/train_1pct_seed0.json",
+      "sha256": "b49ac9124a69077a421f0052befc4ced3d4815ba22f5756d070e016524758b99",
+      "requested_by_count_group": {
+        "0": 191,
+        "1": 1206,
+        "2": 679,
+        "3+": 17
+      },
+      "expressions": 2093,
+      "unique_refs": 2074,
+      "unique_images": 1961,
+      "by_target_type": {
+        "no-target": 191,
+        "single-target": 1206,
+        "multi-target": 696
+      },
+      "by_count_group": {
+        "0": 191,
+        "1": 1206,
+        "2": 679,
+        "3+": 17
+      }
+    },
+    {
+      "seed": 0,
+      "percentage": 5,
+      "path": "splits/stage5_6/train_5pct_seed0.json",
+      "sha256": "1cd7134efe60b99bb61cd6513f6df8c27bac2f44961f1e6b833ee2c7c405507c",
+      "requested_by_count_group": {
+        "0": 957,
+        "1": 6031,
+        "2": 3392,
+        "3+": 87
+      },
+      "expressions": 10467,
+      "unique_refs": 9874,
+      "unique_images": 7544,
+      "by_target_type": {
+        "no-target": 957,
+        "single-target": 6031,
+        "multi-target": 3479
+      },
+      "by_count_group": {
+        "0": 957,
+        "1": 6031,
+        "2": 3392,
+        "3+": 87
+      }
+    },
+    {
+      "seed": 0,
+      "percentage": 10,
+      "path": "splits/stage5_6/train_10pct_seed0.json",
+      "sha256": "f6d2ad6fff9bbaebf78e480356b2ae871e069f95f9148cf5fc9bf6638bcc9feb",
+      "requested_by_count_group": {
+        "0": 1914,
+        "1": 12062,
+        "2": 6785,
+        "3+": 173
+      },
+      "expressions": 20934,
+      "unique_refs": 18706,
+      "unique_images": 11469,
+      "by_target_type": {
+        "no-target": 1914,
+        "single-target": 12062,
+        "multi-target": 6958
+      },
+      "by_count_group": {
+        "0": 1914,
+        "1": 12062,
+        "2": 6785,
+        "3+": 173
+      }
+    },
+    {
+      "seed": 1,
+      "percentage": 1,
+      "path": "splits/stage5_6/train_1pct_seed1.json",
+      "sha256": "d2a11b1396557f1e54ec3a1d3828b9fb62d10fbf01e3474ab539727f8ba9c53c",
+      "requested_by_count_group": {
+        "0": 191,
+        "1": 1206,
+        "2": 679,
+        "3+": 17
+      },
+      "expressions": 2093,
+      "unique_refs": 2071,
+      "unique_images": 1955,
+      "by_target_type": {
+        "no-target": 191,
+        "single-target": 1206,
+        "multi-target": 696
+      },
+      "by_count_group": {
+        "0": 191,
+        "1": 1206,
+        "2": 679,
+        "3+": 17
+      }
+    },
+    {
+      "seed": 1,
+      "percentage": 5,
+      "path": "splits/stage5_6/train_5pct_seed1.json",
+      "sha256": "e9c21b9cbf04438923e1c002eaee4e444e0b4c8abe4635c9b00d8745b78d4a7b",
+      "requested_by_count_group": {
+        "0": 957,
+        "1": 6031,
+        "2": 3392,
+        "3+": 87
+      },
+      "expressions": 10467,
+      "unique_refs": 9868,
+      "unique_images": 7600,
+      "by_target_type": {
+        "no-target": 957,
+        "single-target": 6031,
+        "multi-target": 3479
+      },
+      "by_count_group": {
+        "0": 957,
+        "1": 6031,
+        "2": 3392,
+        "3+": 87
+      }
+    },
+    {
+      "seed": 1,
+      "percentage": 10,
+      "path": "splits/stage5_6/train_10pct_seed1.json",
+      "sha256": "2603424290d31cfa275f1c014d2c43d1673c49927834ebd3e7b2e6f91e33e8fa",
+      "requested_by_count_group": {
+        "0": 1914,
+        "1": 12062,
+        "2": 6785,
+        "3+": 173
+      },
+      "expressions": 20934,
+      "unique_refs": 18658,
+      "unique_images": 11527,
+      "by_target_type": {
+        "no-target": 1914,
+        "single-target": 12062,
+        "multi-target": 6958
+      },
+      "by_count_group": {
+        "0": 1914,
+        "1": 12062,
+        "2": 6785,
+        "3+": 173
+      }
+    },
+    {
+      "seed": 2,
+      "percentage": 1,
+      "path": "splits/stage5_6/train_1pct_seed2.json",
+      "sha256": "b38ae181be8d50caf2875729d76cc309dce6104e71368c3a7fad7c82d26c0d7f",
+      "requested_by_count_group": {
+        "0": 191,
+        "1": 1206,
+        "2": 679,
+        "3+": 17
+      },
+      "expressions": 2093,
+      "unique_refs": 2074,
+      "unique_images": 1959,
+      "by_target_type": {
+        "no-target": 191,
+        "single-target": 1206,
+        "multi-target": 696
+      },
+      "by_count_group": {
+        "0": 191,
+        "1": 1206,
+        "2": 679,
+        "3+": 17
+      }
+    },
+    {
+      "seed": 2,
+      "percentage": 5,
+      "path": "splits/stage5_6/train_5pct_seed2.json",
+      "sha256": "24527077e2b394af06f052ed5a8d0af1d9719918db981dd660550da57a523a9b",
+      "requested_by_count_group": {
+        "0": 957,
+        "1": 6031,
+        "2": 3392,
+        "3+": 87
+      },
+      "expressions": 10467,
+      "unique_refs": 9865,
+      "unique_images": 7603,
+      "by_target_type": {
+        "no-target": 957,
+        "single-target": 6031,
+        "multi-target": 3479
+      },
+      "by_count_group": {
+        "0": 957,
+        "1": 6031,
+        "2": 3392,
+        "3+": 87
+      }
+    },
+    {
+      "seed": 2,
+      "percentage": 10,
+      "path": "splits/stage5_6/train_10pct_seed2.json",
+      "sha256": "06b465b0bb744c36a73b3f46888b6f64476376715f1494cf88da13d8564d88b7",
+      "requested_by_count_group": {
+        "0": 1914,
+        "1": 12062,
+        "2": 6785,
+        "3+": 173
+      },
+      "expressions": 20934,
+      "unique_refs": 18627,
+      "unique_images": 11526,
+      "by_target_type": {
+        "no-target": 1914,
+        "single-target": 12062,
+        "multi-target": 6958
+      },
+      "by_count_group": {
+        "0": 1914,
+        "1": 12062,
+        "2": 6785,
+        "3+": 173
+      }
+    }
+  ],
+  "feature_union": {
+    "path": "splits/stage5_6/feature_union.json",
+    "sha256": "10fe53d331a1c5914293da576d9dc10462d5f45c1dd053d852a5260327caea69",
+    "expressions": 68639,
+    "unique_refs": 46743,
+    "unique_images": 16290,
+    "by_target_type": {
+      "no-target": 6619,
+      "single-target": 39253,
+      "multi-target": 22767
+    },
+    "by_count_group": {
+      "0": 6619,
+      "1": 39253,
+      "2": 21931,
+      "3+": 836
+    }
+  },
+  "official_evaluation_splits": [
+    {
+      "path": "splits/testA.json",
+      "sha256": "03f2227f8707154580bdf01efaf8977e25b6ed2f5d12db9a5890fa38dbf93dc9",
+      "expressions": 19200,
+      "train_image_overlap": 0
+    },
+    {
+      "path": "splits/testB.json",
+      "sha256": "e117716840d5fb2e96320a34940490a8e8177bc5dae89bbc67bee3a7c4063b85",
+      "expressions": 16063,
+      "train_image_overlap": 0
+    }
+  ],
+  "integrity": {
+    "dev_train_expression_overlap": 0,
+    "dev_train_image_overlap": 0,
+    "seed0_nested": true,
+    "seed1_nested": true,
+    "seed2_nested": true
+  },
+  "command": "/home/whale/488/Final_Project/src/data/create_stage5_6_splits.py"
+}

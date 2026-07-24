@@ -1,0 +1,9 @@
+Stage 5.6 Development Selection
+================================
+Selected epoch: 12
+Uncalibrated count-macro mean F1: 0.364539
+Calibration: bias=[0.5, 0.0, 0.0, 2.0] threshold=0.7
+Calibrated count-macro mean F1: 0.386186
+Calibrated F1_score: 0.176014
+Calibrated T_acc: 0.534933
+Calibrated N_acc: 0.790000

@@ -6,7 +6,7 @@ Proposal: `docs/488proposal.pdf`
 
 Working environment: Conda environment `ece485`
 
-Last updated: 2026-07-22
+Last updated: 2026-07-24
 
 ## 1. Goal and Experimental Contract
 
@@ -55,6 +55,7 @@ uses ground-truth instance boxes and does not yet use the released GREC metric.
 | 4. Frozen representation variants | Complete | Controlled 1% CLIP, CLIP+DINOv2, and SigLIP 2 validation comparison |
 | 5. Few-shot experiment grid | Complete | 1%/5%/10%, multiple seeds, locked full-test comparison |
 | 5.5. Post-hoc enhanced system | Complete | Shadow-dev repair study with hierarchical cardinality and calibrated 10% models |
+| 5.6. Final unified protocol retraining | Complete | Complete-train, image-disjoint all-count dev; fresh grid plus audited wide dev-only calibration |
 | 6. Ablations and reliability | Not started | Cardinality, spatial-feature, and counterfactual analyses |
 | 7. Final report and reproducibility | Not started | Final figures, tables, documentation, and reproducible commands |
 
@@ -285,27 +286,84 @@ SigLIP 2 remains strongest, while CLIP+DINOv2 still trails CLIP. These are
 explicitly post-hoc secondary results because Stage 5 test outcomes were known
 before the repair study was designed.
 
-## 11. Stage 6: Ablations and Reliability
+## 11. Stage 5.6: Final Unified Protocol Retraining
 
-Required ablations:
+Stage 5.6 replaces Stages 5 and 5.5 as the source of the final main comparison.
+Earlier artifacts remain available as development history, but they will not be
+mixed into Stage 5.6 selection or aggregate tables.
 
-- CLIP similarity/matcher without the learned cardinality-aware adapter;
-- learned head without normalized box coordinates;
-- learned membership head without the cardinality head;
-- count gating versus membership-threshold selection.
-- parameter-matched input projection for the three representations;
-- duplicate-positive suppression as a further diagnostic for the current
-  IoU-label/count mismatch. Stage 5.5 already completed the one-to-one variant.
+### Locked data and evaluation contract
 
-Reliability extension:
+- [x] Use all 209,344 official training expressions as the source population,
+  rather than restricting the reset to the old multi-seed union.
+- [x] Select one whole-image development split before training, with explicit
+  minimum `0/1/2/3+` coverage of `1500/1500/1500/300`.
+- [x] Verify that its realized 12,249 expressions and 854 images have zero image
+  or expression overlap with the remaining training pool.
+- [x] Build count-stratified, nested 1%/5%/10% splits for seeds 0/1/2 after
+  excluding development images.
+- [x] Preserve the exact full-training-set supervision budgets at every
+  percentage. The fixed `0/1/2/3+` budgets are `191/1206/679/17` at 1%,
+  `957/6031/3392/87` at 5%, and `1914/12062/6785/173` at 10%.
+- [x] Lock all split hashes, pilot choices, selection criteria, hyperparameters,
+  and the test gate before new training.
+- [x] Extend the shared detector proposal cache to the Stage 5.6 feature union.
+- [x] Build the union candidate file and three frozen representation banks,
+  reusing only validated image shards.
+- [x] Rerun all five SigLIP 2 10%-seed-0 recipe pilots on the new development
+  split and choose one using calibrated count-macro mean F1.
+- [x] Train, development-select, and calibrate the winning recipe for all 27
+  representation/fraction/seed cells.
+- [x] Correct the initially truncated calibration grid using development data
+  only. The final grid covers class-0 `[-1,16]`, class-3 `[0,32]`, and the
+  complete membership-threshold domain `[0,1]`; 31/31 unique calibrations pass
+  the boundary gate.
+- [x] After the complete 27-cell gate, evaluate one locked policy per cell on
+  full official testA and testB and aggregate the 54 results.
 
-- attempt consistent preprocessing and evaluation for C-RefCOCO,
-  C-RefCOCO+, and C-RefCOCOg;
-- treat FineCops-Ref as optional;
-- report unavailable or incompatible extensions explicitly rather than silently
-  omitting them.
+The final methods statement is:
 
-## 12. Stage 7: Final Deliverables
+> Since the released validation partition does not cover single-target
+> expressions, we construct an image-disjoint development split from the
+> official training data with explicit coverage of every target-count group.
+> All recipe selection, checkpoint selection, and inference calibration are
+> performed on this development split. The released testA and testB partitions
+> are used for the final benchmark evaluation.
+
+The report will not claim that testA/testB were never observed during earlier
+development. It will accurately state that no Stage 5.6 test metric is used for
+recipe choice, checkpoint choice, calibration, or retraining.
+
+Full details and reproduction commands are in
+`docs/stage5_6_final_protocol_retraining.md`.
+
+## 12. Stage 6: Ablations and Reliability
+
+Stage 6 has been redesigned around the accepted Stage 5.6 `v2_wide` baseline.
+It does not repeat the 27-cell main grid. Exploration stays on development,
+then a manifest locks a small confirmation set before one test gate.
+
+Core work:
+
+- cardinality ablations: membership-only, flat versus hierarchical, count
+  gating, calibration removal, and
+  `lambda_cardinality={0,0.25,0.5,1,2}`;
+- development calibration stability through image-level bootstrap, disjoint
+  dev-subset sensitivity, and lower-degree-of-freedom calibration controls;
+- normalized-coordinate and explicit-similarity input ablations;
+- parameter-matched three-representation comparison using a fixed,
+  training-pool-only common projection;
+- exact 3/4/5/6+ reporting and mutually exclusive proposal-miss,
+  count-error, duplicate-selection, ranking-error diagnosis;
+- proposal cap/NMS and inference duplicate-suppression development studies;
+- frozen-model C-RefCOCO/C-RefCOCO+/C-RefCOCOg reliability evaluation,
+  with FineCops-Ref optional;
+- final Stage 5.6 v2 CLIP versus SigLIP 2 qualitative analysis.
+
+The full experiment matrix, stopping rules, and acceptance checklist are in
+`docs/stage6_ablations_and_reliability.md`.
+
+## 13. Stage 7: Final Deliverables
 
 - Main few-shot result table with mean and standard deviation.
 - Proposal-recall and oracle-versus-detector analysis.
@@ -315,7 +373,7 @@ Reliability extension:
   documented conditional outcome.
 - Reproducible commands and experiment manifests.
 
-## 13. Artifact and Git Policy
+## 14. Artifact and Git Policy
 
 Commit:
 
@@ -333,7 +391,7 @@ identifier, proposal configuration, split hash, seed, command, environment,
 and output metrics. Work should be synchronized in stage-sized commits after
 the relevant acceptance checks pass.
 
-## 14. Progress Log
+## 15. Progress Log
 
 - 2026-07-15: Audited the proposal, milestone handoff, code, local artifacts,
   `ece485`, and GitHub state. Confirmed the diagnostic baseline and identified
@@ -474,3 +532,43 @@ the relevant acceptance checks pass.
   although CLIP+DINOv2 still trails CLIP. Availability metadata now explicitly
   records that gRefCOCO val lacks count-1/single-target samples and RefCOCO aux
   contains only that group.
+- 2026-07-23: Locked and began Stage 5.6 as the final unified retraining
+  protocol. Starting from all 209,344 official train expressions, created an
+  image-disjoint 12,249-expression development set with realized `0/1/2/3+`
+  counts `1500/6707/3654/388`. Generated three nested, count-stratified
+  1%/5%/10% split families with exact group budgets and zero development-image
+  leakage. Added a pre-training protocol lock, validated incremental feature
+  reuse, five-pilot selection, a resumable 27-cell runner, and a hard final-test
+  gate.
+- 2026-07-23: Completed Stage 5.6 proposal and representation preparation.
+  The 68,639-expression feature union covers 16,290 images and 618,556 unique
+  detector regions. Proposal unique-target recall is `0.995138`; 3+ full-target
+  coverage is `0.935407`. For each representation, 15,605 compatible old image
+  shards were validated and reused and only 685 images were newly encoded.
+  CLIP, CLIP+DINOv2, and SigLIP 2 preparation took 133.83, 267.66, and 221.64
+  seconds, respectively. The five-pilot retraining phase then started.
+- 2026-07-24: Completed all five Stage 5.6 pilots, selected the hierarchical
+  cardinality recipe on development data, trained all 27 formal cells, and
+  selected one checkpoint per cell without using the revised test results.
+- 2026-07-24: Corrected the initially underspecified calibration search before
+  the revised test gate. Development-only boundary probes expanded the final
+  grid to 35 class-0 biases in `[-1, 16]`, 65 class-3 biases in `[0, 32]`, and
+  20 membership thresholds in `[0, 1]`, for 45,500 settings per checkpoint.
+  The hard audit passed for all 31 unique calibration artifacts; no selected
+  value is truncated by an artificial grid boundary. The narrow v1 artifacts
+  remain archived for traceability and `v2_wide` is the canonical result.
+- 2026-07-24: Completed all 54 revised Stage 5.6 testA/testB evaluations.
+  Every representation improves monotonically from 1% to 5% to 10% on both
+  official F1 and mean set F1. At 10%, SigLIP 2 reaches
+  `0.462500 ± 0.010730` on testA and `0.418000 ± 0.004351` on testB.
+  SigLIP 2 now has the highest mean F1 in all six split/fraction comparisons;
+  CLIP+DINOv2 remains below CLIP in all six. The wider calibration produces a
+  more conservative and better-balanced operating point: no-target accuracy
+  rises in all 18 aggregate cells while true-target accuracy falls, with the
+  largest low-data testA F1 decreases reported rather than hidden.
+- 2026-07-24: Redesigned Stage 6 as a predeclared mechanism-ablation and
+  reliability stage rather than another main-grid search. It freezes the
+  Stage 5.6 v2 baseline, separates dev exploration from a single locked test
+  confirmation, and prioritizes cardinality, input/parameter matching, exact
+  3/4/5/6+ failure decomposition, proposal sensitivity, counterfactual
+  reliability, and final qualitative analysis.

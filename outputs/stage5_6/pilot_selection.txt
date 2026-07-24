@@ -1,0 +1,11 @@
+Stage 5.6 Pilot Selection
+=========================
+variant | epoch | uncalibrated_macro | calibrated_macro | F1_score
+--- | ---: | ---: | ---: | ---:
+selection_only | 23 | 0.607195 | 0.612748 | 0.447628
+balanced | 20 | 0.606910 | 0.614226 | 0.448526
+hierarchical | 33 | 0.646757 | 0.663739 | 0.534166
+one_to_one | 20 | 0.599690 | 0.605010 | 0.416605
+combined | 33 | 0.626396 | 0.638128 | 0.466324
+
+Selected variant: hierarchical

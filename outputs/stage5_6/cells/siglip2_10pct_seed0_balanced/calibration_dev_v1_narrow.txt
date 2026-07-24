@@ -1,0 +1,10 @@
+Stage 5.6 Wide Development Calibration
+======================================
+Revision: v2_wide
+Settings: 2907
+Best: class0_bias=1.0, class3_bias=5.5, threshold=0.8
+Count-macro mean F1: 0.614226
+Official F1_score: 0.448526
+T_acc: 0.922784
+N_acc: 0.889333
+Boundary flags: {'class0_at_min': False, 'class0_at_max': False, 'class3_at_min': False, 'class3_at_max': False, 'threshold_at_min': False, 'threshold_at_max': False}

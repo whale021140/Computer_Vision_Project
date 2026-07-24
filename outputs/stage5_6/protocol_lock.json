@@ -1,0 +1,42 @@
+{
+  "stage": "5.6",
+  "name": "final unified protocol retraining",
+  "locked_before_new_training": true,
+  "git_commit_at_lock": "4733e760cd15cbf81639c57ff234b32ba7cd940d",
+  "split_manifest": "outputs/stage5_6/split_manifest.json",
+  "split_manifest_sha256": "fc3bbbc75ff6d233a1ff8d4a0d05323c6fc833f476ba4827aa3f3e4b30208d89",
+  "development_policy": "All recipe, epoch, and inference-calibration choices use only splits/stage5_6/dev.json with count-macro mean F1 as the primary criterion and official F1_score as the first tie-break.",
+  "pilot_policy": {
+    "representation": "siglip2",
+    "percentage": 10,
+    "seed": 0,
+    "variants_in_declared_order": [
+      "selection_only",
+      "balanced",
+      "hierarchical",
+      "one_to_one",
+      "combined"
+    ]
+  },
+  "final_grid": {
+    "representations": [
+      "clip",
+      "clip_dinov2",
+      "siglip2"
+    ],
+    "percentages": [
+      1,
+      5,
+      10
+    ],
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "epochs": 40,
+    "recipe": "winner of the locked development-only pilot"
+  },
+  "test_policy": "No testA/testB metric is used for recipe choice, checkpoint choice, calibration, or any retraining decision. After all 27 models are selected and calibrated, testA and testB are evaluated as the sole final benchmark splits for Stage 5.6.",
+  "historical_result_policy": "Stages 5 and 5.5 remain archived development history and are not mixed with Stage 5.6 model selection or final aggregate tables."
+}
